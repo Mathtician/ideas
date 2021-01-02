@@ -1,0 +1,305 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{Dual Circuits}
+\author{Aresh Pourkavoos}
+\maketitle
+
+When I was learning about DC electronic circuits in high school physics,
+I noticed a strange kind of symmetry in the rules
+used to calculate voltage, current, and resistance.
+I've written some of them below in a way that emphasizes this symmetry.
+
+\begin{itemize}
+\item
+  The total voltage difference around a loop of wire is zero.
+  % This is a form of the law of conservation of energy.
+\item
+  The total current flowing into and out of a node (an intersection of wires) is zero.
+  % This is a form of the law of conservation of charge.
+\item
+  Resistors in series add their resistances.
+\item
+  Resistors in parallel add their conductances (reciprocal of resistance).
+\item
+  Resistors in series split the voltage drop across them proportionally to resistance,
+  but they receive the same current.
+\item
+  Resistors in parallel split the current through them proportionally to conductance,
+  but they receive the same voltage.
+\end{itemize}
+
+Essentially, each pair of laws can be interchanged by switching the following pairs of words:
+
+\begin{align*}
+  \text{Voltage} & \leftrightarrow \text{Current} \\
+  \text{Loop} & \leftrightarrow \text{Node} \\
+  \text{Series} & \leftrightarrow \text{Parallel} \\
+  \text{Resistance} & \leftrightarrow \text{Conductance} \\
+\end{align*}
+
+Voltage and current can be considered duals,
+as can loops and nodes, etc.
+Rules 1 and 2 are Kirchhoff's circuit laws.
+The other four are consequences of these and Ohm's law:
+\[V=IR.\]
+Ohm's law itself can be flipped using these dualities to obtain
+\[I=V\frac{1}{R},\]
+which is just the law itself rearranged.
+In this way, Ohm's law is self-dual.
+
+Initially, I didn't know what to make of this duality.
+Then, I had the idea of constructing a \textit{dual circuit}.
+Given a circuit which obeys Kirchhoff's laws and Ohm's law,
+it may be possible to construct a second circuit
+whose voltages come from currents of the original,
+whose components in parallel come from components in series of the original, etc,
+and \textit{which also obeys Kirchhoff's laws and Ohm's law.}
+In a way, every circuit (which can lie flat without crossing wires
+and is made with only DC batteries and resistors) has a twin!
+
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}
+    \draw (0,1)
+    to[short] (0,3)
+    to[battery] (2,3)
+    to[R=$R4$] (2,1)
+    to[short] (0,1);
+    \draw (2,3)
+    to[R=$R1$] (4,3)
+    to[R=$R2$] (4,1)
+    to[R=$R3$] (2,1);
+    \draw[fill=black] (2,1) circle (1mm);
+    \draw[fill=black] (2,3) circle (1mm);
+    \draw[fill=black] (4,1) circle (1mm);
+    \draw[fill=black] (4,3) circle (1mm);
+    \draw[fill=white] (1,2) circle (1mm);
+    \draw[fill=white] (3,2) circle (1mm);
+    \draw[fill=white] (5,2) circle (1mm);
+  \end{circuitikz}
+
+  \caption*{
+    R1: 1$\Omega$, 2A, 2V \\
+    R2: 2$\Omega$, 2A, 4V \\
+    R3: 3$\Omega$, 2A, 6V \\ 
+    R4: 3$\Omega$, 4A, 12V \\
+    Battery: 6A, 12V
+  }
+\end{figure}
+
+We will construct the dual of the circuit above as an example.
+There are two parts to the process: numerical and topological.
+The numerical part consists of finding the voltages, resistances, etc. of its components.
+The topological part consists of finding its shape:
+where its loops and nodes are and which components are in series or in parallel.
+The numerical part is relatively easy;
+voltage becomes current, and resistance is reciprocated to become conductance.
+For example, R3 is a 3$\Omega$ resistor 
+that has 2A passing through it for a drop of 6V.
+Its dual would be a $\frac{1}{3}\Omega$ resistor
+that has 6A passing through it for a drop of 2V.
+The battery supplies 12V to an overall 2$\Omega$ load drawing 6A of current,
+so its dual would be a 6V battery with a $\frac{1}{2}\Omega$ load drawing 12A.
+The self-duality of Ohm's law shines through.
+
+The more interesting part of constructing a dual circuit is topological.
+How exactly can one switch loops (white dots) and nodes (black dots)
+in a circuit like the one above without loose ends or shorts?
+The answer, as it turns out, comes from graph theory.
+
+A circuit can be represented by a graph
+whose edges correspond to circuit components
+and whose vertices correspond to nodes.
+Loops, then, are faces of the graph:
+contiguous areas that are surrounded completely by edges.
+There is an operation on graphs
+that does exactly what we want for dual circuits,
+fittingly called the \textit{dual graph}.
+Faces that share an edge in the original graph
+become nodes connected by an edge in the dual, and vice versa.
+(This operation only works on graphs which can lie in the plane without edges crossing,
+known as planar graphs, but many circuits are planar.)
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.3\textwidth}
+  \begin{tikzpicture}[main node/.style={circle,draw}]
+    \node[main node,fill=black] at (2, 1) (1) {};
+    \node[main node,fill=black] at (2, 3) (2) {};
+    \node[main node,fill=black] at (4, 1) (3) {};
+    \node[main node,fill=black] at (4, 3) (4) {};
+    \path
+    (1) edge [double] node {} (2)
+    edge [double,bend left=90,looseness=3] node {} (2)
+    (2) edge [double] node {} (4)
+    (3) edge [double] node {} (1)
+    (4) edge [double] node {} (3)
+  \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}[b]{0.3\textwidth}
+  \begin{tikzpicture}[main node/.style={circle,draw}]
+    \node[main node,fill=black] at (2, 1) (1) {};
+    \node[main node,fill=black] at (2, 3) (2) {};
+    \node[main node,fill=black] at (4, 1) (3) {};
+    \node[main node,fill=black] at (4, 3) (4) {};
+    \node[main node,fill=white] at (1, 2) (5) {};
+    \node[main node,fill=white] at (3, 2) (6) {};
+    \node[main node,fill=white] at (5, 2) (7) {};
+    \path
+    (1) edge [double] node {} (2)
+    edge [double,bend left=90,looseness=3] node {} (2)
+    (2) edge [double] node {} (4)
+    (3) edge [double] node {} (1)
+    (4) edge [double] node {} (3)
+    (5) edge node {} (6)
+    edge [bend left=135,looseness=3] node {} (7)
+    (6) edge node {} (7)
+    edge [bend left=90,looseness=3] node {} (7)
+    edge [bend right=90,looseness=3] node {} (7);
+  \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}[b]{0.3\textwidth}
+  \begin{tikzpicture}[main node/.style={circle,draw}]
+    \node[main node,fill=white] at (1, 2) (5) {};
+    \node[main node,fill=white] at (3, 2) (6) {};
+    \node[main node,fill=white] at (5, 2) (7) {};
+    \path
+    (5) edge node {} (6)
+    edge [bend left=135,looseness=3] node {} (7)
+    (6) edge node {} (7)
+    edge [bend left=90,looseness=3] node {} (7)
+    edge [bend right=90,looseness=3] node {} (7);
+  \end{tikzpicture}
+  \end{minipage}
+\end{figure}
+
+The graph of the original circuit is shown above, along with its dual.
+The double edges and black vertices make up the original graph,
+and the single edges and white vertices make up the dual.
+Note that while the original circuit appears to have only two loops,
+there is a third loop around the outside, which contains the battery and resistors 1-3,
+hence the third white vertex on the right.
+Note also that each edge of one graph is crossed by exactly one edge of the other (its dual edge),
+so the total number of edges remains the same.
+This is good news for dual circuits,
+since the number of components (one per edge) should not change either.
+Combining this graph with the numerical flipping
+produces a completely valid circuit.
+
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}
+    \draw (3,2)
+    to[R=$R3$] (3,0)
+    to[short] (5,0)
+    to[short] (5,2)
+    to[short] (5,4)
+    to[short] (3,4)
+    to[R=$R1$] (3,2);
+    \draw (1,2)
+    to[R=$R4$] (3,2)
+    to[R=$R2$] (5,2)
+    to[short] (6,2)
+    to[short] (6,5)
+    to[short] (5,5)
+    to[short] (1,5)
+    to[short] (1,4)
+    to[battery] (1,2);
+    \draw[fill=black] (2,1) circle (1mm);
+    \draw[fill=black] (2,3) circle (1mm);
+    \draw[fill=black] (4,1) circle (1mm);
+    \draw[fill=black] (4,3) circle (1mm);
+    \draw[fill=white] (1,2) circle (1mm);
+    \draw[fill=white] (3,2) circle (1mm);
+    \draw[fill=white] (5,2) circle (1mm);
+  \end{circuitikz}
+
+  \caption*{
+    R1: $1\Omega$, 2A, 2V \\
+    R2: $\frac{1}{2}\Omega$, 4A, 2V \\
+    R3: $\frac{1}{3}\Omega$, 6A, 2V \\ 
+    R4: $\frac{1}{3}\Omega$, 12A, 4V \\
+    Battery: 12A, 6V
+  }
+\end{figure}
+
+Success! Here we can see the principles of duality at work:
+\begin{itemize}
+\item
+  Where all four resistors were in a loop in the original circuit,
+  they connect to a node in the dual circuit.
+\item
+  Where the battery and R4 were in parallel in the original circuit,
+  they are in series in the dual circuit.
+\item
+  Where the battery's 6A of current was split into 4A for R4 and 2A for the rest in the original circuit,
+  its 6V are split into 4V for R4 and 2V for the rest in the dual circuit.
+\end{itemize}
+
+A switch can be thought of as an extreme case of a resistor.
+An open switch has infinite resistance and no conductance,
+and a closed one has no resistance and infinite conductance.
+We can add another duality to the list:
+
+\[\text{Open switch} \leftrightarrow \text{Closed switch}\]
+
+
+
+While researching for this article,
+I found the idea of dual circuits in a few specific places, but not generalized:
+
+\begin{itemize}
+\item
+  \href{https://en.wikipedia.org/wiki/Topology\_(electrical\_circuits)#Duality}{This Wikipedia article}
+  talks about the use of duals in analyzing parts of circuits
+  but does not mention the duality between resistance and conductance.
+\item
+  \href{https://en.wikipedia.org/wiki/Dual\_graph#Applications}{This article}
+  mentions the use of duals in creating networks of logic gates,
+  where the dual turns AND gates (switches in series)
+  into OR gates (switches in parallel) and vice versa.
+  However, this is only a topological dual,
+  since flipping the state of every switch and interpreting the output as its inverse
+  (as numerical duality suggests)
+  would restore the logic gates to their former functions.\\
+  See \href{https://en.wikipedia.org/wiki/De\_Morgan\'s\_laws}{De Morgan's Laws}: \ \ 
+  $\lnot (A \land B) \equiv (\lnot A) \lor (\lnot B)$, $\lnot (A \lor B) \equiv (\lnot A) \land (\lnot B)$.
+\item
+  In \href{https://www.numberphile.com/videos/squares-and-tilings}{this video},
+  Fields medalist Andrei Okounkov constructs a pair of dual circuits from a square tiling.
+  However, since all of the resistors are 1$\Omega$,
+  the duality between resistance and conductance is obscured.
+  
+\end{itemize}
+
+After formulating the ideas presented here,
+I began to look for the duals of other electrical components,
+such as capacitors, and finally found
+\href{https://en.wikipedia.org/wiki/Duality\_(electrical\_circuits)}{a more comprehensive list}
+of duals in circuits, including all of the ideas I independently derived and more.
+Apparently, the dualities of electrical components come from those between electricity and magnetism,
+which can themselves be explained by special relativity,
+but I hardly understand any of that yet.
+Frankly, I'm surprised that, although this duality has been known for over a hundred years,
+I never came across it in school or otherwise.
+Duality seems like a valuable teaching tool,
+since students would only have to memorize half of the usual number of rules!
+     
+\end{document}
+
+

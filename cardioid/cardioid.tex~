@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\usepackage{tikz}
+\usepackage{bm}
+\begin{document}
+
+\title{The Cartesian Cardioid}
+\author{Aresh Pourkavoos}
+\maketitle
+
+This article is a bit less math-heavy than usual.
+Here, I want to illustrate a general principle of problem-solving:
+\textbf{The form of a solution often suggests a method to derive it.}
+
+The cardioid (literally ``heart-shaped thing'') is a 2D shape
+defined by the polar equation $r=1-\cos\theta$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=latex]
+
+% Draw the lines at multiples of pi/12
+\foreach \ang in {0,...,31} {
+  \draw [lightgray] (0,0) -- (\ang * 180 / 16:2);
+}
+
+% Concentric circles and radius labels
+\foreach \s in {0, 1} {
+  \draw [lightgray] (0,0) circle (\s + 0.5);
+  \draw (0,0) circle (\s);
+  \node [fill=white] at (\s, 0) [below] {\scriptsize $\s$};
+}
+
+% Add the labels at multiples of pi/4
+\foreach \ang/\lab/\dir in {
+  0/0/right,
+  1/{\pi/4}/{above right},
+  2/{\pi/2}/above,
+  3/{3\pi/4}/{above left},
+  4/{\pi}/left,
+  5/{5\pi/4}/{below left},
+  7/{7\pi/4}/{below right},
+  6/{3\pi/2}/below} {
+  \draw (0,0) -- (\ang * 180 / 4:2);
+  \node [fill=white] at (\ang * 180 / 4:2.1) [\dir] {\scriptsize $\lab$};
+}
+
+% The double-lined circle around the whole diagram
+\draw [style=double] (0,0) circle (2);
+
+\draw [thick,color=red,domain=0:2*pi,samples=200,smooth] plot (xy polar cs:angle=\x r,radius= {1-cos(\x r)});
+
+\end{tikzpicture}
+\caption*{A cardioid. \textit{TikZ code adapted from \href{https://tex.stackexchange.com/users/9668/alexwlchan}{alexwlchan} on TeX Stack Exchange}}
+\end{figure}
+
+It appears in a myriad of places (see \href{https://en.wikipedia.org/wiki/Cardioid}{Wikipedia}),
+including in the Mandelbrot Set fractal and in the sensitivity patterns of some microphones.
+I wanted to know its representation in Cartesian coordinates, with $y$ as a function of $x$.
+(I don't remember my inital motivation for this project;
+likely I just thought it would be a fun exercise.)
+After a fairly long process, I arrived at the answer,
+\[y = \pm\sqrt{\frac{1\pm\sqrt{1-4x}}{2}-x-x^2},\]
+where the two $\pm$ signs can vary independently.
+Compared to the complexity of some of the intermediate stages,
+the brevity of the answer surprised me. In math, though,
+\textbf{there are very few real coincidences.
+  If a large number of terms just seem to cancel out,
+  there is likely an easier way through.}
+So, I applied the principle mentioned at the beginning of this article.
+I wanted to find a shorter derivation of this formula,
+and find a shorter derivation I did.
+
+\textit{Note: what follows is less rigorousness and more of a thought process and intuition.
+  Both have their place in math, and although we rely on the former to verify theorems,
+  the latter is often responsible for coming up with them in the first place.
+}
+
+First of all, the first term inside the large square root (call it $z$) looks like the quadratic formula,
+suggesting that it could be the root(s) of a quadratic equation.
+The individual terms within $z$ can be mapped to those in the formula, giving
+$-b=1$, $b^2-4ac=1-4x$, $2a=2$.
+Solving for the coefficients yields $a=1$, $b=-1$, and $c=x$.
+Thus, in the ideal derivation, there might be an equation
+\[z^2-z+x=0\]
+which we have to solve with the quadratic formula.
+
+How would we arrive at $z$ during the ideal derivation, though?
+If we could isolate $z$ within the answer and write it in terms of $x$ and $y$,
+we might have another equation that appears there.
+Doing this just requires squaring and adding $x^2+x$ to both sides,
+yielding
+\[y^2+x^2+x=z.\]
+
+At first, the last equation doesn't look like much.
+Looking back at the original polar formula
+suggests no obvious way to get there (or to $z^2-z+x=0$, for that matter).
+That is, until we recognize the $x^2+y^2$ term
+as part of the identities that connect Cartesian to polar coordinates,
+specifically $x^2+y^2=r^2$.
+Substituting this into the second equation yields
+\[r^2+x=z,\]
+which starts to bear a resemblance to $z^2-z+x=0$.
+The final epiphany comes when we see that the equations can be rearranged to look almost identical:
+\[r^2=z-x, z^2=z-x,\]
+revealing the true identity of $z$ as $r$ all along!
+(We are ignoring a potential $\pm$, but this is the intuitive process of finding a derivation,
+not the rigorous process of finding an answer.)
+By substitution, we can write a single equation from which everything thus far can be derived:
+\[r^2-r+x=0.\]
+
+The final step in this process (and thus the first step in the ideal derivation)
+is to obtain this formula from the original $r=1-\cos\theta$.
+Somehow, we need to eliminate $\cos\theta$ and introduce $x$.
+For that, we refer to the identity $\cos\theta=x/r$
+and recognize that multiplying both sides of the original formula by $r$
+will achieve the desired effect.
+
+After all of that backwards work, the derivation we find is as follows:
+
+\begin{align*}
+\text{The polar equation of the cardioid is: } & r = 1-\cos(\theta) \\
+\text{Multiplying both sides by } r \text{: } & r^2 = r-x \\
+\text{Rearranging to obtain a quadratic equation: } & r^2-r+x = 0 \\
+\text{Solving for } r \text{ in terms of } x \text{ with the quadratic formula: } & r = \frac{1\pm\sqrt{1-4x}}{2} \\
+\text{Substituting } x^2+y^2 \text{ for } r^2 \text{ in the second equation: } & x^2+y^2 = r-x \\
+\text{Rearranging to solve for } y^2 \text{ in terms of } r \text{ and } x \text{: } & y^2 = r-x-x^2 \\
+\text{Substituting for } r \text{ from the fourth equation: } & y^2 = \frac{1\pm\sqrt{1-4x}}{2}-x-x^2\\
+\text{Solving for } y \text{ in terms of } x \text{: } & y = \pm\sqrt{\frac{1\pm\sqrt{1-4x}}{2}-x-x^2}
+\end{align*}
+
+What I love about this derivation is that I'm almost sure that \textbf{it can't be made any shorter.}
+Every part of the answer has a clear origin in some step of the derivation, and nothing canceled out seemingly by chance.
+The idea that there are virtually no ``accidents'' or coincidences in math
+doesn't just apply to this particular problem (although I think this derivation exemplifies it).
+
+For example, when Newton formulated the Second Law of Motion and the Law of Universal Gravitation,
+it just happened to be that all objects in the same gravitational field accelerate at the same rate
+because the term for the mass $m$ of the falling body cancels out.
+This apparent coincidence was not explained until centuries later,
+when Einstein discovered the theory of General Relativity.
+GR defines the trajectory of falling objects as a ``straight'' line in a curved spacetime
+independently of $m$ (assuming $m$ has a negligible gravitational effect).
+
+As another example, a short derivation of the Gaussian integral
+\[\int_{x=-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi}\]
+ begins by squaring 
+
+
+\end{document}

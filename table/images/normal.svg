@@ -1,0 +1,210 @@
+<svg width="1205" height="638" viewBox="3 3 673 358" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#000">
+<path d="M645 145h30v30h-30zM645 180h30v30h-30zM645 215h30v30h-30zM645 75h30v30h-30zM645 110h30v30h-30zM645 40h30v30h-30z" fill="#BFFFFF"/>
+<path d="M505 145h30v30h-30zM540 145h30v30h-30zM540 180h30v30h-30zM575 180h30v30h-30zM610 215h30v30h-30zM470 75h30v30h-30zM505 110h30v30h-30z" fill="#CBCC98"/>
+<path d="M435 145h30v30h-30zM435 180h30v30h-30zM435 215h30v30h-30zM435 250h30v30h-30zM470 145h30v30h-30zM470 180h30v30h-30zM470 215h30v30h-30zM505 180h30v30h-30zM505 215h30v30h-30zM540 215h30v30h-30zM575 215h30v30h-30zM470 110h30v30h-30z" fill="#CCC"/>
+<path d="M330 250h30v30h-30zM365 250h30v30h-30zM400 250h30v30h-30zM470 250h30v30h-30zM505 250h30v30h-30zM540 250h30v30h-30zM575 250h30v30h-30zM610 250h30v30h-30zM645 250h30v30h-30z" fill="#E8E8E8"/>
+<path d="M110 250h30v30h-30zM155 330h30v30h-30zM190 330h30v30h-30zM225 330h30v30h-30zM260 330h30v30h-30zM295 330h30v30h-30zM330 330h30v30h-30zM365 330h30v30h-30zM400 330h30v30h-30zM435 330h30v30h-30zM470 330h30v30h-30zM505 330h30v30h-30zM540 330h30v30h-30zM575 330h30v30h-30zM610 330h30v30h-30z" fill="#F9C"/>
+<path d="M110 215h30v30h-30zM155 295h30v30h-30zM190 295h30v30h-30zM225 295h30v30h-30zM260 295h30v30h-30zM295 295h30v30h-30zM330 295h30v30h-30zM365 295h30v30h-30zM400 295h30v30h-30zM435 295h30v30h-30zM470 295h30v30h-30zM505 295h30v30h-30zM540 295h30v30h-30zM575 295h30v30h-30zM610 295h30v30h-30z" fill="#FFBFFF"/>
+<path d="M110 145h30v30h-30zM110 180h30v30h-30zM155 145h30v30h-30zM155 180h30v30h-30zM155 215h30v30h-30zM155 250h30v30h-30zM190 145h30v30h-30zM190 180h30v30h-30zM190 215h30v30h-30zM190 250h30v30h-30zM225 145h30v30h-30zM225 180h30v30h-30zM225 215h30v30h-30zM225 250h30v30h-30zM260 145h30v30h-30zM260 180h30v30h-30zM260 215h30v30h-30zM260 250h30v30h-30zM295 145h30v30h-30zM295 180h30v30h-30zM295 215h30v30h-30zM295 250h30v30h-30zM330 145h30v30h-30zM330 180h30v30h-30zM330 215h30v30h-30zM365 145h30v30h-30zM365 180h30v30h-30zM365 215h30v30h-30zM400 145h30v30h-30zM400 180h30v30h-30zM400 215h30v30h-30z" fill="#FFC1C0"/>
+<path d="M40 75h30v30h-30zM40 110h30v30h-30zM40 145h30v30h-30zM40 180h30v30h-30zM40 215h30v30h-30zM40 250h30v30h-30z" fill="#FF6565"/>
+<path d="M75 75h30v30h-30zM75 110h30v30h-30zM75 145h30v30h-30zM75 180h30v30h-30zM75 215h30v30h-30zM75 250h30v30h-30z" fill="#FFDEAD"/>
+<path d="M40 40h30v30h-30zM610 145h30v30h-30zM610 180h30v30h-30zM540 75h30v30h-30zM575 75h30v30h-30zM610 75h30v30h-30zM610 110h30v30h-30zM575 145h30v30h-30zM505 75h30v30h-30zM540 110h30v30h-30zM575 110h30v30h-30z" fill="#F0FF8F"/>
+</g>
+<path d="M42.71 13.96V16.8H38.14v2.11h4.57v2.84l6.74-3.9ZM19.11 36.77l-2.85-.01 3.9 6.74 3.89-6.74H21.21V32.2H19.11Z"/>
+<g font-family="Helvetica" font-size="9" text-anchor="middle">
+<text x="21.5" y="20">Group</text>
+<text x="21.5" y="31">Period</text>
+<g font-size="14">
+<g transform="translate(20)">
+<text y="58">1</text>
+<text y="93">2</text>
+<text y="128">3</text>
+<text y="163">4</text>
+<text y="198">5</text>
+<text y="233">6</text>
+<text y="268">7</text>
+</g>
+<g transform="translate(0,22)">
+<g transform="translate(55)">
+<text>1</text>
+<text y="32">1<tspan x="0" dy="11.5">H</tspan></text>
+<text y="67">3<tspan x="0" dy="11.5">Li</tspan></text>
+<text y="102">11<tspan x="0" dy="11.5">Na</tspan></text>
+<text y="137">19<tspan x="0" dy="11.5">K</tspan></text>
+<text y="172">37<tspan x="0" dy="11.5">Rb</tspan></text>
+<text y="207">55<tspan x="0" dy="11.5">Cs</tspan></text>
+<text y="242">87<tspan x="0" dy="11.5">Fr</tspan></text>
+</g>
+<g transform="translate(90)">
+<text>2</text>
+<text y="67">4<tspan x="0" dy="11.5">Be</tspan></text>
+<text y="102">12<tspan x="0" dy="11.5">Mg</tspan></text>
+<text y="137">20<tspan x="0" dy="11.5">Ca</tspan></text>
+<text y="172">38<tspan x="0" dy="11.5">Sr</tspan></text>
+<text y="207">56<tspan x="0" dy="11.5">Ba</tspan></text>
+<text y="242">88<tspan x="0" dy="11.5">Ra</tspan></text>
+</g>
+<g transform="translate(125)">
+<text>3</text>
+<text y="137">21<tspan x="0" dy="11.5">Sc</tspan></text>
+<text y="172">39<tspan x="0" dy="11.5">Y</tspan></text>
+<text y="207">57<tspan x="0" dy="11.5">La</tspan></text>
+<text y="242">89<tspan x="0" dy="11.5">Ac</tspan></text>
+</g>
+<g transform="translate(147)">
+<text y="208">*</text>
+<text y="243">*<tspan x="0" dy="12">*</tspan></text>
+<text y="288">*</text>
+<text y="323">*<tspan x="0" dy="12">*</tspan></text>
+</g>
+<g transform="translate(170)">
+<text>4</text>
+<text y="137">22<tspan x="0" dy="11.5">Ti</tspan></text>
+<text y="172">40<tspan x="0" dy="11.5">Zr</tspan></text>
+<text y="207">72<tspan x="0" dy="11.5">Hf</tspan></text>
+<text y="242">104<tspan x="0" dy="11.5">Rf</tspan></text>
+<text y="287">58<tspan x="0" dy="11.5">Ce</tspan></text>
+<text y="322">90<tspan x="0" dy="11.5">Th</tspan></text>
+</g>
+<g transform="translate(205)">
+<text>5</text>
+<text y="137">23<tspan x="0" dy="11.5">V</tspan></text>
+<text y="172">41<tspan x="0" dy="11.5">Nb</tspan></text>
+<text y="207">73<tspan x="0" dy="11.5">Ta</tspan></text>
+<text y="242">105<tspan x="0" dy="11.5">Db</tspan></text>
+<text y="287">59<tspan x="0" dy="11.5">Pr</tspan></text>
+<text y="322">91<tspan x="0" dy="11.5">Pa</tspan></text>
+</g>
+<g transform="translate(240)">
+<text>6</text>
+<text y="137">24<tspan x="0" dy="11.5">Cr</tspan></text>
+<text y="172">42<tspan x="0" dy="11.5">Mo</tspan></text>
+<text y="207">74<tspan x="0" dy="11.5">W</tspan></text>
+<text y="242">106<tspan x="0" dy="11.5">Sg</tspan></text>
+<text y="287">60<tspan x="0" dy="11.5">Nd</tspan></text>
+<text y="322">92<tspan x="0" dy="11.5">U</tspan></text>
+</g>
+<g transform="translate(275)">
+<text>7</text>
+<text y="137">25<tspan x="0" dy="11.5">Mn</tspan></text>
+<text y="172">43<tspan x="0" dy="11.5">Tc</tspan></text>
+<text y="207">75<tspan x="0" dy="11.5">Re</tspan></text>
+<text y="242">107<tspan x="0" dy="11.5">Bh</tspan></text>
+<text y="287">61<tspan x="0" dy="11.5">Pm</tspan></text>
+<text y="322">93<tspan x="0" dy="11.5">Np</tspan></text>
+</g>
+<g transform="translate(310)">
+<text>8</text>
+<text y="137">26<tspan x="0" dy="11.5">Fe</tspan></text>
+<text y="172">44<tspan x="0" dy="11.5">Ru</tspan></text>
+<text y="207">76<tspan x="0" dy="11.5">Os</tspan></text>
+<text y="242">108<tspan x="0" dy="11.5">Hs</tspan></text>
+<text y="287">62<tspan x="0" dy="11.5">Sm</tspan></text>
+<text y="322">94<tspan x="0" dy="11.5">Pu</tspan></text>
+</g>
+<g transform="translate(345)">
+<text>9</text>
+<text y="137">27<tspan x="0" dy="11.5">Co</tspan></text>
+<text y="172">45<tspan x="0" dy="11.5">Rh</tspan></text>
+<text y="207">77<tspan x="0" dy="11.5">Ir</tspan></text>
+<text y="242">109<tspan x="0" dy="11.5">Mt</tspan></text>
+<text y="287">63<tspan x="0" dy="11.5">Eu</tspan></text>
+<text y="322">95<tspan x="0" dy="11.5">Am</tspan></text>
+</g>
+<g transform="translate(380)">
+<text>10</text>
+<text y="137">28<tspan x="0" dy="11.5">Ni</tspan></text>
+<text y="172">46<tspan x="0" dy="11.5">Pd</tspan></text>
+<text y="207">78<tspan x="0" dy="11.5">Pt</tspan></text>
+<text y="242">110<tspan x="0" dy="11.5">Ds</tspan></text>
+<text y="287">64<tspan x="0" dy="11.5">Gd</tspan></text>
+<text y="322">96<tspan x="0" dy="11.5">Cm</tspan></text>
+</g>
+<g transform="translate(415)">
+<text>11</text>
+<text y="137">29<tspan x="0" dy="11.5">Cu</tspan></text>
+<text y="172">47<tspan x="0" dy="11.5">Ag</tspan></text>
+<text y="207">79<tspan x="0" dy="11.5">Au</tspan></text>
+<text y="242">111<tspan x="0" dy="11.5">Rg</tspan></text>
+<text y="287">65<tspan x="0" dy="11.5">Tb</tspan></text>
+<text y="322">97<tspan x="0" dy="11.5">Bk</tspan></text>
+</g>
+<g transform="translate(450)">
+<text>12</text>
+<text y="137">30<tspan x="0" dy="11.5">Zn</tspan></text>
+<text y="172">48<tspan x="0" dy="11.5">Cd</tspan></text>
+<text y="207">80<tspan x="0" dy="11.5">Hg</tspan></text>
+<text y="242">112<tspan x="0" dy="11.5">Cn</tspan></text>
+<text y="287">66<tspan x="0" dy="11.5">Dy</tspan></text>
+<text y="322">98<tspan x="0" dy="11.5">Cf</tspan></text>
+</g>
+<g transform="translate(485)">
+<text>13</text>
+<text y="67">5<tspan x="0" dy="11.5">B</tspan></text>
+<text y="102">13<tspan x="0" dy="11.5">Al</tspan></text>
+<text y="137">31<tspan x="0" dy="11.5">Ga</tspan></text>
+<text y="172">49<tspan x="0" dy="11.5">In</tspan></text>
+<text y="207">81<tspan x="0" dy="11.5">Tl</tspan></text>
+<text y="242">113<tspan x="0" dy="11.5">Nh</tspan></text>
+<text y="287">67<tspan x="0" dy="11.5">Ho</tspan></text>
+<text y="322">99<tspan x="0" dy="11.5">Es</tspan></text>
+</g>
+<g transform="translate(520)">
+<text>14</text>
+<text y="67">6<tspan x="0" dy="11.5">C</tspan></text>
+<text y="102">14<tspan x="0" dy="11.5">Si</tspan></text>
+<text y="137">32<tspan x="0" dy="11.5">Ge</tspan></text>
+<text y="172">50<tspan x="0" dy="11.5">Sn</tspan></text>
+<text y="207">82<tspan x="0" dy="11.5">Pb</tspan></text>
+<text y="242">114<tspan x="0" dy="11.5">Fl</tspan></text>
+<text y="287">68<tspan x="0" dy="11.5">Er</tspan></text>
+<text y="322">100<tspan x="0" dy="11.5">Fm</tspan></text>
+</g>
+<g transform="translate(555)">
+<text>15</text>
+<text y="67">7<tspan x="0" dy="11.5">N</tspan></text>
+<text y="102">15<tspan x="0" dy="11.5">P</tspan></text>
+<text y="137">33<tspan x="0" dy="11.5">As</tspan></text>
+<text y="172">51<tspan x="0" dy="11.5">Sb</tspan></text>
+<text y="207">83<tspan x="0" dy="11.5">Bi</tspan></text>
+<text y="242">115<tspan x="0" dy="11.5">Mc</tspan></text>
+<text y="287">69<tspan x="0" dy="11.5">Tm</tspan></text>
+<text y="322">101<tspan x="0" dy="11.5">Md</tspan></text>
+</g>
+<g transform="translate(590)">
+<text>16</text>
+<text y="67">8<tspan x="0" dy="11.5">O</tspan></text>
+<text y="102">16<tspan x="0" dy="11.5">S</tspan></text>
+<text y="137">34<tspan x="0" dy="11.5">Se</tspan></text>
+<text y="172">52<tspan x="0" dy="11.5">Te</tspan></text>
+<text y="207">84<tspan x="0" dy="11.5">Po</tspan></text>
+<text y="242">116<tspan x="0" dy="11.5">Lv</tspan></text>
+<text y="287">70<tspan x="0" dy="11.5">Yb</tspan></text>
+<text y="322">102<tspan x="0" dy="11.5">No</tspan></text>
+</g>
+<g transform="translate(625)">
+<text>17</text>
+<text y="67">9<tspan x="0" dy="11.5">F</tspan></text>
+<text y="102">17<tspan x="0" dy="11.5">Cl</tspan></text>
+<text y="137">35<tspan x="0" dy="11.5">Br</tspan></text>
+<text y="172">53<tspan x="0" dy="11.5">I</tspan></text>
+<text y="207">85<tspan x="0" dy="11.5">At</tspan></text>
+<text y="242">117<tspan x="0" dy="11.5">Ts</tspan></text>
+<text y="287">71<tspan x="0" dy="11.5">Lu</tspan></text>
+<text y="322">103<tspan x="0" dy="11.5">Lr</tspan></text>
+</g>
+<g transform="translate(660)">
+<text>18</text>
+<text y="32">2<tspan x="0" dy="11.5">He</tspan></text>
+<text y="67">10<tspan x="0" dy="11.5">Ne</tspan></text>
+<text y="102">18<tspan x="0" dy="11.5">Ar</tspan></text>
+<text y="137">36<tspan x="0" dy="11.5">Kr</tspan></text>
+<text y="172">54<tspan x="0" dy="11.5">Xe</tspan></text>
+<text y="207">86<tspan x="0" dy="11.5">Rn</tspan></text>
+<text y="242">118<tspan x="0" dy="11.5">Og</tspan></text>
+</g>
+</g>
+</g>
+</g>
+</svg>
