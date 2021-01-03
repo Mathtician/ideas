@@ -19,10 +19,10 @@
 \maketitle
 
 This article is a bit less math-heavy than usual.
-Here, I want to illustrate two related principles of problem-solving:
+Here, I want to illustrate two related principles:
 \textbf{
   \begin{enumerate}
-  \item There are very few real coincidences in math.
+  \item There are very few coincidences in math.
     If two things share similar properties,
     there is likely a single underlying reason for both.
   \item The form of a solution often suggests a method to derive it.
@@ -87,15 +87,15 @@ After a fairly long process, I arrived at the answer,
 where the two $\pm$ signs can vary independently.
 A large number of terms canceled out near the end,
 so I applied principles above
-in he hope of finding a shorter derivation.\\
+in the hope of finding a shorter derivation.\\
 
-\textit{Note: what follows is less rigorousness and more of a thought process and intuition.
-  Both have their place in math, and although we rely on the former to verify theorems,
-  the latter is often responsible for coming up with them in the first place.\\
-}
+What follows is less rigorousness and more of a thought process and intuition.
+Both have their place in math, and although we rely on the former to verify theorems,
+the latter is often responsible for coming up with them in the first place.\\
 
-First of all, the first term inside the large square root (call it $z$) looks like the quadratic formula,
+First of all, the first term inside the large square root looks like the quadratic formula,
 suggesting that it could be the root(s) of a quadratic equation.
+Call it $z$.
 The individual terms within $z$ can be mapped to those in the formula, giving
 $-b=1$, $b^2-4ac=1-4x$, $2a=2$.
 Solving for the coefficients yields $a=1$, $b=-1$, and $c=x$.
@@ -131,20 +131,23 @@ After all of that backwards work, the derivation we find is as follows:
 \text{Rearranging (2) to obtain a quadratic equation: } & r^2-r+x = 0 \\
 \text{Solving (3) for } r \text{ in terms of } x \text{ with the quadratic formula: } & r = \frac{1\pm\sqrt{1-4x}}{2} \\
 \text{Substituting } x^2+y^2 \text{ for } r^2 \text{ in (2): } & x^2+y^2 = r-x \\
-\text{Rearranging (5) to solve for } y^2 \text{ in terms of } r \text{ and } x \text{: } & y^2 = r-x-x^2 \\
+\text{Solving (5) for } y^2 \text{ in terms of } r \text{ and } x \text{: } & y^2 = r-x-x^2 \\
 \text{Substituting } r \text{ from (4) into (6): } & y^2 = \frac{1\pm\sqrt{1-4x}}{2}-x-x^2\\
 \text{Solving (7) for } y \text{ in terms of } x \text{: } & y = \pm\sqrt{\frac{1\pm\sqrt{1-4x}}{2}-x-x^2}
 \end{align}
 
 What I love about this derivation is that I'm almost sure that it can't be made any shorter.
-Every part of the answer has a clear origin in some step of the derivation, and nothing seems to cancel out by chance.\\
+Every part of the answer has a clear origin in some step of the derivation,
+and nothing seems to cancel out by chance.
+There are longer ways to arrive at the formla in (8),
+but all will involve some form of cancellation.
 
-Another place where the second principle applies includes the Gaussian integral
-\[\int_{x=-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi},\]
-whose derivation begins by squaring the left side (hence the square root)
-and uses polar coordinates (hence the $\pi$).
-Also, the fact that objects fall at the same speed toward Earth
-suggested the theory of general relativity (GR)
-over Newtonian gravity, where the mass term ``coincidentally'' cancels out.
+%% Another place where the second principle applies includes the Gaussian integral
+%% \[\int_{x=-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi},\]
+%% whose derivation begins by squaring the left side (hence the square root)
+%% and uses polar coordinates (hence the $\pi$).
+%% Also, the fact that objects fall at the same speed toward Earth
+%% suggested the theory of general relativity (GR)
+%% over Newtonian gravity, where the mass term ``coincidentally'' cancels out.
 
 \end{document}

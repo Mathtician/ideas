@@ -46,19 +46,18 @@ The large and small branches seem to just barely touch without overlapping.
 
 Most importantly, there was still plenty of empty space
 in the form of long segments with no branches.
-I wanted to add more to the trunk,
+I wanted to add more branches to the trunk,
 but the code was getting longer
-and it was becoming more difficult to calculate where to place each new branch.
+and it was becoming tedious to calculate where to place each new branch.
 Then, I had the idea of using \textbf{mutual recursion}.
 
-The function to draw the trees above is recursive in the normal sense,
-since it calls itself to create the smaller branches.
+The functions which draw the trees above are recursive in the normal sense,
+since each one calls itself to create the smaller branches.
 On the other hand,
 \textbf{mutually recursive functions call each other.}
-Instead of a straight line,
 I wrote a new function to draw the trunk,
-which draws the two smaller branches (trees)
-as well as \textbf{two trunks} of height $\frac{h}{2}$
+which draws the two smaller trees (branches) as before,
+but which also draws \textbf{two trunks} of height $\frac{h}{2}$
 stacked on top of each other.
 That way, the half-trunks
 would themselves draw new, even smaller branches,
@@ -100,71 +99,101 @@ The first nine minutes or so are all you need for the next section
 (since this tree is perfectly self-similar),
 but I would highly recommend the entire video anyway.
 
-I found the fractal dimension of this tree in two ways.
-The first is a fairly direct application of the technique in the video
-and creates a tree solely out of scaled-down copies of itself.
-The second, which I find more elegant,
-takes full advantage of the tree's mutually recursive nature
-with the help of some linear algebra.
-This second method generalizes well to other fractals
-defined in a mutually recursice way.
-But, just to build suspense,
-let's cover my original method first.
-
 By the (simplified) definition of the fractal dimension $D$,
 when we scale the tree by some factor $s$,
 its ``mass'' is scaled by the factor $s^D$.
 Since the tree is built (at least partially) out of copies half its size,
 setting $s=\frac{1}{2}$ seems like a reasonable choice.
+Let $f=s^D=\left(\frac{1}{2}\right)^D$ be the mass scaling factor.
+We will solve for $f$ first.
 Let our original tree have mass $1$,
-so its two largest branches each have mass $(\frac{1}{2})^D$.
-
-But, what's the mass of the trunk?
-
-
-
+so its two largest branches, being scaled down by half, have a combined mass of $2f$.
+Along with the mass $t$ of the trunk, we can write the mass of the whole tree:
+\[1 = 2f+t.\]
+But, what exactly is $t$?
+First, note that the trunk contains two branches a quarter of the size of the original tree.
+Since their mass has been scaled by $f$ twice, their total mass is $2f^2$.
+The rest of the trunk, as per its mutually recursive definition,
+is made of two half-sized trunks.
+As mentioned previously, the trees and trunks look the same when zoomed in on,
+so we make the implicit assumption that the trunk has the same fractal dimension as the whole tree.
+With this in mind, the two smaller trunks have a combined mass of $2tf$.
+Adding this to the quarter-sized branches, we have our second equation:
+\[t = 2f^2+2tf.\]
+From here, we can solve for $t$ in terms of $f$:
+\begin{align*}
+  t-2tf &= 2f^2 \\
+  t &= \frac{2f^2}{1-2f}
+\end{align*}
+and substitute into the first equation:
+\begin{align*}
+  1 &= 2f+\frac{2f^2}{1-2f}\\
+  1-2f &= 2f(1-2f)+2f^2\\
+  &= 2f-4f^2+2f^2\\
+  &= 2f-2f^2 \\
+  2f^2-4f+1 &= 0.
+\end{align*}
+Finally, we can solve for $f$ using the quadratic formula:
+\begin{align*}
+  f = \frac{4\pm\sqrt{16-8}}{4} = 1\pm\frac{1}{\sqrt{2}}
+\end{align*}
+Since a half-sized tree has less mass than a full-sized one, $f<1$,
+so the solution $f=1-\frac{1}{\sqrt{2}}$ is correct.
+Thus, by the definition of $f$,
+\begin{align*}
+  D &= \log_{\frac{1}{2}}(f)\\
+  &= -\log_2(f)\\
+  &= \log_2\left(\frac{1}{f}\right)\\
+  &= \log_2\left(\frac{1}{1-\frac{1}{\sqrt{2}}}\right)\\
+  &= \log_2\left(\frac{1}{\frac{\sqrt{2}-1}{\sqrt{2}}}\right)\\
+  &= \log_2\left(\frac{\sqrt{2}}{\sqrt{2}-1}\right)\\
+  &= \log_2\left(\frac{\sqrt{2}(\sqrt{2}+1)}{(\sqrt{2}-1)(\sqrt{2}+1)}\right)\\
+  &= \log_2\left(\frac{2+\sqrt{2}}{\sqrt{2}^2-1^2}\right)\\
+  &= \log_2\left(2+\sqrt{2}\right)\\
+  &\approx 1.7716
+\end{align*}
 %% \begin{figure}[H]
 %%   \centering
 %%   \includegraphics{sierpinski.png}
 %%   \caption*{The Sierpinski triangle, }
 %% \end{figure}
 
-First, rewrite the tree and trunk of height $h$
-in terms of trees and trunks of height $h/2$.
-Within the trunk of height $h$,
-1 of the trunks of height $h/2$
-and the 2 trees of height $h/4$
-make up a tree of height $h/2$.
-Thus a trunk of height $h$ is
-1 trunk of height $h/2$
-and 1 tree of height $h/2$.
-Within the tree of height $h$,
-the trunk of height $h$
-can be rewritten with this new definition.
-Thus a tree of height $h$ is
-1 trunk of height $h/2$
-and 3 trees of height $h/2$.
+%% First, rewrite the tree and trunk of height $h$
+%% in terms of trees and trunks of height $h/2$.
+%% Within the trunk of height $h$,
+%% 1 of the trunks of height $h/2$
+%% and the 2 trees of height $h/4$
+%% make up a tree of height $h/2$.
+%% Thus a trunk of height $h$ is
+%% 1 trunk of height $h/2$
+%% and 1 tree of height $h/2$.
+%% Within the tree of height $h$,
+%% the trunk of height $h$
+%% can be rewritten with this new definition.
+%% Thus a tree of height $h$ is
+%% 1 trunk of height $h/2$
+%% and 3 trees of height $h/2$.
 
-Let $a$ be
-the ``mass'' (measure?) of a trunk with height $h/2$,
-and let $b$ be
-the mass of a tree with height $h/2$.
-Then the mass of a trunk with height $h$ is $a+b$,
-and the mass of a tree with height $h$ is $a+3b$.
-Thus the (linear) transformation which maps
-the vector $\begin{bmatrix} a\\b \end{bmatrix}$
-to the vector $\begin{bmatrix} a+b\\a+3b \end{bmatrix}$
-scales the heights of a trunk and a tree by $2$.
-It can be represented by
-the matrix $\begin{bmatrix} 1&1\\1&3 \end{bmatrix}$.
-Assume that trunks and trees have the same Hausdorff dimension $d$.
-(Proving this may be nontrivial, but
-the interiors of trees and trunks are visually similar.)
-Thus scaling a tree's (or a trunk's) height by a factor of $2$
-scales its mass by a factor of $2^d$.
-Call this quantity $\lambda$.
-Since the matrix $\begin{bmatrix} 1&1\\1&3 \end{bmatrix}$
+%% Let $a$ be
+%% the ``mass'' (measure?) of a trunk with height $h/2$,
+%% and let $b$ be
+%% the mass of a tree with height $h/2$.
+%% Then the mass of a trunk with height $h$ is $a+b$,
+%% and the mass of a tree with height $h$ is $a+3b$.
+%% Thus the (linear) transformation which maps
+%% the vector $\begin{bmatrix} a\\b \end{bmatrix}$
+%% to the vector $\begin{bmatrix} a+b\\a+3b \end{bmatrix}$
+%% scales the heights of a trunk and a tree by $2$.
+%% It can be represented by
+%% the matrix $\begin{bmatrix} 1&1\\1&3 \end{bmatrix}$.
+%% Assume that trunks and trees have the same Hausdorff dimension $d$.
+%% (Proving this may be nontrivial, but
+%% the interiors of trees and trunks are visually similar.)
+%% Thus scaling a tree's (or a trunk's) height by a factor of $2$
+%% scales its mass by a factor of $2^d$.
+%% Call this quantity $\lambda$.
+%% Since the matrix $\begin{bmatrix} 1&1\\1&3 \end{bmatrix}$
 
-Use the writeidea command to edit.
+%% Use the writeidea command to edit.
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.2)  30 DEC 2020 18:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.2)  2 JAN 2021 19:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -407,37 +407,39 @@ Package pdftex.def Info: images/quaternary_tree.png  used on input line 40.
 <images/tree.png, id=20, 1369.115pt x 1369.115pt>
 File: images/tree.png Graphic file (type png)
 <use images/tree.png>
-Package pdftex.def Info: images/tree.png  used on input line 73.
+Package pdftex.def Info: images/tree.png  used on input line 72.
 (pdftex.def)             Requested size: 171.13895pt x 171.13895pt.
 <images/tree_composite.png, id=21, 1541.76pt x 1541.76pt>
 File: images/tree_composite.png Graphic file (type png)
 <use images/tree_composite.png>
-Package pdftex.def Info: images/tree_composite.png  used on input line 83.
+Package pdftex.def Info: images/tree_composite.png  used on input line 82.
 (pdftex.def)             Requested size: 192.71953pt x 192.71953pt.
 <images/tree_colored.png, id=22, 2055.68pt x 1369.115pt>
 File: images/tree_colored.png Graphic file (type png)
 <use images/tree_colored.png>
-Package pdftex.def Info: images/tree_colored.png  used on input line 88.
+Package pdftex.def Info: images/tree_colored.png  used on input line 87.
 (pdftex.def)             Requested size: 256.95937pt x 171.13895pt.
- [2 <./images/tree.png> <./images/tree_composite.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
- [3 <./images/tree_colored.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
- (./tree.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
+ [2 <./images/tree.png> <./images/tree_composite.png>] [3 <./images/tree_colore
+d.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 199.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 199.
+
+(./tree.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 199.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 199.
 Package rerunfilecheck Info: File `tree.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 199.
  ) 
 Here is how much of TeX's memory you used:
- 7444 strings out of 481239
- 115371 string characters out of 5920378
- 387284 words of memory out of 5000000
+ 7445 strings out of 481239
+ 115377 string characters out of 5920378
+ 388284 words of memory out of 5000000
  22591 multiletter control sequences out of 15000+600000
  536809 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,42p,221b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,42p,221b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -445,11 +447,14 @@ ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb>
-Output written on tree.pdf (3 pages, 211037 bytes).
+ublic/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+7.pfb>
+Output written on tree.pdf (4 pages, 235695 bytes).
 PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
+ 83 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
