@@ -10,132 +10,184 @@ Paper: Discrete Fourier transform methods in the theory of equations, BR Neelley
 
 Solving Quadratics, Cubics, and Quartics with the Discrete Fourier Transform
 
-\begin{enumerate}
-\item Quadratics (Po-Shen Loh)
-  \[\bm{Ax^2+Bx+C=0, A\neq0}\]
-  \[\bm{b=\frac{B}{A}, c=\frac{C}{A}}\]
-  \[x^2+bx+c=0\]
-  \[\bm{x=x_1,x_2}\]
-  \[(x-x_1)(x-x_2)=0\]
-  \[\bm{x_1=p+q, x_2=p-q}\]
-  \[0=(x-(p+q))(x-(p-q))=(x-p-q)(x-p+q)=(x-p)^2-q^2=x^2-2px+p^2-q^2\]
-  \[b=-2p, c=p^2-q^2\]
-  \[\bm{p=-\frac{b}{2}}\]
-  \[q^2=p^2-c\]
-  \[\bm{q=(p^2-c)^\frac{1}{2}}\]
-  \newpage
-\item Cubics
-  \[\bm{Ax^3+Bx^2+Cx+D=0, A\neq0}\]
-  \[\bm{b=\frac{B}{A}, c=\frac{C}{A}, d=\frac{D}{A}}\]
-  \[x^3+bx^2+cx+d=0\]
-  \[\bm{x=x_1,x_2,x_3}\]
-  \[(x-x_1)(x-x_2)(x-x_3)=0\]
-  \[\bm{\omega=\frac{\sqrt{3}i-1}{2}}\]
-  \[\omega^2+\omega+1=0, \omega^2+\omega=-1, \omega^3=1\]
-  \[\bm{x_1=p+q+r, x_2=p+\omega q+\omega^2r, x_3=p+\omega^2q+\omega r}\]
-  \[y=x-p\]
-  \[0=(x-(p+q+r))(x-(p+\omega q+\omega^2r))(x-(p+\omega^2q+\omega r))\]
-  \[=((x-p)-(q+r))((x-p)-(\omega q+\omega^2r))((x-p)-(\omega^2q+\omega r))\]
-  \[=(y-(q+r))(y-(\omega q+\omega^2r))(y-(\omega^2q+\omega r))\]
-  \[=(y-(q+r))(y^2-(\omega^2q+\omega r)y-(\omega q+\omega^2r)y+(\omega q+\omega^2r)(\omega^2q+\omega r))\]
-  \[=(y-(q+r))(y^2-(\omega^2q+\omega r+\omega q+\omega^2r)y+(\omega^3q^2+\omega^2qr+\omega^4qr+\omega^3r^2))\]
-  \[=(y-(q+r))(y^2-(\omega^2q+\omega r+\omega q+\omega^2r)y+(q^2+\omega^2qr+\omega qr+r^2))\]
-  \[=(y-(q+r))(y^2-((\omega^2+\omega)q+(\omega+\omega^2)r)y+(q^2+(\omega^2+\omega)qr+r^2))\]
-  \[=(y-(q+r))(y^2-(-q-r)y+(q^2-qr+r^2))\]
-  \[=(y-(q+r))(y^2+(q+r)y+(q^2-qr+r^2))\]
-  \[=y^3+(q+r)y^2+(q^2-qr+r^2)y-(q+r)y^2-(q+r)^2y-(q+r)(q^2-qr+r^2)\]
-  \[=y^3+((q^2-qr+r^2)-(q+r)^2)y-(q+r)(q^2-qr+r^2)\]
-  \[=y^3+((q^2-qr+r^2)-(q^2+2qr+r^2))y-(q^3-q^2r+qr^2+q^2r-qr^2+r^3)\]
-  \[=y^3-3qry-(q^3+r^3)\]
-  \[c'=-3qr, d'=-(q^3+r^3)\]
-  \[0=y^3+c'y+d'\]
-  \[=(x-p)^3+c'(x-p)+d'\]
-  \[=(x^3-3px^2+3p^2x-p^3)+c'(x-p)+d'\]
-  \[=x^3-3px^2+3p^2x-p^3+c'x-pc'+d'\]
-  \[=x^3-3px^2+(3p^2+c')x-p^3-pc'+d'\]
-  \[=x^3+bx^2+cx+d\]
-  \[b=-3p, c=3p^2+c', d=-p^3-pc'+d'\]
-  \[\bm{p=-\frac{b}{3}}\]
-  \[c'=c-3p^2\]
-  \[=-3qr\]
-  \[d'=d+pc'+p^3\]
-  \[=d+p(c-3p^2)+p^3\]  
-  \[=d+pc-3p^3+p^3\]  
-  \[=d+pc-2p^3\]  
-  \[=-(q^3+r^3)\]
-  \[qr=-\frac{c'}{3}-\frac{1}{3}(c-3p^2)=\frac{3p^2-c}{3}=p^2-\frac{c}{3}\]
-  \[q^3r^3=\left(p^2-\frac{c}{3}\right)^3\]
-  \[u_1=q^3, u_2=r^3\]
-  \[\bm{u=u_1, u_2}\]
-  \[0=(u-u_1)(u-u_2)\]
-  \[=u^2-(u_1+u_2)u+u_1u_2\]
-  \[=u^2-(q^3+r^3)u+q^3r^3\]
-  \[=u^2+(2p^3-pc-d)u+\left(p^2-\frac{c}{3}\right)^3\]
-  \[\bm{u^2+(2p^3-pc-d)u+\left(p^2-\frac{c}{3}\right)^3=0}\]
-  \begin{itemize}
-  \item $u_1=0$: $\bm{q=0, r=u_2^\frac{1}{3}}$
-  \item $u_1\neq0$: $\bm{q=u_1^\frac{1}{3}, r=\frac{3p^2-c}{3q}}$
-  \end{itemize}
-  \newpage
-\item Quartics
-  \[\bm{Ax^4+Bx^3+Cx^2+Dx+E=0, A\neq0}\]
-  \[\bm{b=\frac{B}{A}, c=\frac{C}{A}, d=\frac{D}{A}, e=\frac{E}{A}}\]
-  \[x^4+bx^3+cx^2+dx+e=0\]
-  \[\bm{x=x_1,x_2,x_3,x_4}\]
-  \[\bm{x_1=p+q+r+s, x_2=p+qi-r-si, x_3=p-q+r-s, x_4=p-qi-r+si}\]
-  \[y=x-p\]
-  \[0=(x-x_1)(x-x_2)(x-x_3)(x-x_4)\]
-  \[=(x-(p+q+r+s))(x-(p+qi-r-si))(x-(p-q+r-s))(x-(p-qi-r+si))\]
-  \[=((x-p)-(q+r+s))((x-p)-(qi-r-si))((x-p)-(q+r-s))((x-p)-(-qi-r+si))\]
-  \[=(y-(q+r+s))(y-(qi-r-si))(y-(-q+r-s))(y-(-qi-r+si))\]
-  \[=((y-r)-(q+s))((y+r)-(q-s)i)((y-r)+(q+s))((y+r)+(q-s)i))\]
-  \[=((y-r)-(q+s))((y-r)+(q+s))((y+r)-(q-s)i)((y+r)+(q-s)i))\]
-  \[=((y-r)^2-(q+s)^2)((y+r)^2-((q-s)i)^2)\]
-  \[=((y-r)^2-(q+s)^2)((y+r)^2+(q-s)^2)\]
-  \[=(y^2-2ry+r^2-q^2-2qs-s^2)(y^2+2ry+r^2+q^2-2qs+s^2)\]
-  \[=((y^2+r^2-2qs)-(2ry+q^2+s^2))((y^2+r^2-2qs)+(2ry+q^2+s^2))\]
-  \[=(y^2+r^2-2qs)^2-(2ry+q^2+s^2)^2\]
-  \[u_1=r^2-2qs, u_2=q^2+s^2\]
-  \[0=(y^2+u_1)^2-(2ry+u_2)^2\]
-  \[=(y^4+2u_1y^2+u_1^2)-(4r^2y^2+4ru_2y+u_2^2)\]
-  \[=y^4+2u_1y^2+u_1^2-4r^2y^2-4ru_2y-u_2^2\]
-  \[=y^4+(2u_1-4r^2)y^2-4ru_2y+u_1^2-u_2^2\]
-  \[c'=2u_1-4r^2, d'=-4ru_2, e'=u_1^2-u_2^2\]
-  \[0=y^4+c'y^2+d'y+e'\]
-  \[=(x-p)^4+c'(x-p)^2+d'(x-p)+e'\]
-  \[=(x^4-4px^3+6p^2x^2-4p^3x+p^4)+c'(x^2-2px+p^2)+d'(x-p)+e'\]
-  \[=x^4-4px^3+6p^2x^2-4p^3x+p^4+c'x^2-2pc'x+p^2c'+d'x-pd'+e'\]
-  \[=x^4-4px^3+(6p^2+c')x^2+(-4p^3-2pc'+d')x+p^4+p^2c'-pd'+e'\]
-  \[=x^4+bx^3+cx^2+dx+e\]
-  \[b=-4p, c=6p^2+c', d=-4p^3-2pc'+d', e=p^4+p^2c'-pd'+e'\]
-  \[\bm{p=-\frac{b}{4}}\]
-  \[c'=c-6p^2\]
-  \[=2u_1-4r^2\]
-  \[d'=d+4p^3+2pc'\]
-  \[=d+4p^3+2p(c-6p^2)\]
-  \[=d+4p^3+2pc-12p^3\]
-  \[=d-8p^3+2pc\]
-  \[=-4ru_2\]
-  \[e'=e-p^4-p^2c'+pd'\]
-  \[=e-p^4-p^2(c-6p^2)+p(d-8p^3+2pc)\]
-  \[=e-p^4-p^2c+6p^4+pd-8p^4+2p^2c\]
-  \[=e-3p^4+p^2c+pd\]
-  \[=u_1^2-u_2^2\]
-  \[v=2r^2\]
-  \[\bm{r=(\frac{v}{2})^\frac{1}{2}}\]
-  \[2u_1=4r^2+c'\]
-  \[u_1=2r^2+\frac{c'}{2}\]
-  \[=v+\frac{c'}{2}\]
-  \[d'^2=16u_2^2r^2\]
-  \[\frac{d'^2}{8}=2u_2^2r^2\]
-  \[=u_2^2v\]
-  \[e'v=u_1^2v-u_2^2v\]
-  \[=(v+\frac{c'}{2})^2v-\frac{d'^2}{8}\]
-  \[=(v^2+c'v+\frac{c'^2}{4})v-\frac{d'^2}{8}\]
-  \[=v^3+c'v^2+\frac{c'^2}{4}v-\frac{d'^2}{8}\]
-  \[\bm{v^3+c'v^2+(\frac{c'^2}{4}-e')v-\frac{d'^2}{8}=0}\]
-  \[\bm{u_1=v+\frac{c'}{2}}\]
-  \[\bm{u_2=\frac{d'^2}{8v}}\]
-\end{enumerate}
+Quadratics (Po-Shen Loh)
+\begin{align*}
+  &\bm{Ax^2+Bx+C=0, A\neq0} \\
+  &\bm{b=\frac{B}{A}, c=\frac{C}{A}} \\
+  &x^2+bx+c=0 \\
+  &\bm{x=x_1,x_2} \\
+  &\bm{x_1=p+q, x_2=p-q} \\
+  &\bm{p=-\frac{b}{2}}, b=-2p \\
+  &y=x-p, x=y+p
+\end{align*}
+\begin{align*}
+  &0=(y+p)^2-2p(y+p)+c=y^2+(c-p^2) \\
+  &\bm{c'=c-p^2}
+\end{align*}
+\begin{align*}
+  &0=(x-x_1)(x-x_2)=(x-(p+q))(x-(p-q))=(y-q)(y+q)=y^2-q^2
+\end{align*}
+\begin{align*}
+  &c'=-q^2 \\
+  &q^2=-c' \\
+  &\bm{q=(-c')^\frac{1}{2}}
+\end{align*}
+\newpage
+Cubics
+\begin{align*}
+  &\bm{Ax^3+Bx^2+Cx+D=0, A\neq0} \\
+  &\bm{b=\frac{B}{A}, c=\frac{C}{A}, d=\frac{D}{A}} \\
+  &x^3+bx^2+cx+d=0 \\
+  &\bm{x=x_1,x_2,x_3} \\
+  &\bm{\omega=\frac{\sqrt{3}i-1}{2}} \\
+  &\omega^2+\omega+1=0, \omega^2+\omega=-1, \omega^3=1 \\
+  &\bm{x_1=p+q+r, x_2=p+\omega q+\omega^2r, x_3=p+\omega^2q+\omega r} \\
+  &\bm{p=-\frac{b}{3}} \\
+  &y=x-p, x=y+p
+\end{align*}
+\begin{align*}
+  0&=(y+p)^3-3p(y+p)^2+c(y+p)+d \\
+  %&=y^3+3py^2+3p^2y+p^3-3py^2-6p^2y-3p^3+cy+pc+d \\
+  %&=y^3+(3p-3p)y^2+(3p^2-6p^2+c)y+(p^3-3p^3+pc+d) \\
+  &=y^3+(c-3p^2)y+(d-2p^3+pc) \\
+  &\bm{c'=c-3p^2, d'=d-2p^3+pc}
+\end{align*}  
+\begin{align*}
+  0&=(x-x_1)(x-x_2)(x-x_3) \\
+  &=(x-(p+q+r))(x-(p+\omega q+\omega^2r))(x-(p+\omega^2q+\omega r)) \\
+  %&=((x-p)-(q+r))((x-p)-(\omega q+\omega^2r))((x-p)-(\omega^2q+\omega r)) \\
+  &=(y-(q+r))(y-(\omega q+\omega^2r))(y-(\omega^2q+\omega r)) \\
+  %&=(y-(q+r))(y^2-(\omega^2q+\omega r)y-(\omega q+\omega^2r)y+(\omega q+\omega^2r)(\omega^2q+\omega r)) \\
+  %&=(y-(q+r))(y^2-(\omega^2q+\omega r+\omega q+\omega^2r)y+(\omega^3q^2+\omega^2qr+\omega^4qr+\omega^3r^2)) \\
+  %&=(y-(q+r))(y^2-(\omega^2q+\omega r+\omega q+\omega^2r)y+(q^2+\omega^2qr+\omega qr+r^2)) \\
+  %&=(y-(q+r))(y^2-((\omega^2+\omega)q+(\omega+\omega^2)r)y+(q^2+(\omega^2+\omega)qr+r^2)) \\
+  %&=(y-(q+r))(y^2-(-q-r)y+(q^2-qr+r^2)) \\
+  %&=(y-(q+r))(y^2+(q+r)y+(q^2-qr+r^2)) \\
+  %&=y^3+(q+r)y^2+(q^2-qr+r^2)y-(q+r)y^2-(q+r)^2y-(q+r)(q^2-qr+r^2) \\
+  %&=y^3+((q^2-qr+r^2)-(q+r)^2)y-(q+r)(q^2-qr+r^2) \\
+  %&=y^3+((q^2-qr+r^2)-(q^2+2qr+r^2))y-(q^3-q^2r+qr^2+q^2r-qr^2+r^3) \\
+  &=y^3-3qry-(q^3+r^3)
+\end{align*}
+\begin{align*}
+  &c'=-3qr, d'=-(q^3+r^3) \\
+  &qr=-\frac{c'}{3} \\
+  &u_1=q^3, u_2=r^3 \\
+  &\bm{u=u_1, u_2} \\
+  &0=(u-u_1)(u-u_2)=u^2-(u_1+u_2)u+u_1u_2=u^2-(q^3+r^3)u+q^3r^3=u^2-(q^3+r^3)u+(qr)^3 \\
+  &\bm{u^2+d'u-\left(\frac{c'}{3}\right)^3=0} \\
+  &\bm{q=u_1^\frac{1}{3}} \\
+  &q=0: \bm{r=u_2^\frac{1}{3}} \\
+  &q\neq0: \bm{r=-\frac{c'}{3q}}
+\end{align*}
+\newpage
+Quartics
+\begin{align*}  
+  &\bm{Ax^4+Bx^3+Cx^2+Dx+E=0, A\neq0} \\
+  &\bm{b=\frac{B}{A}, c=\frac{C}{A}, d=\frac{D}{A}, e=\frac{E}{A}} \\
+  &x^4+bx^3+cx^2+dx+e=0 \\
+  &\bm{x=x_1,x_2,x_3,x_4} \\
+  &\bm{x_1=p+q+r+s} \\
+  &\bm{x_2=p+qi-r-si} \\
+  &\bm{x_3=p-q+r-s} \\
+  &\bm{x_4=p-qi-r+si} \\
+  &\bm{p=-\frac{b}{4}} \\
+  &y=x-p, x=y+p
+\end{align*}
+\begin{align*}
+  0&=(y+p)^4-4p(y+p)^3+c(y+p)^2+d(y+p)+e \\
+  &=y^4+(c-6p^2)y^2+(d-8p^3+2pc)y+(e-3p^4+p^2c+pd) \\
+  &\bm{c'=c-6p^2, d'=d-8p^3+2pc, e'=e-3p^4+p^2c+pd}
+\end{align*}
+\begin{align*}
+  0&=(x-x_1)(x-x_2)(x-x_3)(x-x_4) \\
+  &=(x-(p+q+r+s))(x-(p+qi-r-si))(x-(p-q+r-s))(x-(p-qi-r+si)) \\
+  &=(y-(q+r+s))(y-(qi-r-si))(y-(-q+r-s))(y-(-qi-r+si)) \\
+  &=y^4-(2r^2+4qs)y^2-4r(q^2+s^2)y-(q^2+s^2)^2+r^4-4qr^2s
+  %u&=q^2+s^2, v=4qs \\
+  %0&=y^4-(2r^2+v)y^2-4ruy-u^2+r^4-r^2v
+\end{align*}
+\begin{align*}
+  c'&=-(2r^2+4qs), d'=-4r(q^2+s^2), e'=-(q^2+s^2)^2+r^4-4qr^2s\\
+  t&=q^2+s^2, u=4qs \\
+  qs&=\frac{u}{4} \\
+  v_1&=q^2, v_2=s^2 \\
+  &\bm{v=v_1, v_2} \\
+  0&=(v-v_1)(v-v_2)=v^2-(v_1+v_2)v+v_1v_2=v^2-(q^2+s^2)v+q^2s^2=v^2-(q^2+s^2)v+(qs)^2 \\
+  &\bm{v^2-tv+\left(\frac{u}{4}\right)^2=0} \\
+  &\bm{q=v_1^\frac{1}{2}} \\
+  &q=0: \bm{s=v_2^\frac{1}{2}} \\
+  &q\neq0: \bm{s=\frac{u}{4q}}
+\end{align*}
+\begin{align*}
+  c'&=-(2r^2+u), d'=-4rt, e'=-t^2+r^4-r^2u \\
+  u&=-(2r^2+c') \\
+  -\frac{d'}{4}&=rt \\
+  w&=r^2 \\
+  \left(\frac{d'}{4}\right)^2&=r^2t^2=t^2w \\
+  e'&=-t^2+r^4-r^2(-2r^2+c')=3r^4-c'r^2-t^2=3w^2-c'w-t^2 \\
+  e'w&=3w^3-c'w^2-t^2w=3w^3-c'w^2-\left(\frac{d'}{4}\right)^2 \\
+  &\bm{3w^3-c'w^2-e'w-\left(\frac{d'}{4}\right)^2=0} \\
+  &\bm{r=w^\frac{1}{2}} \\
+  &\bm{t=-\frac{d'}{4r}} \\
+  &\bm{u=-(2w+c')} \\
+\end{align*}
+%% \begin{align*}
+%%   0&=(x-x_1)(x-x_2)(x-x_3)(x-x_4) \\
+%%   &=(x-(p+q+r+s))(x-(p+qi-r-si))(x-(p-q+r-s))(x-(p-qi-r+si)) \\
+%%   &=((x-p)-(q+r+s))((x-p)-(qi-r-si))((x-p)-(q+r-s))((x-p)-(-qi-r+si)) \\
+%%   &=(y-(q+r+s))(y-(qi-r-si))(y-(-q+r-s))(y-(-qi-r+si)) \\
+%%   &=((y-r)-(q+s))((y+r)-(q-s)i)((y-r)+(q+s))((y+r)+(q-s)i)) \\
+%%   &=((y-r)-(q+s))((y-r)+(q+s))((y+r)-(q-s)i)((y+r)+(q-s)i)) \\
+%%   &=((y-r)^2-(q+s)^2)((y+r)^2-((q-s)i)^2) \\
+%%   &=((y-r)^2-(q+s)^2)((y+r)^2+(q-s)^2) \\
+%%   &=(y^2-2ry+r^2-q^2-2qs-s^2)(y^2+2ry+r^2+q^2-2qs+s^2) \\
+%%   &=((y^2+r^2-2qs)-(2ry+q^2+s^2))((y^2+r^2-2qs)+(2ry+q^2+s^2)) \\
+%%   &=(y^2+r^2-2qs)^2-(2ry+q^2+s^2)^2
+%% \end{align*}
+%% \begin{align*}
+%%   &u=r^2-2qs, v=q^2+s^2
+%% \end{align*}
+%% \begin{align*}
+%%   0&=(y^2+u)^2-(2ry+v)^2 \\
+%%   &=(y^4+2uy^2+u^2)-(4r^2y^2+4rvy+v^2) \\
+%%   &=y^4+2uy^2+u^2-4r^2y^2-4rvy-v^2 \\
+%%   &=y^4+(2u-4r^2)y^2-4rvy+u^2-v^2
+%% \end{align*}
+%% \begin{align*}
+%%   &c'=2u-4r^2, d'=-4rv, e'=u^2-v^2
+%% \end{align*}
+%% \begin{align*}
+%%   0&=y^4+c'y^2+d'y+e' \\
+%%   &=(x-p)^4+c'(x-p)^2+d'(x-p)+e' \\
+%%   &=(x^4-4px^3+6p^2x^2-4p^3x+p^4)+c'(x^2-2px+p^2)+d'(x-p)+e' \\
+%%   &=x^4-4px^3+6p^2x^2-4p^3x+p^4+c'x^2-2pc'x+p^2c'+d'x-pd'+e' \\
+%%   &=x^4-4px^3+(6p^2+c')x^2+(-4p^3-2pc'+d')x+p^4+p^2c'-pd'+e' \\
+%%   &=x^4+bx^3+cx^2+dx+e
+%% \end{align*}
+%% \begin{align*}
+%%   &b=-4p, c=6p^2+c', d=-4p^3-2pc'+d', e=p^4+p^2c'-pd'+e' \\
+%%   &c'=c-6p^2=2u-4r^2 \\
+%%   &d'=d+4p^3+2pc'=d+4p^3+2p(c-6p^2)=d+4p^3+2pc-12p^3=d-8p^3+2pc=-4rv \\
+%%   &e'=e-p^4-p^2c'+pd' \\
+%%   &=e-p^4-p^2(c-6p^2)+p(d-8p^3+2pc) \\
+%%   &=e-p^4-p^2c+6p^4+pd-8p^4+2p^2c \\
+%%   &=e-3p^4+p^2c+pd \\
+%%   &=u^2-v^2 \\
+%%   &w=2r^2 \\
+%%   &\bm{r=\left(\frac{w}{2}\right)^\frac{1}{2}} \\
+%%   &2u=4r^2+c' \\
+%%   &u=2r^2+\frac{c'}{2} \\
+%%   &=w+\frac{c'}{2} \\
+%%   &d'^2=16v^2r^2 \\
+%%   &\frac{d'^2}{8}=2v^2r^2 \\
+%%   &=v^2w \\
+%%   &e'w=u^2w-v^2w \\
+%%   &=\left(w+\frac{c'}{2}\right)^2w-\frac{d'^2}{8} \\
+%%   &=\left(w^2+c'w+\frac{c'^2}{4}\right)w-\frac{d'^2}{8} \\
+%%   &=w^3+c'w^2+\frac{c'^2}{4}w-\frac{d'^2}{8} \\
+%%   &\bm{w^3+c'w^2+\left(\frac{c'^2}{4}-e'\right)w-\frac{d'^2}{8}=0} \\
+%%   &\bm{u=w+\frac{c'}{2}} \\
+%%   &\bm{v=\frac{d'^2}{8w}}
+%% \end{align*}  
 
 \end{document}
