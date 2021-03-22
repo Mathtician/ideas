@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{New Idea}
+\author{Aresh Pourkavoos}
+\maketitle
+
+Let $F$ be a set of sets of vertices, $V = \bigcup F$.
+$F$ is a polytope if there exists a function $d: F \rightarrow \mathbb{Z}$
+such that:
+\begin{enumerate}
+\item
+  Null face: $\varnothing \in F$, and $d(\varnothing)=-1$.
+\item
+  Ordering: for all $a, b \in F$,
+  if there exists no $c \in F$ such that
+  $a \subset c$ and $c \subset b$,
+  then $d(b)=d(a)+1$.
+\item
+  Recursion: define a \textit{facet} of $P$ to be
+  a triplet $(f, F', d')$ where
+  $f \in F$, $d(f) = d(V)-1$,
+  $F' = F \cap \mathscr{P}(V)$, and
+  $d' = d{\big |}_{F'}$.
+  Then all facets of $P$ are also polytopes.
+\end{enumerate}
+
+\end{document}
