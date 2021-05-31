@@ -22,52 +22,81 @@
 
 \begin{GHSI}
 
-For all $J, k_1, k_2 \in \mathbb{N}$,
-\[\sum_{j_1+j_2=J}\binom{j_i+k_1}{j_1}\binom{j_2+k_2}{j_2} = \binom{J+k_1+k_2+1}{J}.\]
+  For all natural variables,
+  \[\sum_{j_1+j_2=J}\binom{j_i+k_1}{j_1}\binom{j_2+k_2}{j_2} = \binom{J+k_1+k_2+1}{J}.\]
 
 \end{GHSI}
 
 \begin{proof}
+  (based on Pascal's rule)
+  Let $J, k_1, k_2 \in \mathbb{N}$. Define
+  \[f(j, k) = \frac{(j+k)!}{j!k!} \binom{j+k}{k} = \binom{j+k}{j}\]
+  so that the identity may be rewritten 
+  \[\sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2) = f(J, k_1+k_2+1).\]
+  Note $f(0, k)=f(j, 0)=1$ and $f(j+1, k+1)=f(j, k+1)+f(j+1, k)$ for all $j, k\in\mathbb{N}$.
 
-Let $J, k_1, k_2 \in \mathbb{N}$. Define
-\[f(j, k) = \binom{j+k}{k} =  \binom{j+k}{j} = \frac{(j+k)!}{j!k!}\]
-so that the identity may be rewritten 
-\[\sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2) = f(J, k_1+k_2+1).\]
-Note $f(0, k)=f(j, 0)=1$ and $f(j+1, k+1)=f(j, k+1)+f(j+1, k)$ for all $j, k\in\mathbb{N}$.
+  Proof by induction over $J$ and $k_2$:
+  \begin{enumerate}
+  \item $J=0$ is trivial:
+    \begin{align*}
+      \sum_{j_1+j_2=0}f(j_1, k_1)f(j_2, k_2) &= f(0, k_1+k_2+1) \\
+      f(0, k_1)f(0, k_2) &= f(0, k_1+k_2+1) \\
+      1\times1 &= 1
+    \end{align*}
+  \item $k_2=0$ reduces to the normal hockey stick identity:
+    \begin{align*}
+      \sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, 0) &= f(J, k_1+0+1) \\
+      \sum_{j_1=0}^{J}f(j_1, k_1) &= f(J, k_1+1)
+    \end{align*}
+  \item $J=J'+1$, $k_2=k_2'+1$: Assume
+    \begin{align*}
+      \sum_{j_1+j_2=J'}f(j_1, k_1)f(j_2, k_2) = f(J', k_1+k_2+1), \\
+      \sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2') = f(J, k_1+k_2'+1).
+    \end{align*}
+    Then
+    \begin{align*}
+      & \sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2) \\
+      &= \sum_{j_1=0}^{J}f(j_1, k_1)f(J-j_1, k_2) \\
+      &= \sum_{j_1=0}^{J'}f(j_1, k_1)f(J-j_1, k_2)+f(J, k_1) \\
+      &= \sum_{j_1=0}^{J'}f(j_1, k_1)(f(J'-j_1, k_2)+f(J-j_1, k_2'))+f(J, k_1) \\
+      &= \sum_{j_1=0}^{J'}(f(j_1, k_1)f(J'-j_1, k_2)+f(j_1, k_1)f(J-j_1, k_2'))+f(J, k_1) \\
+      &= \sum_{j_1=0}^{J'}f(j_1, k_1)f(J'-j_1, k_2)+\sum_{j_1=0}^{J'}f(j_1, k_1)f(J-j_1, k_2')+f(J, k_1) \\
+      &= \sum_{j_1=0}^{J'}f(j_1, k_1)f(J'-j_1, k_2)+\sum_{j_1=0}^{J}f(j_1, k_1)f(J-j_1, k_2') \\
+      &= \sum_{j_1+j_2=J'}f(j_1, k_1)f(j_2, k_2)+\sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2') \\
+      &= f(J', k_1+k_2+1)+f(J, k_1+k_2'+1) \\
+      &= f(J, k_1+k_2+1). \\
+    \end{align*}
+  \end{enumerate}
+\end{proof}
 
-Proof by induction over $J$ and $k_2$:
-\begin{enumerate}
-\item $J=0$ is trivial:
-  \begin{align*}
-    \sum_{j_1+j_2=0}f(j_1, k_1)f(j_2, k_2) &= f(0, k_1+k_2+1) \\
-    f(0, k_1)f(0, k_2) &= f(0, k_1+k_2+1) \\
-    1\times1 &= 1
-  \end{align*}
-\item $k_2=0$ reduces to the normal hockey stick identity:
-  \begin{align*}
-    \sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, 0) &= f(J, k_1+0+1) \\
-    \sum_{j_1=0}^{J}f(j_1, k_1) &= f(J, k_1+1)
-  \end{align*}
-\item $J=J'+1$, $k_2=k_2'+1$: Assume
-  \begin{align*}
-    \sum_{j_1+j_2=J'}f(j_1, k_1)f(j_2, k_2) = f(J', k_1+k_2+1), \\
-    \sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2') = f(J, k_1+k_2'+1).
-  \end{align*}
-  Then
-  \begin{align*}
-    & \sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2) \\
-    &= \sum_{j_1=0}^{J}f(j_1, k_1)f(J-j_1, k_2) \\
-    &= \sum_{j_1=0}^{J'}f(j_1, k_1)f(J-j_1, k_2)+f(J, k_1) \\
-    &= \sum_{j_1=0}^{J'}f(j_1, k_1)(f(J'-j_1, k_2)+f(J-j_1, k_2'))+f(J, k_1) \\
-    &= \sum_{j_1=0}^{J'}(f(j_1, k_1)f(J'-j_1, k_2)+f(j_1, k_1)f(J-j_1, k_2'))+f(J, k_1) \\
-    &= \sum_{j_1=0}^{J'}f(j_1, k_1)f(J'-j_1, k_2)+\sum_{j_1=0}^{J'}f(j_1, k_1)f(J-j_1, k_2')+f(J, k_1) \\
-    &= \sum_{j_1=0}^{J'}f(j_1, k_1)f(J'-j_1, k_2)+\sum_{j_1=0}^{J}f(j_1, k_1)f(J-j_1, k_2') \\
-    &= \sum_{j_1+j_2=J'}f(j_1, k_1)f(j_2, k_2)+\sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2') \\
-    &= f(J', k_1+k_2+1)+f(J, k_1+k_2'+1) \\
-    &= f(J, k_1+k_2+1). \\
-  \end{align*}
-\end{enumerate}
+\begin{proof}
+  (based on polynomial expansion)
+\end{proof}
 
+\begin{proof}
+  (based on combinatorics)
+  The left and right sides of the equation can be interpreted as cardinalities of sets,
+  and a bijection between these sets is sufficient to show that their cardinalities are equal.
+  $\binom{j+k}{j}$ becomes the set of ways to arrange $j$ red and $k$ blue objects in a line,
+  multiplication becomes the Cartesian product of sets, and summation becomes the disjoint union.
+  Then the left side represents the number of pairs of
+  arrangements of $j_1$ red and $k_1$ blue objects and
+  arrangements of $j_2$ red and $k_2$ blue objects
+  such that $j_1+j_2=J$.
+  Likewise, the right side is the number of arrangements of $J$ red and $k_1+k_2+1$ blue objects.
+
+  Left$\rightarrow$right: Take the first arrangement in the given pair (with $j_1+k_1$ objects),
+  add a blue object to its right as a separator,
+  and add the second arrangement (with $j_2+k_2$ objects) to the right of that
+  to obtain an arrangement of $j_1+j_2=J$ red and $k_1+k_2+1$ blue objects.
+
+  Right$\rightarrow$left: Take the $(k_1+1)^{th}$ blue object in the given arrangement
+  (with $J$ red and $k_1+k_2+1$ blue objects) to act as a separator,
+  so the arrangement to its left has $k_1$ blue objects
+  and the arrangement to its right has $k_2$ blue objects.
+  The number of red objects on the left and right ($j_1$ and $j_2$, respectively)
+  are not determined by the split, but they must still add to $J$.
+  
 \end{proof}
 
 \end{document}
