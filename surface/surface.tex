@@ -31,10 +31,10 @@ Each of these binomial terms is 0 at all points on some plane passing through th
 which is perpendicular to some vector.
 The previous binomials, for example, represent planes
 perpendicular to $(\varphi, 1, 0)$ and $(\varphi, -1, 0)$, respectively.
-Separating the other two quadratic vactors in the same way yields
+Separating the other two quadratic factors in the same way yields
 six planes and six perpendicular vectors.
 Taking the negative of each vector (which is perpendicular to the same plane)
-produces 12 vectors in total, which are the vertices of an icosahedron.
+produces 12 vectors in total, which form the vertices of an icosahedron.
 The planes themselves, when projected onto a sphere centered at the origin,
 become great circles which trace out the edges of an icosidodecahedron.
 
@@ -95,7 +95,7 @@ $$3(x^4+y^4+z^4+1)-(x^2+y^2+z^2+1)^2=0$$
 
 To verify this intuition about the points at infinity, though,
 I had to construct the surface in projective space,
-which is defined 4D rather than 3D.
+which is defined in 4D rather than 3D.
 Points in projective 3D space ($\mathbb{P}^3$)
 are defined as lines passing through the origin in 4D space ($\mathbb{R}^4$),
 or equivalently, as the multiples of some non-null vector $(x, y, z, w)$.
@@ -120,6 +120,33 @@ until they reach the highest degree of any term in the polynomial.
 Applying this method to the surface I had found, I obtained
 $$3(x^4+y^4+z^4+w^4)-(x^2+y^2+z^2+w^2)^2=0$$
 and was pleasantly surprised to see that it was symmetrical in all four variables!
+I could have used these symmetries to find the singularities at the points at infinity,
+but I decided to repeat the process
+and take the partial derivatives of this function $g(x, y, z, w)$:
+\begin{align*}
+  \frac{\partial g}{\partial x} &= 4x(2x^2-y^2-z^2-w^2) \\ 
+  \frac{\partial g}{\partial y} &= 4y(2y^2-x^2-z^2-w^2) \\ 
+  \frac{\partial g}{\partial z} &= 4z(2z^2-x^2-y^2-w^2) \\ 
+  \frac{\partial g}{\partial w} &= 4w(2w^2-x^2-y^2-z^2) 
+\end{align*}
+Setting these and $g$ itself equal to zero revealed the singularities as lines in 4D:
+the permutations and sign changes of $(0, c, c, c)$ for any constant $c$.
+At first glance, it appears that 4 permutations and $2^3=8$ sign changes would yield 32 lines,
+but in reality, there are only 4 sign changes, as negating all $c$s creates the same line again.
+If, however, you take a given point on one of these lines (say $(0, 1, 1, 1)$)
+and apply all 32 transformations, the resulting 4D shape is a rectified tesseract:
 
+(Image)
+
+It has 24 3D cells: 16 tetrahedra and 8 cuboctahedra,
+positioned around the vertices and cells of a tesseract, respectively.
+In the original 3D surface, we can clearly see a cuboctahedron in the center,
+and the eight cylinders adjacent to it are actually tetrahedra
+whose fourth vertices reside at infinity.
+There are also six half-cuboctahedra connecting to the square faces in the center,
+but they are extremely distorted and hard to see.
+The surface is a projection of half of a rectified tesseract
+
+$$3(x^4+y^4+z^4+(x^2+y^2+z^2-1)^4)-(x^2+y^2+z^2+(x^2+y^2+z^2-1)^2)^2 = 0$$
 
 \end{document}
