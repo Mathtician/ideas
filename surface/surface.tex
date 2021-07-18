@@ -133,7 +133,7 @@ Setting these and $g$ itself equal to zero revealed the singularities as lines i
 the permutations and sign changes of $(0, c, c, c)$ for any constant $c$.
 At first glance, it appears that 4 permutations and $2^3=8$ sign changes would yield 32 lines,
 but in reality, there are only 4 sign changes, as negating all $c$s creates the same line again.
-If, however, you take a given point on one of these lines (say $(0, 1, 1, 1)$)
+If, however, you take a given point on one of these lines, say $(0, 1, 1, 1)$,
 and apply all 32 transformations, the resulting 4D shape is a rectified tesseract:
 
 (Image)
@@ -148,5 +148,29 @@ but they are extremely distorted and hard to see.
 The surface is a projection of half of a rectified tesseract
 
 $$3(x^4+y^4+z^4+(x^2+y^2+z^2-1)^4)-(x^2+y^2+z^2+(x^2+y^2+z^2-1)^2)^2 = 0$$
+
+\begin{align*}
+  m &= x^2 \\
+  n &= y^2 \\
+  p &= z^2 \\
+  q &= w^2 \\
+  l_1 &= m^2+n^2+p^2+q^2 \\
+  l_2 &= mn+pq \\
+  l_3 &= mp+nq \\
+  l_4 &= mq+pn \\
+  l_5 &= mnpq \\
+  s_{1,0} &= l_1(l_2l_3+l_2l_4+l_3l_4) \\
+  s_{1,1} &= l_1^2(l_2+l_3+l_4) \\
+  s_{1,2} &= l_1(l_2^2+l_3^2+l_4^2) \\
+  s_{5,1} &= l_5(l_2+l_3+l_4) \\
+  s_{2,3,4} &= l_2^3+l_3^3+l_4^3 \\
+  s_{2,3}^{\pm} &= l_2^2l_3 \pm l_2l_3^2 \\
+  s_{3,4}^{\pm} &= l_3^2l_4 \pm l_3l_4^2 \\
+  s_{4,2}^{\pm} &= l_4^2l_2 \pm l_4l_2^2 \\
+  Q_{12} &= (m+n+p+q)^6 \\
+  S_{12} &= 33\sqrt{5}(s_{2,3}^{-}+s_{3,4}^{-}+s_{4,2}^{-})+19(s_{2,3}^{+}+s_{3,4}^{+}+s_{4,2}^{+}) \\
+  &+ 10s_{2,3,4}-14s_{1,0}+2s_{1,1}-6s_{1,2}-352s_{5,1}+336l_5^2l_1+48l_2l_3l_4 \\
+  X_{12} &= 243S_{12}-22Q_{12}=0
+\end{align*}
 
 \end{document}

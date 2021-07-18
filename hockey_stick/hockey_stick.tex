@@ -15,26 +15,61 @@
 \begin{document}
 
 \title{The Generalized Hockey-stick Identity}
-\author{Aresh Pourkavoos}
+%\author{Aresh Pourkavoos}
 \maketitle
 
 \newtheorem*{GHSI}{Generalized Hockey-stick Identity}
 
 \begin{GHSI}
-
   For all natural variables,
   \[\sum_{j_1+j_2=J}\binom{j_i+k_1}{j_1}\binom{j_2+k_2}{j_2} = \binom{J+k_1+k_2+1}{J}.\]
-
+  Equivalently, define
+  \[f(j, k) = \frac{(j+k)!}{j!k!} = \binom{j+k}{k} = \binom{j+k}{j}\]
+  so that the identity may be rewritten 
+  \[\sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2) = f(J, k_1+k_2+1).\]
+  Note $f(0, k)=f(j, 0)=1$ and $f(j+1, k+1)=f(j, k+1)+f(j+1, k)$.
 \end{GHSI}
 
 \begin{proof}
-  (based on Pascal's rule)
-  Let $J, k_1, k_2 \in \mathbb{N}$. Define
-  \[f(j, k) = \frac{(j+k)!}{j!k!} \binom{j+k}{k} = \binom{j+k}{j}\]
-  so that the identity may be rewritten 
-  \[\sum_{j_1+j_2=J}f(j_1, k_1)f(j_2, k_2) = f(J, k_1+k_2+1).\]
-  Note $f(0, k)=f(j, 0)=1$ and $f(j+1, k+1)=f(j, k+1)+f(j+1, k)$ for all $j, k\in\mathbb{N}$.
+  (based on combinatorics)
+  The left and right sides of the equation can be interpreted as cardinalities of sets,
+  and a bijection between these sets is sufficient to show that their cardinalities are equal.
+  $f(j, k)$ becomes the set of ways to arrange $j$ red and $k$ blue objects in a line,
+  multiplication becomes the Cartesian product of sets, and summation becomes the disjoint union.
+  Then the left side represents the number of pairs of
+  arrangements of $j_1$ red and $k_1$ blue objects and
+  arrangements of $j_2$ red and $k_2$ blue objects
+  such that $j_1+j_2=J$.
+  Likewise, the right side is the number of arrangements of $J$ red and $k_1+k_2+1$ blue objects.
 
+  Left$\rightarrow$right: Take the first arrangement in the given pair (with $j_1+k_1$ objects),
+  add a blue object to its right as a separator,
+  and add the second arrangement (with $j_2+k_2$ objects) to the right of that
+  to obtain an arrangement of $j_1+j_2=J$ red and $k_1+k_2+1$ blue objects.
+
+  Right$\rightarrow$left: Take the $(k_1+1)^{\text{th}}$ blue object in the given arrangement
+  (with $J$ red and $k_1+k_2+1$ blue objects) to act as a separator,
+  so the arrangement to its left has $k_1$ blue objects
+  and the arrangement to its right has $k_2$ blue objects.
+  The number of red objects on the left and right ($j_1$ and $j_2$, respectively)
+  are not determined by the split, but they must still add to $J$.
+
+  Note that these functions are inverses and thus form a bijection.
+\end{proof}
+
+\begin{proof}
+  (based on polynomial expansion)
+  Let $p(x)=1+x+x^2+\ldots$, the Taylor series expansion of $(1-x)^{-1}$.
+  Then $f(j, k)$ is the degree-$j$ coefficient in the expansion of $p(x)^{k+1}$ (to prove later).
+  Trivially, $p(x)^{k_1+1}p(x)^{k_2+1}=p(x)^{(k_1+k_2+1)+1}$.
+  Since polynomial multiplication may be done by convolution over the coefficients,
+  the degree-$J$ coefficient of $p(x)^{(k_1+k_2+1)+1}$ is the sum of products
+  of the appropriate coefficients in $p(x)^{k_1+1}$ and $p(x)^{k_2+1}$,
+  namely those whose degrees $j_1$ and $j_2$ add to $J$.
+\end{proof}
+
+\begin{proof}
+  (based on Pascal's rule)
   Proof by induction over $J$ and $k_2$:
   \begin{enumerate}
   \item $J=0$ is trivial:
@@ -67,36 +102,6 @@
       &= f(J, k_1+k_2+1). \\
     \end{align*}
   \end{enumerate}
-\end{proof}
-
-\begin{proof}
-  (based on polynomial expansion)
-\end{proof}
-
-\begin{proof}
-  (based on combinatorics)
-  The left and right sides of the equation can be interpreted as cardinalities of sets,
-  and a bijection between these sets is sufficient to show that their cardinalities are equal.
-  $\binom{j+k}{j}$ becomes the set of ways to arrange $j$ red and $k$ blue objects in a line,
-  multiplication becomes the Cartesian product of sets, and summation becomes the disjoint union.
-  Then the left side represents the number of pairs of
-  arrangements of $j_1$ red and $k_1$ blue objects and
-  arrangements of $j_2$ red and $k_2$ blue objects
-  such that $j_1+j_2=J$.
-  Likewise, the right side is the number of arrangements of $J$ red and $k_1+k_2+1$ blue objects.
-
-  Left$\rightarrow$right: Take the first arrangement in the given pair (with $j_1+k_1$ objects),
-  add a blue object to its right as a separator,
-  and add the second arrangement (with $j_2+k_2$ objects) to the right of that
-  to obtain an arrangement of $j_1+j_2=J$ red and $k_1+k_2+1$ blue objects.
-
-  Right$\rightarrow$left: Take the $(k_1+1)^{th}$ blue object in the given arrangement
-  (with $J$ red and $k_1+k_2+1$ blue objects) to act as a separator,
-  so the arrangement to its left has $k_1$ blue objects
-  and the arrangement to its right has $k_2$ blue objects.
-  The number of red objects on the left and right ($j_1$ and $j_2$, respectively)
-  are not determined by the split, but they must still add to $J$.
-  
 \end{proof}
 
 \end{document}
