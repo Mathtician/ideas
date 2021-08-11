@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{A Floating-Point Standard for Balanced Ternary}
+\author{Aresh Pourkavoos}
+%\maketitle
+\noindent
+Float $f$ comprised of exponent $e$ (int) and significand $s$ (-1.5 to 1.5) \\
+If $s$ starts with 1 or T, $f = 3^e \times s$ (normal) \\
+Else if $e=e_{min}$ (all Ts), $f$ is denormal (see formula for normal) \\
+Else, $f =$ sNaN, qNaN, or $\pm\infty$ (TBD when operations are implemented)
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+
+\noindent
+Example with 1 trit for $e$ and 2 trits for $s$: \\
+\newcommand{\T}{\text{T}}
+\hspace{-2cm}
+\begin{tabular}{*{10}{|c}|}
+  \hline
+  Memory
+  & $\T\T\T$ & $\T\T0$ & $\T\T1$
+  & $\T0\T$ & $\T00$ & $\T01$
+  & $\T1\T$ & $\T10$ & $\T11$ \\ \hline
+  Formula
+  & $10^\T \times \T.\T$ & $10^\T \times \T.0$ & $10^\T \times \T.1$
+  & $10^\T \times 0.\T$ & $10^\T \times 0.0$ & $10^\T \times 0.1$
+  & $10^\T \times 1.\T$ & $10^\T \times 1.0$ & $10^\T \times 1.1$ \\ \hline
+  Result
+  & $.\T\T$ & $.\T0$ & $.\T1$
+  & $.0\T$ & $.00$ & $.01$
+  & $.1\T$ & $.10$ & $.11$ \\ \hline
+  Decimal
+  & $-4/9$ & $-1/3$ & $-2/9$
+  & $-1/9$ & $0$ & $1/9$
+  & $2/9$ & $1/3$ & $4/9$ \\ \hline
+  \hline
+  Memory
+  & $0\T\T$ & $0\T0$ & $0\T1$
+  & $00\T$ & $000$ & $001$
+  & $01\T$ & $010$ & $011$ \\ \hline
+  Formula
+  & $10^0 \times \T.\T$ & $10^0 \times \T.0$ & $10^0 \times \T.1$
+  & ? & ? & ?
+  & $10^0 \times 1.\T$ & $10^0 \times 1.0$ & $10^0 \times 1.1$ \\ \hline
+  Result
+  & $\T.\T$ & $\T.0$ & $\T.1$
+  & ? & ? & ?
+  & $1.\T$ & $1.0$ & $1.1$ \\ \hline
+  Decimal
+  & $-4/3$ & $-1$ & $-2/3$
+  & ? & ? & ?
+  & $2/3$ & $1$ & $4/3$ \\ \hline
+  \hline
+  Memory
+  & $1\T\T$ & $1\T0$ & $1\T1$
+  & $10\T$ & $100$ & $101$
+  & $11\T$ & $110$ & $111$ \\ \hline
+  Formula
+  & $10^1 \times \T.\T$ & $10^1 \times \T.0$ & $10^1 \times \T.1$
+  & ? & ? & ?
+  & $10^1 \times 1.\T$ & $10^1 \times 1.0$ & $10^1 \times 1.1$ \\ \hline
+  Result
+  & $\T\T.$ & $\T0.$ & $\T1.$
+  & ? & ? & ?
+  & $1\T.$ & $10.$ & $11.$ \\ \hline
+  Decimal
+  & $-4$ & $-3$ & $-2$
+  & ? & ? & ?
+  & $2$ & $3$ & $4$ \\ \hline
+\end{tabular}
+\end{document}
