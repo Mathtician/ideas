@@ -8,6 +8,7 @@
 \usepackage{float}
 \usepackage{bookmark}
 \usepackage{physics}
+\usepackage{hhline}
 \graphicspath{{images/}}
 \hypersetup{
   colorlinks=true,
@@ -68,22 +69,30 @@ These functions of vector addition and scalar multiplication, too,
 must obey certain properties,
 e.g. $a(\vb{u}+\vb{v}) = a\vb{u}+a\vb{v}$
 for all scalars $a$ and vectors $\vb{u}$ and $\vb{v}$.
+(This property can be stated as
+``the scalar product respects vector addition''.)
 
 Every vector space has a basis, a set of vectors
 which may be multiplied by scalars and added to each other
 to uniquely produce any vector in $V$.
 The size of the basis is called the dimension of $V$.
 These notes are concerned with vector spaces with finite dimension $n$,
-so for a given basis $\vb{e_1}, \ldots, \vb{e_n}$,
-every vector $\vb{v}$ can be uniquely represented as  $v_1\vb{e_1}+\hdots+v_n\vb{e_n}$,
-where $v_1, \ldots, v_n$ are scalars.
-For short, $\vb{v}$ is often written with a column listing these scalars:
+so for a given basis $\{\vb{e}_1, \ldots, \vb{e}_n\}$,
+every vector $\vb{v} \in V$ can be uniquely represented as  $v_1\vb{e}_1+\hdots+v_n\vb{e}_n$,
+where $v_1, \ldots, v_n \in F$.
+The vector space is thus called $F^n$,
+or specifically $\mathbb{R}^n$ in the case of geometric algebras.
+For short, $\vb{v}$ is often written as a column listing these scalars:
 \[\vb{v} = \begin{bmatrix} v_1 \\ \vdots \\ v_n \end{bmatrix}\]
 
 Vectors are basic objects in linear algebra, along with matrices,
-which represent ways to transform vectors.
+which represent ways to transform vectors
+in a way that respects vector addition and scalar multiplication.
+
 
 \section{Definition}
+
+\subsection{Algebras}
 
 Despite everything than can be shown about vector spaces alone,
 they do not define a way to multiply two vectors.
@@ -94,12 +103,76 @@ This vector product is constrained by only one rule:
 it must be linear with respect to both arguments,
 i.e. when one argument is fixed,
 it must respect vector addition and scalar multiplication in the other argument.
-In general, it does not need to be commutative, associative, etc.
+In general, the vector product does not need to be commutative, associative, etc.
 However, thanks to the constraint of linearity,
-it is only necessary to define the products of all the basis vectors with each other,
-and 
+it is only necessary to define the products of the basis vectors with each other,
+and all other values of the product become defined.
+For example, consider a two-dimensional vector space
+with a basis $\{e_1, e_2\}$
+and two vectors within that space
+$u = \begin{bmatrix} a \\ b \end{bmatrix}$
+and $v = \begin{bmatrix} c \\ d \end{bmatrix}$.
+\footnote{As mentioned in the review of linear algebra,
+  vectors will be italicized like other variables from this point forward.}
+If $e_1e_1$, $e_1e_2$, $e_2e_1$, and $e_2e_2$ are known,
+then
+\[
+uv
+= \begin{bmatrix} a \\ b \end{bmatrix}
+\begin{bmatrix} c \\ d \end{bmatrix}
+= (ae_1+be_2)(ce_1+de_2)
+= ace_1e_1+ade_1e_2+bce_2e_1+bde_2e_2.
+\]
+Scalars must commute with the vector product,
+hence $ace_1e_1$ is written above instead of $ae_1ce_1$.
+However, $e_1e_2$ and $e_2e_1$ are distinguished
+and not combined as like terms,
+since the vector product itself is not necessarily commutative.
 
-\subsection{Example: the exterior algebra}
+\subsubsection{The cross product}
+
+For example, the cross product $\times$ forms an algebra over $\mathbb{R}^3$,
+and it returns the following for all pairs of basis vectors,
+where $0$ is the null vector:
+
+\begin{center}
+  \begin{tabular}{|c||c|c|c|}
+    \hline
+    $\times$ & $e_1$ & $e_2$ & $e_3$ \\ \hhline{|=#=|=|=|}
+    $e_1$ & $0$ & $e_3$ & $-e_2$ \\ \hline
+    $e_2$ & $-e_3$ & $0$ & $e_1$ \\ \hline
+    $e_3$ & $e_2$ & $-e_1$ & $0$ \\ \hline
+  \end{tabular}
+\end{center}
+
+As shown in the table,
+the cross product is anticommutative rather than commutative,
+i.e. $u \times v = -v \times u$ for all basis vectors
+and, by extension, for all vectors $u$ and $v$.
+This vector product is widely used in physics
+to calculate quantities related to rotation, such as angular momentum.
+However, it cannot be generalized to higher dimensions,
+but it can be restricted to work in two
+by omitting the last row and column of the table.
+Notice, though, that the result will simply be a scalar multiple of $e_3$,
+so the cross product in 2D effectively returns a scalar instead of a vector.
+The cross product, then, has the peculiar property
+that it returns a scalar in two dimensions,
+a vector in three dimensions,
+and nothing in any other dimension.
+Additionally, since the components of vectors usually contain a unit of length,
+e.g. meters or meters/second,
+the cross product of two such vectors has units of area.
+
+Geometric algebra defines an alternative to the cross product
+which works in any number of dimensions,
+which always returns the same type of object,
+and which has a more natural geometric interpretation.
+This will be discussed in later sections.
+
+\subsection{Quadratic forms}
+
+\subsubsection{Signature}
 
 \section{Properties}
 

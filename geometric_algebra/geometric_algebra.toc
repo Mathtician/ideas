@@ -1,16 +1,19 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Linear algebra review}{2}{subsection.1.1}%
 \contentsline {section}{\numberline {2}Definition}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Example: the exterior algebra}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Algebras}{2}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}The cross product}{3}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Quadratic forms}{3}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Signature}{3}{subsubsection.2.2.1}%
 \contentsline {section}{\numberline {3}Properties}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Conic sections: a tangent}{3}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Representing transformations}{3}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Reflections, rotations, and translations}{3}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Symmetries of spacetime}{3}{subsection.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.1}Classical mechanics}{3}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}Special relativity}{3}{subsubsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.3}Conformal transformations}{3}{subsection.4.3}%
-\contentsline {section}{\numberline {5}From $\mathbb {R}$ to $\mathbb {C}$ to $\mathbb {H}$}{3}{section.5}%
-\contentsline {subsection}{\numberline {5.1}$\mathbb {R}$ to $\mathbb {C}$}{3}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}$\mathbb {C}$ to $\mathbb {H}$}{3}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Lie groups and Lie algebras}{3}{section.6}%
+\contentsline {subsubsection}{\numberline {4.2.2}Special relativity}{4}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}Conformal transformations}{4}{subsection.4.3}%
+\contentsline {section}{\numberline {5}From $\mathbb {R}$ to $\mathbb {C}$ to $\mathbb {H}$}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}$\mathbb {R}$ to $\mathbb {C}$}{4}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}$\mathbb {C}$ to $\mathbb {H}$}{4}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Lie groups and Lie algebras}{4}{section.6}%
