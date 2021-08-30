@@ -16,7 +16,7 @@
 }
 \begin{document}
 
-\title{Notes on Geometric Algebra}
+\title{Notes on $\mathcal{G}$}
 \author{Aresh Pourkavoos}
 \date{}
 \maketitle
@@ -25,17 +25,17 @@
 \newpage
 
 \section{Introduction}
-Geometric algebras (or real Clifford algebras) provide a unified framework
+Geometric algebras (or real Clifford algebras),
+denoted by $\mathcal{G}$, provide a unified framework
 for diverse topics in math and physics,
 mostly centered on transformations in $n$-dimensional space.
 These include but are not limited to
 the familiar reflections, rotations, and translations of Euclidean space;
-the hyperbolic rotations, AKA Lorentz boosts, which appear in special relativity;
-the circle inversions used in compass-and-straightedge constructions
-and their higher-dimensional analogs;
+the hyperbolic rotations or Lorentz boosts which appear in special relativity;
+the circle inversions used in compass-and-straightedge constructions;
 and the perspective transformations which find applications in computer vision.
-They can represent area, volume, and beyond
-in the same way that vectors represent length.
+They contain objects which represent area, volume, and beyond
+in addition to the vectors which represent length.
 When Clifford algebras are constructed using complex numbers instead of reals,
 they capture the unitary transformations and spinors of quantum mechanics.
 When combined with calculus, geometric algebra encompasses the theory of differential forms.
@@ -131,8 +131,9 @@ since the vector product itself is not necessarily commutative.
 
 \subsubsection{The cross product}
 
-For example, the cross product $\times$ forms an algebra over $\mathbb{R}^3$,
-and it returns the following for all pairs of basis vectors,
+To give an example of an algebra (and a non-commutative one at that),
+consider the cross product $\times$, which forms an algebra over $\mathbb{R}^3$.
+The cross product returns the following for all pairs of basis vectors,
 where $0$ is the null vector:
 
 \begin{center}
@@ -160,15 +161,20 @@ The cross product, then, has the peculiar property
 that it returns a scalar in two dimensions,
 a vector in three dimensions,
 and nothing in any other dimension.
-Additionally, since the components of vectors usually contain a unit of length,
+Additionally, the components of vectors usually contain a unit of length,
 e.g. meters or meters/second,
-the cross product of two such vectors has units of area.
+which makes sense geometrically, as the components of vectors are segments of a certain length.
+The output of the cross product of two such vectors, on the other hand, has units of area,
+so scaling the input vectors up or down will affect the length of the cross product---
+not just in the absolute sense, but also relative to the lengths of the original vectors!
+In this way, the cross product depends on the length of a unit basis vector
+and is not ``intrinsic'' to the two vectors being multiplied.
 
 Geometric algebra defines an alternative to the cross product
 which works in any number of dimensions,
 which always returns the same type of object,
 and which has a more natural geometric interpretation.
-This will be discussed in later sections.
+This is known as the exterior product and will be discussed in later sections.
 
 \subsection{Quadratic forms}
 
@@ -227,7 +233,20 @@ This matrix can also be thought of as a linear transformation of the plane,
 namely a scaling and rotation.
 
 Likewise, an $m \times n$ complex matrix can be represented as a $2m \times 2n$ real matrix,
-with each $2 \times 2$ block of the real matrix representing a single entry of the complex matrix.
+with each entry of the complex matrix becoming a $2 \times 2$ block of the real matrix.
+For example, the $2 \times 2$ complex matrix
+\begin{align*}
+\begin{bmatrix} 1+2i & 5+6i \\ 3+4i & 7+8i \end{bmatrix}
+\end{align*}
+may be represented as the $4 \times 4$ real matrix
+\begin{align*}
+  \begin{bmatrix}
+    1 & -2 & 5 & -6 \\
+    2 & 1 & 6 & 5 \\
+    3 & -4 & 7 & -8 \\
+    4 & 3 & 8 & 7 \\
+  \end{bmatrix}.
+\end{align*}
 Since breaking down matrices into blocks, multiplying them as units,
 then adding the results together is a valid method of matrix multiplication,
 the complex matrix product is preserved with this real representation.
