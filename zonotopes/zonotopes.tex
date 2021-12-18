@@ -20,8 +20,30 @@
 This project is the culmination of a train of thought
 that started around a year ago
 with the question of whether I could build an icosahedron in Minecraft.
-I had learned that the coordinates of one were based on the golden ratio
-$\varphi = \frac{1+\sqrt{5}}{2}$
+I had learned that the coordinates of its vertices
+were based on the golden ratio $\varphi = \frac{1+\sqrt{5}}{2}$,
+the positive solution to the equation $\varphi^2 = \varphi+1$.
+More specifically,
+an icosahedron can be constructed with three perpendicular golden rectangles.
+
+[Image]
+
+If the icosahedron has a side length of 2,
+then the rectangles are $2 \times 2\varphi$,
+and the coordinates of their vertices are
+\[
+(0, \pm 1, \pm \varphi),
+(\pm 1, \pm \varphi, 0),
+(\pm \varphi, 0, \pm 1),
+\]
+or more succinctly,
+all permutations and sign changes of
+\[(0, 1, \varphi).\]
+Since $\varphi$ is irrational,
+there is no way to scale these coordinates
+such that they fall exactly on integers.
+(For the readers who are considering rotations,
+the proof that they don't work either is left as an exercise.)
 
 Approximation of phi
 
