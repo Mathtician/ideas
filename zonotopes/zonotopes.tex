@@ -44,8 +44,17 @@ there is no way to scale these coordinates
 such that they fall exactly on integers.
 (For the readers who are considering rotations,
 the proof that they don't work either is left as an exercise.)
+However, it is possible to approximate it using the Fibonacci numbers,
+since they obey the same ``power law'' as $\varphi$,
+i.e. $\varphi^{n}+\varphi^{n+1}=\varphi^{n+2}$ and $F_n+F_{n+1}=F_{n+2}$.
+For this reason, the ratio of consecutive Fibonacci numbers approaches $\varphi$,
+so we may approximate the coordinates of an icosahedron with something like
+\[(0, 3, 5).\]
+Placed into Minecraft, the vertices look like this:
 
-Approximation of phi
+[Image]
+
+But how do we fill in the edges?
 
 What is a zonotope?
 
