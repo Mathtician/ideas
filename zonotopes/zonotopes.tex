@@ -47,14 +47,31 @@ the proof that they don't work either is left as an exercise.)
 However, it is possible to approximate it using the Fibonacci numbers,
 since they obey the same ``power law'' as $\varphi$,
 i.e. $\varphi^{n}+\varphi^{n+1}=\varphi^{n+2}$ and $F_n+F_{n+1}=F_{n+2}$.
+($F_0=0$ and $F_1=1$.)
 For this reason, the ratio of consecutive Fibonacci numbers approaches $\varphi$,
-so we may approximate the coordinates of an icosahedron with something like
-\[(0, 3, 5).\]
-Placed into Minecraft, the vertices look like this:
+so we may approximate the coordinates of an icosahedron with
+\[(0, F_n, F_{n+1})\]
+for some $n$,
+e.g. (0, 3, 5) for $n=4$.
+Placed into Minecraft, the vertices and the golden rectangles joining them look like this:
 
 [Image]
 
 But how do we fill in the edges?
+Some of them are just the short edges of the rectangles,
+so a straight line of blocks will suffice.
+However, these only account for 6 of the 30 edges,
+where the other 24 join vertices between different rectangles.
+For the example above,
+all of these are permutations and sign changes of
+\[(5, 3, 2).\]
+In the general Fibonacci case,
+they would be $(F_{n+1}, F_n, F_{n-1})$,
+and in the exact case,
+they would be $(\varphi, 1, \varphi-1)$.
+So how do we fill such a line with blocks
+in a continuous and ``voxel-perfect'' way,
+for some sense of the word?
 
 What is a zonotope?
 
