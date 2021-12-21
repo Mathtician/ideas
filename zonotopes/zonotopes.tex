@@ -70,8 +70,18 @@ they would be $(F_{n+1}, F_n, F_{n-1})$,
 and in the exact case,
 they would be $(\varphi, 1, \varphi-1)$.
 So how do we fill such a line with blocks
-in a continuous and ``voxel-perfect'' way,
-for some sense of the word?
+in a continuous and ``voxel-perfect'' way?
+
+A line drawn in 2D
+is ``pixel-perfect'' if it satisfies three conditions.
+Suppose without loss of generality
+that it is drawn between $(0, 0)$ and $(x, y)$,
+where $x$ and $y$ are integers and $0 \leq x \leq y$.
+\begin{enumerate}
+\item
+  It is one pixel thick.
+  In other words, it fills in $y+1$ pixels including both endpoints.
+\end{enumerate}
 
 What is a zonotope?
 
