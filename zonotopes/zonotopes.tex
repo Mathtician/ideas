@@ -72,16 +72,26 @@ they would be $(\varphi, 1, \varphi-1)$.
 So how do we fill such a line with blocks
 in a continuous and ``voxel-perfect'' way?
 
-A line drawn in 2D
-is ``pixel-perfect'' if it satisfies three conditions.
+Before defining a voxel-perfect line in 3D,
+it is beneficial to define a pixel-perfect line drawn in 2D.
 Suppose without loss of generality
 that it is drawn between $(0, 0)$ and $(x, y)$,
 where $x$ and $y$ are integers and $0 \leq x \leq y$.
-\begin{enumerate}
-\item
-  It is one pixel thick.
-  In other words, it fills in $y+1$ pixels including both endpoints.
-\end{enumerate}
+To make it pixel-perfect,
+exactly $y+1$ pixels must be filled in (including both endpoints),
+one in each $y$-coordinate.
+For a given $y$-coordinate,
+the center of the pixel is decided
+by connecting the centers of the endpoints,
+intersecting this line with the appropriate row,
+and filling the pixel whose center lies closest to this intersection.
+If there is a tie in the rounding, \textit{no} pixel-perfect line exists,
+since it could not be symmetric without adding an extra pixel in the center.
+This situation occurs when $x$ is odd and $y$ is even.
+
+[Image]
+
+For voxel-perfection, the situation is similar.
 
 What is a zonotope?
 
