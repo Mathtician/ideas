@@ -18,6 +18,26 @@
 
 \newcommand{\cis}{\text{cis}}
 
+What are the coordinates of the vertices
+of a regular $n$-gon of radius 1?
+The simple answer comes from trigonometry:
+the vertices are points on the unit circle,
+separated by angles of $\frac{\tau}{n}$
+(where $\tau$ is the number of radians in a full turn),
+so their coordinates are
+\[\left(\cos\left(\frac{m}{n}\tau\right), \sin\left(\frac{m}{n}\tau\right)\right)\]
+for all $0 \leq m < n$.
+However, this formula makes symbolic manipulation unwieldy
+when trying to reduce expressions involving these terms to their simplest form.
+For example, when $n=5$ and $m=1$,
+the x-coordinate of the point is
+$\cos\left(\frac{1}{5}\tau\right) = \frac{1}{2}(1-\varphi)$,
+where $\varphi = \frac{1+\sqrt{5}}{2}$ is the golden ratio,
+the positive solution to $\varphi^2 = \varphi+1$.
+Writing the coordinate in terms of $\varphi$ is easier than the trigonometric way,
+since products involving it can easily be simplified
+by replacing $\varphi^2$ with $\varphi+1$.
+
 \begin{align*}
   r &= 2\cos\left(\frac{m}{n}\tau\right) \\
   p(r) &= 0 \\ 
