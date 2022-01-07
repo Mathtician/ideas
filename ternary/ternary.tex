@@ -15,8 +15,45 @@
 
 \title{A Floating-Point Standard for Balanced Ternary}
 \author{Aresh Pourkavoos}
-%\maketitle
-\noindent
+\maketitle
+
+\newcommand{\T}{\mathrm{T}}
+
+Balanced ternary is a base 3 number system,
+i.e. numbers in balanced ternary are written as a string of digits
+whose contributions to the number are scaled by powers of 3.
+However, rather than the usual 0, 1, and 2,
+the digits of balanced ternary are $-1$, 0, and 1.
+$-1$ is usually written as T, as it looks like a 1 with a bar or negative sign on top.
+It can represent negative integers without the use of a negative sign,
+e.g. $\T1 = (-1) \times 3 + 1 \times 1= -2$.
+
+In the early days of computers,
+this system was considered as an alternative to binary,
+and many balanced ternary computers were built,
+most notably the Setun in Russia in the early 1960s.
+A brief side-by-side comparison follows.
+First of all, since there is no real distinction between positive and negative integers,
+there is no need for additional circuits to handle each case.
+However, the same is also true for all modern binary computers
+thanks to the two's complement implementation of signed integers,
+which takes advantage of the fact that logic gates on a finite number of bits
+behaves like modular arithmetic.
+In two's complement, the larger half of what would be unsigned integers,
+e.g. 8 through 15 (inclusive) for 4-bit integers,
+are reassigned to negative numbers (-8 through -1 in this case).
+So in this case, the advantage evens out.
+
+Next, addition and multiplication in balanced ternary
+both rely on their respective tables for a single digit.
+In binary, adding two bits requires a carryover $\frac{1}{4}$ of the time,
+namely when performing $1+1$.
+In balanced ternary, however, this occurrs only $\frac{2}{6}$ of the time.
+
+
+Where I believe balanced ternary shines is in how it handles floating point numbers.
+
+
 Float $f$ comprised of exponent $e$ (int) and significand $s$ (-1.5 to 1.5) \\
 If $s$ starts with 1 or T, $f = 3^e \times s$ (normal) \\
 Else if $e=e_{min}$ (all Ts), $f$ is denormal (see formula for normal) \\
@@ -26,7 +63,6 @@ Else, $f =$ sNaN, qNaN, or $\pm\infty$ (TBD when operations are implemented)
 
 \noindent
 Example with 1 trit for $e$ and 2 trits for $s$: \\
-\newcommand{\T}{\text{T}}
 \hspace{-2cm}
 \begin{tabular}{*{10}{|c}|}
   \hline
