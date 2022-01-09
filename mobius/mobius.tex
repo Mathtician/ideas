@@ -41,17 +41,34 @@ It can be shown that this is equivalent to the statement
 
 \[ad-bc \neq 0.\]
 
-Next, note that when the denominator $cz+d=0$,
-the output is not defined within the complex numbers.
+When these functions map $\mathbb{C}$ to $\mathbb{C}$
+they are usually \textit{almost} bijective:
+most of them are undefined for a single input
+(where the denominator is 0),
+and most miss the single output $\frac{a}{b}$,
+since the constant terms $b$ and $d$ prevent the numerator and denominator
+from having the right ratio.
 For this reason, the transformation's range is often extended
 to the \textit{Riemann sphere}, the set of complex numbers with $\infty$.
 (This is what the narrator of the video means by
 ``taking a cue from Bernhard Riemann.'')
-$\infty$, roughly speaking, is any nonzero number divided by zero.
+$\infty$ is, roughly speaking, any nonzero number divided by zero.
 ($\frac{0}{0}$ is still undefined.)
-Then, $f(z)=\infty$ when $cz+d=0$.
+It plugs both of the previously mentioned holes in the input and output.
+Then, $f(z)=\infty$ when $cz+d=0$,
+i.e. when $z$ is $-\frac{d}{c}$ if $c \neq 0$ and $\infty$ if $c=0$.
 (Since $az+b$ must not be a multiple of $cz+d$,
 $\frac{0}{0}$ never occurs.)
+Also, $f(\infty)$ is $\frac{a}{b}$ if $b \neq 0$ and $\infty$ if $b=0$,
+since it may be thought of as $\lim\limits_{z\rightarrow\infty}f(z)$.
+
+There are some edge cases to consider involving $\infty$ and division by 0,
+but doing so makes the \mobius transformations (where $ad-bc \neq 0$)
+bijective over the Riemann sphere.
+To handle these edge cases more naturally,
+it is useful to consider the Riemann sphere as the complex projective line,
+which is made of pairs of complex numbers $(s, t) \neq (0, 0)$.
+Two such pairs are equivalent if one is a multiple of the other.
 
 Let $(s, t) \in$ proj. line:
 value is $\infty$ when $t=0$ and $s/t$ otherwise \\
