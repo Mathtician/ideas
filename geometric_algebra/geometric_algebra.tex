@@ -238,7 +238,7 @@ Likewise, an $m \times n$ complex matrix can be represented as a $2m \times 2n$ 
 with each entry of the complex matrix becoming a $2 \times 2$ block of the real matrix.
 For example, the $2 \times 2$ complex matrix
 \begin{align*}
-\begin{bmatrix} 1+2i & 5+6i \\ 3+4i & 7+8i \end{bmatrix}
+  \begin{bmatrix} 1+2i & 5+6i \\ 3+4i & 7+8i \end{bmatrix}
 \end{align*}
 may be represented as the $4 \times 4$ real matrix
 \begin{align*}
@@ -252,6 +252,49 @@ may be represented as the $4 \times 4$ real matrix
 Since breaking down matrices into blocks, multiplying them as units,
 then adding the results together is a valid method of matrix multiplication,
 the complex matrix product is preserved with this real representation.
+
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    $\mathbb{R}$ & $\mathbb{C}$ \\ \hline
+    $q(x) = x^TSx$ & $h(z) = z^HAz$ \\ \hline
+    $S = S^T$ & $A = A^H$ \\ \hline
+    $S = Q \Lambda Q^T$ & $A = U \Lambda U^H$ \\ \hline
+    $Q^TQ = I$ & $U^HU = I$ \\ \hline
+  \end{tabular}
+\end{center}
+
+Recall that a quadratic form over the real numbers
+is defined as $q(x) = x^TSx$ for some symmetric matrix $S$,
+and diagonalizing $S$ allows us to find a basis
+whose vectors all anticommute under the geometric product
+and which square to 1, $-1$, or 0.
+The theorem which guarantees that this basis exists
+is known as the spectral theorem for real matrices,
+and an analog of it exists for complex matrices.
+However, the complex matrices which may be diagonalized in the right way
+are not symmetric but \textit{Hermitian}:
+their transpose equals their complex conjugate.
+The matrix
+$\begin{bmatrix}
+  1 & i \\
+  i & 1 \\
+\end{bmatrix}$
+is symmetric but not Hermitian,
+since its conjugate is
+$\begin{bmatrix}
+  1 & -i \\
+  -i & 1 \\
+\end{bmatrix}$.
+$\begin{bmatrix}
+  1 & -i \\
+  i & 1 \\
+\end{bmatrix}$,
+on the other hand, is Hermitian.
+In other words, a matrix $A$ is Hermitian
+if it is equal to its conjugate transpose $A^H$.
+Just as real matrices $Q$ such that $Q^TQ=I$ are orthonormal,
+complex matrices $U$ such that $U^HU=I$ are called \textit{unitary}.
 
 \subsection{\texorpdfstring{$\mathbb{C}$}{C} to \texorpdfstring{$\mathbb{H}$}{H}}
 
