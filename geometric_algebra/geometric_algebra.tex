@@ -220,6 +220,17 @@ and algebra-like objects over the quaternions $\mathbb{H}$.
 
 \subsection{\texorpdfstring{$\mathbb{R}$}{R} to \texorpdfstring{$\mathbb{C}$}{C}}
 
+There are two fundamental ways to extend real Clifford algebras to complex ones:
+\begin{enumerate}
+  \item
+    Extend the domain of scalars to complex numbers
+    and leave virtually everything else the same
+  \item
+    Replace many things about real numbers with their complex analogs
+    to get a structure which is (at least somewhat) fundamentally different
+\end{enumerate}
+
+
 A complex number $a+bi$ can be represented by the $2 \times 2$ real matrix
 $\begin{bmatrix} a & -b \\ b & a \end{bmatrix}$
 so that complex addition, multiplication, and inverses
@@ -293,8 +304,19 @@ $\begin{bmatrix}
 on the other hand, is Hermitian.
 In other words, a matrix $A$ is Hermitian
 if it is equal to its conjugate transpose $A^H$.
-Just as real matrices $Q$ such that $Q^TQ=I$ are orthonormal,
-complex matrices $U$ such that $U^HU=I$ are called \textit{unitary}.
+This implies, among other things,
+that all of its eigenvalues are real,
+just as for a real symmetric matrix.
+However, while negative eigenvalues could only be reduced to $-1$ in the real case
+since it could only be divided by the square of a real number (i.e. a positive number),
+working in the complex numbers allows us to divide the eigenvalue by $i^2=-1$,
+turning any nonzero eigenvalue into 1.
+
+
+Notably, using the representation of given above,
+any complex matrix becomes a symmetric real matrix of twice the size!
+
+
 
 \subsection{\texorpdfstring{$\mathbb{C}$}{C} to \texorpdfstring{$\mathbb{H}$}{H}}
 
