@@ -22,10 +22,23 @@ with an approximate value of $1.3247$.
 Its definition puts it into the set of numbers
 that gives the golden ratio many of its interesting
 (and, to some, mystical) properties: the algebraic integers.
-Contrary to first impressions,
-the word ``plastic'' in this constant's name
-refers not to the material but to the idea of plasticity, or flexibility.
-
+A few quick facts:
+\begin{itemize}
+  \item
+    Contrary to first impressions,
+    the word ``plastic'' in this constant's name
+    refers not to the material but to the idea of plasticity, or flexibility.
+  \item
+    It is the smallest of the PV numbers,
+    which are the reals greater than 1
+    whose powers approach integers.
+    The powers of $\rho$ approach a sequence known as the Perrin numbers.
+    (The golden ratio is also a PV number,
+    and its powers approach the Lucas numbers,
+    which are closely related to the Fibonacci numbers.)
+  \item
+    
+\end{itemize}
 
 My most recent encounter with this number
 came from the uniform polyhedron known as
@@ -82,11 +95,41 @@ and the twofold symmetry axes around which these rotations are performed
 may also be seen above, running between adjacent pentagrams.
 
 \begin{align*}
+  a+b\rho+c\rho^2 &\cong
+  \begin{bmatrix}
+    a & c & b \\
+    b & a+c & b+c \\
+    c & b & a+c
+  \end{bmatrix} = M \\
+  M^{-1} &= \frac{\mathrm{adj}(M)}{\lvert M \rvert} \\
+  \mathrm{adj(M)} &=
+  \begin{bmatrix}
+    d & \\
+    e & \hdots \\
+    f &
+  \end{bmatrix}
+  \cong d+e\rho+f\rho^2 \\
+  d &=
+  \begin{vmatrix}
+    a+c & b+c \\
+    b & a+c
+  \end{vmatrix}
+  = (a+c)^2-b(b+c) \\
+  e &=
+  \begin{vmatrix}
+    b+c & b \\
+    a+c & c
+  \end{vmatrix}
+  = c^2-ab \\
+  f &=
+  \begin{vmatrix}
+    b & a+c \\
+    c & b
+  \end{vmatrix}
+  = b^2-(a+c)c \\
+  \lvert M \rvert &= ad+ce+bf \\
   \frac{1}{a+b\rho+c\rho^2} &=
-  \frac{d+e\rho+f\rho^2}{ad+ce+bf} \\
-  d &= (a+c)^2-b(b+c) \\
-  e &= c^2-ab \\
-  f &= b^2-(a+c)c
+  \frac{d+e\rho+f\rho^2}{\lvert M \rvert} \\
 \end{align*}
 
 \end{document}
