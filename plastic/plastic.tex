@@ -110,26 +110,33 @@ may also be seen above, running between adjacent pentagrams.
   \end{bmatrix}
   \cong d+e\rho+f\rho^2 \\
   d &=
-  \begin{vmatrix}
-    a+c & b+c \\
-    b & a+c
-  \end{vmatrix}
-  = (a+c)^2-b(b+c) \\
+  %% \begin{vmatrix}
+  %%   a+c & b+c \\
+  %%   b & a+c
+  %% \end{vmatrix} =
+  (a+c)^2-b(b+c) \\
   e &=
-  \begin{vmatrix}
-    b+c & b \\
-    a+c & c
-  \end{vmatrix}
-  = c^2-ab \\
+  %% \begin{vmatrix}
+  %%   b+c & b \\
+  %%   a+c & c
+  %% \end{vmatrix} =
+  c^2-ab \\
   f &=
-  \begin{vmatrix}
-    b & a+c \\
-    c & b
-  \end{vmatrix}
-  = b^2-(a+c)c \\
+  %% \begin{vmatrix}
+  %%   b & a+c \\
+  %%   c & b
+  %% \end{vmatrix} =
+  b^2-(a+c)c \\
   \lvert M \rvert &= ad+ce+bf \\
-  \frac{1}{a+b\rho+c\rho^2} &=
-  \frac{d+e\rho+f\rho^2}{\lvert M \rvert} \\
+  \frac{\lvert M \rvert}{a+b\rho+c\rho^2}
+  &= d+e\rho+f\rho^2 \\
+  &= (a+b\rho_2+c\rho_2^2)(a+b\rho_3+c\rho_3^2) \\
+  &= \frac{1}{4}\left((2a-b\rho+c(2-\rho^2))^2+(b-c\rho)^2(3\rho^2-4)\right) \\
+  &= K \\
+  a, b, c \in \mathbb{R}: & K \geq 0, \\
+  & K = 0 \iff a\rho^2 = b = c\rho \\
+  a, b, c \in \mathbb{Q}: & K = 0 \iff a = b = c = 0, \\
+  & \mathrm{sgn}(\lvert M \rvert) = \mathrm{sgn}(a+b\rho+c\rho^2)
 \end{align*}
 
 \end{document}
