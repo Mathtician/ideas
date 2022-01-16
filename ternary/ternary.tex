@@ -48,8 +48,22 @@ Next, addition and multiplication in balanced ternary
 both rely on their respective tables for a single digit.
 In binary, adding two bits requires a carryover $\frac{1}{4}$ of the time,
 namely when performing $1+1$.
-In balanced ternary, however, this occurrs only $\frac{2}{6}$ of the time.
+In balanced ternary, however, this occurrs only $\frac{2}{9}$ of the time,
+where $1+1=1T$ and $T+T=T1$,
+giving it a marginal advantage of $\frac{1}{36}$. 
 
+Bases also have an associated quantity known as radix economy,
+which measures a sort of efficiency in representing numbers.
+In base $b$, the radix economy (for increasingly large numbers)
+is given by $\frac{b}{\ln(b)}$.
+Binary and quaternary (base 4) both have
+a radix economy of approximately $2.89$,
+whereas base 3's is $2.73$ -
+again, a slim advantage over binary.
+However, the practical usefulness of radix economy is debated,
+since it makes assumptions about the distribution
+of numbers that computers typically store
+which may not be in accordance with reality.
 
 Where I believe balanced ternary shines is in how it handles floating point numbers.
 
@@ -117,4 +131,12 @@ Example with 1 trit for $e$ and 2 trits for $s$: \\
   & ? & ? & ?
   & $2$ & $3$ & $4$ \\ \hline
 \end{tabular}
+
+Note that in order to avoid a special case for denormal numbers,
+this format effectively wastes a third of possible code words.
+It is possible to do the same for binary floats,
+storing the extra 1 in the mantissa which is usually omitted
+and changing it to 0 for denormal numbers,
+but the IEEE decided against it.
+
 \end{document}
