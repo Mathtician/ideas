@@ -220,15 +220,15 @@ and algebra-like objects over the quaternions $\mathbb{H}$.
 
 \subsection{\texorpdfstring{$\mathbb{R}$}{R} to \texorpdfstring{$\mathbb{C}$}{C}}
 
-There are two fundamental ways to extend real Clifford algebras to complex ones:
-\begin{enumerate}
-  \item
-    Extend the domain of scalars to complex numbers
-    and leave virtually everything else the same
-  \item
-    Replace many things about real numbers with their complex analogs
-    to get a structure which is (at least somewhat) fundamentally different
-\end{enumerate}
+One might think that real Clifford algebras can be extended to complex ones
+just by extending the domain of scalars to complex numbers.
+Then, the square of a vector may be generally written $v^TSv$ as before,
+where $S$ is a symmetric matrix,
+the only difference being that $v$ and $S$ may now have complex elements.
+
+However, complex symmetric matrices are not diagonalizable:
+
+https://www.netlib.org/utk/people/JackDongarra/etemplates/node263.html
 
 Since Clifford algebras are, at their core, defined by how they square vectors,
 each of these paths begins by choosing a method to do so for complex-valued vectors
@@ -236,10 +236,6 @@ in a way that generalizes quadratic forms over the reals.
 The first of these is:
 
 \subsubsection{Quadratic forms over \texorpdfstring{$\mathbb{C}$}{C}}
-
-Complex symmetric matrices are not diagonalizable:
-
-https://www.netlib.org/utk/people/JackDongarra/etemplates/node263.html
 
 However, even if $Q \Lambda Q^{-1}$ is not possible,
 what about $Q \Lambda Q^T$?
