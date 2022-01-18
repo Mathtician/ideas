@@ -8,8 +8,8 @@
 \usepackage{float}
 \graphicspath{{images/}}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=blue,
+  colorlinks=true,
+  urlcolor=blue,
 }
 \begin{document}
 
@@ -24,20 +24,20 @@ that gives the golden ratio many of its interesting
 (and, to some, mystical) properties: the algebraic integers.
 A few quick facts:
 \begin{itemize}
-  \item
-    Contrary to first impressions,
-    the word ``plastic'' in this constant's name
-    refers not to the material but to the idea of plasticity, or flexibility.
-  \item
-    It is the smallest of the PV numbers,
-    which are the reals greater than 1
-    whose powers approach integers.
-    The powers of $\rho$ approach a sequence known as the Perrin numbers.
-    (The golden ratio is also a PV number,
-    and its powers approach the Lucas numbers,
-    which are closely related to the Fibonacci numbers.)
-  \item
-    
+\item
+  Contrary to first impressions,
+  the word ``plastic'' in this constant's name
+  refers not to the material but to the idea of plasticity, or flexibility.
+\item
+  It is the smallest of the PV numbers,
+  which are the reals greater than 1
+  whose powers approach integers.
+  The powers of $\rho$ approach a sequence known as the Perrin numbers.
+  (The golden ratio is also a PV number,
+  and its powers approach the Lucas numbers,
+  which are closely related to the Fibonacci numbers.)
+\item
+  
 \end{itemize}
 
 My most recent encounter with this number
@@ -136,7 +136,21 @@ may also be seen above, running between adjacent pentagrams.
   a, b, c \in \mathbb{R}: & K \geq 0, \\
   & K = 0 \iff a\rho^2 = b = c\rho \\
   a, b, c \in \mathbb{Q}: & K = 0 \iff a = b = c = 0, \\
-  & \mathrm{sgn}(\lvert M \rvert) = \mathrm{sgn}(a+b\rho+c\rho^2)
+  & \mathrm{sgn}(\lvert M \rvert) = \mathrm{sgn}(a+b\rho+c\rho^2) \\
 \end{align*}
-
+In the plastic ratio base,
+the only digits are zero and one since $\rho < 2$,
+and all ones must have at least 4 zeros between them.
+This is because a pair of ones with 3 zeroes between them
+would be $1+\rho^4=\rho^5$ (times some power of $\rho$ overall),
+and any closer ones would also carry over into the next power of $\rho$
+(or even the one after that).
+The carryover rules are as follows:
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    010001 & 0100100000 & 0101000 & 0011 & 00200000 \\ \hline
+    100000 & 1000000001 & 1000001 & 1000 & 10000001 \\ \hline  
+  \end{tabular}
+\end{center}
 \end{document}
