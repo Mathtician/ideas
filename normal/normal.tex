@@ -40,7 +40,43 @@ and in fact, I believe that the frequency of a given substring
 converges to its final value
 \textit{faster} than a ``random'' sequence.
 
-The sequence is defined by...
+The sequence is defined by the following procedure
+to create the next digit,
+starting from the empty string:
+\begin{itemize}
+\item
+  List all of the tails, or suffixes, of the sequence so far
+  in order from longest to shortest.
+  For example, the tails of 011 are 011, 11, 1, and the empty string.
+\item
+  For each tail, count the number of times it occurs elsewhere in the sequence
+  (i.e. other than the end),
+  and note how many times 0 or 1 appears afterward.
+  For the example above,
+  011 and 11 do not appear anywhere other than the end,
+  but 1 appears in one other place (the middle),
+  where it is followed by a 1.
+\item
+  The \textit{longest} tail where one bit appears afterward more often than the other
+  decides which bit comes next,
+  namely the bit which appears \textit{less} often.
+  Since 1 is followed by 0 zero times and by 1 once,
+  the next bit is 0.
+  This is why the occurrences of the empty string (and the bits that come after them)
+  were not counted in the previous step:
+  these numbers do not matter for the result.
+  If they did, though, 0 would still be added
+  since the empty string is followed by 0 once and by 1 twice.
+\item
+  In the edge case where all of these comparisons result in a tie,
+  0 is the next bit.
+  For example, in 010011,
+  the tails are 010011, 10011, 0011, 011, 11, 1, and the empty string.
+  All but the last two don't occur elsewhere,
+  1 is followed by 0 once and by 1 once,
+  and the empty string is followed by both three times.
+  Hence the next bit is 0 by default.
+\end{itemize}
 
 The naive algorithm to generate the sequence per the definition
 takes $O(n^3)$ time for the first $n$ terms.
