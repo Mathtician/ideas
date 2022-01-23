@@ -12,6 +12,10 @@
     colorlinks=true,
     urlcolor=blue,
 }
+\lstset
+{
+    numbers=left
+}
 \begin{document}
 
 \title{A Normal(?) Sequence}
@@ -91,30 +95,23 @@ However, with the right data structures,
 I was able to reduce the time per term to $O(n)$,
 bringing the time for the first $n$ terms to $O(n^2)$.
 
+The following page contains a C program
+that prints the first 8192 terms of the sequence.
+
 \newpage
 
 \begin{lstlisting}[language=c]
 #include <stdio.h>
 #define N_TERMS 8192
-// Stores generated terms
 int a[N_TERMS];
-// b[j-1] is the number of bits before (not including) a[n-j]
-// which match the tail of the first n entries
 int b[N_TERMS];
-// c induces a linked list structure on b
-// with an extra node to make it cyclic
-// Indices are offset by 1 since the extra node is in front
 int c[N_TERMS];
 int cEnd = 0;
 int main() {
   for (int n = 0; n < N_TERMS; n++) {
-    // Append new digit to list from previous loop
-    // or (n = 0) initialize c
     c[n] = 0;
     c[cEnd] = n;
     cEnd = n;
-    // Find new digit by iterating over b
-    // using the indices given in c
     int newD = 0;
     int freq0 = 0;
     int freq1 = 0;
@@ -123,32 +120,22 @@ int main() {
     while (j != 0) { 
       int currTail = b[j-1];
       if (currTail != prevTail) {
-        // All tails of a given length have been accumulated in freqs,
-        // so they need to be compared to decide whether to continue
         if (freq1 != freq0) break;
         freq0 = 0;
         freq1 = 0;
       }
-      // Use digit that comes after current tail to adjust freqs
       if (a[n-j] == 0) freq0++;
       else freq1++;
       prevTail = currTail;
       j = c[j];
     }
-    // 0 is chosen by default (if freq1 == freq0)
-    if (freq1 < freq0) {
-      newD = 1;
-    }
-    // Update matching tail lengths
-    j = 0;
+    if (freq1 < freq0) newD = 1;
     for (int numVisited = 0; numVisited < n; numVisited++) {
       int k = c[j];
       if (a[n-k] == newD) {
-        // Matching tail grows by 1, position in list is unaffected
         b[k-1]++;
         j = k;
       } else {
-        // Matching tail resets to 0, moved to back of list
         b[k-1] = 0;
         c[j] = c[k];
         if (cEnd == k) cEnd = j;
@@ -165,5 +152,14 @@ int main() {
   return 0;
 }
 \end{lstlisting}
+
+\newpage
+
+The algorithm's $O(n)$ space complexity
+comes from the arrays $a$, $b$, and $c$,
+and the $O(n^2)$ time complexity
+comes from the nested for loops,
+where each outer loop on line 8 generates a single term
+and the loops on lines 17 and 30 take $O(n)$ steps each.
 
 \end{document}
