@@ -155,11 +155,23 @@ int main() {
 
 \newpage
 
-The algorithm's $O(n)$ space complexity
-comes from the arrays $a$, $b$, and $c$,
-and the $O(n^2)$ time complexity
-comes from the nested for loops,
-where each outer loop on line 8 generates a single term
-and the loops on lines 17 and 30 take $O(n)$ steps each.
+A line-by-line breakdown:
+
+\begin{itemize}
+\item
+  The arrays $a$, $b$ and $c$ declared on lines 3-5
+  are responsible for the algorithm's $O(n)$ space complexity.
+  Since the program generates a fixed number of terms here,
+  the arrays are initialized to their full length.
+  However, they could also be implemented as unbounded arrays
+  and have an element appended to them at the beginning
+  of each iteration of the main loop.
+\item
+  The $O(n^2)$ time complexity
+  comes from the nested for loops. 
+  Each outer loop on line 8 generates a single term,
+  and the loops on lines 17 and 30 take $O(n)$ steps each.
+\end{itemize}
+
 
 \end{document}
