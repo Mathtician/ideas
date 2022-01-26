@@ -18,14 +18,25 @@
 \maketitle
 
 \[
+Q =
+\frac{1}{2\sqrt{2+\varphi}}
 \begin{pmatrix}
-  \phi & \phi & 1 & -1 & 0 & 0 \\
-  1 & -1 & 0 & 0 & \phi & \phi \\
-  0 & 0 & \phi & \phi & 1 & -1 \\
-  -1 & -1 & \phi & -\phi & 0 & 0 \\
-  \phi & -\phi & 0 & 0 & -1 & -1 \\
-  0 & 0 & -1 & -1 & \phi & -\phi
+  \varphi & \varphi & 1 & -1 & 0 & 0 \\
+  1 & -1 & 0 & 0 & \varphi & \varphi \\
+  0 & 0 & \varphi & \varphi & 1 & -1 \\
+  -1 & -1 & \varphi & -\varphi & 0 & 0 \\
+  \varphi & -\varphi & 0 & 0 & -1 & -1 \\
+  0 & 0 & -1 & -1 & \varphi & -\varphi
 \end{pmatrix}
 \]
+
+The $6 \times 6$ matrix above is orthonormal,
+meaning that it represents a rotation of 6-dimensional space.
+$\varphi$ is the golden ratio $\frac{1+\sqrt{5}}{2}$,
+the positive solution to the equation $\varphi^2 = \varphi+1$.
+I found this matrix while considering the cut-and-project method
+of generating aperiodic tilings,
+and I think it illustrates an element of this method
+that is often overlooked.
 
 \end{document}
