@@ -36,8 +36,6 @@ A few quick facts:
   (The golden ratio is also a PV number,
   and its powers approach the Lucas numbers,
   which are closely related to the Fibonacci numbers.)
-\item
-  
 \end{itemize}
 
 My most recent encounter with this number
@@ -94,6 +92,17 @@ The even sign changes represent 180-degree rotations,
 and the twofold symmetry axes around which these rotations are performed
 may also be seen above, running between adjacent pentagrams.
 
+A number of the form $a+b\rho+c\rho^2$
+may be considered as an element
+of a 3D vector space over the rationals.
+Addition is performed elementwise,
+as is multiplication by a rational number.
+Multiplying two of these numbers together, though,
+does not correspond to any of the normal vector space operations,
+as it would be a product of two vectors that yields another vector.
+However, multiplying by an element of the plastic field
+is a linear transformation of the 3D vector space,
+so it may be represented by a transformation matrix.
 \begin{align*}
   a+b\rho+c\rho^2 &\cong
   \begin{bmatrix}
@@ -101,6 +110,11 @@ may also be seen above, running between adjacent pentagrams.
     b & a+c & b+c \\
     c & b & a+c
   \end{bmatrix} = M \\
+\end{align*}
+The columns of the matrix correspond to the components of
+$a+b\rho+c\rho^2$ after multiplication by 1, $\rho$, and $\rho^2$, respectively.
+
+\begin{align*}
   M^{-1} &= \frac{\mathrm{adj}(M)}{\lvert M \rvert} \\
   \mathrm{adj(M)} &=
   \begin{bmatrix}
@@ -154,7 +168,7 @@ The carryover rules are as follows:
   \end{tabular}
 \end{center}
 The integer place values are 1, 2, 3, 4, 5, 6, 8, 11, 15, 20, 25, 31, $\ldots$,
-where $P_n=n$ for $n=0, \ldots, 4$ and $P_{n+5}=P_n+P_{n+4}$.
+where $P_n=n+1$ for $n=0, \ldots, 4$ and $P_{n+5}=P_n+P_{n+4}$.
 It follows the same constraints as the real base,
 and in fact produces all terminating sequences that follow these constraints
 (with a finite number of 1s) in lexicographical order.
