@@ -5,15 +5,79 @@
 \usepackage{bm}
 \usepackage[margin=1in]{geometry}
 \graphicspath{{images/}}
+
+\newcommand{\w}{\omega}
+\newcommand{\e}{\varepsilon}
+
 \begin{document}
 
-Base ordinal $\alpha$, tuplet size $n \in \mathbb{Z}^+$ \\
+Infinite lists \\
+An ordinal is either 0 or an infinite list of ordinals written right to left,
+which is all 0 after some point \\
+$\gamma = (\ldots, 0, 0, \gamma_n, \ldots, \gamma_0)$,
+so $\gamma_k = 0$ for all $k > n$ \\
+For all $i$ (including $n$ and larger),
+$\gamma_i < (\ldots, \gamma_{i+3}, \gamma_{i+2}, \gamma_{i+1}+1, 0, \ldots, 0)$ \\
+Should match the behavior of finitary Veblen functions
+while retaining lexicographical order \\
+$(\ldots, 0)=1$, $(\ldots, 0, 1)=2$, $(\ldots, 0, 1, 0)=\w$ \\
+
+Finite lists \\
+Leading 0s may be removed from infinite list and length of remaining list put in front:
+$(n: \gamma_{n-1}, \ldots, \gamma_0)$ \\
+Requires construction of naturals first, unlike infinite lists \\
+Still lexicographic since lengths are compared first \\
+No need for base case since list may be empty:
+could set $(0:)=0$, $(1: (0:))=(1: 0)=1$, $(1: 1)=2$, etc. \\
+This would offset naturals by 1 from infinite list representation,
+but otherwise identical \\
+
+Ordinal-indexed lists \\
+``Redundant'' finite lists: place index of each element before it:
+$(n: \gamma_n, \ldots, \gamma_0) \rightarrow (n: \gamma_n, \ldots, 0: \gamma_0)$ \\
+``Sparse'' finite lists: remove all 0 entries from list (along with their indices), \\
+turn all entries $\alpha \rightarrow -1+\alpha$ to fill gap:
+$(2: 1, 1: 0, 0: \w) \rightarrow (2: 0, 0: \w)$ \\
+Ordinal-indexed lists: allow indices to be ordinals themselves:
+$(\omega: 0) = \sup(\{(0: 0), (1: 0), (2: 0), \ldots\})$ \\
+No longer requires naturals to be constructed first \\
+
+Formal definition \\
+Ordinal is a finite list of pairs
+$(\beta_n: \gamma_n, \beta_{n-1}: \gamma_{n-1}, \ldots, \beta_0: \gamma_0)$,
+ordered lexicographically \\
+Indices are strictly decreasing: $\beta_n > \beta_{n-1} > \ldots > \beta_0$ \\
+For all $i$, if $i < n$ and $\beta_{i+1}=\beta_i+1$, then
+$\gamma_i < (\beta_n: \gamma_n, \ldots, \beta_{i+1}: \gamma_{i+1}+1)$ \\
+Otherwise, $\gamma_i < (\beta_n: \gamma_n, \ldots, \beta_{i+1}: \gamma_{i+1}, \beta_i+1: 0)$ \\
+
+%% Ternary representation \\
+%% ``Tail'' of list may be bundled into another ordinal: \\
+%% $(\beta_n: \gamma_n, \beta_{n-1}: \gamma_{n-1}, \ldots, \beta_0: \gamma_0)
+%% \rightarrow (\beta, \gamma, \alpha)$ \\
+%% $\beta = \beta_n, \gamma = \gamma_n,
+%% \alpha = (\beta_{n-1}: \gamma_{n-1}, \ldots, \beta_0: \gamma_0)$ \\
+%% Constraints: $\alpha < (\beta, 0, 0)$, $\gamma < ???$
+
+%% Ternary representation \\
+%% ``Init'' of list may be bundled into another ordinal: \\
+%% $(\beta_n: \gamma_n, \ldots, \beta_{1}: \gamma_{1}, \beta_0: \gamma_0)
+%% \rightarrow (\alpha, \beta, \gamma)$ \\
+%% $\alpha = (\beta_{n}: \gamma_{n}, \ldots, \beta_1: \gamma_1),
+%% \beta = \beta_0, \gamma = \gamma_0$ \\
+%% Constraints: ??? \\
+
+Examples \\
 \begin{align*}
-  \gamma &= (\gamma_0, \gamma_1, \ldots, \gamma_{n-1}) \\
-  \gamma_1 &< (\gamma_0+1, 0, \ldots, 0) \\
-  \gamma_2 &< (\gamma_0, 0, \ldots, 0) \\
-  \gamma_3 &< (\gamma_0, \gamma_1, 0, \ldots, 0) \\
-  &\ldots \\
-  \gamma_{n-1} &< (\gamma_0, \gamma_1, \ldots, \gamma_{n-3}, 0, 0)
+  () &= 0 \\
+  (0: 0) &= 1 \\
+  (0: 1) &= 2 \\
+  (0: n) &= 1+n, & n < (1: 0) \\
+  (1: 0) &= \w \\
+  (1: 0, 0: \gamma) &= \w+(1+\gamma), & \gamma < (1: 1) \\
+  (1: 1) &= \w^2 \\
+  (1: \gamma) &= \w^{1+\gamma}, & \gamma < (2: 0) \\
+  (2: 0) &= \e_0 \\
 \end{align*}
+
 \end{document}
