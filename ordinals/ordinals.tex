@@ -77,7 +77,13 @@ Examples \\
   (1: 0, 0: \gamma) &= \w+(1+\gamma), & \gamma < (1: 1) \\
   (1: 1) &= \w^2 \\
   (1: \gamma) &= \w^{1+\gamma}, & \gamma < (2: 0) \\
+  (1: \gamma_1, 0: \gamma_0) &= \w^{1+\gamma_1}+(1+\gamma_0),
+  & \gamma_1 < (2: 0), \gamma_0 < (1: \gamma_1+1) = \w^{1+\gamma_1+1} \\
   (2: 0) &= \e_0 \\
+  (2: 0, 1: \gamma_1) &= \e_0\w^{1+\gamma_1}
+  & \gamma_1 < (2: 1) \\
+  (2: 0, 1: \gamma_1, 0: \gamma_0) &= \e_0\w^{1+\gamma_1}+(1+\gamma_0)
+  & \gamma_1 < (2: 1), \gamma_0 < (2: 0, 1: \gamma_1+1) = \e_0\w^{1+\gamma_1+1} \\
 \end{align*}
 
 \end{document}
