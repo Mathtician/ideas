@@ -250,6 +250,40 @@ but I eventually had a program that spat out an ASCII-art version of the omnitru
 one 2D cross section at a time.
 I then had to write a Processing sketch to render the GIFs which are not embedded in this PDF
 but located in the ``images'' directory.
-The programming side of things may be explained in a later entry.
 
+Although the golden ratio is an irrational number
+and can't be represented precisely by the floating-point type,
+a number which is a member of its ``ring''
+(which is closed under addition, subtraction, and multiplication)
+may be expressed as $a+b\varphi$,
+where $a$ and $b$ are integers.
+Addition and subtraction are straightforward:
+the two ``components'' are operated on elementwise.
+\[
+(a+b\varphi) \pm (c+d\varphi)=(a \pm c)+(b \pm d)\varphi
+\]
+For multiplication, however,
+we need to use the fact that $\varphi^2=\varphi+1$:
+\begin{align*}
+  (a+b\varphi)(c+d\varphi) &= ac+ad\varphi+bc\varphi+bd\varphi^2 \\
+  &= ac+ad\varphi+bc\varphi+bd(\varphi+1) \\
+  &= (ac+bd)+(ad+bc+bd)\varphi \\
+\end{align*}
+Alternatively, we may represent these numbers
+as $2 \times 2$ integer matrices
+\[
+a+b\varphi \cong
+\begin{bmatrix}
+  a & b \\
+  b & a+b
+\end{bmatrix},
+\]
+and all of these rules simply fall out.
+Next, we need to be able to determine the sign of these numbers,
+i.e. whether they are less than, equal to, or greater than 0.
+Since $\varphi$ is irrational,
+the only integers $a$ and $b$ such that $a+b\varphi=0$
+are $a=b=0$,
+since otherwise would imply that $\varphi=-\frac{a}{b}$.
+Out of the remaining cases, then, which are positive and which are negative?
 \end{document}
