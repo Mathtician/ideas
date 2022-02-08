@@ -13,7 +13,7 @@
 }
 \begin{document}
 
-\title{The Plastic Field}
+\title{Notes on the Plastic Ratio}
 \author{Aresh Pourkavoos}
 \maketitle
 
@@ -38,59 +38,35 @@ A few quick facts:
   which are closely related to the Fibonacci numbers.)
 \end{itemize}
 
-My most recent encounter with this number
-came from the uniform polyhedron known as
-the snub icosidodecadodecahedron, or ``sided'' for short.
-
-\begin{center}
-  \includegraphics[width=0.25\linewidth]{sided.png} \\
-  Created using \href{http://www.software3d.com/Stella.php}{Stella}
-\end{center}
-
-Like many polyhedra related to the icosahedron,
-the coordinates of its vertices involve the golden ratio.
-What surprised to me, however,
-was the inclusion of the plastic ratio as well,
-which does not appear in any other uniform polyhedra.
-At a certain scale, its vertices may be written as follows,
-where $\varphi$ is the golden ratio:
-
-\begin{align*}
-  & (2\alpha, 2\beta, 2\gamma), \\
-  & (\alpha+\beta/\varphi+\gamma\varphi,
-  -\alpha\varphi+\beta+\gamma/\varphi,
-  \alpha/\varphi+\beta\varphi-\gamma), \\
-  & (-\alpha/\varphi+\beta\varphi+\gamma,
-  -\alpha+\beta/\varphi-\gamma\varphi,
-  \alpha\varphi+\beta-\gamma/\varphi), \\
-  & (-\alpha/\varphi+\beta\varphi-\gamma,
-  \alpha-\beta/\varphi-\gamma\varphi,
-  \alpha\varphi+\beta+\gamma/\varphi), \\
-  & (\alpha+\beta/\varphi-\gamma\varphi,
-  \alpha\varphi-\beta+\gamma/\varphi,
-  \alpha/\varphi+\beta\varphi+\gamma),
-\end{align*}
-where
-\begin{align*}
-  \alpha &= \rho+1, \\
-  \beta &= \varphi^2(\rho^2+\rho)+\varphi, \\
-  \gamma &= \rho(\varphi+\rho).
-\end{align*}
-
-These 5 sets of coordinates form a single pentagrammic face of sided.
-The 3 coordinates of each vertex are rotated to create 10 new triplets,
-e.g. $(2\alpha, 2\beta, 2\gamma)$ yields
-$(2\beta, 2\gamma, 2\alpha)$ and $(2\gamma, 2\alpha, 2\beta)$.
-This represents a 120-degree rotation about the axis $x=y=z$,
-and the image above is almost looking down on such a threefold symmetry axis,
-running through the center of 3 pentagrams.
-Next, even sign changes are applied,
-meaning that that the 4 possible ways of negating none or two of the coordinates
-represent vertices of sided,
-bringing the total from 15 to 60, the actual number of vertices.
-The even sign changes represent 180-degree rotations,
-and the twofold symmetry axes around which these rotations are performed
-may also be seen above, running between adjacent pentagrams.
+Being an algebraic number,
+the plastic ratio can be used to ``extend'' the rational numbers
+to create a new field,
+a set of numbers that can be added, subtracted, multiplied, and divided
+in the same way as the rational, real, or complex numbers.
+Since $\rho$ itself is included in this field,
+so must $b\rho$ for all rational numbers $b$,
+since the field is closed under multiplication.
+Likewise, it must be possible to add any rational number $a$
+to get a new element,
+so all numbers of the form $a+b\rho$ are also elements of this field.
+They are also all unique,
+since if there were two different choices of $a$ and $b$
+that led to the same number,
+it would imply that $\rho$ is rational.
+However, the field is still not complete
+because $\rho^2$ needs to be in it
+(multiplying $\rho$ by itself),
+but it cannot be expressed as $a+b\rho$
+for any rational $a$ and $b$,
+since that would imply that $\rho$ is the solution to a quadratic equation
+rather than a cubic one.
+Thus all numbers of the form $a+b\rho+c\rho^2$
+for rational $a$, $b$, and $c$ should be part of this field.
+However, the pattern stops at $\rho^3$,
+since $\rho^3=\rho+1$,
+so it is already in the field thus far.
+In fact, it is always possible to add, subtract, multiply, and divide
+within $a+b\rho+c\rho^2$ and remain within the set.
 
 A number of the form $a+b\rho+c\rho^2$
 may be considered as an element
@@ -152,6 +128,61 @@ $a+b\rho+c\rho^2$ after multiplication by 1, $\rho$, and $\rho^2$, respectively.
   a, b, c \in \mathbb{Q}: & K = 0 \iff a = b = c = 0, \\
   & \mathrm{sgn}(\lvert M \rvert) = \mathrm{sgn}(a+b\rho+c\rho^2) \\
 \end{align*}
+
+My most recent encounter with this number
+came from the uniform polyhedron known as
+the snub icosidodecadodecahedron, or ``sided'' for short.
+
+\begin{center}
+  \includegraphics[width=0.25\linewidth]{sided.png} \\
+  Created using \href{http://www.software3d.com/Stella.php}{Stella}
+\end{center}
+
+Like many polyhedra related to the icosahedron,
+the coordinates of its vertices involve the golden ratio.
+What surprised to me, however,
+was the inclusion of the plastic ratio as well,
+which does not appear in any other uniform polyhedra.
+At a certain scale, its vertices may be written as follows,
+where $\varphi$ is the golden ratio:
+
+\begin{align*}
+  & (2\alpha, 2\beta, 2\gamma), \\
+  & (\alpha+\beta/\varphi+\gamma\varphi,
+  -\alpha\varphi+\beta+\gamma/\varphi,
+  \alpha/\varphi+\beta\varphi-\gamma), \\
+  & (-\alpha/\varphi+\beta\varphi+\gamma,
+  -\alpha+\beta/\varphi-\gamma\varphi,
+  \alpha\varphi+\beta-\gamma/\varphi), \\
+  & (-\alpha/\varphi+\beta\varphi-\gamma,
+  \alpha-\beta/\varphi-\gamma\varphi,
+  \alpha\varphi+\beta+\gamma/\varphi), \\
+  & (\alpha+\beta/\varphi-\gamma\varphi,
+  \alpha\varphi-\beta+\gamma/\varphi,
+  \alpha/\varphi+\beta\varphi+\gamma),
+\end{align*}
+where
+\begin{align*}
+  \alpha &= \rho+1, \\
+  \beta &= \varphi^2(\rho^2+\rho)+\varphi, \\
+  \gamma &= \rho(\varphi+\rho).
+\end{align*}
+
+These 5 sets of coordinates form a single pentagrammic face of sided.
+The 3 coordinates of each vertex are rotated to create 10 new triplets,
+e.g. $(2\alpha, 2\beta, 2\gamma)$ yields
+$(2\beta, 2\gamma, 2\alpha)$ and $(2\gamma, 2\alpha, 2\beta)$.
+This represents a 120-degree rotation about the axis $x=y=z$,
+and the image above is almost looking down on such a threefold symmetry axis,
+running through the center of 3 pentagrams.
+Next, even sign changes are applied,
+meaning that that the 4 possible ways of negating none or two of the coordinates
+represent vertices of sided,
+bringing the total from 15 to 60, the actual number of vertices.
+The even sign changes represent 180-degree rotations,
+and the twofold symmetry axes around which these rotations are performed
+may also be seen above, running between adjacent pentagrams.
+
 In the plastic ratio base,
 the only digits are zero and one since $\rho < 2$,
 and all ones must have at least 4 zeros between them.
