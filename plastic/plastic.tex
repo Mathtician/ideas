@@ -97,9 +97,20 @@ i.e. to find the multiplicative inverse of one of them.
 However, the matrix form provides a path forward:
 inverting the corresponding matrix should give a new matrix
 corresponding to the inverse of the number,
-and luckily, computing the inverse of a matrix is a well-known process.
+and luckily, there are many known ways to compute the inverse of a matrix.
+
+Some of these methods gradually modify an entire matrix
+until it becomes the inverse of the desired one,
+such as Gaussian elimination.
+However, we don't need to find all of the entries;
+we only need the first column of the inverse,
+so a method that returns specific elements of the inverse would be useful,
+just to avoid a lot of unnecessary calculation.
+In fact, such a method exists by the name of Cramer's Rule:
+\[M^{-1} = \frac{\mathrm{adj}(M)}{\lvert M \rvert}\]
+Here, $\mathrm{adj}(M)$ denotes the adjugate matrix of $M$,
+which is formed by determinants of $2 \times 2$ sub-matrices of $M$.
 \begin{align*}
-  M^{-1} &= \frac{\mathrm{adj}(M)}{\lvert M \rvert} \\
   \mathrm{adj(M)} &=
   \begin{bmatrix}
     d & \\
