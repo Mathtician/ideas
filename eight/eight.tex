@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\begin{document}
+
+\title{Why 8?}
+\author{Aresh Pourkavoos}
+\maketitle
+
+This leans further toward the garden-variety recreational math
+involving specific numbers rather than very general formulas,
+and it answers the question: why does
+\[\frac{987654321}{123456789} \approx 8.0000000729?\]
+Since base 10 is a bit unwieldy to work with in this case,
+we will instead note that similar identities seem to hold in other bases.
+To avoid confusion, numbers which are not in decimal
+will be given a subscript denoting the base,
+which is itself written in decimal.
+The exception is single-digit numbers, which are unambiguous
+and never have subscripts.
+
+Instead of the decimal identity,
+we will show its analog in seximal, or base 6:
+\[\frac{54321_6}{12345_6} \approx 4.000325_6\]
+It might be hard to see what's special
+about a number whose digits are increasing (or decreasing),
+but they also appear in another place,
+namely the repeating decimal (or seximal) expansions of some fractions.
+For example,
+\[\frac{1}{81} = 0.\overline{012345679}\]
+and
+\[\frac{1}{41_6} = 0.\overline{01235}_6.\]
+Already there are some tenuous links to the original problem:
+we see the 8 and the 4 appear on the left-hand side
+in both decimal and seximal.
+The expansion doesn't look quite right, though:
+it skips the corresponding digit.
+Also, it raises the further question
+of why \textit{this} is even true.
+The next thing to see is that both of the denominators are square
+and their roots are 1 less than the base:
+$81=9^2, 41_6=25=5^2$.
+
+Thus
+\[\frac{1}{25}=\left(\frac{1}{5}\right)^2=(0.\overline{1}_6)^2.\]
+To understand why $\frac{1}{5}=0.\overline{1}\ldots_6$,
+multiply both sides by 5:
+$1=0.\overline{5}\ldots_6$,
+the seximal version of the identity $1=0.\overline{9}\ldots$.
+
+\[\frac{(b-1)^3}{b^b-(b^2-b+1)}\]
+
+\[\frac{1}{b^b-(b^2-b+1)} = \sum_{n=0}^\infty \frac{(b^2-b+1)^n}{b^{b(n+1)}} \]
+
+\end{document}
