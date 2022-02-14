@@ -8,8 +8,8 @@
 \usepackage{float}
 \graphicspath{{images/}}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=blue,
+  colorlinks=true,
+  urlcolor=blue,
 }
 \begin{document}
 
@@ -37,14 +37,15 @@ about a number whose digits are increasing (or decreasing),
 but they also appear in another place,
 namely the repeating decimal (or seximal) expansions of some fractions.
 For example,
-\[\frac{1}{81} = 0.\overline{012345679}\]
-and
-\[\frac{1}{41_6} = 0.\overline{01235}_6.\]
+\begin{align*}
+  \frac{1}{81} &= 0.\overline{012345679} \\
+  \frac{1}{41_6} &= 0.\overline{01235}_6
+\end{align*}
 Already there are some tenuous links to the original problem:
 we see the 8 and the 4 appear on the left-hand side
 in both decimal and seximal.
 The expansion doesn't look quite right, though:
-it skips the corresponding digit.
+it skips the same digit as it increases.
 Also, it raises the further question
 of why \textit{this} is even true.
 The next thing to see is that both of the denominators are square
@@ -57,7 +58,6 @@ To understand why $\frac{1}{5}=0.\overline{1}\ldots_6$,
 multiply both sides by 5:
 $1=0.\overline{5}\ldots_6$,
 the seximal version of the identity $1=0.\overline{9}\ldots$.
-
 Given this, we can find the seximal expansion of $(0.\overline{1}_6)^2$
 as follows.
 $0.\overline{1}_6=0.1_6+0.01_6+0.001_6+\ldots$,
@@ -66,7 +66,6 @@ so each term can be multiplied by $0.\overline{1}_6$:
 \[0.\overline{1}_6^2 = 0.0\overline{1}_6+0.00\overline{1}_6+0.000\overline{1}_6+\ldots\]
 
 To see what this converges to, we can look at the partial sums:
-
 \begin{align*}
   & 0.0\overline{1}_6 \\
   + 0.00\overline{1}_6 =& 0.01\overline{2}_6 \\
@@ -75,14 +74,25 @@ To see what this converges to, we can look at the partial sums:
   + 0.00000\overline{1}_6 =& 0.01234\overline{5}_6
 \end{align*}
 At this point, though, something interesting happens.
-The repeating 5 is equal to a repeating 0,
-and it carries over a 1 to the previous place.
+since $0.\overline{5}_6=1$,
+The repeating 5 carries over a 1 to the previous place,
+which happens to have a 4 in it.
 Thus the fifth partial sum is just $0.01235_6$.
-The next term to add is $0.000000\overline{1}_6$,
-where the 1 is in the $7^\text{th}$ place after the decimal point,
+In the next term to add,
+the first 1 is in the $7^\text{th}$ place after the decimal point,
 so it comes 2 places after the 5 and leaves a 0 in between:
-$0.012350\overline{1}_6$ is the next partial sum.
-From here, the pattern repeats.
+\begin{align*}
+  & 0.01235_6 \\
+  + 0.000000\overline{1}_6 =& 0.012350\overline{1}_6 \\
+  + 0.0000000\overline{1}_6 =& 0.0123501\overline{2}_6 \\
+  \ldots &
+\end{align*}
+From here, we can see that the limit of this sum is
+$0.\overline{01235}_6$,
+where each 5 new terms added turns a 4 into a 5
+and resets the repeating portion to 0.
+
+With that out of the way, we can move on to the almost-equation at the beginning.
 
 \[\frac{(b-1)^3}{b^b-(b^2-b+1)}\]
 
