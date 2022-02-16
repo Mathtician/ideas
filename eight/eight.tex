@@ -45,7 +45,7 @@ Already there are some tenuous links to the original problem:
 we see the 8 and the 4 appear on the left-hand side
 in both decimal and seximal.
 The expansion doesn't look quite right, though:
-it skips the same digit as it increases.
+it skips a digit as it increases.
 Also, it raises the further question
 of why \textit{this} is even true.
 The next thing to see is that both of the denominators are square
@@ -89,13 +89,28 @@ so it comes 2 places after the 5 and leaves a 0 in between:
 \end{align*}
 From here, we can see that the limit of this sum is
 $0.\overline{01235}_6$,
-where each 5 new terms added turns a 4 into a 5
+where each 5 new terms added turn a 4 into a 5
+(effectively skipping the 4)
 and resets the repeating portion to 0.
 
 With that out of the way, we can move on to the almost-equation at the beginning.
+The increasing sequence $12345_6$ seems related to the repeating expansion $0.\overline{01235_6}$,
+but how do we get the decreasing one?
+Remembering that $0.\overline{55555}_6=1$,
+we can subtract one from the other digit by digit
+to get that $0.\overline{55555}_6-0.\overline{01235_6}=0.\overline{54320}_6$,
+whose expansion is close to the decreasing sequence $54321_6$.
+Since $0.\overline{01235}_6=\frac{1}{41_6}$,
+the new number is
+\[1-\frac{1}{41_6}=\frac{40_6}{41_6}=\frac{24}{25}.\]
+To line up the increasing and decreasing numbers,
+we can multiply $0.\overline{01235}_6$ by $10_6$
+to get
+\[0.\overline{12350}_6 = \frac{10_6}{41_6} = \frac{6}{25}.\]
+$10_6$ and $40_6$, i.e. 6 and 24, where the desired answer is 4?
 
-\[\frac{(b-1)^3}{b^b-(b^2-b+1)}\]
+\[\frac{(b-1)^3}{b^b-b^2+b-1}\]
 
-\[\frac{1}{b^b-(b^2-b+1)} = \sum_{n=0}^\infty \frac{(b^2-b+1)^n}{b^{b(n+1)}} \]
+\[\frac{1}{b^b-b^2+b-1} = \sum_{n=0}^\infty \frac{(b^2-b+1)^n}{b^{b(n+1)}} \]
 
 \end{document}
