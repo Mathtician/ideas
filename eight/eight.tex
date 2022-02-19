@@ -140,6 +140,23 @@ Thus
 the exact version of the almost-equation at the beginning.
 An analogous argument holds for base 10.
 
+\newpage
+
+But the original ``equation'' isn't what we got at the end:
+there is still a small error term.
+But what is that term exactly?
+The way the decimal and seximal were truncated after $729$ and $325_6$, respectively,
+makes it appear that the digits look random after the initial run of 0s.
+However, that's not actually the case:
+
+\[\frac{987654321}{123456789} \approx 8.0000000729000006633900060368490549353263999114702391943791766688\ldots\]
+
+After the 729, there are 5 more 0s in a row!
+After that, the nonzero string 66339 appears,
+followed by 3 more zeros,
+after which the digits really do seem chaotic.
+But why 729 and 66339?
+
 %% \[\frac{(b-1)^3}{b^b-b^2+b-1}\]
 
 %% \[\frac{1}{b^b-b^2+b-1} = \sum_{n=0}^\infty \frac{(b^2-b+1)^n}{b^{b(n+1)}} \]
