@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{Deriving a Trig Identity}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\newcommand{\cis}{\mathrm{cis}}
+
+\begin{align*}
+  \cos(2ax)+\cos(2bx) &= 2\cos((a+b)x)\cos((a-b)x) \\
+  \sin(2ax)+\sin(2bx) &= 2\sin((a+b)x)\cos((a-b)x)
+\end{align*}
+
+\[(\cos(2a)+\cos(2b))+i(\sin(2a)+\sin(2b))=2\cos(a+b)\cos(a-b)+2i\sin(a+b)\cos(a-b)\]
+
+\[\cis(2a)+\cis(2b)=2\cis(a+b)\cos(a-b)\]
+
+\[\cis(2a)+\cis(2b)=\cis(a+b)(\cis(a-b)+\cis(b-a))\]
+
+\end{document}
