@@ -20,11 +20,19 @@
 Interpret arguments as coefficients of powers of $\omega$:
 original function accepts ordinal $<\omega^2$
 \begin{align*}
-A(n) &= n+1 \\
-A(\omega(m+1)) &= A(\omega m+1) \\
-A(\omega(m+1)+(n+1)) &= A(\omega m+A(\omega(m+1)+n)) \\
+  A(n) &= n+1 \\
+  A(\omega(m+1)) &= A(\omega m+1) \\
+  A(\omega(m+1)+(n+1)) &= A(\omega m+A(\omega(m+1)+n))
 \end{align*}
-
+$X$: (possibly empty) list of naturals
+$Y$: (possibly empty) list of zeros
+$a, b$: naturals
+\begin{align*}
+  A(a) &= a+1 \\
+  A(0, X) &= A(X) \\
+  A(X, b+1, Y, 0) &= A(X, b, Y, 1) \\
+  A(X, b+1, Y, a+1) &= A(X, b, A(X, b+1, Y, a), Y) \\
+\end{align*}
 %% can give any ordinal $< \omega^\omega$
 %% Leading zeros are discarded (as in the original Ackermann function):
 %% $A(0, n)=A(n)=n+1$
