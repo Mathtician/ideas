@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\begin{document}
+
+\title{Extending the Ackermann function}
+\author{Aresh Pourkavoos}
+\maketitle
+
+Interpret arguments as coefficients of powers of $\omega$:
+original function accepts ordinal $<\omega^2$
+\begin{align*}
+A(n) &= n+1 \\
+A(\omega(m+1)) &= A(\omega m+1) \\
+A(\omega(m+1)+(n+1)) &= A(\omega m+A(\omega(m+1)+n)) \\
+\end{align*}
+
+%% can give any ordinal $< \omega^\omega$
+%% Leading zeros are discarded (as in the original Ackermann function):
+%% $A(0, n)=A(n)=n+1$
+%% Recursive case relies on function calls that are lexicographically earlier:
+%% $k$-tuples of natural numbers are well-ordered (by $w^k$)
+
+
+\end{document}
