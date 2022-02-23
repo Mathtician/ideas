@@ -6,16 +6,94 @@
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage{float}
+\usepackage[utf8]{inputenc}
 \graphicspath{{images/}}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=blue,
+  colorlinks=true,
+  urlcolor=blue,
 }
 \begin{document}
 
 \title{Extending the Ackermann function}
 \author{Aresh Pourkavoos}
 \maketitle
+
+The Ackermann function is an important function
+in the history of computer science.
+It is defined as follows,
+where its arguments are natural numbers:
+\begin{align*}
+  A(0, n) &= n+1 \\
+  A(m+1, 0) &= A(m, 1) \\
+  A(m+1, n+1) &= A(m, A(m+1, n))
+\end{align*}
+Although it may look simple,
+it was the first known example
+of a function which is computable but not primitive recursive.
+\footnote{
+  The original Ackermann function was slightly more complicated,
+  but this version takes roughly as long as the original to execute
+  and returns roughly the same size of outputs.
+}
+Here, ``computable'' means that there is an algorithm
+to calculate it that always takes a finite number of steps,
+and ``primitive recursive'' means that such an algorithm
+can be rewritten to use only \textit{bounded loops}.
+In other words, if a block of code in a primitive recursive function
+needs to be executed $n$ times (a loop),
+a maximum possible value of $n$ needs to be known beforehand.
+So using the definition above,
+we can prove that the function will give an answer eventually
+(i.e. it won't get stuck in an infinite loop),
+but while the program is being executed,
+we won't be able to tell how much longer is left.
+
+For the first few values of $m$,
+the output of $A(m, n)$ is as follows:
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    m & A(n, m) \\ \hline
+    0 & $n+1$ \\ \hline
+    1 & $n+2$ \\ \hline
+    2 & $2n+3$ \\ \hline
+    3 & $2^{n+3}-3$ \\ \hline
+  \end{tabular}
+\end{center}
+It may be hard to see a pattern here,
+but $m=4$ is where it gets interesting.
+\[
+A(4, n) = \underbrace{2^{2^{2^{...}}}}_{n+3 \text{ 2s}}-3,
+\]
+where parentheses are placed around the top,
+i.e. $3^{3^3}=3^{(3^3)}=7625597484987$, not $(3^3)^3=19683$.
+The function performs repeated exponentiation,
+which allows for relatively large numbers to be made quickly.
+For example, $A(4, 1)=2^{2^{2^2}}-3=2^{2^4}-3=2^{16}-3=65536-3=65533$,
+and $A(4, 2)=2^{65536}-3$,
+a number with almost 20000 decimal digits!
+
+This repeated exponentiation is known as tetration
+and may be denoted $a \uparrow \uparrow b$,
+where $a$ is the number forming the power tower
+and $b$ is its height,
+so $A(4, n)$ may be written $2\uparrow\uparrow(n+3)-3$.
+Two up arrows are used because one is reserved for exponents:
+$A(3, n) = 2\uparrow(n+3)-3$.
+Given the similarities,
+we may also interpret the lower values of $m$:
+$A(2, n) = 2(n+3)-3$, $A(1, n) = 2+(n+3)-3$, $A(0, n) = S(n+3)-3$,
+where $S$ denotes the successor function,
+which adds 1 to its argument.
+
+Each operation is performed by repetition of the last:
+addition is the repeated successor,
+multiplication is repeated addition,
+exponentiation is repeated multiplication,
+and tetration is repeated exponentiation.
+Larger values of $m$ continue this trend:
+repeated tetration is known as pentation and denoted by 3 up arrows,
+and $A(6, n) = 2\uparrow\uparrow\uparrow(n+3)-3$.
 
 Interpret arguments as coefficients of powers of $\omega$:
 original function accepts ordinal $<\omega^2$
@@ -24,15 +102,32 @@ original function accepts ordinal $<\omega^2$
   A(\omega(m+1)) &= A(\omega m+1) \\
   A(\omega(m+1)+(n+1)) &= A(\omega m+A(\omega(m+1)+n))
 \end{align*}
+
 $X$: (possibly empty) list of naturals
 $Y$: (possibly empty) list of zeros
 $a, b$: naturals
 \begin{align*}
-  A(a) &= a+1 \\
-  A(0, X) &= A(X) \\
+  A(Y, a) &= a+1 \\
   A(X, b+1, Y, 0) &= A(X, b, Y, 1) \\
   A(X, b+1, Y, a+1) &= A(X, b, A(X, b+1, Y, a), Y) \\
 \end{align*}
+To find which of these 3 cases a given string of arguments falls into,
+we look at all arguments except the last one.
+If they are all 0 (or if there are no other arguments), case 1 applies.
+Otherwise, there is at least one nonzero argument other than the last one.
+Call the rightmost of these $b+1$,
+so all arguments between it and the last argument are 0.
+These go into the list $Y$,
+while all arguments before $b+1$ go into $X$.
+From here, the case is determined by the last argument:
+if it's 0, case 2 applies,
+and otherwise, case 3.
+
+\begin{align*}
+  A(1, 0, 0) &= A(0, 0, 1) = 2 \\
+  A(1, 0, 1) &= A(0, A(1, 0, 0), 0) = A() \\
+\end{align*}
+
 %% can give any ordinal $< \omega^\omega$
 %% Leading zeros are discarded (as in the original Ackermann function):
 %% $A(0, n)=A(n)=n+1$
