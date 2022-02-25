@@ -4,24 +4,35 @@
 \usepackage{bm}
 \usepackage[margin=1in]{geometry}
 \graphicspath{{images/}}
+
 \begin{document}
 
+\title{Notes on Type Theory}
+\author{Aresh Pourkavoos}
+\maketitle
+
+Base types, sum/product/function types, dependent types, inductive types, universes \\
+Base types: $\bot$ AKA false, $\top$ AKA true, bool \\
+\#:$\top$, 0:bool, 1:bool ($\bot$ has no terms), $\bot$:Type, $\top$:Type, bool:Type \\
+
+Dependent types: $\sum$ AKA $\exists$, $\prod$ AKA $\forall$ \\
+
 \begin{align}
-  & A+B & A \lor B \label{union} \\
-  & A \times B & A \land B \label{pair} \\
-  & B^A & A \rightarrow B \label{function}
+  & A+B & A \lor B \\
+  & A \times B & A \land B \\
+  & B^A & A \rightarrow B
 \end{align}
 
-\ref{union}:
+(1):
 The union type of types A and B has terms which are either of type A or of type B.
 For example, if A had 2 terms (and thus stored one bit of information) and B had 3 terms (one trit),
 there would be $2+3=5$ possible values of the union.
 
-\ref{pair}:
+(2):
 The pair type of A and B has terms which contain both a term of type A and a term of type B.
 Using the previous examples of A and B, there would be $2 \times 3 = 6$ possible pairs.
 
-\ref{function}:
+(3):
 The function type that goes from A to B has terms which associate exactly one (non-unique) element of B with each element of A.
 Since for each of the 2 terms of A (input), there are 3 choices for the corresponding element of B (output),
 there would be $3^2=9$ possible functions.
