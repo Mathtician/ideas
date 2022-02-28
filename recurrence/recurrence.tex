@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\begin{document}
+
+\title{Recurrence Relations and Differential Equations}
+\author{Aresh Pourkavoos}
+\maketitle
+
+What do these two have in common?
+\begin{align*}
+  f''(x) &= f'(x)+f(x) \\
+  F_{n+2} &= F_{n+1}+F_n
+\end{align*}
+The first is a differential equation,
+which relates the value of a function to its derivatives,
+and the other is a recurrence relation,
+a rule for building a number sequence by looking at previous entries.
+Beyond their visual similarities,
+their solutions both involve the golden ratio and its conjugate,
+\begin{align*}
+  \varphi &= \frac{1+\sqrt{5}}{2} \approx 1.618 \\
+  \overline{\varphi} &= \frac{1-\sqrt{5}}{2} \approx -0.618,
+\end{align*}
+the two solutions of the polynomial
+$x^2=x+1$.
+Specifically, the general solution to the first equation is
+\[f(x) = a\exp(\varphi x)+b\exp(\overline{\varphi}x),\]
+and the second is
+\[F_n = a\varphi^n+b\overline{\varphi}^n.\]
+
+% Repeated roots
+
+% Zero roots
+
+% How are they both connected to diagonalization?
+
+\end{document}
