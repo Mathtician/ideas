@@ -11,6 +11,9 @@
 
 \begin{document}
 
+\newcommand{\hopen}[1]{[#1)}
+  \newcommand{\indentsarewack}{]}
+
 Infinite lists \\
 An ordinal is either 0 or an infinite list of ordinals written right to left,
 which is all 0 after some point \\
@@ -18,9 +21,6 @@ $\gamma = (\ldots, 0, 0, \gamma_n, \ldots, \gamma_0)$,
 so $\gamma_k = 0$ for all $k > n$ \\
 For all $i$ (including $n$ and larger),
 $\gamma_i < (\ldots, \gamma_{i+3}, \gamma_{i+2}, \gamma_{i+1}+1, 0, \ldots, 0)$ \\
-Should match the behavior of finitary Veblen functions
-while retaining lexicographical order \\
-$(\ldots, 0)=1$, $(\ldots, 0, 1)=2$, $(\ldots, 0, 1, 0)=\w$ \\
 
 Finite lists \\
 Leading 0s may be removed from infinite list and length of remaining list put in front:
@@ -97,4 +97,20 @@ It is closely related to Veblen normal form,
 but restricted to two arguments
 and preserving lexicographical order.
 
+\newpage
+
+\begin{align*}
+  [0, \varepsilon_0) &= \{0\} \cup \bigcup_{\alpha \in [0, \varepsilon_0)}[\omega^\alpha, \omega^{\alpha+1}) \\
+  [\omega^\alpha, \omega^{\alpha+1}) &= \{\omega^\alpha+\beta \mid \beta \in [0, \omega^{\alpha+1})\} \\
+  [0, \omega^{\alpha+1}) &= \{0\} \cup \bigcup_{\beta \in [0, \alpha+1)}[\omega^\beta, \omega^{\beta+1}) \\
+  [0, 0+1) &= \{0\} \\
+  [0, \omega^\alpha+\beta+1) &= [0, \omega^\alpha) \cup [\omega^\alpha, \omega^\alpha+\beta+1) \\
+  [\omega^\alpha, \omega^\alpha+\beta+1) &= \{\omega^\alpha+\gamma \mid \gamma \in [0, \beta+1)\} \\
+  [0, \omega^\alpha) &= \{0\} \cup \bigcup_{\beta \in [0, \alpha)}[\omega^\beta, \omega^{\beta+1}) \\
+  [0, 0) &= \varnothing \\
+  [0, \omega^\alpha+\beta) &= [0, \omega^\alpha) \cup [\omega^\alpha, \omega^\alpha+\beta) \\
+  [\omega^\alpha, \omega^\alpha+\beta) &= \{\omega^\alpha+\gamma \mid \gamma \in [0, \beta)\}
+\end{align*}
+May cast $\beta$ from $[0, \omega^{\alpha+1})$ to $[0, \varepsilon_0)$
+so $[0, \beta+1)$ may be defined
 \end{document}
