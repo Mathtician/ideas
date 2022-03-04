@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\begin{document}
+
+\title{Convergence of Products from Sums}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\[\prod_{n=1}^{\infty}a_n:\]
+
+\begin{itemize}
+\item
+  If $a_n=0$ for some $n$,
+  all partial products after $n$ are 0:
+  ``diverges'' to 0
+\item
+  Otherwise,
+  rewrite all $a_n$ as $s_n\exp(b_n)$,
+  where $s_n = \mathrm{sgn}(a_n) = \pm 1$
+  and $b_n = \ln |a_n|.$
+  so the product is
+  \[\left(\prod_{n=1}^{\infty}s_n\right)\exp\left(\sum_{n=1}^{\infty}b_n\right)\]
+  \begin{itemize}
+  \item
+    the latter sum is equivalent to
+    \[\sum_{n=1}^{\infty}(|a_n|-1)\]
+  \end{itemize}  
+\end{itemize}
+
+\end{document}
