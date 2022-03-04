@@ -64,14 +64,34 @@ forms a basis of this vector space,
 of which all other vectors are linear combinations.
 The question then becomes: how do we find such a basis?
 
-There is an easy way to find \textit{a} basis
+There is an easy way to find a basis
 which gives little information about the actual solution:
 set one of the degrees of freedom to 1 and the other to 0,
 extrapolate to get a full solution,
-repeat for both degrees of freedom.
+repeat for all degrees of freedom.
 For example, in the case of $F$,
 the two solutions starting with $1, 0$ and $0, 1$
-are $1, 0, 1, 1, 2, 3, \ldots$ and 
+are $1, 0, 1, 1, 2, 3, \ldots$ and $0, 1, 1, 2, 3, 5, \ldots$.
+Both of these happen to be shifted copies of the Fibonacci sequence,
+and we can create any other sequence that follows the recurrence relation
+by adding multiples of these two together.
+For example, the Lucas numbers begin with $2, 1$,
+so they may be formed by adding 2 times the first sequence
+to the second:
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    1 & 0 & 1 & 1 & 2 & 3 \\ \hline
+    0 & 1 & 1 & 2 & 3 & 5 \\ \hline
+    2 & 1 & 3 & 4 & 7 & 11 \\ \hline
+  \end{tabular}
+\end{center}
+So going across the third row,
+$2+1=3$, $1+3=4$, $3+4=7$, etc,
+and going down the columns,
+$2 \times 1 + 0 = 2$, $0 \times 2 + 1 = 1$, $2 \times 1 + 1 = 3$, etc.
+However, this still does not give us a closed form expression
+for the Fibonacci numbers themselves.
 
 % Repeated roots
 
