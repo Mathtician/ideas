@@ -17,15 +17,18 @@
 \author{Aresh Pourkavoos}
 \maketitle
 
-What do these two have in common?
+What do these three have in common?
 \begin{align*}
   f''(x) &= f'(x)+f(x) \\
-  F_{n+2} &= F_{n+1}+F_n
+  F_{n+2} &= F_{n+1}+F_n \\
+  \lambda v &= \begin{bmatrix} 0 & 1 \\ 1 & 1 \end{bmatrix} v
 \end{align*}
 The first is a differential equation,
-which relates the value of a function to its derivatives,
-and the other is a recurrence relation,
+which relates the value of a function to its derivatives.
+The second other is a recurrence relation,
 a rule for building a number sequence by looking at previous entries.
+The third is a linear equation whose solutions $\lambda$ and $x$ are
+the eigenvalues and eigenvectors of the given $2 \times 2$ matrix.
 Beyond their visual similarities,
 their solutions both involve the golden ratio and its conjugate,
 \begin{align*}
@@ -93,6 +96,10 @@ $2 \times 1 + 0 = 2$, $0 \times 2 + 1 = 1$, $2 \times 1 + 1 = 3$, etc.
 However, we still do not have a closed form (i.e. non-recursive equation)
 for the Fibonacci numbers themselves,
 which would be necessary to find a closed form of the Lucas numbers using this approach.
+Instead, we need to guess what type of equation might satisfy this relation.
+
+The Fibonacci numbers grow exponentially in the limit,
+and the ratio between consecutive numbers approaches
 
 % Repeated roots
 
