@@ -43,46 +43,64 @@ it has exactly one solution, where P and Q are both true.
 since for both possible values of P, the statement is false.
 A brute-force SAT solver would simply check every possible combination,
 of which there are $2^n$, where $n$ is the number of variables.
-\begin{align*}
-  && \underline{a_0 \text{ free}}|
-  && a_1 \text{ free}|
-  && a_2 \text{ free}
-  && a_3 \text{ free}|
-  && a_4 \text{ free}
-  && a_5 \text{ free}
-  && a_6 \text{ free}
-  && a_7 \text{ free}| \\
-  && && \underline{\lnot a_0 \lor \lnot a_1}|
-  && && \lnot a_2 \lor \lnot a_3|
-  && && \lnot a_4 \lor \lnot a_5
-  && && \lnot a_6 \lor \lnot a_7| \\
-  && && a_{01} := a_0 \lor a_1
-  && && a_{23} := a_2 \lor a_3|
-  && && a_{45} := a_4 \lor a_5
-  && && a_{67} := a_6 \lor a_7| \\
-  && && \lnot a_{01} \lor a_0 \lor a_1
-  && && \lnot a_{23} \lor a_2 \lor a_3|
-  && && \lnot a_{45} \lor a_4 \lor a_5
-  && && \lnot a_{67} \lor a_6 \lor a_7| \\
-  && && \lnot a_0 \lor a_{01}
-  && && \lnot a_2 \lor a_{23}|
-  && && \lnot a_4 \lor a_{45}
-  && && \lnot a_6 \lor a_{67}| \\
-  && && \lnot a_1 \lor a_{01}
-  && && \lnot a_3 \lor a_{23}|
-  && && \lnot a_5 \lor a_{45}
-  && && \lnot a_7 \lor a_{67}| \\
-  && && && && \underline{\lnot a_{01} \lor \lnot  a_{23}}|
-  && && && && \lnot a_{45} \lor \lnot  a_{67}| \\
-  && && && && a_{03} := a_{01} \lor a_{23}
-  && && && && a_{47} := a_{45} \lor a_{67}| \\
-  && && && && \lnot a_{03} \lor a_{01} \lor a_{23}
-  && && && && \lnot a_{47} \lor a_{45} \lor a_{67}| \\
-  && && && && \lnot a_{01} \lor a_{03}
-  && && && && \lnot a_{45} \lor a_{47}| \\
-  && && && && \lnot a_{23} \lor a_{03}
-  && && && && \lnot a_{67} \lor a_{47}| \\
-  && && && && && && && && \underline{\lnot a_{03} \lor \lnot a_{47}}|
-\end{align*}
 
+%%% 
+
+The following table shows a way to formulate the statement
+that at most one of 8 variables $a_0, \ldots, a_7$ is true,
+using a binary divide-and-conquer method.
+\begin{align*}
+  && a_0, a_1 \text{ free}|
+  && a_2, a_3 \text{ free}|
+  && a_4, a_5 \text{ free}
+  && a_6, a_7 \text{ free}| \\
+  && \underline{\lnot a_0 \lor \lnot a_1}|
+  && \lnot a_2 \lor \lnot a_3|
+  && \lnot a_4 \lor \lnot a_5
+  && \lnot a_6 \lor \lnot a_7| \\
+  && a_{0-1} := a_0 \lor a_1
+  && a_{2-3} := a_2 \lor a_3|
+  && a_{4-5} := a_4 \lor a_5
+  && a_{6-7} := a_6 \lor a_7| \\
+  && \lnot a_{0-1} \lor a_0 \lor a_1
+  && \lnot a_{2-3} \lor a_2 \lor a_3|
+  && \lnot a_{4-5} \lor a_4 \lor a_5
+  && \lnot a_{6-7} \lor a_6 \lor a_7| \\
+  && \lnot a_0 \lor a_{0-1}
+  && \lnot a_2 \lor a_{2-3}|
+  && \lnot a_4 \lor a_{4-5}
+  && \lnot a_6 \lor a_{6-7}| \\
+  && \lnot a_1 \lor a_{0-1}
+  && \lnot a_3 \lor a_{2-3}|
+  && \lnot a_5 \lor a_{4-5}
+  && \lnot a_7 \lor a_{6-7}| \\
+  && && \underline{\lnot a_{0-1} \lor \lnot  a_{2-3}}|
+  && && \lnot a_{4-5} \lor \lnot  a_{6-7}| \\
+  && && a_{0-3} := a_{0-1} \lor a_{2-3}
+  && && a_{4-7} := a_{4-5} \lor a_{6-7}| \\
+  && && \lnot a_{0-3} \lor a_{0-1} \lor a_{2-3}
+  && && \lnot a_{4-7} \lor a_{4-5} \lor a_{6-7}| \\
+  && && \lnot a_{0-1} \lor a_{0-3}
+  && && \lnot a_{4-5} \lor a_{4-7}| \\
+  && && \lnot a_{2-3} \lor a_{0-3}
+  && && \lnot a_{6-7} \lor a_{4-7}| \\
+  && && && && \underline{\lnot a_{0-3} \lor \lnot a_{4-7}}|
+\end{align*}
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    $i$ & Free vars & Aux vars & Formulas \\ \hline
+    1 & 2 & 0 & 1 \\ \hline
+    2 & 4 & 2 & 9 \\ \hline
+    3 & 8 & 6 & 25 \\ \hline
+  \end{tabular}
+\end{center}
+At level $i$ of the tree,
+there are $n=2^i$ free variables,
+$n-2$ auxiliary variables
+(for a total of $2n-2$ variables),
+and $4n-7$ formulas.
+In contrast,
+the naive method with no auxiliary variables
+uses $1+(n^2-n)/2$ formulas.
 \end{document}
