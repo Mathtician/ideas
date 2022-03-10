@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\begin{document}
+
+\title{SAT Solving Sudoku}
+\author{Aresh Pourkavoos}
+\maketitle
+
+Sudoku is a puzzle game which consists of a $9 \times 9$ square grid,
+subdivided into $3 \times 3$ blocks
+and partially filled with the digits 1-9.
+The goal is to fill in the rest of the digits such that
+every row, column and block contains each digit exactly once.
+Sudoku is a well-studied problem,
+and there are many algorithms out there to solve it,
+from pencil-and-paper tricks used mostly by human players
+to trial-and-error methods used by computers, such as backtracking.
+However, I will focus on one particular approach: SAT solving.
+
+SAT is short for ``satisfiability,''
+and a SAT solver is a program that checks
+whether a given statement is satisfiable.
+In this case, a statement is a logical proposition
+such as ``P and Q'',
+and a statement is satisfiable
+if there is some way to assign each variable
+(P and Q, in this case) to either true or false
+such that the entire statement is true.
+``P and Q,'' for example, is satisfiable:
+it has exactly one solution, where P and Q are both true.
+``P and not P,'' on the other hand, is not satisfiable,
+since for both possible values of P, the statement is false.
+A brute-force SAT solver would simply check every possible combination,
+of which there are $2^n$, where $n$ is the number of variables.
+
+\end{document}
