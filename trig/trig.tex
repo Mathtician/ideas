@@ -50,8 +50,17 @@ An analogous identity for sines also exists:
 Both may be derived simultaneously
 by interpreting them as the real and imaginary parts of a unified equation:
 \[(\cos(2a)+\cos(2b))+i(\sin(2a)+\sin(2b))=2\cos(a+b)\cos(a-b)+2i\sin(a+b)\cos(a-b)\]
+Multiple parts of the formula are now in the form
+$\cos(\theta)+i\sin(\theta)$ for some value $\theta$,
+which is sometimes written $\cis(\theta)$
+(\underline{c}osine + \underline{$i$} times \underline{s}ine):
 \[\cis(2a)+\cis(2b)=2\cis(a+b)\cos(a-b)\]
-
+The last $\cos$, since it is multiplied by 2,
+can also be written in terms of $\cis$:
+\[2\cos(\theta)=\cos(\theta)+i\sin(\theta)+\cos(\theta)-i\sin(\theta)
+=\cos(\theta)+i\sin(\theta)+\cos(-\theta)+i\sin(-\theta)
+=\cis(\theta)+\cis(-\theta)\]
+Making this substitution,
 \[\cis(2a)+\cis(2b)=\cis(a+b)(\cis(a-b)+\cis(b-a))\]
 
 Envelope of $c\cos(ax)+d\cos(bx)$: $\sqrt{c^2+2cd\cos((a-b)x)+d^2}$
