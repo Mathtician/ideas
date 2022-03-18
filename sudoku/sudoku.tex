@@ -46,7 +46,14 @@ of which there are $2^n$, where $n$ is the number of variables.
 However, there are much more optimized algorithms in use,
 making SAT solvers practical for huge formulas with thousands of variables or more.
 
-%%% 
+However, it's not immediately obvious
+how Sudoku could be translated into a SAT problem:
+after all, each cell is filled with one of 9 possible digits,
+not one of 2 truth values.
+We can represent a choice of 9 by having 9 variables for each cell,
+one for each possible digit.
+But this creates another problem:
+out of the 512 possible assignments, only 9 are valid.
 
 The following table shows a way to formulate the statement
 that at most one of 8 variables $a_0, \ldots, a_7$ is true,
