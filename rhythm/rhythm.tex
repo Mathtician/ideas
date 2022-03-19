@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{Irrational Rhythms}
+\author{Aresh Pourkavoos}
+\maketitle
+$0$: length $1+\sqrt{2}$ (long), $1$: length $1$ (short), $2$: length $\sqrt{2}$ (medium)
+\begin{itemize}
+\item
+  $0 \rightarrow 001$, $1 \rightarrow 0$:
+  $1, 0, 001, 0010010, 00100100010010001, \ldots$ (a)
+  \begin{itemize}
+  \item
+    $0 \hookrightarrow 21$:
+    $1, 21, 21211, 212112121121, 21211212112121211212112121211, \ldots$ (b) \\
+    No rule
+  \item
+    $0 \rightarrow 12$:
+    $1, 12, 12121, 121211212112, 12121121211212121121211212121, \ldots$ (c) \\
+    $1 \rightarrow 12$, $2 \rightarrow 121$
+  \end{itemize}
+\item
+  $0 \rightarrow 010$, $1 \rightarrow 0$:
+  $1, 0, 010, 0100010, 01000100100100010, \ldots$ (d)
+  \begin{itemize}
+  \item
+    $0 \hookrightarrow 21$:
+    $1, 21, 21121, 211212121121, 21121212112121121211212121121, \ldots$ (e) \\
+    $1 \rightarrow 21$, $2 \rightarrow 211$
+  \item
+    $0 \hookrightarrow 12$:
+    $1, 12, 12112, 121121212112, 12112121211212112121121212112, \ldots$ (f) \\
+    $1 \rightarrow 12$, $2 \rightarrow 112$
+  \end{itemize}
+\item
+  $0 \rightarrow 100$, $1 \rightarrow 0$:
+  $1, 0, 100, 0100100, 10001001000100100, \ldots$ (g)
+  \begin{itemize}
+  \item
+    $0 \hookrightarrow 21$:
+    $1, 21, 12121, 211212112121, 12121211212112121211212112121, \ldots$ (h) \\
+    $1 \rightarrow 21$, $2 \rightarrow 121$
+  \item
+    $0 \hookrightarrow 12$:
+    $1, 12, 11212, 121121211212, 11212121121211212121121211212, \ldots$ (i) \\
+    No rule
+  \end{itemize}
+\item $1 \rightarrow 12, 2 \rightarrow 211$:
+  $1, 12, 12211, 122112111212, 12211211121221112121221112211, \ldots$ (j)
+\item $1 \rightarrow 21, 2 \rightarrow 112$:
+  $1, 21, 11221, 212111211221, 11221112212121112212111211221, \ldots$ (k)
+\end{itemize}
+Reverses: (a)-(g), (b)-(i), (c)-(h), (d)-(d), (e)-(f), (j)-(k) \\
+(g) and (k) oscillate between 2 limit words, all others converge \\
+(j) and (k) do not have maximally even spacing (MOS-like), all others do \\
+Personal favorite: (e) - derived from palindromic (d), long beat first (swing)
+
+\end{document}
