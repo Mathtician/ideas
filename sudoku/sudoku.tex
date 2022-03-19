@@ -54,6 +54,11 @@ We can represent a choice of 9 by having 9 variables for each cell,
 one for each possible digit.
 But this creates another problem:
 out of the 512 possible assignments, only 9 are valid.
+We need to constrain these variables (in typical SAT solver fashion)
+to say that exactly one variable must be true.
+There are two parts to this problem:
+saying that at least one is true
+and saying that at most one is true.
 
 The following table shows a way to formulate the statement
 that at most one of 8 variables $a_0, \ldots, a_7$ is true,
