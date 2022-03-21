@@ -59,8 +59,14 @@ to say that exactly one variable must be true.
 There are two parts to this problem:
 saying that at least one is true
 and saying that at most one is true.
-The former is easy:
-all we need is an or statment containing the given variables.
+The former can be expressed as an or statment containing the given variables:
+\[p_1 \lor p_2 \lor p_3 \lor \ldots \lor p_n\]
+The latter looks at all pairs of variables,
+saying that they can't both be true:
+\[\lnot (p_1 \land p_2) \land \lnot (p_1 \land p_3) \ldots
+\land \lnot (p_1 \land p_n)
+\land \lnot (p_2 \land p_3) \land \ldots \land \lnot (p_2 \land p_n) \land \ldots
+\land \lnot (p_{n-1} \land p_n)\]
 
 The following table shows a way to formulate the statement
 that at most one of 8 variables $a_0, \ldots, a_7$ is true,
