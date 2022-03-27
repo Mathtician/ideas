@@ -60,13 +60,15 @@ There are two parts to this problem:
 saying that at least one is true
 and saying that at most one is true.
 The former can be expressed as an or statment containing the given variables:
-\[p_1 \lor p_2 \lor p_3 \lor \ldots \lor p_n\]
+\[p_1 \lor p_2 \lor \ldots \lor p_n\]
 The latter looks at all pairs of variables,
 saying that they can't both be true:
-\[\lnot (p_1 \land p_2) \land \lnot (p_1 \land p_3) \ldots
-\land \lnot (p_1 \land p_n)
+\[\lnot (p_1 \land p_2) \land \ldots \land \lnot (p_1 \land p_n)
 \land \lnot (p_2 \land p_3) \land \ldots \land \lnot (p_2 \land p_n) \land \ldots
 \land \lnot (p_{n-1} \land p_n)\]
+For $n$ variables, there are $\binom{n}{2} = \frac{n(n-1)}{2}$ pairs,
+and for Sudoku $n=9$, so there are 36,
+plus the ``at most one'' clause for a total of 37.
 
 The following table shows a way to formulate the statement
 that at most one of 8 variables $a_0, \ldots, a_7$ is true,
