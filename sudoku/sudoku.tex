@@ -66,9 +66,24 @@ saying that they can't both be true:
 \[\lnot (p_1 \land p_2) \land \ldots \land \lnot (p_1 \land p_n)
 \land \lnot (p_2 \land p_3) \land \ldots \land \lnot (p_2 \land p_n) \land \ldots
 \land \lnot (p_{n-1} \land p_n)\]
-For $n$ variables, there are $\binom{n}{2} = \frac{n(n-1)}{2}$ pairs,
-and for Sudoku $n=9$, so there are 36,
-plus the ``at most one'' clause for a total of 37.
+For $n$ variables, there are $\binom{n}{2} = \frac{n(n-1)}{2}$ pairs.
+For a given Sudoku cell, where there are 9 variables,
+it takes $\binom{9}{2}$ of them
+to say that at most one variable may be true,
+and the or clause containing all 9 variables makes 37.
+Since there are 81 cells,
+it takes $37 \times 81 = 2997$ formulas
+just to say that every cell is filled with exactly one digit.
+To express the rest of the puzzle,
+similar constraints must be applied to other sets of 9 variables:
+\begin{itemize}
+\item
+  For every row and digit,
+  exactly 1 of the 9 variables that represent
+  filling a cell within the given row with a given digit
+  must be true.
+\end{itemize}
+
 
 The following table shows a way to formulate the statement
 that at most one of 8 variables $a_0, \ldots, a_7$ is true,
