@@ -78,11 +78,28 @@ To express the rest of the puzzle,
 similar constraints must be applied to other sets of 9 variables:
 \begin{itemize}
 \item
-  For every row and digit,
+  Every row of cells contains every digit exactly once,
+  i.e. for every row and digit,
   exactly 1 of the 9 variables that represent
   filling a cell within the given row with a given digit
   must be true.
+\item
+  Every column contains every digit exactly once,
+  i.e. for every column and digit,
+  exactly 1 of the 9 variables that represent
+  filling a cell within the given column with a given digit
+  must be true.
+\item
+  Every 3 $\times$ 3 block contains every digit exactly once,
+  i.e. for every block and digit,
+  exactly 1 of the 9 variables that represent
+  filling a cell within the given block with a given digit
+  must be true.
 \end{itemize}
+Each of these 3 items places constraints on 81 sets of 9 variables each,
+just like the requirement that every cell contains exactly one digit.
+Thus each one adds another 2997 formulas
+for a total of $2997 \times 4 = 11988$.
 
 
 The following table shows a way to formulate the statement
