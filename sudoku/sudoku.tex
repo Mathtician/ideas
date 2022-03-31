@@ -105,6 +105,17 @@ Strictly speaking, these variables and formulas are all that are necessary
 to define the constraints of a Sudoku puzzle
 formatted in the way described.
 But is it the only way, or even the best way?
+In SAT solving, a trick that is often used to speed up computation
+at the cost of increasing memory use
+is to introduce \textit{auxiliary variables},
+which are defined to be equivalent to some expression of the original input.
+For example, we might define an auxiliary variable $q_1$
+to be equivalent to $p_1 \lor p_2$,
+since it might be possible in some cases
+to infer that one of them is true, but not which.
+Without $q_1$, a naive solver would be stuck
+and have to guess that $p_1$ is true before proceeding,
+possibly backtracking later to check if $p_2$ is true.
 
 The following table shows a way to formulate the statement
 that at most one of 8 variables $a_0, \ldots, a_7$ is true,
