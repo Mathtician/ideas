@@ -109,71 +109,97 @@ In SAT solving, a trick that is often used to speed up computation
 at the cost of increasing memory use
 is to introduce \textit{auxiliary variables},
 which are defined to be equivalent to some expression of the original input.
-For example, we might define an auxiliary variable $q_1$
-to be equivalent to $p_1 \lor p_2$,
-since it might be possible in some cases
-to infer that one of them is true, but not which.
-Without $q_1$, a naive solver would be stuck
-and have to guess that $p_1$ is true before proceeding,
-possibly backtracking later to check if $p_2$ is true.
+Among other things,
+their efficiency can come from reducing the number of formulas,
+as we will do with Sudoku.
 
-The following table shows a way to formulate the statement
-that at most one of 8 variables $a_0, \ldots, a_7$ is true,
-using a binary divide-and-conquer method.
+At the moment, each set of 9 variables requires 37 formulas
+to say that exactly one of them must be true.
+We will lower that number to 24
+by introducing 3 auxiliary variables to each set,
+each representing the fact that
+one of a set of 3 of the 9 is true.
+In other words, given $p_1$ through $p_9$,
+we define
 \begin{align*}
-  && a_0, a_1 \text{ free}|
-  && a_2, a_3 \text{ free}|
-  && a_4, a_5 \text{ free}
-  && a_6, a_7 \text{ free}| \\
-  && \underline{\lnot a_0 \lor \lnot a_1|}
-  && \lnot a_2 \lor \lnot a_3|
-  && \lnot a_4 \lor \lnot a_5
-  && \lnot a_6 \lor \lnot a_7| \\
-  && a_{0-1} := a_0 \lor a_1
-  && a_{2-3} := a_2 \lor a_3|
-  && a_{4-5} := a_4 \lor a_5
-  && a_{6-7} := a_6 \lor a_7| \\
-  && \lnot a_{0-1} \lor a_0 \lor a_1
-  && \lnot a_{2-3} \lor a_2 \lor a_3|
-  && \lnot a_{4-5} \lor a_4 \lor a_5
-  && \lnot a_{6-7} \lor a_6 \lor a_7| \\
-  && \lnot a_0 \lor a_{0-1}
-  && \lnot a_2 \lor a_{2-3}|
-  && \lnot a_4 \lor a_{4-5}
-  && \lnot a_6 \lor a_{6-7}| \\
-  && \lnot a_1 \lor a_{0-1}
-  && \lnot a_3 \lor a_{2-3}|
-  && \lnot a_5 \lor a_{4-5}
-  && \lnot a_7 \lor a_{6-7}| \\
-  && && \underline{\lnot a_{0-1} \lor \lnot  a_{2-3}|}
-  && && \lnot a_{4-5} \lor \lnot  a_{6-7}| \\
-  && && a_{0-3} := a_{0-1} \lor a_{2-3}
-  && && a_{4-7} := a_{4-5} \lor a_{6-7}| \\
-  && && \lnot a_{0-3} \lor a_{0-1} \lor a_{2-3}
-  && && \lnot a_{4-7} \lor a_{4-5} \lor a_{6-7}| \\
-  && && \lnot a_{0-1} \lor a_{0-3}
-  && && \lnot a_{4-5} \lor a_{4-7}| \\
-  && && \lnot a_{2-3} \lor a_{0-3}
-  && && \lnot a_{6-7} \lor a_{4-7}| \\
-  && && && && \underline{\lnot a_{0-3} \lor \lnot a_{4-7}|}
+  q_1 &= p_1 \lor p_2 \lor p_3 \\
+  q_2 &= p_4 \lor p_5 \lor p_6 \\
+  q_3 &= p_7 \lor p_8 \lor p_9.
 \end{align*}
-\begin{center}
-  \begin{tabular}{|c|c|c|c|}
-    \hline
-    $i$ & Free vars & Aux vars & Formulas \\ \hline
-    1 & 2 & 0 & 1 \\ \hline
-    2 & 4 & 2 & 9 \\ \hline
-    3 & 8 & 6 & 25 \\ \hline
-  \end{tabular}
-\end{center}
-At level $i$ of the tree,
-there are $n=2^i$ free variables,
-$n-2$ auxiliary variables
-(for a total of $2n-2$ variables),
-and $4n-7$ formulas.
-In contrast,
-the naive method with no auxiliary variables
-uses $1+(n^2-n)/2$ formulas.
+From there, the fact that at least one $p$ is true
+may be written as $q_1 \lor q_2 \lor q_3$,
+which is till just one formula as before.
+The savings come from the statement that
+at most one $p$ is true.
+
+%% For example, we might define an auxiliary variable $q_1$
+%% to be equivalent to $p_1 \lor p_2$,
+%% since it might be possible in some cases
+%% to infer that one of them is true, but not which.
+%% Without $q_1$, a naive solver would be stuck
+%% and have to guess that $p_1$ is true before proceeding,
+%% possibly backtracking later to check if $p_2$ is true.
+%% On the other hand, $q_1$ might be used to infer facts about other variables
+%% which are true as long as $p_1 \lor p_2$ is true,
+%% regardless of which.
+
+%% The following table shows a way to formulate the statement
+%% that at most one of 8 variables $a_0, \ldots, a_7$ is true,
+%% using a binary divide-and-conquer method.
+%% \begin{align*}
+%%   && a_0, a_1 \text{ free}|
+%%   && a_2, a_3 \text{ free}|
+%%   && a_4, a_5 \text{ free}
+%%   && a_6, a_7 \text{ free}| \\
+%%   && \underline{\lnot a_0 \lor \lnot a_1|}
+%%   && \lnot a_2 \lor \lnot a_3|
+%%   && \lnot a_4 \lor \lnot a_5
+%%   && \lnot a_6 \lor \lnot a_7| \\
+%%   && a_{0-1} := a_0 \lor a_1
+%%   && a_{2-3} := a_2 \lor a_3|
+%%   && a_{4-5} := a_4 \lor a_5
+%%   && a_{6-7} := a_6 \lor a_7| \\
+%%   && \lnot a_{0-1} \lor a_0 \lor a_1
+%%   && \lnot a_{2-3} \lor a_2 \lor a_3|
+%%   && \lnot a_{4-5} \lor a_4 \lor a_5
+%%   && \lnot a_{6-7} \lor a_6 \lor a_7| \\
+%%   && \lnot a_0 \lor a_{0-1}
+%%   && \lnot a_2 \lor a_{2-3}|
+%%   && \lnot a_4 \lor a_{4-5}
+%%   && \lnot a_6 \lor a_{6-7}| \\
+%%   && \lnot a_1 \lor a_{0-1}
+%%   && \lnot a_3 \lor a_{2-3}|
+%%   && \lnot a_5 \lor a_{4-5}
+%%   && \lnot a_7 \lor a_{6-7}| \\
+%%   && && \underline{\lnot a_{0-1} \lor \lnot  a_{2-3}|}
+%%   && && \lnot a_{4-5} \lor \lnot  a_{6-7}| \\
+%%   && && a_{0-3} := a_{0-1} \lor a_{2-3}
+%%   && && a_{4-7} := a_{4-5} \lor a_{6-7}| \\
+%%   && && \lnot a_{0-3} \lor a_{0-1} \lor a_{2-3}
+%%   && && \lnot a_{4-7} \lor a_{4-5} \lor a_{6-7}| \\
+%%   && && \lnot a_{0-1} \lor a_{0-3}
+%%   && && \lnot a_{4-5} \lor a_{4-7}| \\
+%%   && && \lnot a_{2-3} \lor a_{0-3}
+%%   && && \lnot a_{6-7} \lor a_{4-7}| \\
+%%   && && && && \underline{\lnot a_{0-3} \lor \lnot a_{4-7}|}
+%% \end{align*}
+%% \begin{center}
+%%   \begin{tabular}{|c|c|c|c|}
+%%     \hline
+%%     $i$ & Free vars & Aux vars & Formulas \\ \hline
+%%     1 & 2 & 0 & 1 \\ \hline
+%%     2 & 4 & 2 & 9 \\ \hline
+%%     3 & 8 & 6 & 25 \\ \hline
+%%   \end{tabular}
+%% \end{center}
+%% At level $i$ of the tree,
+%% there are $n=2^i$ free variables,
+%% $n-2$ auxiliary variables
+%% (for a total of $2n-2$ variables),
+%% and $4n-7$ formulas.
+%% In contrast,
+%% the naive method with no auxiliary variables
+%% uses $1+(n^2-n)/2$ formulas.
 \begin{align*}
   && a_0, a_1, a_2 \text{ free}|
   && a_3, a_4, a_5 \text{ free}
