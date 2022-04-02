@@ -115,22 +115,56 @@ as we will do with Sudoku.
 
 At the moment, each set of 9 variables requires 37 formulas
 to say that exactly one of them must be true.
-We will lower that number to 24
+We will lower that number to 25
 by introducing 3 auxiliary variables to each set,
 each representing the fact that
 one of a set of 3 of the 9 is true.
 In other words, given $p_1$ through $p_9$,
 we define
 \begin{align*}
-  q_1 &= p_1 \lor p_2 \lor p_3 \\
-  q_2 &= p_4 \lor p_5 \lor p_6 \\
-  q_3 &= p_7 \lor p_8 \lor p_9.
+  q_1 &\leftrightarrow p_1 \lor p_2 \lor p_3, \\
+  q_2 &\leftrightarrow p_4 \lor p_5 \lor p_6, \\
+  q_3 &\leftrightarrow p_7 \lor p_8 \lor p_9.
 \end{align*}
+However, $\leftrightarrow$ is not an operation recognized by most SAT solvers.
+Instead, the biimplication must be broken up:
+\begin{align*}
+  q_1 &\rightarrow (p_1 \lor p_2 \lor p_3), \\
+  (p_1 \lor p_2 \lor p_3) &\rightarrow q_1.
+\end{align*}
+In fact, the logical statements that SAT solvers accept
+are in a much more restrictive form known as
+conjunctive normal form, or CNF.
+
+% Definition of CNF
+
 From there, the fact that at least one $p$ is true
 may be written as $q_1 \lor q_2 \lor q_3$,
 which is till just one formula as before.
 The savings come from the statement that
+at most one $p$ is true,
+which is broken into two main parts.
+The first of these is that
+at most one $q$ can be true,
+since otherwise,
+there would be two $p$s ``contained in'' different $q$s which are both true.
+Thus
+\begin{align*}
+  \lnot (q_1 \land q_2), \\
+  \lnot (q_1 \land q_3), \\
+  \lnot (q_2 \land q_3).
+\end{align*}
+The second is that ``within'' each $q$,
 at most one $p$ is true.
+For example, for $q_2$, the statmements would be
+\begin{align*}
+  \lnot (p_4 \land p_5), \\
+  \lnot (p_4 \land p_6), \\
+  \lnot (p_5 \land p_7).
+\end{align*}
+Similar statements may be written for $p_1$ through $p_3$
+and for $p_7$ through $p_9$,
+bringing the total to 12.
 
 %% For example, we might define an auxiliary variable $q_1$
 %% to be equivalent to $p_1 \lor p_2$,
