@@ -133,10 +133,17 @@ Instead, the biimplication must be broken up:
   (p_1 \lor p_2 \lor p_3) &\rightarrow q_1.
 \end{align*}
 In fact, the logical statements that SAT solvers accept
-are in a much more restrictive form known as
+are in a much more restrictive format known as
 conjunctive normal form, or CNF.
-
-% Definition of CNF
+A CNF statement is a formula consisting of expressions joined by $\land$,
+where each expression consists of terms joined by $\lor$,
+where each term is either a variable or its negation.
+For example,
+\[(p_1 \lor \lnot p_2) \land (p_2 \lor p_3)\]
+is in CNF, but
+\[\lnot (p_1 \lor \lnot p_2) \land (p_2 \lor p_3)\]
+is not, since the sub-expressions cannot be negated.
+However, it is possible to turn this into CNF by using De Morgan's laws:
 
 From there, the fact that at least one $p$ is true
 may be written as $q_1 \lor q_2 \lor q_3$,
