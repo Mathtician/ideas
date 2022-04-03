@@ -20,19 +20,40 @@
 \[f(x, y) = \sum_{j=0}^\infty\sum_{k=0}^\infty\frac{1}{(j+k+1)!}x^jy^k\]
 \[\frac{d^{j+k}f}{dx^jdy^k}(0, 0) = \frac{j!k!}{(j+k+1)!} = B(j+1, k+1)\]
 \[B(j+1, k+1) = B(j+1, k+2) + B(j+2, k+1)\]
-\[\frac{d^{j+k}f}{dx^jdy^k}(0, 0)
-= \frac{d^{j+k+1}f}{dx^{j+1}dy^k}(0, 0)
-+ \frac{d^{j+k+1}f}{dx^jdy^{k+1}}(0, 0)
-= \frac{d}{dx}\left(\frac{d^{j+k}f}{dx^jdy^k}\right)(0, 0)
-+ \frac{d}{dy}\left(\frac{d^{j+k}f}{dx^jdy^k}\right)(0, 0)\]
+\begin{align*}
+  \frac{d^{j+k}f}{dx^jdy^k}(0, 0)
+  &= \frac{d^{j+k+1}f}{dx^{j+1}dy^k}(0, 0)
+  + \frac{d^{j+k+1}f}{dx^jdy^{k+1}}(0, 0) \\
+  &= \frac{d}{dx}\left(\frac{d^{j+k}f}{dx^jdy^k}\right)(0, 0)
+  + \frac{d}{dy}\left(\frac{d^{j+k}f}{dx^jdy^k}\right)(0, 0)
+\end{align*}
 \[f = \frac{df}{dx}+\frac{df}{dy}\]
-\[B(j+1, 1) = \frac{1}{j+1}\]
-\[\frac{d^jf}{dx^j}(0, 0) = \frac{1}{j+1}\]
-\[f(x, 0) = \sum_{j=0}^\infty \frac{1}{j+1}\frac{x^j}{j!}
-= \sum_{j=0}^\infty \frac{x^j}{(j+1)!}
-= \frac{1}{x} \sum_{j=0}^\infty \frac{x^{j+1}}{(j+1)!}
-= \frac{1}{x} \left(\sum_{j=0}^\infty \left(\frac{x^j}{j!}\right)-\frac{x^0}{0!}\right)
-= \frac{e^x-1}{x}\]
-\[f(0, y) = \frac{e^y-1}{y}\]
+\[B(j+1, 1) = \frac{1}{j+1} = \frac{d^jf}{dx^j}(0, 0)\]
+\begin{align*}
+  f(x, 0) &= \sum_{j=0}^\infty \frac{1}{j+1}\frac{x^j}{j!} \\
+  &= \sum_{j=0}^\infty \frac{x^j}{(j+1)!} \\
+  &= \frac{1}{x} \sum_{j=0}^\infty \frac{x^{j+1}}{(j+1)!} \\
+  &= \frac{1}{x} \left(
+  0\sum_{j=0}^\infty \left(\frac{x^j}{j!}\right)-\frac{x^0}{0!}
+  \right) \\
+  &= \frac{e^x-1}{x}
+\end{align*}
+\begin{align*}
+  f(x, y) &= \sum_{n=0}^\infty\sum_{j+k=n}\frac{1}{(j+k+1)!}x^jy^k \\
+  &= \sum_{n=0}^\infty\frac{1}{(n+1)!}\sum_{j+k=n}x^jy^k \\
+  &= \sum_{n=0}^\infty\frac{1}{(n+1)!}\frac{x^{n+1}-y^{n+1}}{x-y} \\
+  &= \frac{1}{x-y}\left(
+  \sum_{n=0}^\infty\frac{x^{n+1}}{(n+1)!}-\sum_{n=0}^\infty\frac{y^{n+1}}{(n+1)!}
+  \right) \\
+  &= \frac{1}{x-y}((e^x-1)-(e^y-1)) \\
+  &= \frac{e^x-e^y}{x-y}
+\end{align*}
+\begin{align*}
+  \frac{df}{dx} &= \frac{e^x(x-y)-(e^x-e^y)}{(x-y)^2} \\
+  \frac{df}{dy} &= \frac{-e^y(x-y)+(e^x-e^y)}{(x-y)^2} \\
+  \frac{df}{dx}+\frac{df}{dy} &= \frac{(e^x-e^y)(x-y)}{(x-y)^2} \\
+  &= \frac{e^x-e^y}{(x-y)} \\
+  &= f(x, y)
+\end{align*}
 
 \end{document}
