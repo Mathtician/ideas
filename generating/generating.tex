@@ -17,41 +17,60 @@
 \author{Aresh Pourkavoos}
 \maketitle
 
-\[f(x, y) = \sum_{j=0}^\infty\sum_{k=0}^\infty\frac{1}{(j+k+1)!}x^jy^k\]
-\[\frac{d^{j+k}f}{dx^jdy^k}(0, 0) = \frac{j!k!}{(j+k+1)!} = B(j+1, k+1)\]
-\[B(j+1, k+1) = B(j+1, k+2) + B(j+2, k+1)\]
+Problem:
 \begin{align*}
-  \frac{d^{j+k}f}{dx^jdy^k}(0, 0)
-  &= \frac{d^{j+k+1}f}{dx^{j+1}dy^k}(0, 0)
-  + \frac{d^{j+k+1}f}{dx^jdy^{k+1}}(0, 0) \\
-  &= \frac{d}{dx}\left(\frac{d^{j+k}f}{dx^jdy^k}\right)(0, 0)
-  + \frac{d}{dy}\left(\frac{d^{j+k}f}{dx^jdy^k}\right)(0, 0)
+  f(x, 0) &= \frac{e^x-1}{x} \\
+  f(x, y) &= \frac{\partial f}{\partial x}(x, y)+\frac{\partial f}{\partial y}(x, y)
 \end{align*}
-\[f = \frac{df}{dx}+\frac{df}{dy}\]
-\[B(j+1, 1) = \frac{1}{j+1} = \frac{d^jf}{dx^j}(0, 0)\]
+Solution: Define
+\[A(j, k) = \frac{\partial^{j+k} f}{\partial x^j \partial y^k}(0, 0)\]
+Get Taylor series of base case:
+\[f(x, 0)
+= \frac{1}{x} \left(\sum_{i=0}^\infty \frac{x^i}{i!}-1\right)
+= \frac{1}{x} \left(\sum_{i=1}^\infty \frac{x^i}{i!}\right)
+= \frac{1}{x} \left(\sum_{i=0}^\infty \frac{x^{i+1}}{(i+1)!}\right)
+= \sum_{i=0}^\infty \frac{x^i}{(i+1)!}\]
+Find partial derivatives wrt $x$:
+\[A(j, 0)
+= \frac{\partial^j f}{\partial x^j} \sum_{i=0}^\infty \frac{x^i}{(i+1)!}
+= \frac{\partial^j f}{\partial x^j} \frac{x^j}{(j+1)!}
+= \frac{j!}{(j+1)!}
+= \frac{1}{j+1}\]
+Use diffeq to establish recurrence relation on $A$:
 \begin{align*}
-  f(x, 0) &= \sum_{j=0}^\infty \frac{1}{j+1}\frac{x^j}{j!} \\
-  &= \sum_{j=0}^\infty \frac{x^j}{(j+1)!} \\
-  &= \frac{1}{x} \sum_{j=0}^\infty \frac{x^{j+1}}{(j+1)!} \\
-  &= \frac{1}{x} \left(
-  0\sum_{j=0}^\infty \left(\frac{x^j}{j!}\right)-\frac{x^0}{0!}
-  \right) \\
-  &= \frac{e^x-1}{x}
+  A(j, k)
+  &= \frac{\partial^{j+k} f}{\partial x^j \partial y^k}(0, 0) \\
+  &= \frac{\partial}{\partial x}\left(\frac{\partial^{j+k} f}{\partial x^j \partial y^k}\right)(0, 0)
+  + \frac{\partial}{\partial y}\left(\frac{\partial^{j+k} f}{\partial x^j\partial y^k}\right)(0, 0) \\
+  &= \frac{\partial^{j+k+1} f}{\partial x^{j+1} \partial y^k}(0, 0)
+  + \frac{\partial^{j+k+1} f}{\partial x^j \partial y^{k+1}}(0, 0) \\
+  &= A(j+1, k)+A(j, k+1)
 \end{align*}
+Rearrange to compute higher values of $k$:
+\[A(j, k+1) = A(j, k)-A(j+1, k)\]
+These are sufficient to determine all $A(j, k)$,
+which may be found by computation and guess-and-check:
+\[A(j, k) = \frac{j!k!}{(j+k+1)!} = B(j+1, k+1)\]
+where B is the beta function. Construct 2D Taylor series:
 \begin{align*}
-  f(x, y) &= \sum_{n=0}^\infty\sum_{j+k=n}\frac{1}{(j+k+1)!}x^jy^k \\
-  &= \sum_{n=0}^\infty\frac{1}{(n+1)!}\sum_{j+k=n}x^jy^k \\
-  &= \sum_{n=0}^\infty\frac{1}{(n+1)!}\frac{x^{n+1}-y^{n+1}}{x-y} \\
+  f(x, y)
+  &= \sum_{j=0}^\infty \sum_{k=0}^\infty A(j, k) \frac{x^jy^k}{j!k!} \\
+  &= \sum_{j=0}^\infty \sum_{k=0}^\infty \frac{j!k!}{(j+k+1)!} \frac{x^jy^k}{j!k!} \\
+  &= \sum_{j=0}^\infty \sum_{k=0}^\infty \frac{x^jy^k}{(j+k+1)!} \\
+  &= \sum_{n=0}^\infty \sum_{j+k=n} \frac{x^jy^k}{(j+k+1)!} \\
+  &= \sum_{n=0}^\infty \frac{1}{(n+1)!}\sum_{j+k=n} x^jy^k \\
+  &= \sum_{n=0}^\infty \frac{1}{(n+1)!}\frac{x^{n+1}-y^{n+1}}{x-y} \\
   &= \frac{1}{x-y}\left(
-  \sum_{n=0}^\infty\frac{x^{n+1}}{(n+1)!}-\sum_{n=0}^\infty\frac{y^{n+1}}{(n+1)!}
+  \sum_{n=0}^\infty \frac{x^{n+1}}{(n+1)!}-\sum_{n=0}^\infty \frac{y^{n+1}}{(n+1)!}
   \right) \\
   &= \frac{1}{x-y}((e^x-1)-(e^y-1)) \\
   &= \frac{e^x-e^y}{x-y}
 \end{align*}
+Check answer:
 \begin{align*}
-  \frac{df}{dx} &= \frac{e^x(x-y)-(e^x-e^y)}{(x-y)^2} \\
-  \frac{df}{dy} &= \frac{-e^y(x-y)+(e^x-e^y)}{(x-y)^2} \\
-  \frac{df}{dx}+\frac{df}{dy} &= \frac{(e^x-e^y)(x-y)}{(x-y)^2} \\
+  \frac{\partial f}{\partial x} &= \frac{e^x(x-y)-(e^x-e^y)}{(x-y)^2} \\
+  \frac{\partial f}{\partial y} &= \frac{-e^y(x-y)+(e^x-e^y)}{(x-y)^2} \\
+  \frac{\partial f}{\partial x}+\frac{\partial f}{\partial y} &= \frac{(e^x-e^y)(x-y)}{(x-y)^2} \\
   &= \frac{e^x-e^y}{(x-y)} \\
   &= f(x, y)
 \end{align*}
