@@ -151,6 +151,12 @@ However, it is possible to turn this into CNF by using De Morgan's laws:
 Now there are three clauses to satisfy:
 $\lnot p_1$, $p_2$, and $p_2 \lor p_1$.
 
+We can turn the first implication into CNF
+by using the equivalence
+\[(a \rightarrow b) \cong (\lnot a \lor b),\]
+turning it into
+\[\lnot q_1 \lor p_1 \lor p_2 \lor p_3.\]
+
 From there, the fact that at least one $p$ is true
 may be written as $q_1 \lor q_2 \lor q_3$,
 which is till just one formula as before.
