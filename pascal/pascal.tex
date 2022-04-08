@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{Extending Pascal's Triangle}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\setlength{\tabcolsep}{-2pt}
+\begin{center}
+  \begin{tabular}{c c*{22}{ c}}
+    $\frac{\circ}{1!}$ && 0 && 0 && 0 && 0 && 0 && 1 && 0 && 0 && 0 && 0 && 0 \\
+    $\frac{\circ}{2!}$ & -1 && 1 && -1 && 1 && -1 && 1 && 1 && -1 && 1 && -1 && 1 && -1 \\
+    $\frac{\circ}{3!}$ && 14 && -11 && 8 && -5 && 2 && 1 && 2 && -5 && 8 && -11 && 14 \\
+    $\frac{\circ}{4!}$ & 158 && -102 && 58 && -26 && 6 && 2 && 2 && 6 && -26 && 58 && -102 && 158 \\
+    $\frac{\circ}{5!}$ && -954 && 444 && -154 && 24 && 6 && 4 && 6 && 24 && -154 && 444 && -954 \\
+    $\frac{\circ}{6!}$ & -9432 && 3708 && -1044 && 120 && 24 && 12 && 12 && 24 && 120 && -1044 && 3708 && -9432 \\
+    $\frac{\circ}{7!}$ && 33984 && -8028 && 720 && 120 && 48 && 36 && 48 && 120 && 720 && -8028 && 33984 \\
+    $\frac{\circ}{8!}$ & 341136 && -69264 && 5040 && 720 && 240 && 144 && 144 && 240 && 720 && 5040 && -69264 && 341136 \\
+    $\frac{\circ}{9!}$ && -663696 && 40320 && 5040 && 1440 && 720 && 576 && 720 && 1440 && 5040 && 40320 && -663696 \\
+    $\frac{\circ}{10!}$ & -6999840 && 362880 && 40320 && 10080 && 4320 && 144 && 144 && 4320 && 10080 && 40320 && 362880 && -6999840 \\
+  \end{tabular}
+\end{center}
+
+\end{document}
