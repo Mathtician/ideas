@@ -78,6 +78,14 @@ Check answer:
 \newpage
 3D variant:
 \[A(j, k, l) = \frac{j!k!l!}{(j+k+l+2)!} = B(j+1, k+1, l+1)\]
+Diffeq:
+\[
+f(x, y, z)
+= \frac{\partial f}{\partial x}(x, y, z)
++ \frac{\partial f}{\partial y}(x, y, z)
++ \frac{\partial f}{\partial z}(x, y, z)
+\]
+Solution:
 \begin{align*}
   f(x, y, z) &= \sum_{i=0}^\infty\sum_{j=0}^\infty\sum_{k=0}^\infty\frac{x^jy^kz^l}{(j+k+l+2)!} \\
   &= \sum_{n=0}^\infty\mathop{\sum\sum}_{j+k+l=n}\frac{x^jy^kz^l}{(j+k+l+2)!} \\
@@ -92,6 +100,22 @@ Check answer:
   &= \frac{e^x(y-z)+e^y(z-x)+e^z(x-y)}{(z-y)(x-z)(y-x)} \\
   &= -\frac{e^x}{(x-z)(y-x)}-\frac{e^y}{(z-y)(y-x)}-\frac{e^z}{(z-y)(x-z)} \\
   &= \frac{e^x}{(x-y)(x-z)}+\frac{e^y}{(y-x)(y-z)}+\frac{e^z}{(z-x)(z-y)}
+\end{align*}
+$N$D solution(?):
+\[
+f(x_1, x_2, \ldots, x_N)
+=\frac{e^{x_1}}{(x_1-x_2)\cdots(x_1-x_N)}
++\frac{e^{x_2}}{(x_2-x_1)\cdots(x_2-x_N)}
++\cdots
++\frac{e^{x_N}}{(x_N-x_1)(x_N-x_2)\cdots}
+\]
+Partial derivative:
+\begin{align*}
+\frac{\partial f}{\partial x_1}(x_1, x_2, \ldots, x_N)
+=\frac{e^{x_1}\frac{\partial f}{\partial x_1}((x_1-x_2)\cdots(x_1-x_N))-e^{x_1}(x_1-x_2)\cdots(x_1-x_N)}{(x_1-x_2)^2\cdots(x_1-x_N)^2}
+& +\frac{e^{x_2}}{(x_2-x_1)^2\cdots(x_2-x_N)}
++\cdots \\
+& +\frac{e^{x_N}}{(x_N-x_1)^2(x_N-x_2)\cdots}
 \end{align*}
 
 \end{document}
