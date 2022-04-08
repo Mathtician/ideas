@@ -75,5 +75,23 @@ Check answer:
   &= \frac{e^x-e^y}{(x-y)} \\
   &= f(x, y)
 \end{align*}
+\newpage
+3D variant:
+\[A(j, k, l) = \frac{j!k!l!}{(j+k+l+2)!} = B(j+1, k+1, l+1)\]
+\begin{align*}
+  f(x, y, z) &= \sum_{i=0}^\infty\sum_{j=0}^\infty\sum_{k=0}^\infty\frac{x^jy^kz^l}{(j+k+l+2)!} \\
+  &= \sum_{n=0}^\infty\mathop{\sum\sum}_{j+k+l=n}\frac{x^jy^kz^l}{(j+k+l+2)!} \\
+  &= \sum_{n=0}^\infty\frac{1}{(n+2)!}\mathop{\sum\sum}_{j+k+l=n}x^jy^kz^l \\
+  &= \sum_{n=0}^\infty\frac{1}{(n+2)!}\frac{(y-z)x^{n+2}+(z-x)y^{n+2}+(x-y)z^{n+2}}{(z-y)(x-z)(y-x)} \\
+  &= \frac{1}{(z-y)(x-z)(y-x)}\left(
+  (y-z)\sum_{n=0}^\infty\frac{x^{n+2}}{(n+2)!} +
+  (z-x)\sum_{n=0}^\infty\frac{y^{n+2}}{(n+2)!} +
+  (x-y)\sum_{n=0}^\infty\frac{z^{n+2}}{(n+2)!}
+  \right) \\
+  &= \frac{1}{(z-y)(x-z)(y-x)}((y-z)(e^x-1-x)+(z-x)(e^y-1-y)+(x-y)(e^z-1-z)) \\
+  &= \frac{e^x(y-z)+e^y(z-x)+e^z(x-y)}{(z-y)(x-z)(y-x)} \\
+  &= -\frac{e^x}{(x-z)(y-x)}-\frac{e^y}{(z-y)(y-x)}-\frac{e^z}{(z-y)(x-z)} \\
+  &= \frac{e^x}{(x-y)(x-z)}+\frac{e^y}{(y-x)(y-z)}+\frac{e^z}{(z-x)(z-y)}
+\end{align*}
 
 \end{document}
