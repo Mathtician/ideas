@@ -101,6 +101,24 @@ Solution:
   &= -\frac{e^x}{(x-z)(y-x)}-\frac{e^y}{(z-y)(y-x)}-\frac{e^z}{(z-y)(x-z)} \\
   &= \frac{e^x}{(x-y)(x-z)}+\frac{e^y}{(y-x)(y-z)}+\frac{e^z}{(z-x)(z-y)}
 \end{align*}
+Check answer:
+\begin{align*}
+  \frac{\partial f}{\partial x}(x, y, z)
+  &= \frac{\partial}{\partial x}\left(\frac{e^x}{(x-y)(x-z)}+\frac{e^y}{(y-x)(y-z)}+\frac{e^z}{(z-x)(z-y)}\right) \\
+  &= \frac{\partial}{\partial x}\frac{e^x}{(x-y)(x-z)}+\frac{\partial}{\partial x}\frac{e^y}{(y-x)(y-z)}+\frac{\partial}{\partial x}\frac{e^z}{(z-x)(z-y)} \\
+  &= \frac{\left(\frac{\partial}{\partial x}e^x\right)(x-y)(x-z)-e^x\left(\frac{\partial}{\partial x}((x-y)(x-z))\right)}{(x-y)^2(x-z)^2w}+\frac{e^y}{(y-x)^2(y-z)}+\frac{e^z}{(z-x)^2(z-y)} \\
+  &= \frac{e^x(x-y)(x-z)-e^x((x-y)+(x-z))}{(x-y)^2(x-z)^2}+\frac{e^y}{(y-x)^2(y-z)}+\frac{e^z}{(z-x)^2(z-y)} \\
+  &= \frac{e^x}{(x-y)(x-z)}-\frac{e^x}{(x-y)(x-z)^2}-\frac{e^x}{(x-y)^2(x-z)}+\frac{e^y}{(y-x)^2(y-z)}+\frac{e^z}{(z-x)^2(z-y)} \\
+  \frac{\partial f}{\partial y}(x, y, z)
+  &= \frac{e^x}{(x-y)^2(x-z)}+\frac{e^y}{(y-x)(y-z)}-\frac{e^y}{(y-x)(y-z)^2}-\frac{e^y}{(y-x)^2(y-z)}+\frac{e^z}{(z-x)(z-y)^2} \\
+  \frac{\partial f}{\partial z}(x, y, z)
+  &= \frac{e^x}{(x-y)(x-z)^2}+\frac{e^y}{(y-x)(y-z)^2}+\frac{e^z}{(z-x)(z-y)}-\frac{e^z}{(z-x)(z-y)^2}-\frac{e^z}{(z-x)^2(z-y)}
+\end{align*}
+Each term with quadratic denominator only appears once across all partials
+Each term with cubic denominator appears twice across all partials,
+once positive and once negative \\
+When added, cubic terms cancel and quadratics remain to form $f(x, y, z)$
+\newpage
 $N$D solution(?):
 \[
 f(x_1, x_2, \ldots, x_N)
