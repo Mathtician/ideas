@@ -8,8 +8,8 @@
 \usepackage{float}
 \graphicspath{{images/}}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=blue,
+  colorlinks=true,
+  urlcolor=blue,
 }
 \begin{document}
 
@@ -87,7 +87,7 @@ f(x, y, z)
 \]
 Solution:
 \begin{align*}
-  f(x, y, z) &= \sum_{i=0}^\infty\sum_{j=0}^\infty\sum_{k=0}^\infty\frac{x^jy^kz^l}{(j+k+l+2)!} \\
+  f(x, y, z) &= \sum_{j=0}^\infty\sum_{k=0}^\infty\sum_{l=0}^\infty\frac{x^jy^kz^l}{(j+k+l+2)!} \\
   &= \sum_{n=0}^\infty\mathop{\sum\sum}_{j+k+l=n}\frac{x^jy^kz^l}{(j+k+l+2)!} \\
   &= \sum_{n=0}^\infty\frac{1}{(n+2)!}\mathop{\sum\sum}_{j+k+l=n}x^jy^kz^l \\
   &= \sum_{n=0}^\infty\frac{1}{(n+2)!}\frac{(y-z)x^{n+2}+(z-x)y^{n+2}+(x-y)z^{n+2}}{(z-y)(x-z)(y-x)} \\
@@ -114,26 +114,46 @@ Check answer:
   \frac{\partial f}{\partial z}(x, y, z)
   &= \frac{e^x}{(x-y)(x-z)^2}+\frac{e^y}{(y-x)(y-z)^2}+\frac{e^z}{(z-x)(z-y)}-\frac{e^z}{(z-x)(z-y)^2}-\frac{e^z}{(z-x)^2(z-y)}
 \end{align*}
-Each term with quadratic denominator only appears once across all partials
+Each term with quadratic denominator only appears once across all partials \\
 Each term with cubic denominator appears twice across all partials,
 once positive and once negative \\
 When added, cubic terms cancel and quadratics remain to form $f(x, y, z)$
 \newpage
-$N$D solution(?):
+$N$D solution:
 \[
-f(x_1, x_2, \ldots, x_N)
-=\frac{e^{x_1}}{(x_1-x_2)\cdots(x_1-x_N)}
-+\frac{e^{x_2}}{(x_2-x_1)\cdots(x_2-x_N)}
-+\cdots
-+\frac{e^{x_N}}{(x_N-x_1)(x_N-x_2)\cdots}
+f(x_1, \ldots, x_N) =
+\sum_{I=1}^N\frac{e^{x_I}}{\prod\limits_{J \neq I}(x_I-x_J)}
+%% \frac{e^{x_1}}{(x_1-x_2)\cdots(x_1-x_N)}
+%% +\frac{e^{x_2}}{(x_2-x_1)\cdots(x_2-x_N)}
+%% +\cdots
+%% +\frac{e^{x_N}}{(x_N-x_1)(x_N-x_2)\cdots}
 \]
-Partial derivative:
+$I \neq K$: Define
+\[T(I, K) = \frac{\partial}{\partial x_K} \frac{e^{x_I}}{\prod\limits_{J \neq I}(x_I-x_J)}
+= \frac{e^{x_I}}{(x_I-x_K)\prod\limits_{J \neq I}(x_I-x_J)}\]
+Partial derivative of remaining terms ($I=K$):
 \begin{align*}
-\frac{\partial f}{\partial x_1}(x_1, x_2, \ldots, x_N)
-=\frac{e^{x_1}\frac{\partial f}{\partial x_1}((x_1-x_2)\cdots(x_1-x_N))-e^{x_1}(x_1-x_2)\cdots(x_1-x_N)}{(x_1-x_2)^2\cdots(x_1-x_N)^2}
-& +\frac{e^{x_2}}{(x_2-x_1)^2\cdots(x_2-x_N)}
-+\cdots \\
-& +\frac{e^{x_N}}{(x_N-x_1)^2(x_N-x_2)\cdots}
+  \frac{\partial}{\partial x_K} \frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}
+  &= \frac{\frac{\partial}{\partial x_K}e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\frac{e^{x_K}\frac{\partial}{\partial x_K}\prod\limits_{J \neq K}(x_K-x_J)}{\prod\limits_{J \neq K}(x_K-x_J)^2} \\
+  &= \frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\frac{e^{x_K}\sum\limits_{L \neq K}\prod\limits_{J \not\in \{K, L\}}(x_K-x_J)}{\prod\limits_{J \neq K}(x_K-x_J)^2} \\
+  &= \frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum_{L \neq K}\frac{e^{x_K}}{(x_K-x_L)\prod\limits_{J \neq K}(x_K-x_J)} \\
+  &= \frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum_{L \neq K}T(K, L)
+\end{align*}
+Overall derivative for given $x_K$:
+\begin{align*}
+  \frac{\partial f}{\partial x_K}(x_1, \ldots, x_N)
+  &= \frac{\partial}{\partial x_K} \sum_{I=1}^N \frac{e^{x_I}}{\prod\limits_{J \neq I}(x_I-x_J)} \\
+  &= \frac{\partial}{\partial x_K} \frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)} + \sum_{I \neq K} \frac{\partial}{\partial x_K} \frac{e^{x_I}}{\prod\limits_{J \neq I}(x_I-x_J)} \\
+  &= \frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum\limits_{L \neq K}T(K, L)+\sum_{I \neq K}T(I, K)
+\end{align*}
+Sum of all partials:
+\begin{align*}
+  \sum_{K=1}^N\frac{\partial f}{\partial x_K}(x_1, \ldots, x_N)
+  &= \sum_{K=1}^N\left(\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum\limits_{L \neq K}T(K, L)+\sum_{I \neq K}T(I, K)\right) \\
+  &= \sum_{K=1}^N\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum_{K=1}^N\sum\limits_{L \neq K}T(K, L)+\sum_{K=1}^N\sum_{I \neq K}T(I, K) \\
+  &= \sum_{K=1}^N\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum_{K=1}^N\sum\limits_{L \neq K}T(K, L)+\sum_{I=1}^N\sum_{K \neq I}T(I, K) \\
+  &= \sum_{K=1}^N\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)} \\
+  &= f(x_1, \ldots, x_N)
 \end{align*}
 
 \end{document}
