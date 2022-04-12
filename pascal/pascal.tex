@@ -17,6 +17,26 @@
 \author{Aresh Pourkavoos}
 \maketitle
 
+Pascal's triangle contains binomial coefficients:
+\[
+\binom{n}{k} = \frac{n!}{(n-k)!k!},
+n \in \mathbb{N}, k \in \mathbb{N}, k \leq n
+\]
+Satisfies Pascal's identity for all arguments in range:
+\[\binom{n+1}{k+1} = \binom{n}{k+1}+\binom{n}{k}\]
+How to extend to all integers,
+i.e. fill the grid with numbers? \\
+Entries where $n \geq 0$ are unambiguous:
+all numbers outside of triangle are 0 \\
+$n = -1$: can choose a single number freely,
+after which the rest of the row is forced
+
+%% For simplicity, rewrite in terms of $k$ and $j=n-k$:
+%% \[F(j, k) = \frac{(j+k)!}{j!k!}, j, k \in \mathbb{N}\]
+%% Satisfies Pascal's identity for all $j, k \in \mathbb{N}$:
+%% \[F(j+1, k+1) = F(j, k+1) + F(j+1, k)\]
+%% How to 
+
 \setlength{\tabcolsep}{-2pt}
 \begin{center}
   \begin{tabular}{c c*{22}{ c}}
