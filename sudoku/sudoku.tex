@@ -156,10 +156,22 @@ by using the equivalence
 \[(a \rightarrow b) \cong (\lnot a \lor b),\]
 turning it into
 \[\lnot q_1 \lor p_1 \lor p_2 \lor p_3.\]
+Applying this to the reverse implication, on the other hand, returns
+\[\lnot (p_1 \lor p_2 \lor p_3) \lor q_1,\]
+which is still not in CNF.
+De Morgan's laws yield
+\[(\lnot p_1 \land \lnot p_2 \land \lnot p_3) \lor q_1,\]
+and the inner expression may be distributed:
+\[(\lnot p_1 \lor q_1) \land (\lnot p_2 \lor q_1) \land (\lnot p_3 \lor q_1).\]
+This is in CNF, so it may be fed to the solver.
+Note that this expression is also equivalent to
+\[(p_1 \rightarrow q_1) \land (p_1 \rightarrow q_1) \land (p_1 \rightarrow q_1),\]
+which makes sense intuitively:
+any of $p_1$, $p_2$, and $p_3$ is enough to imply $q_1$ on its own.
 
 From there, the fact that at least one $p$ is true
 may be written as $q_1 \lor q_2 \lor q_3$,
-which is till just one formula as before.
+which is still just one formula as before.
 The savings come from the statement that
 at most one $p$ is true,
 which is broken into two main parts.
