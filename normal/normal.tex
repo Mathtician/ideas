@@ -7,6 +7,7 @@
 \usepackage{caption}
 \usepackage{float}
 \usepackage{listings}
+\usepackage{courier}
 \graphicspath{{images/}}
 \hypersetup{
     colorlinks=true,
@@ -14,7 +15,8 @@
 }
 \lstset
 {
-    numbers=left
+    numbers=left,
+    basicstyle=\ttfamily
 }
 \begin{document}
 
@@ -103,42 +105,70 @@ that prints the first 8192 terms of the sequence.
 \begin{lstlisting}[language=c]
 #include <stdio.h>
 #define N_TERMS 8192
+// Stores generated terms
 int a[N_TERMS];
+// b[j-1] is the number of bits before (not including) a[n-j]
+// which match the tail of the first n entries
 int b[N_TERMS];
+// c induces a linked list structure on b
+// with an extra node to make it cyclic
+// Indices are offset by 1 since the extra node is in front
 int c[N_TERMS];
 int cEnd = 0;
 int main() {
+  FILE *bfile = fopen("b330731.txt", "w+");
   for (int n = 0; n < N_TERMS; n++) {
+    // Append new digit to list from previous loop
+    // or (n = 0) initialize c
     c[n] = 0;
     c[cEnd] = n;
     cEnd = n;
+    // Find new digit by iterating over b
+    // using the indices given in c
     int newD = 0;
     int freq0 = 0;
     int freq1 = 0;
     int prevTail = -1;
     int j = c[0];
-    while (j != 0) { 
+    while (j != 0) {
       int currTail = b[j-1];
       if (currTail != prevTail) {
-        if (freq1 != freq0) break;
+        // All tails of a given length have been accumulated in freqs,
+        // so they need to be compared to decide whether to continue
+        if (freq1 != freq0) {
+          break;
+        }
         freq0 = 0;
         freq1 = 0;
       }
-      if (a[n-j] == 0) freq0++;
-      else freq1++;
+      // Use digit that comes after current tail to adjust freqs
+      if (a[n-j] == 0) {
+        freq0++;
+      } else {
+        freq1++;
+      }
       prevTail = currTail;
       j = c[j];
     }
-    if (freq1 < freq0) newD = 1;
+    // 0 is chosen by default (if freq1 == freq0)
+    if (freq1 < freq0) {
+      newD = 1;
+    }
+    // Update matching tail lengths
+    j = 0;
     for (int numVisited = 0; numVisited < n; numVisited++) {
       int k = c[j];
       if (a[n-k] == newD) {
+        // Matching tail grows by 1, position in list is unaffected
         b[k-1]++;
         j = k;
       } else {
+        // Matching tail resets to 0, moved to back of list
         b[k-1] = 0;
         c[j] = c[k];
-        if (cEnd == k) cEnd = j;
+        if (cEnd == k) {
+          cEnd = j;
+        }
         c[k] = 0;
         c[cEnd] = k;
         cEnd = k;
@@ -147,8 +177,10 @@ int main() {
     a[n] = newD;
     b[n] = 0;
     printf("%d", newD);
+    fprintf(bfile, "%d %d\n", n, newD);
   }
   printf("\n");
+  fclose(bfile);
   return 0;
 }
 \end{lstlisting}
@@ -171,6 +203,22 @@ A line-by-line breakdown:
   comes from the nested for loops. 
   Each outer loop on line 8 generates a single term,
   and the loops on lines 17 and 30 take $O(n)$ steps each.
+\item
+  For all integers $n \in [0, \text{N\_TERMS}]$,
+  after $n$ iterations of the outer loop
+  (i.e. at all points right after $n$ is incremented
+  and the next loop is about to begin):
+  \begin{itemize}
+  \item
+    $a[i] = A330731(i)$ for all $i \in [0, n)$,
+    i.e. $a$ stores the first $n$ terms of A330731.
+  \item
+    $b[i]$ stores the length of the longest subsequence
+    ending at $a[n-i-1]$
+    which matches the 
+  \end{itemize}
+  For all arrays,
+  the terms beyond the first $n$ are not initialized and thus undefined.
 \end{itemize}
 
 
