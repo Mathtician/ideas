@@ -46,21 +46,23 @@ of which there are $2^n$, where $n$ is the number of variables.
 However, there are much more optimized algorithms in use,
 making SAT solvers practical for huge formulas with thousands of variables or more.
 
-%% Sections here: Sudoku -> CNF -> solution
-
+This article will consist of two main sections:
+translating Sudoku into a form a SAT solver can recognize,
+and how the solver actually finds the answer.
 However, it's not immediately obvious
-how Sudoku could be translated into a SAT problem:
-after all, each cell is filled with one of 9 possible digits,
+how Sudoku could be turned into a SAT problem,
+since each cell is filled with one of 9 possible digits,
 not one of 2 truth values.
 We can represent a choice of 9 by having 9 variables for each cell,
-one for each possible digit.
-But this creates another problem:
-out of the 512 possible assignments, only 9 are valid.
+one for each possible digit,
+but this creates another problem.
+There are 512 possible assignments to these variables,
+which include all of them being false, i.e. leaving a cell empty,
+and more than one being true, i.e. placing two or more digits in the same cell.
 We need to constrain these variables (in typical SAT solver fashion)
-to say that exactly one variable must be true.
-There are two parts to this problem:
-saying that at least one is true
-and saying that at most one is true.
+to ensure that exactly one variable is true.
+There are two parts to this problem: forbidding empty cells
+and preventing two digits in the same cell.
 The former can be expressed as an or statment containing the given variables:
 \[p_1 \lor p_2 \lor \ldots \lor p_n\]
 The latter looks at all pairs of variables,
