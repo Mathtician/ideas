@@ -313,4 +313,16 @@ there are $n=3^i$ free variables,
 $(n-3)/2$ auxiliary variables
 (for a total of $(3n-3)/2$ variables),
 and $(7n-15)/2$ formulas.
+
+% Explain unit prop before this
+In this representation,
+there are not only fewer clauses for the solver to check
+but also a Sudoku solving trick that we get for free:
+the technique of intersection removal.
+Unit propagation is able to reason with this
+and proceed further toward a solution
+before having to guess than before,
+which is great because backtracking is expensive.
+% Explain intersection removal
+
 \end{document}
