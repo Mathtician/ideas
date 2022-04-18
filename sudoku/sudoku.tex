@@ -46,6 +46,23 @@ of which there are $2^n$, where $n$ is the number of variables.
 However, there are much more optimized algorithms in use,
 making SAT solvers practical for huge formulas with thousands of variables or more.
 
+Usually, the logical statements that SAT solvers accept
+are in a restricted format known as
+conjunctive normal form, or CNF.
+A CNF statement consists of clauses joined by $\land$,
+where each clause consists of terms joined by $\lor$,
+where each term is either a variable or its negation.
+For example,
+\[(p_1 \lor \lnot p_2) \land (p_2 \lor p_3)\]
+is in CNF, but
+\[\lnot (p_1 \lor \lnot p_2) \land (p_2 \lor p_3)\]
+is not, since CNF does not allow the clause
+$(p_1 \lor p_2)$ to be negated.
+However, it is possible to turn this into CNF by using De Morgan's laws:
+\[\lnot p_1 \land p_2 \land (p_2 \lor p_3)\]
+Now there are three clauses to satisfy:
+$\lnot p_1$, $p_2$, and $p_2 \lor p_3$.
+
 This article will consist of two main sections:
 translating Sudoku into a form a SAT solver can recognize,
 and how the solver actually finds the answer.
@@ -136,22 +153,6 @@ Instead, the biimplication must be broken up:
   q_1 &\rightarrow (p_1 \lor p_2 \lor p_3), \\
   (p_1 \lor p_2 \lor p_3) &\rightarrow q_1.
 \end{align*}
-In fact, the logical statements that SAT solvers accept
-are in a much more restrictive format known as
-conjunctive normal form, or CNF.
-A CNF statement is a formula consisting of clauses joined by $\land$,
-where each clause consists of terms joined by $\lor$,
-where each term is either a variable or its negation.
-For example,
-\[(p_1 \lor \lnot p_2) \land (p_2 \lor p_3)\]
-is in CNF, but
-\[\lnot (p_1 \lor \lnot p_2) \land (p_2 \lor p_3)\]
-is not, since CNF does not allow the clause
-$(p_1 \lor p_2)$ to be negated.
-However, it is possible to turn this into CNF by using De Morgan's laws:
-\[\lnot p_1 \land p_2 \land (p_2 \lor p_3)\]
-Now there are three clauses to satisfy:
-$\lnot p_1$, $p_2$, and $p_2 \lor p_1$.
 
 We can turn the first implication into CNF
 by using the equivalence
