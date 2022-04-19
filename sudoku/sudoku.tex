@@ -166,15 +166,18 @@ De Morgan's laws yield
 \[(\lnot p_1 \land \lnot p_2 \land \lnot p_3) \lor q_1,\]
 and the inner expression may be distributed:
 \[(\lnot p_1 \lor q_1) \land (\lnot p_2 \lor q_1) \land (\lnot p_3 \lor q_1).\]
-This is in CNF, so it may be fed to the solver.
+This is a CNF expression consisting of 3 clauses.
 Note that this expression is also equivalent to
 \[(p_1 \rightarrow q_1) \land (p_1 \rightarrow q_1) \land (p_1 \rightarrow q_1),\]
 which makes sense intuitively:
 any of $p_1$, $p_2$, and $p_3$ is enough to imply $q_1$ on its own.
+Thus the ``definition'' of $q_1$ takes 4 clauses,
+and so do those of $q_2$ and $q_3$,
+for a total of 12.
 
 From there, the fact that at least one $p$ is true
 may be written as $q_1 \lor q_2 \lor q_3$,
-which is still just one formula as before.
+which is 1 clause.
 The savings come from the statement that
 at most one $p$ is true,
 which is broken into two main parts.
