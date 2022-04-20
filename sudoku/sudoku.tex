@@ -185,19 +185,26 @@ at most one $q$ can be true,
 since otherwise,
 there would be two $p$s ``contained in'' different $q$s which are both true.
 Thus
-\begin{align*}
-  \lnot (q_1 \land q_2), \\
-  \lnot (q_1 \land q_3), \\
-  \lnot (q_2 \land q_3).
-\end{align*}
+\[
+\lnot (q_1 \land q_2) \land
+\lnot (q_1 \land q_3) \land
+\lnot (q_2 \land q_3),
+\]
+which can be rewritten in CNF using De Morgan's laws:
+\[
+(\lnot q_1 \lor \lnot q_2) \land
+(\lnot q_1 \lor \lnot q_3) \land
+(\lnot q_2 \lor \lnot q_3).
+\]
 The second is that ``within'' each $q$,
 at most one $p$ is true.
 For example, for $q_2$, the statmements would be
-\begin{align*}
-  \lnot (p_4 \land p_5), \\
-  \lnot (p_4 \land p_6), \\
-  \lnot (p_5 \land p_7).
-\end{align*}
+\[
+\lnot (p_4 \land p_5) \land
+\lnot (p_4 \land p_6) \land
+\lnot (p_5 \land p_7),
+\]
+which can similarly be rewritten in CNF.
 Similar statements may be written for $p_1$ through $p_3$
 and for $p_7$ through $p_9$.
 All of the clauses are shown below.
