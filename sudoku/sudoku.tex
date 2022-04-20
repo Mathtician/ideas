@@ -89,9 +89,9 @@ saying that they can't both be true:
 \land \lnot (p_{n-1} \land p_n)\]
 For $n$ variables, there are $\binom{n}{2} = \frac{n(n-1)}{2}$ pairs.
 For a given Sudoku cell, where there are 9 variables,
-it takes $\binom{9}{2}$ of them
+it takes $\binom{9}{2} = 36$ of them
 to say that at most one variable may be true,
-and the or clause containing all 9 variables makes 37.
+and adding the or clause with all 9 variables makes 37.
 Since there are 81 cells,
 it takes $37 \times 81 = 2997$ formulas
 just to say that every cell is filled with exactly one digit.
@@ -172,15 +172,14 @@ Note that this expression is also equivalent to
 which makes sense intuitively:
 any of $p_1$, $p_2$, and $p_3$ is enough to imply $q_1$ on its own.
 Thus the ``definition'' of $q_1$ takes 4 clauses,
-and so do those of $q_2$ and $q_3$,
-for a total of 12.
+and so do those of $q_2$ and $q_3$.
 
 From there, the fact that at least one $p$ is true
 may be written as $q_1 \lor q_2 \lor q_3$,
 which is 1 clause.
-The savings come from the statement that
-at most one $p$ is true,
-which is broken into two main parts.
+Stating that at most one $p$ is true,
+on the other hand,
+is broken into two main parts.
 The first of these is that
 at most one $q$ can be true,
 since otherwise,
@@ -200,8 +199,8 @@ For example, for $q_2$, the statmements would be
   \lnot (p_5 \land p_7).
 \end{align*}
 Similar statements may be written for $p_1$ through $p_3$
-and for $p_7$ through $p_9$,
-bringing the total to 12.
+and for $p_7$ through $p_9$.
+All of the clauses are shown below.
 
 %% For example, we might define an auxiliary variable $q_1$
 %% to be equivalent to $p_1 \lor p_2$,
@@ -314,9 +313,10 @@ bringing the total to 12.
 %% and $(7n-15)/2$ formulas.
 
 % Explain unit prop before this
-In this representation,
-there are not only fewer clauses to check
-but also a Sudoku solving trick that we get for free:
+In total, there are 25 clauses required
+to say that exactly one of $p_1$ through $p_9$ is true,
+a significant improvement over the original 37.
+Additionally, this representation gives us a Sudoku solving trick for free:
 the technique of intersection removal.
 Unit propagation is able to reason with this
 and proceed further toward a solution
