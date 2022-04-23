@@ -8,8 +8,8 @@
 \usepackage{float}
 \graphicspath{{images/}}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=blue,
+  colorlinks=true,
+  urlcolor=blue,
 }
 \begin{document}
 
@@ -21,5 +21,30 @@ Given a tiling of the plane by non-self-intersecting polygons,
 now do you assign each point to a unique polygon?
 The interiors don't overlap, so they can be assigned unambiguously,
 but what about the edges and vertices?
+It's possible to assign some arbitrary ordering to the polygons
+and simply choose the ``first'' one that contains a given point.
+However, it would be nice if the assignment
+depended only on the shapes themselves
+and not on any additional information.
+\begin{itemize}
+\item
+  Non-vertical edges are assigned to the polygon directly below them.
+\item
+  Vertical edges are assigned to the polygon directly to their right.
+\item
+  Vertices with no downward-pointing edge are assigned to the polygon directly below them.
+\item
+  Vertices with a downward-pointing edge are assigned to the polygon directly to the right of said edge.
+\end{itemize}
+\begin{center}
+  \begin{tabular}{|c c c c c|}
+    \hline
+    4 & 3 & 2 & 2 & 1 \\
+    4 & 4 & 2 & 1 & 1 \\
+    5 & 5 & 7 & 8 & 8 \\
+    5 & 6 & 7 & 7 & 8 \\
+    6 & 6 & 7 & 7 & 7 \\ \hline
+  \end{tabular}
+\end{center}
 
 \end{document}
