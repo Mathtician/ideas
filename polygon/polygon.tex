@@ -37,6 +37,12 @@ and not on any additional information.
   Vertices with a downward-pointing edge are assigned to the polygon directly to the right of said edge.
 \end{itemize}
 This assignment is invariant under translation and scaling, but not rotation.
+In fact, no rotationally-invariant assignment of edges to the polygons that contain them exists.
+Consider, for example, an infinite square tiling
+with two adjacent squares sharing an edge.
+This edge must belong to one of the two squares,
+but rotating the tiling 180 degrees about the center of the edge
+gives a copy of the tiling, but with the edge assigned to the other square.
 \begin{center}
   \begin{tabular}{|c c c c c|}
     \hline
