@@ -75,7 +75,7 @@ but might hurt level design \\
 Larger squares $\rightarrow$ fewer singularities $\rightarrow$ less harm in covering them \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
 
-Rendering function is recursive:
+Render method 1 (recursive):
 \begin{itemize}
 \item
   Accept left+right boundary points, square to render,
@@ -99,21 +99,24 @@ Rendering function is recursive:
   Overlay with original buffer
 \end{itemize}
 4 base cases starting from current square with left/right bounds along x/y axes \\
-Renders current square 4x and squares in same row/col 2x
-%% Build a tree of regions, starting from current square \\
-%% Region info: left and right boundary points, square rendered,
-%% position, and orientation of square \\
-%% Region is split if strictly contains singularity (i.e. not on edge) \\
-%% Might be easiest to form tree in 9 steps:
-%% current square, 4 orthogonal rays of squares, 4 quadrants \\
-%% Should also be array mapping positions to regions at given position: \\
-%% list of separating points in order and the squares/orientations between them \\
-%% For each position, render oriented squares masked by separating points \\
-%% Could use just one separating point and overlap regions: free anti-aliasing \\
-%% Masking areas behind opaque objects should only be done at the end: \\
-%% ensure consistent behavior inside/outside square containing object
-%% Must be regions of square accessible in only one orientation:
-%% side longer than 2x jump height \\
+Renders current square 4x and squares in same row/col 2x \\
+
+Render method 2 (preferred?) \\
+Build a tree of regions, starting from current square \\
+Region info: left and right boundary points, square rendered,
+position, and orientation of square \\
+Region is split if strictly contains singularity (i.e. not on edge) \\
+Might be easiest to form tree in 9 steps:
+current square, 4 orthogonal rays of squares, 4 quadrants \\
+For each position, the regions are laid on top of each other using z depth
+in (counter)clockwise order \\
+Each region gets transparency based on just one separating point:
+layer underneath gives anti-aliasing effect \\
+Masking areas behind opaque objects should only be done at the end: \\
+ensure consistent behavior inside/outside square containing object \\
+
+Must be regions of square accessible in only one orientation:
+side longer than 2x jump height \\
 
 Art style between pixel and vector:
 each ``pixel'' is not a solid color but one of a few predefined shapes, \\
