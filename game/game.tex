@@ -74,21 +74,50 @@ Covering singularities would prevent glitches and restore accuracy
 but might hurt level design \\
 Larger squares $\rightarrow$ fewer singularities $\rightarrow$ less harm in covering them \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
+
+Rendering function is recursive:
+\begin{itemize}
+\item
+  Accept left+right boundary points, square to render,
+  position/orientation of square, quadrant
+\item
+  Render given square in full
+\item
+  Check if furthest vertex given by quadrant (``splitting vertex'') falls strictly within bounds
+\item
+  If not, call with same bounds/quadrant,
+  single adjacent square with new position/orientation
+\item
+  If so, make 2 recursive calls changing appropriate bounds to splitting vertex
+\item
+  Store the result of the 2nd call in a separate buffer
+\item
+  Could maintain a stack of buffers and add depth as an argument: depth necessary anyway
+\item
+  Mask buffer with line between camera and splitting vertex (anti-aliasing here!)
+\item
+  Overlay with original buffer
+\end{itemize}
+4 base cases starting from current square with left/right bounds along x/y axes \\
+Renders current square 4x and squares in same row/col 2x
+%% Build a tree of regions, starting from current square \\
+%% Region info: left and right boundary points, square rendered,
+%% position, and orientation of square \\
+%% Region is split if strictly contains singularity (i.e. not on edge) \\
+%% Might be easiest to form tree in 9 steps:
+%% current square, 4 orthogonal rays of squares, 4 quadrants \\
+%% Should also be array mapping positions to regions at given position: \\
+%% list of separating points in order and the squares/orientations between them \\
+%% For each position, render oriented squares masked by separating points \\
+%% Could use just one separating point and overlap regions: free anti-aliasing \\
+%% Masking areas behind opaque objects should only be done at the end: \\
+%% ensure consistent behavior inside/outside square containing object
+%% Must be regions of square accessible in only one orientation:
+%% side longer than 2x jump height \\
+
 Art style between pixel and vector:
-each ``pixel'' is not just a solid color but one of a few predefined shapes, \\
-e.g. solid color, 2 colors split diagonally, split by circular arc, etc \\
-Build a tree of regions, starting from current square \\
-Region info: left and right boundary points, square rendered,
-position, and orientation of square \\
-Region is split if strictly contains singularity (i.e. not on edge) \\
-Might be easiest to form tree in 9 steps:
-current square, 4 orthogonal rays of squares, 4 quadrants \\
-Should also be array mapping positions to regions at given position: \\
-list of separating points in order and the squares/orientations between them \\
-For each position, render oriented squares masked by separating points \\
-Could use just one separating point and overlap regions: free anti-aliasing \\
-Must be regions of square accessible in only one orientation:
-side longer than 2x jump height \\
-Masking areas behind opaque objects should only be done at the end: \\
-ensure consistent behavior inside/outside square containing object
+each ``pixel'' is not a solid color but one of a few predefined shapes, \\
+e.g. solid color, 2 colors split diagonally, split by circular arc \\
+
+
 \end{document}
