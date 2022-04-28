@@ -106,8 +106,8 @@ Build a tree of regions, starting from current square \\
 Region info: left and right boundary points, square rendered,
 position, and orientation of square \\
 Region is split if strictly contains singularity (i.e. not on edge) \\
-Might be easiest to form tree in 9 steps:
-current square, 4 orthogonal rays of squares, 4 quadrants \\
+4 quadrants constructed separately,
+contains duplicate regions like previous method \\
 For each position, the regions are laid on top of each other using z depth
 in (counter)clockwise order \\
 Each region gets transparency based on just one separating point:
