@@ -58,11 +58,11 @@ Inlined pixels: edge cases (given to clockwise region in this case) \\
 Going through a singularity and back is a holonomy loop \\
 Entity gravity is ambiguous when not in the same square as the player:
 \begin{itemize}
-  \item
-    Freeze when player leaves the square: unintuitive, esp for flat regions
-  \item
-    Based on last player interaction: better, but initial direction must be set:
-    could be none
+\item
+  Freeze when player leaves the square: unintuitive, esp for flat regions
+\item
+  Based on last player interaction: better, but initial direction must be set:
+  could be none
 \end{itemize}
 Have ``naked'' singularities or cover them up? \\
 Naked is easier to implement if accounted for
@@ -75,33 +75,22 @@ but might hurt level design \\
 Larger squares $\rightarrow$ fewer singularities $\rightarrow$ less harm in covering them \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
 
-Render method 1 (recursive):
-\begin{itemize}
-\item
-  Accept left+right boundary points, square to render,
-  position/orientation of square, quadrant
-\item
-  Render given square in full
-\item
-  Check if furthest vertex given by quadrant (``splitting vertex'') falls strictly within bounds
-\item
-  If not, call with same bounds/quadrant,
-  single adjacent square with new position/orientation
-\item
-  If so, make 2 recursive calls changing appropriate bounds to splitting vertex
-\item
-  Store the result of the 2nd call in a separate buffer
-\item
-  Could maintain a stack of buffers and add depth as an argument: depth necessary anyway
-\item
-  Mask buffer with line between camera and splitting vertex (anti-aliasing here!)
-\item
-  Overlay with original buffer
-\end{itemize}
+Render method 1 (recursive): \\
+Accept left+right boundary points, square to render,
+position/orientation of square, quadrant \\
+Render given square in full \\
+Check if furthest vertex given by quadrant (``splitting vertex'') falls strictly within bounds \\
+If not, call with same bounds/quadrant,
+single adjacent square with new position/orientation \\
+If so, make 2 recursive calls changing appropriate bounds to splitting vertex \\
+Store the result of the 2nd call in a separate buffer \\
+Could maintain a stack of buffers and add depth as an argument: depth necessary anyway \\
+Mask buffer with line between camera and splitting vertex (anti-aliasing here!) \\
+Overlay with original buffer \\
 4 base cases starting from current square with left/right bounds along x/y axes \\
 Renders current square 4x and squares in same row/col 2x \\
 
-Render method 2 \\
+Render method 2 (polygons): \\
 Build a tree of regions, starting from current square \\
 Region info: left and right boundary points, square rendered,
 position, and orientation of square \\
@@ -115,10 +104,13 @@ layer underneath gives anti-aliasing effect \\
 Masking areas behind opaque objects should only be done at the end: \\
 ensure consistent behavior inside/outside square containing object \\
 
-Render method 3 \\
-Build tree as before, using a queue for BFS \\
-Regions of the same square are contiguous in the queue \\
-Store index of first region in array
+Render method 3 (pixel shader): \\
+Build tree as in method 2, using a queue for BFS \\
+Regions in the same position are contiguous in the queue \\
+Store index of first region in array \\
+Given a pixel, find position, access array for queue index,
+iterate through queue until pixel is in bounds \\
+Apply orientation of region to find color \\
 
 Must be regions of square accessible in only one orientation:
 side longer than 2x jump height \\
