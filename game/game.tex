@@ -101,7 +101,7 @@ Render method 1 (recursive):
 4 base cases starting from current square with left/right bounds along x/y axes \\
 Renders current square 4x and squares in same row/col 2x \\
 
-Render method 2 (preferred?) \\
+Render method 2 \\
 Build a tree of regions, starting from current square \\
 Region info: left and right boundary points, square rendered,
 position, and orientation of square \\
@@ -114,6 +114,11 @@ Each region gets transparency based on just one separating point:
 layer underneath gives anti-aliasing effect \\
 Masking areas behind opaque objects should only be done at the end: \\
 ensure consistent behavior inside/outside square containing object \\
+
+Render method 3 \\
+Build tree as before, using a queue for BFS \\
+Regions of the same square are contiguous in the queue \\
+Store index of first region in array
 
 Must be regions of square accessible in only one orientation:
 side longer than 2x jump height \\
