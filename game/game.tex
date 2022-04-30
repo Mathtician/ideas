@@ -73,6 +73,8 @@ but may result in graphical glitches \\
 Covering singularities would prevent glitches and restore accuracy
 but might hurt level design \\
 Larger squares $\rightarrow$ fewer singularities $\rightarrow$ less harm in covering them \\
+Also, must be regions  accessible in only one orientation:
+side longer than 2x jump height \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
 
 Render method 1 (recursive): \\
@@ -111,9 +113,6 @@ Store index of first region in array \\
 Given a pixel, find position, access array for queue index,
 iterate through queue until pixel is in bounds \\
 Apply orientation of region to find color \\
-
-Must be regions of square accessible in only one orientation:
-side longer than 2x jump height \\
 
 Art style between pixel and vector:
 each ``pixel'' is not a solid color but one of a few predefined shapes, \\
