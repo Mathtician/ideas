@@ -77,37 +77,43 @@ Also, must be regions  accessible in only one orientation:
 side longer than 2x jump height \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
 
-Render method 1 (recursive): \\
-Accept left+right boundary points, square to render,
-position/orientation of square, quadrant \\
-Render given square in full \\
-Check if furthest vertex given by quadrant (``splitting vertex'') falls strictly within bounds \\
-If not, call with same bounds/quadrant,
-single adjacent square with new position/orientation \\
-If so, make 2 recursive calls changing appropriate bounds to splitting vertex \\
-Store the result of the 2nd call in a separate buffer \\
-Could maintain a stack of buffers and add depth as an argument: depth necessary anyway \\
-Mask buffer with line between camera and splitting vertex (anti-aliasing here!) \\
-Overlay with original buffer \\
-4 base cases starting from current square with left/right bounds along x/y axes \\
-Renders current square 4x and squares in same row/col 2x \\
+%% Render method 1 (recursive): \\
+%% Accept left+right boundary points, square to render,
+%% position/orientation of square, quadrant \\
+%% Render given square in full \\
+%% Check if furthest vertex given by quadrant (``splitting vertex'') falls strictly within bounds \\
+%% If not, call with same bounds/quadrant,
+%% single adjacent square with new position/orientation \\
+%% If so, make 2 recursive calls changing appropriate bounds to splitting vertex \\
+%% Store the result of the 2nd call in a separate buffer \\
+%% Could maintain a stack of buffers and add depth as an argument: depth necessary anyway \\
+%% Mask buffer with line between camera and splitting vertex (anti-aliasing here!) \\
+%% Overlay with original buffer \\
+%% 4 base cases starting from current square with left/right bounds along x/y axes \\
+%% Renders current square 4x and squares in same row/col 2x \\
 
-Render method 2 (polygons): \\
+%% Render method 2 (polygons): \\
+%% Build a tree of regions, starting from current square \\
+%% Region info: left and right boundary points, square rendered,
+%% position, and orientation of square \\
+%% Region is split if strictly contains singularity (i.e. not on edge) \\
+%% 4 quadrants constructed separately,
+%% contains duplicate regions like previous method \\
+%% For each position, the regions are laid on top of each other using z depth
+%% in (counter)clockwise order \\
+%% Each region gets transparency based on just one separating point:
+%% layer underneath gives anti-aliasing effect \\
+%% Masking areas behind opaque objects should only be done at the end: \\
+%% ensure consistent behavior inside/outside square containing object \\
+
+Render method (pixel shader): \\
 Build a tree of regions, starting from current square \\
 Region info: left and right boundary points, square rendered,
 position, and orientation of square \\
 Region is split if strictly contains singularity (i.e. not on edge) \\
 4 quadrants constructed separately,
-contains duplicate regions like previous method \\
-For each position, the regions are laid on top of each other using z depth
-in (counter)clockwise order \\
-Each region gets transparency based on just one separating point:
-layer underneath gives anti-aliasing effect \\
-Masking areas behind opaque objects should only be done at the end: \\
-ensure consistent behavior inside/outside square containing object \\
-
-Render method 3 (pixel shader): \\
-Build tree as in method 2, using a queue for BFS \\
+contains current square 4x and squares in same row/col 2x \\
+Build tree using an array/queue for BFS \\
 Regions in the same position are contiguous in the queue \\
 Store index of first region in array \\
 Given a pixel, find position, access array for queue index,
@@ -118,5 +124,16 @@ Art style between pixel and vector:
 each ``pixel'' is not a solid color but one of a few predefined shapes, \\
 e.g. solid color, 2 colors split diagonally, split by circular arc \\
 
+Physics \\
+Single entity moving in static background:
+all collisions are with axis-aligned surfaces \\
+Collision multiplies perpendicular velocity by integer $\leq 0$,
+keeps parallel velocity constant \\
+Intersection point could be any rational number,
+so can't store intermediate positions \\
+Instead, reflect both beginning and end points across plane of collision
+(adjusted for size of player), \\
+recursively/iteratively resolve collision with ``mask,''
+i.e. ignoring portion of trajectory ``before'' hitting wall
 
 \end{document}
