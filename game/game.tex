@@ -134,6 +134,16 @@ so can't store intermediate positions \\
 Instead, reflect both beginning and end points across plane of collision
 (adjusted for size of player), \\
 recursively/iteratively resolve collision with ``mask,''
-i.e. ignoring portion of trajectory ``before'' hitting wall
+i.e. ignoring portion of trajectory ``before'' hitting wall \\
+Collision state consists of beginning/end points
+and rectangle to check \\
+Initialized to previous frame position
+and rectangle encompassing path \\
+E.g. moving up+right: rectangle starts at lower left corner of starting position,
+extends to top right of ending position \\
+Collision with vertical surface changes only x-coordinates of beginning, end, and quadrant \\
+But this can cause bugs with large players and irregular walls:
+maybe rational coords are the easiest \\
+
 
 \end{document}
