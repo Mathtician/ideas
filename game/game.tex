@@ -76,6 +76,8 @@ Larger squares $\rightarrow$ fewer singularities $\rightarrow$ less harm in cove
 Also, must be regions  accessible in only one orientation:
 side longer than 2x jump height \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
+Leaning towards covering,
+especially since multi- entity collisions near them can get hairy \\
 
 %% Render method 1 (recursive): \\
 %% Accept left+right boundary points, square to render,
@@ -144,6 +146,13 @@ extends to top right of ending position \\
 Collision with vertical surface changes only x-coordinates of beginning, end, and quadrant \\
 But this can cause bugs with large players and irregular walls:
 maybe rational coords are the easiest \\
+
+Game loop \\
+Build region tree \\
+Take player input \\
+Update velocity accordingly (also gravity here?) \\
+Resolve collisions \\
+Render \\
 
 
 \end{document}
