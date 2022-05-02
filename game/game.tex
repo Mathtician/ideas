@@ -146,6 +146,10 @@ extends to top right of ending position \\
 Collision with vertical surface changes only x-coordinates of beginning, end, and quadrant \\
 But this can cause bugs with large players and irregular walls:
 maybe rational coords are the easiest \\
+45 degree slopes are possible as well,
+as long as coefficient of restitution (bounciness) is odd \\
+Doesn't work with pixel buffer for collisions:
+need to add ``static'' entity
 
 Game loop \\
 Build region tree \\
