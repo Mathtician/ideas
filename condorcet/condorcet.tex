@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+\begin{document}
+
+\title{Condorcet's Nightmare}
+\author{Aresh Pourkavoos}
+\maketitle
+
+The field of social choice theory deals with
+how to take the preferences of a group of people
+and combine them into a single decision for everyone.
+This includes voting systems,
+where each voter ranks a set of candidates first to last
+and a single candidate is chosen as the winner.
+A simple example is plurality:
+take the candidate who is ranked first by the most people.
+However, plurality is terrible for a number of reasons.
+For example, if there are more extreme candidates A and C
+who divide the voter base almost evenly for first choice,
+but also a moderate candidate B who is most people's second choice,
+only A and C have a real chance to win the election
+despite B arguably being the ``best'' decision.
+
+In place of plurality, a number of other systems have been proposed,
+all with various ``desirable'' properties.
+At the same time, it has been proven
+that certain combinations of these properties are impossible to achieve at the same time,
+the most famous example of which is Arrow's theorem.
+One property is known as Condorcet consistency,
+which states that if a candidate beats every other candidate in a ``head-to-head'' election,
+i.e. an election with all but the two candidates removed,
+then they should also win the overall election.
+In this case, the candidate is called the Condorcet winner.
+The mathematician for whom this is named, Marquis de Condorcet,
+also showed that a Condorcet winner does not always exist
+by providing the following counterexample
+with 3 candidates A, B, and C and 3 voters:
+
+\begin{center}
+\begin{tabular}{|c|c c c|}
+  \hline
+  Ranks & \#1 & \#2 & \#3 \\ \hline
+  Voter 1 & A & B & C \\ \hline
+  Voter 2 & B & C & A \\ \hline
+  Voter 3 & C & A & B \\ \hline
+\end{tabular}
+\end{center}
+
+In head-to-head elections,
+A beats B, B beats C, and C beats A
+like a game of rock-paper-scissors.
+But can similar things be done for other non-transitive games?
+
+\begin{center}
+\begin{tabular}{|c|c c c c c c c|}
+  \hline
+  Ranks & \#1 & \#2 & \#3 & \#4 & \#5 & \#6 & \#7 \\ \hline
+  Voter 1 & A & B & C & D & E & F & G \\ \hline
+  Voter 2 & F & C & G & D & A & E & B \\ \hline
+  Voter 3 & E & G & B & D & F & A & C \\ \hline
+\end{tabular}
+\end{center}
+
+\end{document}
