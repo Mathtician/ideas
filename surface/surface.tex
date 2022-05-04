@@ -153,8 +153,20 @@ but they are extremely distorted and hard to see.
 Since the surface is a projection of half of a rectified tesseract,
 I wanted to see whether it was possible to transform it
 to obtain a projection of the full shape.
+For this, I used the method of stereographic projection,
+which maps between planes and spheres using the arctangent.
+Essentially, the algebraic surface has to be mapped to a hypersphere,
+``doubled'' by halving the angle of each point,
+and mapped back to the plane.
+This technique, and the identity
 
-$$3(x^4+y^4+z^4+(x^2+y^2+z^2-1)^4)-(x^2+y^2+z^2+(x^2+y^2+z^2-1)^2)^2 = 0$$
+\[\frac{1}{2}\tan(2\arctan r)=\frac{r}{r^2-1},\]
+
+imply that replacing all instances of $w$ with $x^2+y^2+z^2-1$
+allows for both hemispheres of the 4D surface to be projected down,
+which gives the following equation for the full rectified tesseract:
+
+\[3(x^4+y^4+z^4+(x^2+y^2+z^2-1)^4)-(x^2+y^2+z^2+(x^2+y^2+z^2-1)^2)^2 = 0\]
 
 \begin{align*}
   m &= x^2 \\
