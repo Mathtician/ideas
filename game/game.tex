@@ -78,6 +78,14 @@ side longer than 2x jump height \\
 However, smaller squares $\rightarrow$ more convenient to travel/execute holonomy \\
 Leaning towards covering,
 especially since multi- entity collisions near them can get hairy \\
+Collisions near edges are inevitable,
+but behavior near edges is well-defined \\
+Need to distinguish between singularities and non-singular vertices:
+4 squares meeting at a point \\
+To resolve collisions at edges/non-singular vertices,
+may need ``intermediate'' frame of reference \\
+If these are necessary, may not need to bother with half-pixel positions:
+allow entities centered on edge/vertex \\
 
 %% Render method 1 (recursive): \\
 %% Accept left+right boundary points, square to render,
@@ -163,9 +171,21 @@ Render \\
 Types of entities \\
 Environmental: either stationary or on a fixed path (e.g. bouncy walls, moving platforms) \\
 Collision resolution should not affect their velocities under any(?) circumstances \\
+Environmental entities may intersect each other \\
 Interactive: can be moved by the player (e.g. boxes) \\
 Player \\
 All entities are 135 degree octagons \\
-8 numbers representing ``distance'' from center to sides
+8 numbers representing taxicab distance from center to sides in half-pixels \\
+Ex: $3 \times 5$ rectangle has horizontal distances 3, vertical 5, diagonal 8 \\
+Sides are marked as collidable or not \\
+Collisions are only checked between opposing sides of entities:
+makes one-way platforms possible \\
+
+How to handle sub-pixel movement for fluidity? \\
+Store sub-pixel position as well: more ``correct,'' but may not look good \\
+Also would require additional programming for collisions
+to avoid resetting sub-pixel position \\
+Round sub-pixel velocity before adding: more consistent jumps between frames,
+position is always an integer \\
 
 \end{document}
