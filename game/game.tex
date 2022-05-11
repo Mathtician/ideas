@@ -182,6 +182,8 @@ Ex: $3 \times 5$ rectangle has horizontal distances 3, vertical 5, diagonal 8 \\
 Sides are marked as collidable or not \\
 Collisions are only checked between opposing sides of entities:
 makes one-way platforms possible \\
+Simplest case: only need to check player vs. environment \\
+Create ``virtual'' entities in adjacent faces to allow for collisions across boundaries \\
 
 How to handle sub-pixel movement for fluidity? \\
 Store sub-pixel position: more ``correct,'' but may not look good \\
