@@ -179,6 +179,15 @@ Player \\
 All entities are 135 degree octagons \\
 8 numbers representing taxicab distance from center to sides in half-pixels \\
 Ex: $3 \times 5$ rectangle has horizontal distances 3, vertical 5, diagonal 8 \\
+Orthogonal distances must be odd, diagonal must be even \\
+Spec: NE$\leq$N+E, 2N$\leq$NE+NW (equality implies side length 0) \\
+Alternatively, could measure diagonal distance in pixels \\
+Spec in this case: 2NE$\leq$N+E, N$\leq$NE+NW \\
+
+\begin{center}
+  \includegraphics[width=0.25\linewidth]{entity.png}
+\end{center}
+
 Sides are marked as collidable or not \\
 Collisions are only checked between opposing sides of entities:
 makes one-way platforms possible \\
@@ -193,8 +202,15 @@ Round sub-pixel velocity before adding: more consistent jumps between frames,
 position is always an integer \\
 
 Simple collision: 2 entities (A, B), same tile \\
-Any opposite sides (e.g. A left, B right) pointing towards each other both before and after:
-no collision
-Is the converse true? Look at Minkowski difference
+%% Any opposite sides (e.g. A left, B right) pointing towards each other both before and after:
+%% no collision \\
+%% Is the converse true? Look at Minkowski difference
+Check each pair of opposite sides (e.g. A left, B right) \\
+Use adjacent sides to determine vertex locations \\
+
+Entity passes through multiple tiles: include ``virtual'' entitites \\
+
+Collision resolution loop has entity starting points and velocity (all integers) \\
+Also rational number: portion of frame that has been simulated \\
 
 \end{document}
