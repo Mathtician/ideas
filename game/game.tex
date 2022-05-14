@@ -207,6 +207,12 @@ Simple collision: 2 entities (A, B), same tile \\
 %% Is the converse true? Look at Minkowski difference
 Check each pair of opposite sides (e.g. A left, B right) \\
 Use adjacent sides to determine vertex locations \\
+Edges of A and B trace out a parallelograms as they move \\
+Need to check whether these intersect using Minkowski difference,
+which is itself another parallelogram \\
+Difference intersects origin $\rightarrow$ edges collide \\
+Need to ensure that origin is ``passed over'' in the right direction
+to allow for one-way platforms
 
 Entity passes through multiple tiles: include ``virtual'' entitites \\
 
