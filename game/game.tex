@@ -220,8 +220,16 @@ Use bounciness to compute new ``starting point'' (image) and velocity \\
 Ex player vs. environment: use frame of reference of environment \\
 
 Entity passes through multiple tiles: include ``virtual'' entitites \\
+Virtual entity should be created for all tiles which any part of the entity
+non-strictly touches \\
+How to find all of these (easily?) Assurances on entity size, etc \\
+Not just all tiles, but all ``regions:'' can pass through same tile in multiple ways
+e.g. Mobius strip \\
 
 Collision resolution loop has entity starting points and velocity (all integers) \\
 Also rational number: portion of frame that has been simulated \\
+Only consider collisions which occur between this number (incl) and 1 (non-incl) \\
+Collision location (edge) must also be (non-strictly) within bounds of tile \\
+May happen on tile boundary: should not matter which one is resolved before end of loop \\
 
 \end{document}
