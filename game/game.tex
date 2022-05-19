@@ -236,5 +236,14 @@ Could heavily emphasize integer-based physics: \\
 discrete position in large ``cells,''
 movement updates occur slowly (turn-based or on visible timer) \\
 Could have interesting interplay with gravity \\
+Pool-type game? \\
+
+Ways that physics could break \\
+Crush an object between two others of higher priority:
+detectable by overflow of denominator of current time/position \\
+Have an object perfectly sandwiched between two bouncy walls:
+detectable by returning perfectly(?) to previous state \\
+Object bouncing between superelastic walls: also overflow(?)
+Easy catchall fix: limit on number of iterations \\
 
 \end{document}
