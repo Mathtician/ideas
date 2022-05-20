@@ -226,8 +226,8 @@ How to find all of these (easily?) Assurances on entity size, etc \\
 Not just all tiles, but all ``regions:'' can pass through same tile in multiple ways
 e.g. Mobius strip \\
 
-Collision resolution loop has entity starting points and velocity (all integers) \\
-Also rational number: portion of frame that has been simulated \\
+Collision resolution loop has current positions (rationals),
+ending positions (integers), velocities (integers)
 Only consider collisions which occur between this number (incl) and 1 (non-incl) \\
 Collision location (edge) must also be (non-strictly) within bounds of tile \\
 May happen on tile boundary: should not matter which one is resolved before end of loop \\
@@ -239,11 +239,29 @@ Could have interesting interplay with gravity \\
 Pool-type game? \\
 
 Ways that physics could break \\
-Crush an object between two others of higher priority:
-detectable by overflow of denominator of current time/position \\
-Have an object perfectly sandwiched between two bouncy walls:
-detectable by returning perfectly(?) to previous state \\
-Object bouncing between superelastic walls: also overflow(?)
+Object crushed between two others of higher priority:
+detect by overflow of denominator of time/position \\
+Object sandwiched between two bouncy walls:
+detect by returning perfectly(?) to previous state \\
+Object bouncing between superelastic walls: also overflow(?) \\
 Easy catchall fix: limit on number of iterations \\
+Cleaner fix: no interactive entities (besides player),
+no squeezing/crushing, speed cap \\
+Player may hit multiple entities on the same edge at the same time:
+use the bounciest one \\
+Speed cap would also ensure that one of the following is true
+about player trajectory:
+\begin{itemize}
+\item
+  Remains within 1 tile
+\item
+  Crosses an edge: 2 tiles
+\item
+  Crosses two adjacent right-angled edges: 3 tiles
+\item
+  Passes through a non-singular vertex: 4 tiles
+\end{itemize}
+
+
 
 \end{document}
