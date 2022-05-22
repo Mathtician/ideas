@@ -236,7 +236,7 @@ Could heavily emphasize integer-based physics: \\
 discrete position in large ``cells,''
 movement updates occur slowly (turn-based or on visible timer) \\
 Could have interesting interplay with gravity \\
-Pool-type game? \\
+Pool-type game? Does not work in general with equal masses \\
 
 Ways that physics could break \\
 Object crushed between two others of higher priority:
@@ -261,7 +261,7 @@ about player trajectory:
 \item
   Passes through a non-singular vertex: 4 tiles
 \end{itemize}
-Could potentially allow crushing while keeping other constraints:
+Could potentially allow crushing with other constraints:
 only player can be crushed, triggers on overflow \\
 After collision, need to trace path from intermediate (rational) point:
 tile of end position is not yet known
