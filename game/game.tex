@@ -268,4 +268,9 @@ only player can be crushed, triggers on overflow \\
 After collision, need to trace path from intermediate (rational) point:
 tile of end position is not yet known
 
+All collisions need to be handled as edges,
+including entities (edges on outside) and tile boundaries \\
+Tile boundary edges create a new virtual entity on other side when collided \\
+Need to avoid infinite loop (how?)
+
 \end{document}
