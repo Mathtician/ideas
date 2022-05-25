@@ -77,7 +77,8 @@ Check answer:
 \end{align*}
 \newpage
 3D variant:
-\[A(j, k, l) = \frac{j!k!l!}{(j+k+l+2)!} = B(j+1, k+1, l+1)\]
+\[A(j, k, l) = \frac{j!k!l!}{(j+k+l+2)!} = B(j+1, k+1, l+1)
+= \frac{\partial^{j+k+l}f}{\partial x^j \partial y^k \partial z^l}\]
 Diffeq:
 \[
 f(x, y, z)
@@ -151,9 +152,10 @@ Sum of all partials:
   \sum_{K=1}^N\frac{\partial f}{\partial x_K}(x_1, \ldots, x_N)
   &= \sum_{K=1}^N\left(\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum\limits_{L \neq K}T(K, L)+\sum_{I \neq K}T(I, K)\right) \\
   &= \sum_{K=1}^N\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum_{K=1}^N\sum\limits_{L \neq K}T(K, L)+\sum_{K=1}^N\sum_{I \neq K}T(I, K) \\
-  &= \sum_{K=1}^N\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)}-\sum_{K=1}^N\sum\limits_{L \neq K}T(K, L)+\sum_{I=1}^N\sum_{K \neq I}T(I, K) \\
   &= \sum_{K=1}^N\frac{e^{x_K}}{\prod\limits_{J \neq K}(x_K-x_J)} \\
   &= f(x_1, \ldots, x_N)
 \end{align*}
-Remains to be shown: derivative is the multivariate beta function
+Remains to be shown that derivative is the multivariate beta function:
+\[\frac{\partial^{k_1+\ldots+k_K}f}{\partial x_1^{k_1}\ldots\partial x_N^{k_n}}
+= \frac{k_1! \ldots k_N!}{(k_1+\ldots+k_N+N-1)!}\]
 \end{document}
