@@ -185,10 +185,37 @@ then $x_{n-1}$ in the $n-2$ terms of the remaining ones (again, all positive),
 etc. until $x_2$ is chosen from $x_2-x_1$.
 Thus the coefficient on the LHS is also 1,
 so the constant factor relating it and the RHS is 1,
-so they are equal. \\
+so they are equal.
+
+The value of either side is the determinant of the Vandermonde matrix
+\[
+\begin{pmatrix}
+  1 & x_1 & \ldots & x_1^{n-1} \\
+  1 & x_2 & \ldots & x_2^{n-1} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  1 & x_n & \ldots & x_n^{n-1}
+\end{pmatrix},
+\]
+which may be seen from the definition of the determinant and the RHS. \\
 
 Lemma 2:
 \[\prod_{1 \leq i < j \leq n} (x_j-x_i)
-= \sum_{k=1}^n(-1)^{n-k}x_k^{n-1}\prod_{\substack{1 \leq i < j \leq n \\ i \neq k \neq j}}(x_j-x_i).\]
+= \sum_{k=1}^n(-1)^{n+k}x_k^{n-1}\prod_{\substack{1 \leq i < j \leq n \\ i \neq k \neq j}}(x_j-x_i).\]
+Proof: May be shown by separating the $n!$ terms of the LHS into $n$ sets of $(n-1)!$
+by whichever $x_k$ is raised to $n-1$, factoring out $x_k^{n-1}$,
+noting that the remaining exponents are a permutation of $(1, \ldots, n-1)$,
+and applying Lemma 1 in reverse,
+factoring in the power of $-1$ to account for the change in sign of the permutation. \\
+Alternatively, perform cofactor expansion on the last column of the Vandermonde matrix,
+noting that each of the $n$ minors is another Vandermonde matrix. \\
 
+Theorem:
+\[
+\begin{pmatrix}
+  1 & \ldots & x_1^{n-2} & x_1^{n-1+k} \\
+  \vdots & \ddots & \vdots & \vdots \\
+  1 & \ldots & x_{n-1}^{n-2} & x_{n-1}^{n-1+k} \\
+  1 & \ldots & x_n^{n-2} & x_n^{n-1+k}
+\end{pmatrix},
+\]
 \end{document}
