@@ -158,4 +158,32 @@ Sum of all partials:
 Remains to be shown that derivative is the multivariate beta function:
 \[\frac{\partial^{k_1+\ldots+k_K}f}{\partial x_1^{k_1}\ldots\partial x_N^{k_n}}
 = \frac{k_1! \ldots k_N!}{(k_1+\ldots+k_N+N-1)!}\]
+\newpage
+Lemma 1:
+\[\prod_{1 \leq i < j \leq n} (x_j-x_i) = \sum_{\sigma \in S_n}\left(\text{sgn}(\sigma)\prod_{k=1}^nx_k^{\sigma_k-1}\right),\]
+where $S_n$ is the set of permutations of the sequence $(1, \ldots, n)$.
+Ex for $n=3$:
+\begin{align*}
+  (x_2-x_1)(x_3-x_1)(x_3-x_2)
+  &= x_1^0x_2^1x_3^2-x_1^0x_2^2x_3^1-x_1^1x_2^0x_3^2+x_1^1x_2^2x_3^0-x_1^2x_2^0x_3^1+x_1^2x_2^1x_3^0 \\
+  &= x_2x_3^2-x_2^2x_3-x_1x_3^2+x_1x_2^2-x_1^2x_3+x_1^2x_2
+\end{align*}
+Proof (sketch): Setting $x_i=x_j$ for any $1 \leq i < j \leq n$ makes the RHS 0
+because the permutations may be placed into canceling pairs
+where $\sigma_i$ and $\sigma_j$ switch values.
+The product is the same for each, but the sign is flipped.
+Thus the RHS is divisible by $x_j-x_i$.
+Since $x_j-x_i$ share no factors with each other,
+the RHS is divisible by their product, i.e. the LHS.
+Since the LHS and RHS are both of degree $\binom{n}{2}$,
+they can only differ by a constant factor.
+On the RHS, the identity permutation has the term $\prod\limits_{k=1}^nx_k^k$
+with coefficient 1 (since the identity permutation is even).
+On the LHS, the only way to make this term
+is to choose $x_n$ in the $n-1$ terms where it appears (all positive),
+then $x_{n-1}$ in the $n-2$ terms of the remaining ones (again, all positive),
+etc. until $x_2$ is chosen from $x_2-x_1$.
+Thus the coefficient on the LHS is also 1,
+so the constant factor relating it and the RHS is 1,
+so they are equal.
 \end{document}
