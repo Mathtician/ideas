@@ -189,6 +189,7 @@ so they are equal.
 
 The value of either side is the determinant of the Vandermonde matrix
 \[
+V=
 \begin{pmatrix}
   1 & x_1 & \ldots & x_1^{n-1} \\
   1 & x_2 & \ldots & x_2^{n-1} \\
@@ -200,17 +201,25 @@ which may be seen from the definition of the determinant and the RHS. \\
 
 Lemma 2:
 \[\prod_{1 \leq i < j \leq n} (x_j-x_i)
-= \sum_{k=1}^n(-1)^{n+k}x_k^{n-1}\prod_{\substack{1 \leq i < j \leq n \\ i \neq k \neq j}}(x_j-x_i).\]
+= \sum_{l=1}^n\left((-1)^{n+l}x_l^{n-1}\prod_{\substack{1 \leq i < j \leq n \\ i \neq l \neq j}}(x_j-x_i)\right).\]
 Proof: May be shown by separating the $n!$ terms of the LHS into $n$ sets of $(n-1)!$
-by whichever $x_k$ is raised to $n-1$, factoring out $x_k^{n-1}$,
-noting that the remaining exponents are a permutation of $(1, \ldots, n-1)$,
+by whichever $x_l$ is raised to $n-1$, factoring out $x_l^{n-1}$,
+noting that the remaining exponents are a permutation of $(1, \ldots, n-2)$,
 and applying Lemma 1 in reverse,
 factoring in the power of $-1$ to account for the change in sign of the permutation. \\
 Alternatively, perform cofactor expansion on the last column of the Vandermonde matrix,
 noting that each of the $n$ minors is another Vandermonde matrix. \\
 
 Theorem:
+\[\prod_{1 \leq i < j \leq n} (x_j-x_i) \sum_{p_1+\ldots+p_n=k} \prod_{l=1}^n x_l^{p_l} = 
+\sum_{l=1}^n\left((-1)^{n+l}x_l^{n-1+k}\prod_{\substack{1 \leq i < j \leq n \\ i \neq l \neq j}}(x_j-x_i)\right).
+\]
+Proof: First, note that the RHS is the same as that of Lemma 2,
+but with $k$ added to the exponent of $x_l^{n-1}$.
+The product in the RHS may be written as a determinant as per Lemma 1,
+making the entire expression a cofactor expansion of the determinant of
 \[
+W=
 \begin{pmatrix}
   1 & \ldots & x_1^{n-2} & x_1^{n-1+k} \\
   \vdots & \ddots & \vdots & \vdots \\
@@ -218,4 +227,26 @@ Theorem:
   1 & \ldots & x_n^{n-2} & x_n^{n-1+k}
 \end{pmatrix},
 \]
+which is the Vandermonde matrix, but with $k$ added to the exponents of the last column.
+Since matrix multiplication respects the determinant,
+it would suffice to find a matrix $U$ such that $VU=W$ and
+\[\det(U) = \sum_{p_1+\ldots+p_n=k} \prod_{l=1}^n x_l^{p_l}.\]
+Since all columns of $W$ but the last are the same as those of $V$,
+the corresponding columns of $U$ are the same as those of the identity matrix.
+Thus we only need to find the last column,
+i.e. some vector $\vec{u}$ such that
+\[
+V\vec{u} =
+\begin{pmatrix}
+  x_1^{n-1+k} \\
+  \vdots \\
+  x_{n-1}^{n-1+k} \\
+  x_n^{n-1+k}
+\end{pmatrix}.
+\]
+Furthermore, since $U$ is upper triangular,
+its determinant is the product of its diagonal entries,
+and since all of those entries except the last are 1,
+it suffices to show that the last entry of $\vec{u}$ is the desired determinant.
+
 \end{document}
