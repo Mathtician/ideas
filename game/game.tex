@@ -271,6 +271,23 @@ tile of end position is not yet known
 All collisions need to be handled as edges,
 including entities (edges on outside) and tile boundaries \\
 Tile boundary edges create a new virtual entity on other side when collided \\
-Need to avoid infinite loop (how?)
+Need to avoid infinite loop (how?) \\
+Potential properties of edges:
+\begin{itemize}
+\item
+  Location (tile and coordinates) and orientation
+\item
+  Whether it is collidable, and if so, its bounciness
+\item
+  Whether it is a portal, and if so, where it leads
+\item
+  Whether it is deadly to the player
+\item
+  Whether it is opaque (only affects rendering)
+\end{itemize}
 
+Rendering method/finding geodesics should also be a mechanic,
+e.g. shine a directional light at a source \\
+Light may need to pass through filters to become the right color \\
+Mirrors would be interesting but difficult to visualize \\
 \end{document}
