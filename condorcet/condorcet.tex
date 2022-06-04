@@ -34,8 +34,8 @@ despite B arguably being the ``best'' decision.
 
 In place of plurality, a number of other systems have been proposed,
 all with various ``desirable'' properties.
-At the same time, it has been proven
-that certain combinations of these properties are impossible to achieve at the same time,
+At the same time, it has been proven that
+certain combinations of these properties cannot be achieved simultaneously,
 the most famous example of which is Arrow's theorem.
 One property is known as Condorcet consistency,
 which states that if a candidate beats every other candidate in a ``head-to-head'' election,
@@ -81,7 +81,15 @@ We can construct an analogous example with 5 candidates and 5 voters:
     Voter 5 & E & A & B & C & D \\ \hline
   \end{tabular}
 \end{center}
-However, it's also possible to construct the same game (up to relabeling)
+
+As in the example with 3 candidates,
+the voters' preferences are the rotations of Voter 1's,
+so each candidate beats the next two candidates in the alphabet,
+with A coming directly ``after'' E,
+e.g. D beats E and A.
+This can be done for any odd number of candidates and the same number of voters,
+so that each candidate beats half of the others and loses to the other half.
+However, it's also possible to construct the same outcome for 5 candidates
 with only 3 voters:
 \begin{center}
   \begin{tabular}{|c|c c c c c|}
