@@ -50,12 +50,16 @@ In binary, adding two bits requires a carryover $\frac{1}{4}$ of the time,
 namely when performing $1+1$.
 In balanced ternary, however, this occurrs only $\frac{2}{9}$ of the time,
 where $1+1=1T$ and $T+T=T1$,
-giving it a marginal advantage of $\frac{1}{36}$. 
+giving it a marginal advantage. 
 
-Bases also have an associated quantity known as radix economy,
-which measures a sort of efficiency in representing numbers.
-In base $b$, the radix economy (for increasingly large numbers)
-is given by $\frac{b}{\ln(b)}$.
+The efficiency of a base in representing numbers
+can be calculated using radix economy,
+which measures the limiting behavior
+of the length of large numbers stored in base $b$,
+where each digit is $b$ units long,
+as if it were stored by a one-hot vector of bits.
+In base $b$, the radix economy is given by $\frac{b}{\ln(b)}$,
+and a lower radix economy is more efficient.
 Binary and quaternary (base 4) both have
 a radix economy of approximately $2.89$,
 whereas base 3's is $2.73$ -
@@ -71,7 +75,8 @@ Where I believe balanced ternary shines is in how it handles floating point numb
 Float $f$ comprised of exponent $e$ (int) and significand $s$ (-1.5 to 1.5) \\
 If $s$ starts with 1 or T, $f = 3^e \times s$ (normal) \\
 Else if $e=e_{min}$ (all Ts), $f$ is denormal (see formula for normal) \\
-Else, $f =$ sNaN, qNaN, or $\pm\infty$ (TBD when operations are implemented)
+Else, $f =$ sNaN, qNaN, or $\pm\infty$ (TBD when operations are implemented) \\
+0 is unique, no $\pm 0$ like in binary floats
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.25}
 
