@@ -6,6 +6,7 @@
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{wasysym}
 \graphicspath{{images/}}
 \hypersetup{
   colorlinks=true,
@@ -24,13 +25,26 @@ A whole note divides into two half notes,
 which divide into two quarter notes each,
 which divide into eighth notes, etc.
 
+\begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
   \hline
-  \multicolumn{8}{|c|}{whole} \\ \hline
-  \multicolumn{4}{|c|}{half} & \multicolumn{4}{|c|}{half} \\ \hline
-  \multicolumn{2}{|c|}{quarter} & \multicolumn{2}{|c|}{quarter} & \multicolumn{2}{|c|}{quarter} & \multicolumn{2}{|c|}{quarter} \\ \hline
-  eighth & eighth & eighth & eighth & eighth & eighth & eighth & eighth \\ \hline
+  \multicolumn{8}{|c|}{\Huge{\fullnote}} \\ \hline
+  \multicolumn{4}{|c|}{\Huge{\halfnote}} &
+  \multicolumn{4}{|c|}{\Huge{\halfnote}} \\ \hline
+  \multicolumn{2}{|c|}{\Huge{\quarternote}} &
+  \multicolumn{2}{|c|}{\Huge{\quarternote}} &
+  \multicolumn{2}{|c|}{\Huge{\quarternote}} &
+  \multicolumn{2}{|c|}{\Huge{\quarternote}} \\ \hline
+  \eighthnote &
+  \Huge{\eighthnote} &
+  \Huge{\eighthnote} &
+  \Huge{\eighthnote} &
+  \Huge{\eighthnote} &
+  \Huge{\eighthnote} &
+  \Huge{\eighthnote} &
+  \Huge{\eighthnote} \\ \hline
 \end{tabular}
+\end{center}
 
 This binary system carries many interesting properties
 that we often take for granted.
