@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage{float}
-\usepackage{wasysym}
+\usepackage{harmony}
 \graphicspath{{images/}}
 \hypersetup{
   colorlinks=true,
@@ -25,25 +25,32 @@ A whole note divides into two half notes,
 which divide into two quarter notes each,
 which divide into eighth notes, etc.
 
+\newcommand{\note}[2]{\multicolumn{#1}{|c|}{#2}}
+\newcommand{\fullnote}{\Ganz}
+\newcommand{\halfnote}{\Halb}
+\newcommand{\quarternote}{\Vier}
+\newcommand{\eighthnote}{\Acht}
+\newcommand{\sixteenthnote}{\Sech}
+
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-  \hline
-  \multicolumn{8}{|c|}{\Huge{\fullnote}} \\ \hline
-  \multicolumn{4}{|c|}{\Huge{\halfnote}} &
-  \multicolumn{4}{|c|}{\Huge{\halfnote}} \\ \hline
-  \multicolumn{2}{|c|}{\Huge{\quarternote}} &
-  \multicolumn{2}{|c|}{\Huge{\quarternote}} &
-  \multicolumn{2}{|c|}{\Huge{\quarternote}} &
-  \multicolumn{2}{|c|}{\Huge{\quarternote}} \\ \hline
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} &
-  \Huge{\eighthnote} \\ \hline
-\end{tabular}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \note{8}{\fullnote} \\ \hline
+    \note{4}{\halfnote} &
+    \note{4}{\halfnote} \\ \hline
+    \note{2}{\quarternote} &
+    \note{2}{\quarternote} &
+    \note{2}{\quarternote} &
+    \note{2}{\quarternote} \\ \hline
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} &
+    \note{1}{\eighthnote} \\ \hline
+  \end{tabular}
 \end{center}
 
 This binary system carries many interesting properties
@@ -66,6 +73,23 @@ into any number of equally-spaced parts.
 However, all of these still fall within the realm of rational numbers:
 any piece of music using tuplets is based on some equally-spaced (isochronic) underlying beat
 of which all time intervals are a multiple.
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \note{8}{\fullnote} \\ \hline
+    \note{5}{\halfnote} &
+    \note{3}{\quarternote} \\ \hline
+    \note{3}{\quarternote} &
+    \note{2}{\eighthnote} &
+    \note{3}{\quarternote} \\ \hline
+    \note{2}{\eighthnote} &
+    \note{1}{\sixteenthnote} &
+    \note{2}{\eighthnote} &
+    \note{2}{\eighthnote} &
+    \note{1}{\sixteenthnote} \\ \hline
+  \end{tabular}
+\end{center}
 
 $0$: length $1+\sqrt{2}$ (long), $1$: length $1$ (short), $2$: length $\sqrt{2}$ (medium)
 \begin{itemize}
