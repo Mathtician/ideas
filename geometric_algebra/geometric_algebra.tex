@@ -226,8 +226,12 @@ Then, the square of a vector may be generally written $v^TSv$ as before,
 where $S$ is a symmetric matrix,
 the only difference being that $v$ and $S$ may now have complex elements.
 
-However, complex symmetric matrices are not diagonalizable:
-
+However, not all complex symmetric matrices are diagonalizable.
+For example,$
+\begin{bmatrix}
+  2i & 1 \\
+  1 & 0
+\end{bmatrix}$
 https://www.netlib.org/utk/people/JackDongarra/etemplates/node263.html
 
 Since Clifford algebras are, at their core, defined by how they square vectors,
@@ -315,13 +319,14 @@ $\begin{bmatrix}
 on the other hand, is Hermitian.
 In other words, a matrix $A$ is Hermitian
 if it is equal to its conjugate transpose $A^H$.
-This implies, among other things,
+A generalization of the spectral theorem states
 that all of its eigenvalues are real,
 just as for a real symmetric matrix.
 However, while negative eigenvalues could only be reduced to $-1$ in the real case
 since it could only be divided by the square of a real number (i.e. a positive number),
 working in the complex numbers allows us to divide the eigenvalue by $i^2=-1$,
 turning any nonzero eigenvalue into 1.
+Thus we can find a basis of complex vectors
 
 
 Notably, using the representation of given above,
