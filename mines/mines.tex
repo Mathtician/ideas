@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{images/}
+
+\begin{document}
+
+\title{Solving Minesweeper}
+\author{Aresh Pourkavoos}
+\maketitle
+
+The ``Minesweeper problem'' consists of a set $S$,
+a family of sets $\mathcal{F} \subseteq \mathcal{P}(S)$,
+and a function $g : \mathcal{F} \rightarrow \mathbb{N}$.
+$S$ is the set of cells on the board,
+and $\mathcal{F}$ contains the set of neighbors of each square.
+For all $A \in \mathcal{F}$, $g(A)=n$ is the number of elements of $A$
+(which are squares) that contain mines,
+so $0 \leq n \leq \vert A \vert$.
+
+\end{document}
