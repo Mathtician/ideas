@@ -19,4 +19,4 @@
 \contentsline {subsubsection}{\numberline {5.1.1}Quadratic forms over $\mathbb {C}$}{4}{subsubsection.5.1.1}%
 \contentsline {subsubsection}{\numberline {5.1.2}Hermitian forms}{4}{subsubsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.2}$\mathbb {C}$ to $\mathbb {H}$}{5}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Lie groups and Lie algebras}{5}{section.6}%
+\contentsline {section}{\numberline {6}Lie groups and Lie algebras}{6}{section.6}%

@@ -349,6 +349,56 @@ $\begin{bmatrix}
   a & -b \\
   b & a \\
 \end{bmatrix}$.
+In order for the original matrix to represent a complex number,
+it must be equal to this new matrix,
+so the four components of each give us four equations:
+\[a = a, b = b, c = -b, d = a.\]
+The first two of these are redundant,
+but the third and fourth capture the useful information.
+However, reasoning about particular components of the matrix can only go so far:
+as the size of the matrix increases, the number of equations to keep track of grows
+proportionally to the square of the size.
+Instead, there should be a way to express all of these as a single matrix formula,
+and in fact, there is!
+
+Consider the $2 \times 2$ real matrix
+\[
+\Omega = \begin{bmatrix}
+  0 & -1 \\
+  1 & 0
+\end{bmatrix}.
+\]
+It can be seen as the representation of $i$.
+Multiplying another matrix by it on the left
+negates the bottom row and switches it with the top:
+\[
+\Omega
+\begin{bmatrix}
+  a & c \\
+  b & d
+\end{bmatrix}
+=
+\begin{bmatrix}
+  -b & -d \\
+  a & c
+\end{bmatrix}
+.
+\]
+Multiplying on the right, on the other hand,
+negates the left column and switches it with the right:
+\[
+\begin{bmatrix}
+  a & c \\
+  b & d
+\end{bmatrix}
+\Omega
+=
+\begin{bmatrix}
+  c & -a \\
+  d & -b
+\end{bmatrix}
+.
+\]
 
 \subsection{\texorpdfstring{$\mathbb{C}$}{C} to \texorpdfstring{$\mathbb{H}$}{H}}
 
