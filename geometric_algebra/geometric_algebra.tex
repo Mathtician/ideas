@@ -334,15 +334,18 @@ Thus we can find a basis of complex vectors
 
 Notably, using the representation of given above,
 any Hermitian complex matrix becomes a symmetric real matrix of twice the size!
-Howeve, the reverse is not true:
+However, the reverse is not true:
 not all real matrices with even dimensions represent some complex matrix.
 This begs the question of the necessary and sufficient criteria
 for a real matrix to represent a complex one.
 The simplest case is for an arbitrary $2 \times 2$ real matrix
-$\begin{bmatrix}
+\[
+M=
+\begin{bmatrix}
   a & c \\
   b & d \\
-\end{bmatrix}$.
+\end{bmatrix}.
+\]
 Since the first column uniquely determines the complex number it could represent,
 it must be $a+bi$, whose representation is
 $\begin{bmatrix}
@@ -355,50 +358,131 @@ so the four components of each give us four equations:
 \[a = a, b = b, c = -b, d = a.\]
 The first two of these are redundant,
 but the third and fourth capture the useful information.
-However, reasoning about particular components of the matrix can only go so far:
-as the size of the matrix increases, the number of equations to keep track of grows
-proportionally to the square of the size.
+Notably, elements are only compared across the diagonal:
+$a$ is related to $d$ and $b$ to $c$,
+but these pairs can change independently of one another.
+Reasoning about particular components of the matrix, though, can only go so far:
+as the size of the overall $2n \times 2n$ matrix increases,
+the number of equations to keep track of grows proportionally to $n^2$.
 Instead, there should be a way to express all of these as a single matrix formula,
 and in fact, there is!
 
 Consider the $2 \times 2$ real matrix
 \[
-\Omega = \begin{bmatrix}
+\Omega =
+\begin{bmatrix}
   0 & -1 \\
   1 & 0
 \end{bmatrix}.
 \]
-It can be seen as the representation of $i$.
+It can be seen as the representation of $i$,
+or a rotation in 2D space of 90 degrees.
 Multiplying another matrix by it on the left
 negates the bottom row and switches it with the top:
 \[
-\Omega
+\Omega M =
+\begin{bmatrix}
+  0 & -1 \\
+  1 & 0
+\end{bmatrix}
 \begin{bmatrix}
   a & c \\
   b & d
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
   -b & -d \\
   a & c
-\end{bmatrix}
-.
+\end{bmatrix}.
 \]
 Multiplying on the right, on the other hand,
 negates the left column and switches it with the right:
 \[
+M \Omega =
 \begin{bmatrix}
   a & c \\
   b & d
 \end{bmatrix}
-\Omega
-=
+\begin{bmatrix}
+  0 & -1 \\
+  1 & 0
+\end{bmatrix} =
 \begin{bmatrix}
   c & -a \\
   d & -b
-\end{bmatrix}
-.
+\end{bmatrix}.
 \]
+If it is used on both sides,
+each of the four entries in the original matrix
+ends up in the corner opposite where it started,
+since both rows and columns are switched,
+potentially with a minus sign:
+\[
+\Omega M \Omega =
+\begin{bmatrix}
+  -d & b \\
+  c & -a
+\end{bmatrix}.
+\]
+Setting this equal to the original matrix \textit{almost} gives us what we want:
+$a$ and $d$ should be equal, not additive inverses,
+and vice versa for $b$ and $c$.
+This is an easy fix, though:
+we may negate one side by changing an $\Omega$ to $-\Omega = \Omega^T$,
+the representation of $-i = \bar{i}$:
+\[
+\begin{bmatrix}
+  a & c \\
+  b & d
+\end{bmatrix} =
+M = \Omega M \Omega^T =
+\begin{bmatrix}
+  d & -b \\
+  -c & a
+\end{bmatrix}.
+\]
+This, finally, is the property a $2 \times 2$ real matrix must satisfy
+in order to represent a complex number.
+For larger matrices, the principle is similar.
+$\Omega$ must be extended to a $2n \times 2n$ matrix
+with copies of its $2 \times 2$ version on the diagonal,
+i.e. the representation of $i$ times the complex identity matrix.
+For example, the $6 \times 6$ version would be
+\[
+\Omega =
+\begin{bmatrix}
+  0 & -1 & 0 & 0 & 0 & 0 \\
+  1 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & -1 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & -1 \\
+  0 & 0 & 0 & 0 & 1 & 0
+\end{bmatrix},
+\]
+and a $6 \times 6$ real matrix $M$ represents a $3 \times 3$ complex matrix
+if and only if $M = \Omega M \Omega^T$.
+(There is no notation necessary to provide the size of a specific $\Omega$ matrix,
+just as $I$ refers to an identity matrix with the ``correct'' size.)
+Such a matrix $M$ is known as a symplectic matrix.
+
+$\Omega$ has the interesting property that
+\[\Omega^{-1} = \Omega^T = -\Omega.\]
+$\Omega^{-1} = \Omega^T$ means that $\Omega$ is orthonormal,
+$\Omega^T = -\Omega$ means that it is skew-symmetric,
+and $\Omega^{-1} = -\Omega$ means that it squares to $-I$. 
+Some authors will define $\Omega$ slightly differently,
+grouping all of the $1$ and $-1$ entries together to create a block matrix
+$
+\begin{bmatrix}
+  0 & -I \\
+  I & 0
+\end{bmatrix}
+$,
+and the definition of a symplectic matrix changes accordingly.
+However, the difference amounts to a simple permutation of rows and columns,
+and this version of $\Omega$ has the same interesting property described above,
+so the underlying structure is practically the same.
+However, I believe the relationship between complex matrices and symplectic real matrices
+is made clearer with a block diagonal $\Omega$.
 
 \subsection{\texorpdfstring{$\mathbb{C}$}{C} to \texorpdfstring{$\mathbb{H}$}{H}}
 
