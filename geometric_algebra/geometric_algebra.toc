@@ -4,19 +4,19 @@
 \contentsline {subsection}{\numberline {2.1}Algebras}{2}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}The cross product}{3}{subsubsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.2}Quadratic forms}{3}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Signature}{3}{subsubsection.2.2.1}%
-\contentsline {section}{\numberline {3}Properties}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Conic sections: a tangent}{3}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Representing transformations}{3}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Reflections, rotations, and translations}{3}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Symmetries of spacetime}{3}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}Classical mechanics}{3}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.1}Signature}{4}{subsubsection.2.2.1}%
+\contentsline {section}{\numberline {3}Properties}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Conic sections: a tangent}{4}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Representing transformations}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Reflections, rotations, and translations}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Symmetries of spacetime}{4}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Classical mechanics}{4}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}Special relativity}{4}{subsubsection.4.2.2}%
 \contentsline {subsection}{\numberline {4.3}Conformal transformations}{4}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Conics, revisited}{4}{subsection.4.4}%
 \contentsline {section}{\numberline {5}From $\mathbb {R}$ to $\mathbb {C}$ to $\mathbb {H}$}{4}{section.5}%
 \contentsline {subsection}{\numberline {5.1}$\mathbb {R}$ to $\mathbb {C}$}{4}{subsection.5.1}%
 \contentsline {subsubsection}{\numberline {5.1.1}Quadratic forms over $\mathbb {C}$}{4}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Hermitian forms}{4}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}$\mathbb {C}$ to $\mathbb {H}$}{6}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Lie groups and Lie algebras}{6}{section.6}%
+\contentsline {subsubsection}{\numberline {5.1.2}Hermitian forms}{5}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}$\mathbb {C}$ to $\mathbb {H}$}{7}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Lie groups and Lie algebras}{7}{section.6}%
