@@ -215,7 +215,12 @@ A line-by-line breakdown:
   \item
     $b[i]$ stores the length of the longest subsequence
     ending at $a[n-i-1]$
-    which matches the 
+    which matches the tail of the terms generated so far.
+  \item
+    $c$ induces a linked list structure on the items of $b$,
+    ranking them in decreasing order.
+    $j_0 = 0$, $c[j_0]=j_1$, $c[j_1]=j_2$, etc,
+    and $b[j_1-1] \geq b[j_2-1] \geq \ldots$.
   \end{itemize}
   For all arrays,
   the terms beyond the first $n$ are not initialized and thus undefined.
