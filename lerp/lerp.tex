@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{images/}
+
+\begin{document}
+
+\title{Monotone Cubic Interpolation}
+\author{Aresh Pourkavoos}
+\maketitle
+
+Given a set of data points $(x_1, y_1), \ldots, (x_n, y_n)$
+in which both coordinates increase moving down the list
+(i.e. $x_1 < \ldots < x_n$ and $y_1 < \ldots < y_n$),
+how can we define a function $f(x) = y$ which passes through all points
+and which is itself increasing (i.e. if $p < q$, then $f(p) < f(q)$)?
+
+\end{document}
