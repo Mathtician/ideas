@@ -17,7 +17,11 @@ in which both coordinates strictly increase moving down the list
 how can we define a function $f(x) = y$ which passes through all points
 and which has positive slope everywhere?
 Drawing line segments between adjacent points almost works,
-but the derivative may be undefined at each point,
+but the derivative is generally undefined at each point,
 since the slopes of the segments on either side may be different.
+The apparent solution would be to use cubic interpolation instead,
+which allows for the derivative at each point to be set,
+and cubic curves between each pair of adjacent points may be found.
+This raises the question of what the derivatives shoud be.
 
 \end{document}
