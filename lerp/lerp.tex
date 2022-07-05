@@ -22,6 +22,19 @@ since the slopes of the segments on either side may be different.
 The apparent solution would be to use cubic interpolation instead,
 which allows for the derivative at each point to be set,
 and cubic curves between each pair of adjacent points may be found.
+
+(Hermite polynomials)
+
 This raises the question of what the derivatives shoud be.
+
+A common approach to cubic interpolation
+is, for every point,
+to connect the points on its left and right
+and use the slope of the resulting segment.
+If the point is on the far left or right,
+the slope of the segment between it and its adjacent point is used.
+However, this approach does not guarantee monotonicity for monotone inputs.
+
+(Example)
 
 \end{document}
