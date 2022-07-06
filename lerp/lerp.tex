@@ -25,7 +25,7 @@ and cubic curves between each pair of adjacent points may be found.
 
 (Hermite polynomials)
 
-This raises the question of what the derivatives shoud be.
+This raises the question of what the derivatives should be.
 
 A common approach to cubic interpolation
 is, for every point,
@@ -36,5 +36,26 @@ the slope of the segment between it and its adjacent point is used.
 However, this approach does not guarantee monotonicity for monotone inputs.
 
 (Example)
+
+On the other hand, the derivative could be 0 at every data point,
+which guarantees that the function is increasing (and in fact, strictly increasing).
+However, this solution is not ideal because
+the derivative should be positive everywhere,
+which it is everywhere except the points themselves.
+It is possible to choose a small positive slope $\epsilon$ to place at each point
+(assuming finitely many points)
+which avoids the non-increasing segments seen previously.
+But this does not produce a straight line if the points are collinear,
+which an ideal ``interpolation'' solution would.
+
+Instead of trying to find an explicit formula for the derivatives,
+we can define the task of finding them as an optimization problem.
+In other words, given a potential assignment of derivatives to each point,
+we can define a way to evaluate how ``well'' it interpolates between them,
+and select the derivatives which perform the best.
+A common approach for these types of problems is to define the ``energy'' for a given curve,
+which usually measures deviation from a straight line in some way.
+The name ``energy'' comes from the fact that a rod of elastic material ``wants'' to remain straight,
+and bending it stores mechanical potential energy within it.
 
 \end{document}
