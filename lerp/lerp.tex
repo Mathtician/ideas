@@ -14,8 +14,12 @@
 Given a set of data points $(x_1, y_1), \ldots, (x_n, y_n)$
 in which both coordinates strictly increase moving down the list
 (i.e. $x_1 < \ldots < x_n$ and $y_1 < \ldots < y_n$),
-how can we define a function $f(x) = y$ which passes through all points
+how can we define a function which passes through all points
 and which has positive slope everywhere?
+In other words, we want to find $f : [x_1, x_n] \rightarrow \mathbb{R}$
+such that $f(x_i) = y_i$ for all $i \in \{1, \ldots, n\}$
+and $f'(x) > 0$ for all $x \in [x_1, x_n]$.
+
 Drawing line segments between adjacent points almost works,
 but the derivative is generally undefined at each point,
 since the slopes of the segments on either side may be different.
@@ -42,20 +46,28 @@ which guarantees that the function is increasing (and in fact, strictly increasi
 However, this solution is not ideal because
 the derivative should be positive everywhere,
 which it is everywhere except the points themselves.
-It is possible to choose a small positive slope $\epsilon$ to place at each point
-(assuming finitely many points)
-which avoids the non-increasing segments seen previously.
+It is possible to choose a very small positive slope to place at each point,
+which avoids the decreasing segments seen previously.
 But this does not produce a straight line if the points are collinear,
-which an ideal ``interpolation'' solution would.
+which an ideal solution would.
 
-Instead of trying to find an explicit formula for the derivatives,
-we can define the task of finding them as an optimization problem.
+Instead of looking for an explicit formula for the derivatives,
+we can think about finding them as an optimization problem.
 In other words, given a potential assignment of derivatives to each point,
-we can define a way to evaluate how ``well'' it interpolates between them,
+we can define a way to evaluate how ``well''
+the appropriate cubic function interpolates between them,
 and select the derivatives which perform the best.
 A common approach for these types of problems is to define the ``energy'' for a given curve,
 which usually measures deviation from a straight line in some way.
-The name ``energy'' comes from the fact that a rod of elastic material ``wants'' to remain straight,
-and bending it stores mechanical potential energy within it.
+The name comes from the fact that
+an elastic rod stores mechanical potential energy when bent,
+and within its constraints, the rod tries to minimize this potential energy
+by straightening in some areas.
+
+Although we may not have to come up with the derivatives ourselves,
+we still need an appropriate definition of energy
+to measure deviation from a straight line.
+
+\[\int_{x_1}^{x_n}f''(x)^2 dx\]
 
 \end{document}
