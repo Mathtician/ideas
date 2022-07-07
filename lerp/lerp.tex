@@ -42,12 +42,11 @@ However, this approach does not guarantee monotonicity for monotone inputs.
 (Example)
 
 On the other hand, the derivative could be 0 at every data point,
-which guarantees that the function is increasing (and in fact, strictly increasing).
+which guarantees that the function is increasing.
 However, this solution is not ideal because
-the derivative should be positive everywhere,
-which it is everywhere except the points themselves.
-It is possible to choose a very small positive slope to place at each point,
-which avoids the decreasing segments seen previously.
+the derivative should be positive everywhere.
+It is possible to choose a very small positive slope at each point,
+which still avoids the decreasing segments seen previously.
 But this does not produce a straight line if the points are collinear,
 which an ideal solution would.
 
@@ -56,18 +55,21 @@ we can think about finding it as an optimization problem.
 In other words, given a function that passes through the points,
 we can define a way to evaluate how ``well'' it interpolates between them,
 and select the function which perform the best.
-
 A common approach for these types of problems is to define the ``energy'' for a given curve,
-which usually measures deviation from a straight line in some way.
+which usually measures deviation from a straight line.
 The name comes from the fact that
-an elastic rod stores mechanical potential energy when bent,
-and within its constraints, the rod tries to minimize this potential energy
-by straightening in some areas.
+an elastic rod stores mechanical potential energy when bent
+and tries to minimize its energy by straightening when released.
+
 One of the ways to define a straight line is that its derivative is constant,
 i.e. its second derivative is 0 everywhere.
 Thus, we might try to keep the second derivative of our function as close to 0 as possible,
 to prevent it from changing slope too quickly.
+A natural way to measure distance from 0 is to square the second derivative,
+disincentivizing both negative and positive values.
+Since every point along the graph of the function should be taken into account,
+we can integrate the squared second derivative over the entire interval:
 
-\[\int_{x_1}^{x_n}f''(x)^2 dx\]
+\[J = \int_{x_1}^{x_n}f''(x)^2 dx.\]
 
 \end{document}
