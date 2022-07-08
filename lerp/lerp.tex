@@ -70,6 +70,23 @@ disincentivizing both negative and positive values.
 Since every point along the graph of the function should be taken into account,
 we can integrate the squared second derivative over the entire interval:
 
-\[J = \int_{x_1}^{x_n}f''(x)^2 dx.\]
+\[J(f) = \int_{x_1}^{x_n}f''(x)^2 dx.\]
+
+This is a problem in variational calculus,
+which is like multivariable calculus
+except that rather than functions whose inputs are vectors,
+variational calculus is concerned with functionals,
+i.e. functions whose inputs are themselves functions.
+$J$ defined above is a functional,
+since it accepts a function $f$ and returns its energy.
+An optimization problem in multivariable calculus
+is generally solved by taking the gradient of the function to be optimized,
+which consists of the derivative in each direction,
+setting the gradient to zero, and solving for the coordinates.
+In the calculus of variations, however,
+it is unwieldy to directly compute the gradient of a functional,
+since the space of functions is infinite-dimensional
+and the derivative in each direction must be calculated.
+However, there is a better way.
 
 \end{document}
