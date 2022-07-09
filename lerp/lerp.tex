@@ -79,6 +79,18 @@ variational calculus is concerned with functionals,
 i.e. functions whose inputs are themselves functions.
 $J$ defined above is a functional,
 since it accepts a function $f$ and returns its energy.
+Here, we will restrict $f$ to be $C^1$, or continuously differentiable.
+This means that $f$ must have a derivative on the open interval $(x_1, x_n)$
+(as well as one-sided derivatives at the endpoints $x_1$ and $x_n$),
+and $f'$ must itself be a continuous function.
+
+The set of such functions that passes through an arbitrary set of points
+$(x_1, y_1), \ldots, (x_n, y_n)$ is difficult to parameterize.
+Instead, we take advantage of the definition of $C^1$
+to break the problem into more manageable pieces.
+Suppose we already know $f'(x_1), \ldots, f'(x_n)$,
+i.e. the derivative of the function at each data point.
+
 An optimization problem in multivariable calculus
 is generally solved by taking the gradient of the function to be optimized,
 which consists of the derivative in each direction,
