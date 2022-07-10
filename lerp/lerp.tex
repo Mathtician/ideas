@@ -87,9 +87,36 @@ and $f'$ must itself be a continuous function.
 The set of such functions that passes through an arbitrary set of points
 $(x_1, y_1), \ldots, (x_n, y_n)$ is difficult to parameterize.
 Instead, we take advantage of the definition of $C^1$
-to break the problem into more manageable pieces.
+to break the problem into more manageable parts.
 Suppose we already know $f'(x_1), \ldots, f'(x_n)$,
 i.e. the derivative of the function at each data point.
+Call these values $c_1, \ldots, c_n$.
+Then $f$ may be split into pieces $f_1, \ldots, f_{n-1}$,
+where the domain of $f_i$ is the interval between adjacent data points $[x_i, x_{i+1}]$
+for all $i \in \{1, \ldots, n-1\}$.
+It follows that each $f_i$ is also $C^1$ and
+\begin{align*}
+  f_i(x_i) &= y_i, \\
+  f_i(x_{i+1}) &= y_{i+1}, \\
+  f_i'(x_i) &= c_i, \\
+  f_i'(x_{i+1}) &= c_{i+1},
+\end{align*}
+where the endpoints have one-sided derivatives.
+The important thing, though, is that once the derivatives are set,
+the different possible curves of each piece $f_i$
+may be swapped out independently of one another.
+This is because the derivatives of adjacent pieces will always meet up at the endpoints,
+preserving the continuity of $f'$ across the entire domain $[x_1, x_n]$.
+Thus finding a solution for the optimal function $f$ might look as follows:
+\begin{itemize}
+\item
+  Find the derivatives $c_1, \ldots, c_n$.
+\item
+  For each interval $[x_i, x_{i+1}]$, find the optimal $C^1$ function
+  with endpoint values $y_i$ and $y_{i+1}$
+  and endpoint derivatives $c_i$ and $c_{i+1}$.
+\end{itemize}
+This is fine, but how do we even begin to find the derivatives?
 
 An optimization problem in multivariable calculus
 is generally solved by taking the gradient of the function to be optimized,
