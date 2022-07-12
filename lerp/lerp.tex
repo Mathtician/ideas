@@ -107,27 +107,24 @@ the different possible curves of each piece $f_i$
 may be swapped out independently of one another.
 This is because the derivatives of adjacent pieces will always meet up at the endpoints,
 preserving the continuity of $f'$ across the entire domain $[x_1, x_n]$.
-Thus finding a solution for the optimal function $f$ might look as follows:
+This means that whatever the derivatives $c_i$ happen to be,
+$f$ must necessarily be made of segments which are individually optimal for those $c_i$.
+If $f$ had a suboptimal segment in it,
+then that segment could be replaced with one with a lower value of $J$,
+bringing down the total value for $f$.
+Thus $f$ can be optimized as follows:
 \begin{itemize}
 \item
-  Find the derivatives $c_1, \ldots, c_n$.
+  Let the derivatives $c_1, \ldots, c_n$ be arbitrary.
 \item
-  For each interval $[x_i, x_{i+1}]$, find the optimal $C^1$ function
+  For each interval $[x_i, x_{i+1}]$, find the optimal $C^1$ function $f_i$
   with endpoint values $y_i$ and $y_{i+1}$
   and endpoint derivatives $c_i$ and $c_{i+1}$.
+\item
+  Assemble $f$ using these $f_i$ and calculate $J(f)$ in terms of the various $c_i$.
+\item
+  Since $J$ now depends only on a handful of values $c_i$,
+  it may be minimized using multivariable calculus.
 \end{itemize}
-This is fine, but how do we even begin to find the derivatives?
-The space of functions is infinite-dimensional,
-and their piecewise nature will make them difficult to parameterize.
-
-An optimization problem in multivariable calculus
-is generally solved by taking the gradient of the function to be optimized,
-which consists of the derivative in each direction,
-setting the gradient to zero, and solving for the coordinates.
-In the calculus of variations, however,
-it is unwieldy to directly compute the gradient of a functional,
-since the space of functions is infinite-dimensional
-and the derivative in each direction must be calculated.
-However, there is a better way.
 
 \end{document}
