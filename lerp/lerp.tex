@@ -73,9 +73,7 @@ we can integrate the squared second derivative over the entire interval:
 \[J(f) = \int_{x_1}^{x_n}f''(x)^2 dx.\]
 
 This is a problem in variational calculus,
-which is like multivariable calculus
-except that rather than functions whose inputs are vectors,
-variational calculus is concerned with functionals,
+which is calculus on functionals,
 i.e. functions whose inputs are themselves functions.
 $J$ defined above is a functional,
 since it accepts a function $f$ and returns its energy.
@@ -126,5 +124,12 @@ Thus $f$ can be optimized as follows:
   Since $J$ now depends only on a handful of values $c_i$,
   it may be minimized using multivariable calculus.
 \end{itemize}
+
+The first two steps, like the original problem, are still part of variational calculus,
+but they are now more manageable.
+For $f_i$, the relevant variables are
+$x_i$, $x_{i+1}$, $y_i$, $y_{i+1}$, $c_i$, and $c_{i+1}$,
+and the goal is to minimize
+\[\int_{x_i}^{x_i+1}f_i''(x)^2 dx.\]
 
 \end{document}
