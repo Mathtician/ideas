@@ -169,11 +169,14 @@ There are a few techniques that could be used,
   &= (-2(y_2-y_1)+w_1c_1+w_1c_2)u^3+(3(y_2+3y_1)-2w_1c_1-w_1c_2)u^2+w_1c_1u+y_1 \\
   &= (-2h_1+w_1c_1+w_1c_2)u^3+(3h_1-2w_1c_1-w_1c_2)u^2+w_1c_1u+y_1 \\
   &= pu^3+qu^2+w_1c_1u+y_1 \\
+  \frac{\partial p}{\partial c_1}
+  &= w_1 \\
+  \frac{\partial q}{\partial c_1}
+  &= -2w_1 \\
   g_1'(u)
   &= 3pu^2+2qu+w_1 \\
   g_1''(u)
-  &= 6pu+2q \\
-  &= 6(-2h_1+w_1c_1+w_1c_2)u+2(3h_1-2w_1c_1-w_1c_2)
+  &= 6pu+2q
 \end{align*}
 \begin{align*}
   f_1(x)
@@ -193,7 +196,8 @@ There are a few techniques that could be used,
   &= \frac{1}{w_1} \ddx{u} g_1''(u) \\
   &= \frac{1}{w_1} \frac{1}{w_1} g_1''(u) \\
   &= \frac{1}{w_1^2} g_1''(u) \\
-  &= \frac{1}{w_1^2}(6pu+2q)
+  &= \frac{1}{w_1^2}(6pu+2q) \\
+  &= \frac{2}{w_1^2}(3pu+q)
 \end{align*}
 \begin{align*}
   J_1
@@ -201,8 +205,18 @@ There are a few techniques that could be used,
   \frac{\partial J_1}{\partial c_1}
   &= \frac{\partial}{\partial c_1} \int_{x=x_1}^{x_2} f_1''(x)^2 \dx \\
   &= \int_{x=x_1}^{x_2} \frac{\partial}{\partial c_1} f_1''(x)^2 \dx \\
-  &= \int_{u=0}^{1} \frac{\partial}{\partial c_1} \left(\frac{1}{w_1^2}(6pu+2q)\right)^2 w_1 \du \\
-  &= \frac{1}{w_1^3} \int_{u=0}^{1} \frac{\partial}{\partial c_1} (6pu+2q)^2 \du \\
-  &= \frac{1}{w_1^3} \int_{u=0}^{1} 2(6pu+2q) \frac{\partial}{\partial c_1} (6pu+2q) \du \\
+  &= \int_{u=0}^{1} \frac{\partial}{\partial c_1} \left(\frac{2}{w_1^2}(3pu+q)\right)^2 w_1 \du \\
+  &= \frac{4}{w_1^3} \int_{u=0}^{1} \frac{\partial}{\partial c_1} (3pu+q)^2 \du \\
+  &= \frac{4}{w_1^3} \int_{u=0}^{1} 2(3pu+q) \frac{\partial}{\partial c_1} (3pu+q) \du \\
+  &= \frac{4}{w_1^3} \int_{u=0}^{1} 2(3pu+q) \left(3\frac{\partial p}{\partial c_1}u+\frac{\partial q}{\partial c_1}\right) \du \\
+  &= \frac{4}{w_1^3} \int_{u=0}^{1} 2(3pu+q)(3w_1u-2w_1) \du \\
+  &= \frac{4}{w_1^2} \int_{u=0}^{1} 2(3pu+q)(3u-2) \du \\
+  &= \frac{4}{w_1^2} \int_{u=0}^{1} 18pu^2+(6q-12p)u-4q \du \\
+  &= \frac{4}{w_1^2} (6pu^3+(3q-6p)u^2-4qu)\Bigr|_0^1 \\
+  &= \frac{4}{w_1^2} ((6p1^3+(3q-6p)1^2-4q1)-(6p0^3+(3q-6p)0^2-4q0)) \\
+  &= \frac{4}{w_1^2} (6p+(3q-6p)-4q) \\
+  &= \frac{4}{w_1^2} (-q) \\
+  &= \frac{4}{w_1^2} (-(3h_1-2w_1c_1-w_1c_2)) \\
+  &= \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2)
 \end{align*}
 \end{document}
