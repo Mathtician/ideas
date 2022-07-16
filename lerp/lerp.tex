@@ -134,5 +134,75 @@ and the goal is to minimize
 
 There are a few techniques that could be used,
 
+\newcommand{\dx}{\, \mathrm{d}x}
+\newcommand{\du}{\, \mathrm{d}u}
+\newcommand{\ddx}[1]{\frac{\mathrm{d}#1}{\mathrm{d}x}}
 
+\newpage
+\begin{align*}
+  %% \frac{\partial J_i}{\partial c_i}
+  %% &= \frac{\partial}{\partial c_i} \int_{x_i}^{x_{i+1}} f_i''(x)^2 \mathrm{d}x \\
+  %% &= \int_{x_i}^{x_{i+1}} \frac{\partial}{\partial c_i} f_i''(x)^2 \mathrm{d}x \\
+  %% \frac{\partial}{\partial c_i} f_i''(x)^2
+  %% &= 2f_i''(x) \frac{\partial}{\partial c_i} f_i''(x) \\
+  %% f_i''(x)
+  %% &= \frac{\mathrm{d}}{\mathrm{d}x}f_i'(x) \\
+  %% f_i'(x)
+  %% &= \frac{\mathrm{d}}{\mathrm{d}x}f_i(x) \\
+  %% f_i(x)
+  %% &= g_i\left(\frac{x-x_i}{w_i}\right) \\
+  %% &= g_i(u) \\
+  h_{00}(u)
+  &= 2u^3-3u^2+1 \\
+  h_{01}(u)
+  &= -2u^3+3u^2 \\
+  h_{10}(u)
+  &= u^3-2u^2+u \\
+  h_{11}(u)
+  &= u^3-u^2
+\end{align*}
+\begin{align*}
+  g_1(u)
+  &= y_1h_{00}(u)+y_2h_{01}(u)+w_1c_1h_{10}(u)+w_1c_2h_{11}(u) \\
+  &= y_1(2u^3-3u^2+1)+y_2(-2u^3+3u^2)+w_1c_1(u^3-2u^2+u)+w_1c_2(u^3-u^2) \\
+  &= (2y_1-2y_2+w_1c_1+w_1c_2)u^3+(-3y_1+3y_2-2w_1c_1-w_1c_2)u^2+w_1c_1u+y_1 \\
+  &= (-2(y_2-y_1)+w_1c_1+w_1c_2)u^3+(3(y_2+3y_1)-2w_1c_1-w_1c_2)u^2+w_1c_1u+y_1 \\
+  &= (-2h_1+w_1c_1+w_1c_2)u^3+(3h_1-2w_1c_1-w_1c_2)u^2+w_1c_1u+y_1 \\
+  &= pu^3+qu^2+w_1c_1u+y_1 \\
+  g_1'(u)
+  &= 3pu^2+2qu+w_1 \\
+  g_1''(u)
+  &= 6pu+2q \\
+  &= 6(-2h_1+w_1c_1+w_1c_2)u+2(3h_1-2w_1c_1-w_1c_2)
+\end{align*}
+\begin{align*}
+  f_1(x)
+  &= g_1\left(\frac{x-x_1}{w_1}\right) \\
+  &= g_1(u) \\
+  \ddx{u}
+  &= \frac{1}{w_1} \\
+  w_1\mathrm{d}u
+  &= \mathrm{d}x \\
+  f_1'(x)
+  &= \ddx{} \left(g_1(u)\right) \\
+  &= \ddx{u} g_1'(u) \\
+  &= \frac{1}{w_1}g_1'(u) \\
+  f_1''(x)
+  &= \ddx{} \left(\frac{1}{w_1}g_1'(u)\right) \\
+  &= \frac{1}{w_1} \ddx{} (g_1'(u)) \\
+  &= \frac{1}{w_1} \ddx{u} g_1''(u) \\
+  &= \frac{1}{w_1} \frac{1}{w_1} g_1''(u) \\
+  &= \frac{1}{w_1^2} g_1''(u) \\
+  &= \frac{1}{w_1^2}(6pu+2q)
+\end{align*}
+\begin{align*}
+  J_1
+  &= \int_{x=x_1}^{x_2}f_1''(x)^2\dx \\
+  \frac{\partial J_1}{\partial c_1}
+  &= \frac{\partial}{\partial c_1} \int_{x=x_1}^{x_2} f_1''(x)^2 \dx \\
+  &= \int_{x=x_1}^{x_2} \frac{\partial}{\partial c_1} f_1''(x)^2 \dx \\
+  &= \int_{u=0}^{1} \frac{\partial}{\partial c_1} \left(\frac{1}{w_1^2}(6pu+2q)\right)^2 w_1 \du \\
+  &= \frac{1}{w_1^3} \int_{u=0}^{1} \frac{\partial}{\partial c_1} (6pu+2q)^2 \du \\
+  &= \frac{1}{w_1^3} \int_{u=0}^{1} 2(6pu+2q) \frac{\partial}{\partial c_1} (6pu+2q) \du \\
+\end{align*}
 \end{document}
