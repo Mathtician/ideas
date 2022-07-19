@@ -223,6 +223,17 @@ There are a few techniques that could be used,
   \frac{\partial J_i}{\partial c_i}
   &= \frac{4}{w_i^2} (-3h_i+2w_ic_i+w_ic_{i+1}) \\
   \frac{\partial J_i}{\partial c_{i+1}}
-  &= \frac{4}{w_i^2} (-3h_i+w_ic_i+2w_ic_{i+1})
+  &= \frac{4}{w_i^2} (-3h_i+w_ic_i+2w_ic_{i+1}) \\
+  \frac{\partial J}{\partial c_1}
+  &= \frac{\partial J_1}{\partial c_1} \\
+  &= \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2) \\
+  \frac{\partial J}{\partial c_n}
+  &= \frac{\partial J_{n-1}}{\partial c_n} \\
+  &= \frac{4}{w_{n-1}^2} (-3h_{n-1}+w_{n-1}c_{n-1}+2w_{n-1}c_n) \\
+  \frac{\partial J}{\partial c_i}
+  &= \frac{\partial J_{i-1}}{\partial c_i}
+  + \frac{\partial J_i}{\partial c_i} \\
+  &= \frac{4}{w_{i-1}^2} (-3h_{i-1}+w_{i-1}c_{i-1}+2w_{i-1}c_i)
+  + \frac{4}{w_i^2} (-3h_i+2w_ic_i+w_ic_{i+1}) \\
 \end{align*}
 \end{document}
