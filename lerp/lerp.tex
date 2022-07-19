@@ -220,7 +220,9 @@ There are a few techniques that could be used,
   &= \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2)
 \end{align*}
 \begin{align*}
-  \frac{\partial J_1}{\partial c_2}
-  &= \frac{4}{w_1^2} (-3h_1+w_1c_1+2w_1c_2)
+  \frac{\partial J_i}{\partial c_i}
+  &= \frac{4}{w_i^2} (-3h_i+2w_ic_i+w_ic_{i+1}) \\
+  \frac{\partial J_i}{\partial c_{i+1}}
+  &= \frac{4}{w_i^2} (-3h_i+w_ic_i+2w_ic_{i+1})
 \end{align*}
 \end{document}
