@@ -217,29 +217,72 @@ There are a few techniques that could be used,
   &= \frac{4}{w_1^2} (6p+(3q-6p)-4q) \\
   &= \frac{4}{w_1^2} (-q) \\
   &= \frac{4}{w_1^2} (-(3h_1-2w_1c_1-w_1c_2)) \\
-  &= \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2)
+  &= \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2) \\
+  &= 4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2\right)
 \end{align*}
 \begin{align*}
   \frac{\partial J_i}{\partial c_i}
-  &= \frac{4}{w_i^2} (-3h_i+2w_ic_i+w_ic_{i+1}) \\
+  &= 4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}c_i+\frac{1}{w_i}c_{i+1}\right) \\
   \frac{\partial J_i}{\partial c_{i+1}}
-  &= \frac{4}{w_i^2} (-3h_i+w_ic_i+2w_ic_{i+1}) \\
+  &= 4\left(-\frac{3h_i}{w_i^2}+\frac{1}{w_i}c_i+\frac{2}{w_i}c_{i+1}\right) \\
   \frac{\partial J}{\partial c_1}
   &= \frac{\partial J_1}{\partial c_1} \\
-  &= \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2) \\
+  &= 4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2\right) \\
   \frac{\partial J}{\partial c_n}
   &= \frac{\partial J_{n-1}}{\partial c_n} \\
-  &= \frac{4}{w_{n-1}^2} (-3h_{n-1}+w_{n-1}c_{n-1}+2w_{n-1}c_n) \\
+  &= 4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}c_{n-1}+\frac{2}{w_{n-1}}c_n\right) \\
   \frac{\partial J}{\partial c_i}
   &= \frac{\partial J_{i-1}}{\partial c_i}
   + \frac{\partial J_i}{\partial c_i} \\
-  &= \frac{4}{w_{i-1}^2} (-3h_{i-1}+w_{i-1}c_{i-1}+2w_{i-1}c_i)
-  + \frac{4}{w_i^2} (-3h_i+2w_ic_i+w_ic_{i+1}) \\
+  &= 4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}c_{i-1}+\frac{2}{w_{i-1}}c_i\right)
+  + 4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}c_i+\frac{1}{w_i}c_{i+1}\right) \\
+  &= 4\left(-\frac{3h_{i-1}}{w_{i-1}^2}-\frac{3h_i}{w_i^2}
+  +\frac{1}{w_{i-1}}c_{i-1}
+  +\left(\frac{2}{w_{i-1}}+\frac{2}{w_i}\right)c_i
+  +\frac{1}{w_i}c_{i+1}\right)
 \end{align*}
 \begin{align*}
-  \frac{4}{w_1^2} (-3h_1+2w_1c_1+w_1c_2)
+  4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2\right)
   &= 0 \\
-  -3h_1+2w_1c_1+w_1c_2
+  -\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2
   &= 0 \\
+  \frac{2}{w_1}c_1+\frac{1}{w_1}c_2
+  &= \frac{3h_1}{w_1^2} \\
+  4\left(-\frac{3h_{i-1}}{w_{i-1}^2}-\frac{3h_i}{w_i^2}
+  +\frac{1}{w_{i-1}}c_{i-1}
+  +\left(\frac{2}{w_{i-1}}+\frac{2}{w_i}\right)c_i
+  +\frac{1}{w_i}c_{i+1}\right)
+  &= 0 \\
+  -\frac{3h_{i-1}}{w_{i-1}^2}-\frac{3h_i}{w_i^2}
+  +\frac{1}{w_{i-1}}c_{i-1}
+  +\left(\frac{2}{w_{i-1}}+\frac{2}{w_i}\right)c_i
+  +\frac{1}{w_i}c_{i+1}
+  &= 0 \\
+  \frac{1}{w_{i-1}}c_{i-1}
+  +\left(\frac{2}{w_{i-1}}+\frac{2}{w_i}\right)c_i
+  +\frac{1}{w_i}c_{i+1}
+  &= \frac{3h_{i-1}}{w_{i-1}^2}+\frac{3h_i}{w_i^2} \\
+  4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}c_{n-1}+\frac{2}{w_{n-1}}c_n\right)
+  &= 0 \\
+  -\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}c_{n-1}+\frac{2}{w_{n-1}}c_n
+  &= 0 \\
+  \frac{1}{w_{n-1}}c_{n-1}+\frac{2}{w_{n-1}}c_n
+  &= \frac{3h_{n-1}}{w_{n-1}^2}
+\end{align*}
+\begin{align*}
+  \begin{bmatrix}
+    \frac{2}{w_1} & \frac{1}{w_1} & 0 \\
+    \frac{1}{w_1} & \frac{2}{w_1}+\frac{2}{w_2} & \frac{1}{w_2} \\
+    0 & \frac{1}{w_1} & \frac{2}{w_2} \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    c_1 \\ c_2 \\ c_3
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{3h_1}{w_1^2} \\
+    \frac{3h_1}{w_1^2}+\frac{3h_2}{w_2^2} \\
+    \frac{3h_2}{w_2^2}
+  \end{bmatrix}
 \end{align*}
 \end{document}
