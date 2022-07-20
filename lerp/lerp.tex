@@ -273,16 +273,32 @@ There are a few techniques that could be used,
   \begin{bmatrix}
     \frac{2}{w_1} & \frac{1}{w_1} & 0 \\
     \frac{1}{w_1} & \frac{2}{w_1}+\frac{2}{w_2} & \frac{1}{w_2} \\
-    0 & \frac{1}{w_1} & \frac{2}{w_2} \\
+    0 & \frac{1}{w_2} & \frac{2}{w_2} \\
   \end{bmatrix}
   \begin{bmatrix}
     c_1 \\ c_2 \\ c_3
   \end{bmatrix}
-  =
+  &=
   \begin{bmatrix}
     \frac{3h_1}{w_1^2} \\
     \frac{3h_1}{w_1^2}+\frac{3h_2}{w_2^2} \\
     \frac{3h_2}{w_2^2}
+  \end{bmatrix} \\
+  \begin{bmatrix}
+    \frac{2}{w_1} & \frac{1}{w_1} & 0 & 0 \\
+    \frac{1}{w_1} & \frac{2}{w_1}+\frac{2}{w_2} & \frac{1}{w_2} & 0 \\
+    0 & \frac{1}{w_2} & \frac{2}{w_2}+\frac{2}{w_3} & \frac{1}{w_3} \\
+    0 & 0 & \frac{1}{w_3} & \frac{2}{w_3}
+  \end{bmatrix}
+  \begin{bmatrix}
+    c_1 \\ c_2 \\ c_3 \\ c_4
+  \end{bmatrix}
+  &=
+  \begin{bmatrix}
+    \frac{3h_1}{w_1^2} \\
+    \frac{3h_1}{w_1^2}+\frac{3h_2}{w_2^2} \\
+    \frac{3h_2}{w_2^2}+\frac{3h_3}{w_3^2} \\
+    \frac{3h_3}{w_3^2}
   \end{bmatrix}
 \end{align*}
 \end{document}
