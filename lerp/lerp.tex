@@ -302,6 +302,10 @@ There are a few techniques that could be used,
   \end{bmatrix}
 \end{align*}
 \begin{align*}
-K = \sum_{i=1}^{n-1}\frac{w_i^2}{h_i}J_i
+  K = \sum_{i=1}^{n-1}\frac{w_i^2}{h_i}J_i \\
+  \frac{\partial K}{\partial c_1}
+  &= \frac{w_1^2}{h_1}\frac{\partial J_1}{\partial c_1} \\
+  &= \frac{w_1^2}{h_1}4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2\right) \\
+  &= 4\left(-3+\frac{2w_1}{h_1}c_1+\frac{w_1}{h_1}c_2\right) \\
 \end{align*}
 \end{document}
