@@ -335,6 +335,8 @@ There are a few techniques that could be used,
   &= 4\left(-3w_{n-1}^{u-2}h_{n-1}^{v+1}+w_{n-1}^{u-1}h_{n-1}^vc_{n-1}+w_{n-1}^{u-1}h_{n-1}^vc_n\right) \\
   \frac{\partial K}{\partial c_i}
   &= w_{i-1}^uh_{i-1}^v\frac{\partial J_{i-1}}{\partial c_i}
-  + w_i^uh_i^v\frac{\partial J_i}{\partial c_i}
+  + w_i^uh_i^v\frac{\partial J_i}{\partial c_i} \\
+  &= w_{i-1}^uh_{i-1}^v4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}c_{i-1}+\frac{2}{w_{i-1}}c_i\right)
+  + w_i^uh_i^v4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}c_i+\frac{1}{w_i}c_{i+1}\right) \\
 \end{align*}
 \end{document}
