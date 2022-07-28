@@ -324,22 +324,24 @@ There are a few techniques that could be used,
 %% \end{align*}
 
 \begin{align*}
-  K &= \sum_{i=1}^{n-1}w_i^uh_i^vJ_i \\
+  K &= \sum_{i=1}^{n-1}\frac{w_i^u}{h_i^v}J_i \\
   \frac{\partial K}{\partial c_1}
-  &= w_1^uh_1^v\frac{\partial J_1}{\partial c_1} \\
-  &= w_1^uh_1^v4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2\right) \\
-  &= 4\left(-3w_1^{u-2}h_1^{v+1}+2w_1^{u-1}h_1^vc_1+w_1^{u-1}h_1^vc_2\right) \\
-  \frac{\partial K}{\partial c_n}
-  &= w_{n-1}^uh_{n-1}^v\frac{\partial J_{n-1}}{\partial c_n} \\
-  &= w_{n-1}^uh_{n-1}^v4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}c_{n-1}+\frac{2}{w_{n-1}}c_n\right) \\
-  &= 4\left(-3w_{n-1}^{u-2}h_{n-1}^{v+1}+w_{n-1}^{u-1}h_{n-1}^vc_{n-1}+w_{n-1}^{u-1}h_{n-1}^vc_n\right) \\
-  \frac{\partial K}{\partial c_i}
-  &= w_{i-1}^uh_{i-1}^v\frac{\partial J_{i-1}}{\partial c_i}
-  + w_i^uh_i^v\frac{\partial J_i}{\partial c_i} \\
-  &= w_{i-1}^uh_{i-1}^v4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}c_{i-1}+\frac{2}{w_{i-1}}c_i\right)
-  + w_i^uh_i^v4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}c_i+\frac{1}{w_i}c_{i+1}\right) \\
-  &= 4\left(
-  -3w_{i-1}^{u-2}h_{i-1}^{v+1}-3w_i^{u-2}h_i^{v+1}+\ldots
-  \right)
+  &= \frac{w_1^u}{h_1^v}\frac{\partial J_1}{\partial c_1} \\
+  &= \frac{w_1^u}{h_1^v}4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}c_1+\frac{1}{w_1}c_2\right) \\
+  &= 4\left(-3\frac{w_1^{u-2}}{h_1^{v+1}}+2\frac{w_1^{u-1}}{h_1^v}c_1+\frac{w_1^{u-1}}{h_1^v}c_2\right) \\
+  %% \frac{\partial K}{\partial c_n}
+  %% &= w_{n-1}^uh_{n-1}^v\frac{\partial J_{n-1}}{\partial c_n} \\
+  %% &= w_{n-1}^uh_{n-1}^v4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}c_{n-1}+\frac{2}{w_{n-1}}c_n\right) \\
+  %% &= 4\left(-3w_{n-1}^{u-2}h_{n-1}^{v+1}+w_{n-1}^{u-1}h_{n-1}^vc_{n-1}+2w_{n-1}^{u-1}h_{n-1}^vc_n\right) \\
+  %% \frac{\partial K}{\partial c_i}
+  %% &= w_{i-1}^uh_{i-1}^v\frac{\partial J_{i-1}}{\partial c_i}
+  %% + w_i^uh_i^v\frac{\partial J_i}{\partial c_i} \\
+  %% &= w_{i-1}^uh_{i-1}^v4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}c_{i-1}+\frac{2}{w_{i-1}}c_i\right)
+  %% + w_i^uh_i^v4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}c_i+\frac{1}{w_i}c_{i+1}\right) \\
+  %% &= 4\left(
+  %% -3w_{i-1}^{u-2}h_{i-1}^{v+1}-3w_i^{u-2}h_i^{v+1}
+  %% +w_{i-1}^{u-1}h_{i-1}^vc_{i-1}
+  %% +\left(2w_{i-1}^{u-1}h_{i-1}^v+2w_i^{u-1}h_i^v\right)c_i
+  %% \right)
 \end{align*}
 \end{document}
