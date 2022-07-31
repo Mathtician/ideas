@@ -359,4 +359,34 @@ There are a few techniques that could be used,
   %% +\left(2w_{i-1}^{u-1}h_{i-1}^v+2w_i^{u-1}h_i^v\right)c_i
   %% \right)
 \end{align*}
+\begin{align*}
+  4\left(-\frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{2w_1^{u-1}}{h_1^v}c_1+\frac{w_1^{u-1}}{h_1^v}c_2\right)
+  &= 0 \\
+  -\frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{2w_1^{u-1}}{h_1^v}c_1+\frac{w_1^{u-1}}{h_1^v}c_2
+  &= 0 \\
+  \frac{2w_1^{u-1}}{h_1^v}c_1+\frac{w_1^{u-1}}{h_1^v}c_2
+  &= \frac{3w_1^{u-2}}{h_1^{v-1}} \\
+  4\left(
+  -\frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{u-2}}{h_i^{v-1}}
+  +\frac{w_{i-1}^{u-1}}{h_{i-1}^v}c_{i-1}
+  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)c_i
+  +\frac{w_i^{u-1}}{h_i^v}c_{i+1}
+  \right)
+  &= 0 \\
+  -\frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{u-2}}{h_i^{v-1}}
+  +\frac{w_{i-1}^{u-1}}{h_{i-1}^v}c_{i-1}
+  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)c_i
+  +\frac{w_i^{u-1}}{h_i^v}c_{i+1}
+  &= 0 \\
+  \frac{w_{i-1}^{u-1}}{h_{i-1}^v}c_{i-1}
+  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)c_i
+  +\frac{w_i^{u-1}}{h_i^v}c_{i+1}
+  &= \frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}+\frac{3w_i^{u-2}}{h_i^{v-1}} \\
+  4\left(-\frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{u-1}}{h_{n-1}^v}c_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}c_n\right)
+  &= 0 \\
+  -\frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{u-1}}{h_{n-1}^v}c_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}c_n
+  &= 0 \\
+  \frac{w_{n-1}^{u-1}}{h_{n-1}^v}c_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}c_n
+  &= \frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}} \\
+\end{align*}
 \end{document}
