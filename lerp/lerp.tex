@@ -391,14 +391,18 @@ There are a few techniques that could be used,
 \end{align*}
 \begin{align*}
   \begin{bmatrix}
-    h
+    \frac{2w_1^{u-1}}{h_1^v} & \frac{w_1^{u-1}}{h_1^v} & 0 \\
+    \frac{w_1^{u-1}}{h_1^v} & \frac{2w_1^{u-1}}{h_1^v}+\frac{2w_2^{u-1}}{h_2^v} & \frac{w_2^{u-1}}{h_2^v} \\
+    0 & \frac{w_2^{u-1}}{h_2^v} & \frac{2w_2^{u-1}}{h_2^v}
   \end{bmatrix}
   \begin{bmatrix}
     c_1 \\ c_2 \\ c_3
   \end{bmatrix}
-  &=
+  &= 
   \begin{bmatrix}
-    h
+    \frac{3w_1^{u-2}}{h_1^{v-1}} \\
+    \frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{3w_2^{u-2}}{h_2^{v-1}} \\
+    \frac{3w_2^{u-2}}{h_2^{v-1}}
   \end{bmatrix}
 \end{align*}
 \end{document}
