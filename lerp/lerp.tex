@@ -135,7 +135,7 @@ and the goal is to minimize
 There are a few techniques that could be used,
 
 \newcommand{\dx}{\, \mathrm{d}x}
-\newcommand{\du}{\, \mathrm{d}u}
+\newcommand{\dt}{\, \mathrm{d}t}
 \newcommand{\ddx}[1]{\frac{\mathrm{d}#1}{\mathrm{d}x}}
 
 \newpage
@@ -151,53 +151,53 @@ There are a few techniques that could be used,
   %% &= \frac{\mathrm{d}}{\mathrm{d}x}f_i(x) \\
   %% f_i(x)
   %% &= g_i\left(\frac{x-x_i}{w_i}\right) \\
-  %% &= g_i(u) \\
-  h_{00}(u)
-  &= 2u^3-3u^2+1 \\
-  h_{01}(u)
-  &= -2u^3+3u^2 \\
-  h_{10}(u)
-  &= u^3-2u^2+u \\
-  h_{11}(u)
-  &= u^3-u^2
+  %% &= g_i(t) \\
+  h_{00}(t)
+  &= 2t^3-3t^2+1 \\
+  h_{01}(t)
+  &= -2t^3+3t^2 \\
+  h_{10}(t)
+  &= t^3-2t^2+t \\
+  h_{11}(t)
+  &= t^3-t^2
 \end{align*}
 \begin{align*}
-  g_1(u)
-  &= y_1h_{00}(u)+y_2h_{01}(u)+w_1d_1h_{10}(u)+w_1d_2h_{11}(u) \\
-  &= y_1(2u^3-3u^2+1)+y_2(-2u^3+3u^2)+w_1d_1(u^3-2u^2+u)+w_1d_2(u^3-u^2) \\
-  &= (2y_1-2y_2+w_1d_1+w_1d_2)u^3+(-3y_1+3y_2-2w_1d_1-w_1d_2)u^2+w_1d_1u+y_1 \\
-  &= (-2(y_2-y_1)+w_1d_1+w_1d_2)u^3+(3(y_2+3y_1)-2w_1d_1-w_1d_2)u^2+w_1d_1u+y_1 \\
-  &= (-2h_1+w_1d_1+w_1d_2)u^3+(3h_1-2w_1d_1-w_1d_2)u^2+w_1d_1u+y_1 \\
-  &= pu^3+qu^2+w_1d_1u+y_1 \\
+  g_1(t)
+  &= y_1h_{00}(t)+y_2h_{01}(t)+w_1d_1h_{10}(t)+w_1d_2h_{11}(t) \\
+  &= y_1(2t^3-3t^2+1)+y_2(-2t^3+3t^2)+w_1d_1(t^3-2t^2+t)+w_1d_2(t^3-t^2) \\
+  &= (2y_1-2y_2+w_1d_1+w_1d_2)t^3+(-3y_1+3y_2-2w_1d_1-w_1d_2)t^2+w_1d_1t+y_1 \\
+  &= (-2(y_2-y_1)+w_1d_1+w_1d_2)t^3+(3(y_2+3y_1)-2w_1d_1-w_1d_2)t^2+w_1d_1t+y_1 \\
+  &= (-2h_1+w_1d_1+w_1d_2)t^3+(3h_1-2w_1d_1-w_1d_2)t^2+w_1d_1t+y_1 \\
+  &= pt^3+qt^2+w_1d_1t+y_1 \\
   \frac{\partial p}{\partial d_1}
   &= w_1 \\
   \frac{\partial q}{\partial d_1}
   &= -2w_1 \\
-  g_1'(u)
-  &= 3pu^2+2qu+w_1 \\
-  g_1''(u)
-  &= 6pu+2q
+  g_1'(t)
+  &= 3pt^2+2qt+w_1 \\
+  g_1''(t)
+  &= 6pt+2q
 \end{align*}
 \begin{align*}
   f_1(x)
   &= g_1\left(\frac{x-x_1}{w_1}\right) \\
-  &= g_1(u) \\
-  \ddx{u}
+  &= g_1(t) \\
+  \ddx{t}
   &= \frac{1}{w_1} \\
-  w_1\mathrm{d}u
+  w_1\mathrm{d}t
   &= \mathrm{d}x \\
   f_1'(x)
-  &= \ddx{} \left(g_1(u)\right) \\
-  &= \ddx{u} g_1'(u) \\
-  &= \frac{1}{w_1}g_1'(u) \\
+  &= \ddx{} \left(g_1(t)\right) \\
+  &= \ddx{t} g_1'(t) \\
+  &= \frac{1}{w_1}g_1'(t) \\
   f_1''(x)
-  &= \ddx{} \left(\frac{1}{w_1}g_1'(u)\right) \\
-  &= \frac{1}{w_1} \ddx{} (g_1'(u)) \\
-  &= \frac{1}{w_1} \ddx{u} g_1''(u) \\
-  &= \frac{1}{w_1} \frac{1}{w_1} g_1''(u) \\
-  &= \frac{1}{w_1^2} g_1''(u) \\
-  &= \frac{1}{w_1^2}(6pu+2q) \\
-  &= \frac{2}{w_1^2}(3pu+q)
+  &= \ddx{} \left(\frac{1}{w_1}g_1'(t)\right) \\
+  &= \frac{1}{w_1} \ddx{} (g_1'(t)) \\
+  &= \frac{1}{w_1} \ddx{t} g_1''(t) \\
+  &= \frac{1}{w_1} \frac{1}{w_1} g_1''(t) \\
+  &= \frac{1}{w_1^2} g_1''(t) \\
+  &= \frac{1}{w_1^2}(6pt+2q) \\
+  &= \frac{2}{w_1^2}(3pt+q)
 \end{align*}
 \begin{align*}
   J_1
@@ -205,14 +205,14 @@ There are a few techniques that could be used,
   \frac{\partial J_1}{\partial d_1}
   &= \frac{\partial}{\partial d_1} \int_{x=x_1}^{x_2} f_1''(x)^2 \dx \\
   &= \int_{x=x_1}^{x_2} \frac{\partial}{\partial d_1} f_1''(x)^2 \dx \\
-  &= \int_{u=0}^{1} \frac{\partial}{\partial d_1} \left(\frac{2}{w_1^2}(3pu+q)\right)^2 w_1 \du \\
-  &= \frac{4}{w_1^3} \int_{u=0}^{1} \frac{\partial}{\partial d_1} (3pu+q)^2 \du \\
-  &= \frac{4}{w_1^3} \int_{u=0}^{1} 2(3pu+q) \frac{\partial}{\partial d_1} (3pu+q) \du \\
-  &= \frac{4}{w_1^3} \int_{u=0}^{1} 2(3pu+q) \left(3\frac{\partial p}{\partial d_1}u+\frac{\partial q}{\partial d_1}\right) \du \\
-  &= \frac{4}{w_1^3} \int_{u=0}^{1} 2(3pu+q)(3w_1u-2w_1) \du \\
-  &= \frac{4}{w_1^2} \int_{u=0}^{1} 2(3pu+q)(3u-2) \du \\
-  &= \frac{4}{w_1^2} \int_{u=0}^{1} 18pu^2+(6q-12p)u-4q \du \\
-  &= \frac{4}{w_1^2} (6pu^3+(3q-6p)u^2-4qu)\Bigr|_0^1 \\
+  &= \int_{t=0}^{1} \frac{\partial}{\partial d_1} \left(\frac{2}{w_1^2}(3pt+q)\right)^2 w_1 \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} \frac{\partial}{\partial d_1} (3pt+q)^2 \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3pt+q) \frac{\partial}{\partial d_1} (3pt+q) \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3pt+q) \left(3\frac{\partial p}{\partial d_1}t+\frac{\partial q}{\partial d_1}\right) \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3pt+q)(3w_1t-2w_1) \dt \\
+  &= \frac{4}{w_1^2} \int_{t=0}^{1} 2(3pt+q)(3t-2) \dt \\
+  &= \frac{4}{w_1^2} \int_{t=0}^{1} 18pt^2+(6q-12p)t-4q \dt \\
+  &= \frac{4}{w_1^2} (6pt^3+(3q-6p)t^2-4qt)\Bigr|_0^1 \\
   &= \frac{4}{w_1^2} ((6p1^3+(3q-6p)1^2-4q1)-(6p0^3+(3q-6p)0^2-4q0)) \\
   &= \frac{4}{w_1^2} (6p+(3q-6p)-4q) \\
   &= \frac{4}{w_1^2} (-q) \\
@@ -324,85 +324,85 @@ There are a few techniques that could be used,
 %% \end{align*}
 
 \begin{align*}
-  K &= \sum_{i=1}^{n-1}\frac{w_i^u}{h_i^v}J_i \\
+  K &= \sum_{i=1}^{n-1}\frac{w_i^t}{h_i^v}J_i \\
   \frac{\partial K}{\partial d_1}
-  &= \frac{w_1^u}{h_1^v}\frac{\partial J_1}{\partial d_1} \\
-  &= \frac{w_1^u}{h_1^v}4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}d_1+\frac{1}{w_1}d_2\right) \\
-  &= 4\left(-\frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{2w_1^{u-1}}{h_1^v}d_1+\frac{w_1^{u-1}}{h_1^v}d_2\right) \\
+  &= \frac{w_1^t}{h_1^v}\frac{\partial J_1}{\partial d_1} \\
+  &= \frac{w_1^t}{h_1^v}4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}d_1+\frac{1}{w_1}d_2\right) \\
+  &= 4\left(-\frac{3w_1^{t-2}}{h_1^{v-1}}+\frac{2w_1^{t-1}}{h_1^v}d_1+\frac{w_1^{t-1}}{h_1^v}d_2\right) \\
   \frac{\partial K}{\partial d_n}
-  &= \frac{w_{n-1}^u}{h_{n-1}^v}\frac{\partial J_{n-1}}{\partial d_n} \\
-  &= \frac{w_{n-1}^u}{h_{n-1}^v}4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}d_{n-1}+\frac{2}{w_{n-1}}d_n\right) \\
-  &= 4\left(-\frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{u-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}d_n\right) \\
+  &= \frac{w_{n-1}^t}{h_{n-1}^v}\frac{\partial J_{n-1}}{\partial d_n} \\
+  &= \frac{w_{n-1}^t}{h_{n-1}^v}4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}d_{n-1}+\frac{2}{w_{n-1}}d_n\right) \\
+  &= 4\left(-\frac{3w_{n-1}^{t-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{t-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{t-1}}{h_{n-1}^v}d_n\right) \\
   \frac{\partial K}{\partial d_i}
-  &= \frac{w_{i-1}^u}{h_{i-1}^v}\frac{\partial J_{i-1}}{\partial d_i}
-  + \frac{w_i^u}{h_i^v}\frac{\partial J_i}{\partial d_i} \\
-  &= \frac{w_{i-1}^u}{h_{i-1}^v}4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}d_{i-1}+\frac{2}{w_{i-1}}d_i\right)
-  + \frac{w_i^u}{h_i^v}4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}d_i+\frac{1}{w_i}d_{i+1}\right) \\
+  &= \frac{w_{i-1}^t}{h_{i-1}^v}\frac{\partial J_{i-1}}{\partial d_i}
+  + \frac{w_i^t}{h_i^v}\frac{\partial J_i}{\partial d_i} \\
+  &= \frac{w_{i-1}^t}{h_{i-1}^v}4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}d_{i-1}+\frac{2}{w_{i-1}}d_i\right)
+  + \frac{w_i^t}{h_i^v}4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}d_i+\frac{1}{w_i}d_{i+1}\right) \\
   &= 4\left(
-  -\frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{u-2}}{h_i^{v-1}}
-  +\frac{w_{i-1}^{u-1}}{h_{i-1}^v}d_{i-1}
-  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)d_i
-  +\frac{w_i^{u-1}}{h_i^v}d_{i+1}
+  -\frac{3w_{i-1}^{t-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{t-2}}{h_i^{v-1}}
+  +\frac{w_{i-1}^{t-1}}{h_{i-1}^v}d_{i-1}
+  +\left(\frac{2w_{i-1}^{t-1}}{h_{i-1}^v}+\frac{w_i^{t-1}}{h_i^v}\right)d_i
+  +\frac{w_i^{t-1}}{h_i^v}d_{i+1}
   \right)
   %% \frac{\partial K}{\partial d_n}
-  %% &= w_{n-1}^uh_{n-1}^v\frac{\partial J_{n-1}}{\partial d_n} \\
-  %% &= w_{n-1}^uh_{n-1}^v4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}d_{n-1}+\frac{2}{w_{n-1}}d_n\right) \\
-  %% &= 4\left(-3w_{n-1}^{u-2}h_{n-1}^{v+1}+w_{n-1}^{u-1}h_{n-1}^vd_{n-1}+2w_{n-1}^{u-1}h_{n-1}^vd_n\right) \\
+  %% &= w_{n-1}^th_{n-1}^v\frac{\partial J_{n-1}}{\partial d_n} \\
+  %% &= w_{n-1}^th_{n-1}^v4\left(-\frac{3h_{n-1}}{w_{n-1}^2}+\frac{1}{w_{n-1}}d_{n-1}+\frac{2}{w_{n-1}}d_n\right) \\
+  %% &= 4\left(-3w_{n-1}^{t-2}h_{n-1}^{v+1}+w_{n-1}^{t-1}h_{n-1}^vd_{n-1}+2w_{n-1}^{t-1}h_{n-1}^vd_n\right) \\
   %% \frac{\partial K}{\partial d_i}
-  %% &= w_{i-1}^uh_{i-1}^v\frac{\partial J_{i-1}}{\partial d_i}
-  %% + w_i^uh_i^v\frac{\partial J_i}{\partial d_i} \\
-  %% &= w_{i-1}^uh_{i-1}^v4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}d_{i-1}+\frac{2}{w_{i-1}}d_i\right)
-  %% + w_i^uh_i^v4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}d_i+\frac{1}{w_i}d_{i+1}\right) \\
+  %% &= w_{i-1}^th_{i-1}^v\frac{\partial J_{i-1}}{\partial d_i}
+  %% + w_i^th_i^v\frac{\partial J_i}{\partial d_i} \\
+  %% &= w_{i-1}^th_{i-1}^v4\left(-\frac{3h_{i-1}}{w_{i-1}^2}+\frac{1}{w_{i-1}}d_{i-1}+\frac{2}{w_{i-1}}d_i\right)
+  %% + w_i^th_i^v4\left(-\frac{3h_i}{w_i^2}+\frac{2}{w_i}d_i+\frac{1}{w_i}d_{i+1}\right) \\
   %% &= 4\left(
-  %% -3w_{i-1}^{u-2}h_{i-1}^{v+1}-3w_i^{u-2}h_i^{v+1}
-  %% +w_{i-1}^{u-1}h_{i-1}^vd_{i-1}
-  %% +\left(2w_{i-1}^{u-1}h_{i-1}^v+2w_i^{u-1}h_i^v\right)d_i
+  %% -3w_{i-1}^{t-2}h_{i-1}^{v+1}-3w_i^{t-2}h_i^{v+1}
+  %% +w_{i-1}^{t-1}h_{i-1}^vd_{i-1}
+  %% +\left(2w_{i-1}^{t-1}h_{i-1}^v+2w_i^{t-1}h_i^v\right)d_i
   %% \right)
 \end{align*}
 \begin{align*}
-  4\left(-\frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{2w_1^{u-1}}{h_1^v}d_1+\frac{w_1^{u-1}}{h_1^v}d_2\right)
+  4\left(-\frac{3w_1^{t-2}}{h_1^{v-1}}+\frac{2w_1^{t-1}}{h_1^v}d_1+\frac{w_1^{t-1}}{h_1^v}d_2\right)
   &= 0 \\
-  -\frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{2w_1^{u-1}}{h_1^v}d_1+\frac{w_1^{u-1}}{h_1^v}d_2
+  -\frac{3w_1^{t-2}}{h_1^{v-1}}+\frac{2w_1^{t-1}}{h_1^v}d_1+\frac{w_1^{t-1}}{h_1^v}d_2
   &= 0 \\
-  \frac{2w_1^{u-1}}{h_1^v}d_1+\frac{w_1^{u-1}}{h_1^v}d_2
-  &= \frac{3w_1^{u-2}}{h_1^{v-1}} \\
+  \frac{2w_1^{t-1}}{h_1^v}d_1+\frac{w_1^{t-1}}{h_1^v}d_2
+  &= \frac{3w_1^{t-2}}{h_1^{v-1}} \\
   4\left(
-  -\frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{u-2}}{h_i^{v-1}}
-  +\frac{w_{i-1}^{u-1}}{h_{i-1}^v}d_{i-1}
-  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)d_i
-  +\frac{w_i^{u-1}}{h_i^v}d_{i+1}
+  -\frac{3w_{i-1}^{t-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{t-2}}{h_i^{v-1}}
+  +\frac{w_{i-1}^{t-1}}{h_{i-1}^v}d_{i-1}
+  +\left(\frac{2w_{i-1}^{t-1}}{h_{i-1}^v}+\frac{w_i^{t-1}}{h_i^v}\right)d_i
+  +\frac{w_i^{t-1}}{h_i^v}d_{i+1}
   \right)
   &= 0 \\
-  -\frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{u-2}}{h_i^{v-1}}
-  +\frac{w_{i-1}^{u-1}}{h_{i-1}^v}d_{i-1}
-  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)d_i
-  +\frac{w_i^{u-1}}{h_i^v}d_{i+1}
+  -\frac{3w_{i-1}^{t-2}}{h_{i-1}^{v-1}}-\frac{3w_i^{t-2}}{h_i^{v-1}}
+  +\frac{w_{i-1}^{t-1}}{h_{i-1}^v}d_{i-1}
+  +\left(\frac{2w_{i-1}^{t-1}}{h_{i-1}^v}+\frac{w_i^{t-1}}{h_i^v}\right)d_i
+  +\frac{w_i^{t-1}}{h_i^v}d_{i+1}
   &= 0 \\
-  \frac{w_{i-1}^{u-1}}{h_{i-1}^v}d_{i-1}
-  +\left(\frac{2w_{i-1}^{u-1}}{h_{i-1}^v}+\frac{w_i^{u-1}}{h_i^v}\right)d_i
-  +\frac{w_i^{u-1}}{h_i^v}d_{i+1}
-  &= \frac{3w_{i-1}^{u-2}}{h_{i-1}^{v-1}}+\frac{3w_i^{u-2}}{h_i^{v-1}} \\
-  4\left(-\frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{u-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}d_n\right)
+  \frac{w_{i-1}^{t-1}}{h_{i-1}^v}d_{i-1}
+  +\left(\frac{2w_{i-1}^{t-1}}{h_{i-1}^v}+\frac{w_i^{t-1}}{h_i^v}\right)d_i
+  +\frac{w_i^{t-1}}{h_i^v}d_{i+1}
+  &= \frac{3w_{i-1}^{t-2}}{h_{i-1}^{v-1}}+\frac{3w_i^{t-2}}{h_i^{v-1}} \\
+  4\left(-\frac{3w_{n-1}^{t-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{t-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{t-1}}{h_{n-1}^v}d_n\right)
   &= 0 \\
-  -\frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{u-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}d_n
+  -\frac{3w_{n-1}^{t-2}}{h_{n-1}^{v-1}}+\frac{w_{n-1}^{t-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{t-1}}{h_{n-1}^v}d_n
   &= 0 \\
-  \frac{w_{n-1}^{u-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{u-1}}{h_{n-1}^v}d_n
-  &= \frac{3w_{n-1}^{u-2}}{h_{n-1}^{v-1}} \\
+  \frac{w_{n-1}^{t-1}}{h_{n-1}^v}d_{n-1}+\frac{2w_{n-1}^{t-1}}{h_{n-1}^v}d_n
+  &= \frac{3w_{n-1}^{t-2}}{h_{n-1}^{v-1}} \\
 \end{align*}
 \begin{align*}
   \begin{bmatrix}
-    \frac{2w_1^{u-1}}{h_1^v} & \frac{w_1^{u-1}}{h_1^v} & 0 \\
-    \frac{w_1^{u-1}}{h_1^v} & \frac{2w_1^{u-1}}{h_1^v}+\frac{2w_2^{u-1}}{h_2^v} & \frac{w_2^{u-1}}{h_2^v} \\
-    0 & \frac{w_2^{u-1}}{h_2^v} & \frac{2w_2^{u-1}}{h_2^v}
+    \frac{2w_1^{t-1}}{h_1^v} & \frac{w_1^{t-1}}{h_1^v} & 0 \\
+    \frac{w_1^{t-1}}{h_1^v} & \frac{2w_1^{t-1}}{h_1^v}+\frac{2w_2^{t-1}}{h_2^v} & \frac{w_2^{t-1}}{h_2^v} \\
+    0 & \frac{w_2^{t-1}}{h_2^v} & \frac{2w_2^{t-1}}{h_2^v}
   \end{bmatrix}
   \begin{bmatrix}
     d_1 \\ d_2 \\ d_3
   \end{bmatrix}
   &= 
   \begin{bmatrix}
-    \frac{3w_1^{u-2}}{h_1^{v-1}} \\
-    \frac{3w_1^{u-2}}{h_1^{v-1}}+\frac{3w_2^{u-2}}{h_2^{v-1}} \\
-    \frac{3w_2^{u-2}}{h_2^{v-1}}
+    \frac{3w_1^{t-2}}{h_1^{v-1}} \\
+    \frac{3w_1^{t-2}}{h_1^{v-1}}+\frac{3w_2^{t-2}}{h_2^{v-1}} \\
+    \frac{3w_2^{t-2}}{h_2^{v-1}}
   \end{bmatrix}
 \end{align*}
 \end{document}
