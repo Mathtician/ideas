@@ -403,6 +403,22 @@ There are a few techniques that could be used,
     \frac{3w_1^{t-2}}{h_1^{v-1}} \\
     \frac{3w_1^{t-2}}{h_1^{v-1}}+\frac{3w_2^{t-2}}{h_2^{v-1}} \\
     \frac{3w_2^{t-2}}{h_2^{v-1}}
+  \end{bmatrix} \\
+  \begin{bmatrix}
+    \frac{2w_1^{t-1}}{h_1^v} & \frac{w_1^{t-1}}{h_1^v} & 0 & 0\\
+    \frac{w_1^{t-1}}{h_1^v} & \frac{2w_1^{t-1}}{h_1^v}+\frac{2w_2^{t-1}}{h_2^v} & \frac{w_2^{t-1}}{h_2^v} & 0 \\
+    0 & \frac{w_2^{t-1}}{h_2^v} & \frac{2w_2^{t-1}}{h_2^v}+\frac{2w_3^{t-1}}{h_3^v} & \frac{w_3^{t-1}}{h_3^v} \\
+    0 & 0 & \frac{w_3^{t-1}}{h_3^v} & \frac{2w_3^{t-1}}{h_3^v}
+  \end{bmatrix}
+  \begin{bmatrix}
+    d_1 \\ d_2 \\ d_3 \\ d_4
+  \end{bmatrix}
+  &= 
+  \begin{bmatrix}
+    \frac{3w_1^{t-2}}{h_1^{v-1}} \\
+    \frac{3w_1^{t-2}}{h_1^{v-1}}+\frac{3w_2^{t-2}}{h_2^{v-1}} \\
+    \frac{3w_2^{t-2}}{h_2^{v-1}}+\frac{3w_3^{t-2}}{h_3^{v-1}} \\
+    \frac{3w_3^{t-2}}{h_3^{v-1}}
   \end{bmatrix}
 \end{align*}
 \end{document}
