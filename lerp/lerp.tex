@@ -136,7 +136,10 @@ There are a few techniques that could be used,
 
 \newcommand{\dx}{\, \mathrm{d}x}
 \newcommand{\dt}{\, \mathrm{d}t}
+\newcommand{\dv}{\, \mathrm{d}v}
+\newcommand{\du}{\, \mathrm{d}u}
 \newcommand{\ddx}[1]{\frac{\mathrm{d}#1}{\mathrm{d}x}}
+\newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 
 \newpage
 \begin{align*}
@@ -420,5 +423,52 @@ There are a few techniques that could be used,
     \frac{3w_2^{u-2}}{h_2^{v-1}}+\frac{3w_3^{u-2}}{h_3^{v-1}} \\
     \frac{3w_3^{u-2}}{h_3^{v-1}}
   \end{bmatrix}
+\end{align*}
+\newcommand{\e}{\varepsilon}
+\begin{align*}
+  g_\e(x) &= f(x)+\e\mu(x) \\
+  J_\e &= \int_{x=x_1}^{x_2} g_\e''(x)^2 \dx \\
+  \dd{J_\e}{\e} &= \dd{}{\e}\left(\int_{x=x_1}^{x_2} g_\e''(x)^2 \dx\right) \\
+  &= \int_{x=x_1}^{x_2} \dd{}{\e}\left(g_\e''(x)^2\right) \dx \\
+  &= \int_{x=x_1}^{x_2} 2g_\e''(x)\dd{}{\e}\left(g_\e''(x)\right) \dx \\
+  &= \int_{x=x_1}^{x_2} 2g_\e''(x)\dd{}{\e}\left(f''(x)+\e\mu''(x)\right) \dx \\
+  &= \int_{x=x_1}^{x_2} 2g_\e''(x)\mu''(x) \dx \\
+  &= 2\int_{x=x_1}^{x_2} g_\e''(x)\mu''(x) \dx
+\end{align*}
+\begin{align*}
+  u &= g_\e''(x), \dv = \mu''(x) \dx \\
+  v &= \mu'(x), \du = g_\e^{(3)}(x) \dx
+\end{align*}
+\begin{align*}
+  \int_{x=x_1}^{x_2} g_\e''(x)\mu''(x) \dx
+  &= \int_{x=x_1}^{x_2}u\dv \\
+  &= (uv)\big|_{x=x_1}^{x_2} - \int_{x=x_1}^{x_2} v \du \\
+  &= (g_\e''(x)\mu'(x))\big|_{x=x_1}^{x_2} - \int_{x=x_1}^{x_2} \mu'(x)g_\e^{(3)}(x) \dx \\
+  &= (g_\e''(x_2)\mu'(x_2)-g_\e''(x_1)\mu'(x_1)) - \int_{x=x_1}^{x_2} \mu'(x)g_\e^{(3)}(x) \dx \\
+  &= (g_\e''(x_2)0-g_\e''(x_1)0) - \int_{x=x_1}^{x_2} \mu'(x)g_\e^{(3)}(x) \dx \\
+  &= (0-0) - \int_{x=x_1}^{x_2} \mu'(x)g_\e^{(3)}(x) \dx \\
+  &= -\int_{x=x_1}^{x_2} \mu'(x)g_\e^{(3)}(x) \dx
+\end{align*}
+\begin{align*}
+  u &= g_\e^{(3)}(x), \dv = \mu'(x) \dx \\
+  v &= \mu(x), \du = g_\e^{(4)}(x) \dx
+\end{align*}
+\begin{align*}
+  \int_{x=x_1}^{x_2} \mu'(x)g_\e^{(3)}(x) \dx
+  &= \int_{x=x_1}^{x_2}u\dv \\
+  &= (uv)\big|_{x=x_1}^{x_2} - \int_{x=x_1}^{x_2} v \du \\
+  &= (g_\e^{(3)}(x)\mu(x))\big|_{x=x_1}^{x_2} - \int_{x=x_1}^{x_2} \mu(x) g_\e^{(4)}(x) \dx \\
+  &= (g_\e^{(3)}(x_2)\mu(x_2)-g_\e^{(3)}(x_1)\mu(x_1)) - \int_{x=x_1}^{x_2} \mu(x) g_\e^{(4)}(x) \dx \\
+  &= (g_\e^{(3)}(x_2)0-g_\e^{(3)}(x_1)0) - \int_{x=x_1}^{x_2} \mu(x) g_\e^{(4)}(x) \dx \\
+  &= (0-0) - \int_{x=x_1}^{x_2} \mu(x) g_\e^{(4)}(x) \dx \\
+  &= -\int_{x=x_1}^{x_2} \mu(x) g_\e^{(4)}(x) \dx
+\end{align*}
+\begin{align*}
+  \e = 0:\, \int_{x=x_1}^{x_2} \mu(x) f^{(4)}(x) \dx &= 0 \\
+  f^{(4)}(x) &= 0 \\
+  f^{(3)}(x) &= A \\
+  f''(x) &= Ax+B \\
+  f'(x) &= \frac{1}{2}Ax^2+Bx+C \\
+  f(x) &= \frac{1}{6}Ax^3+\frac{1}{2}Bx+Cx+D \\
 \end{align*}
 \end{document}
