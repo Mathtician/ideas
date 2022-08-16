@@ -171,15 +171,15 @@ There are a few techniques that could be used,
   &= (2y_1-2y_2+w_1d_1+w_1d_2)t^3+(-3y_1+3y_2-2w_1d_1-w_1d_2)t^2+w_1d_1t+y_1 \\
   &= (-2(y_2-y_1)+w_1d_1+w_1d_2)t^3+(3(y_2+3y_1)-2w_1d_1-w_1d_2)t^2+w_1d_1t+y_1 \\
   &= (-2h_1+w_1d_1+w_1d_2)t^3+(3h_1-2w_1d_1-w_1d_2)t^2+w_1d_1t+y_1 \\
-  &= pt^3+qt^2+w_1d_1t+y_1 \\
-  \frac{\partial p}{\partial d_1}
+  &= At^3+Bt^2+Ct+D \\
+  \frac{\partial A}{\partial d_1}
   &= w_1 \\
-  \frac{\partial q}{\partial d_1}
+  \frac{\partial B}{\partial d_1}
   &= -2w_1 \\
   g_1'(t)
-  &= 3pt^2+2qt+w_1 \\
+  &= 3At^2+2Bt+C \\
   g_1''(t)
-  &= 6pt+2q
+  &= 6At+2B
 \end{align*}
 \begin{align*}
   f_1(x)
@@ -199,8 +199,8 @@ There are a few techniques that could be used,
   &= \frac{1}{w_1} \ddx{t} g_1''(t) \\
   &= \frac{1}{w_1} \frac{1}{w_1} g_1''(t) \\
   &= \frac{1}{w_1^2} g_1''(t) \\
-  &= \frac{1}{w_1^2}(6pt+2q) \\
-  &= \frac{2}{w_1^2}(3pt+q)
+  &= \frac{1}{w_1^2}(6At+2B) \\
+  &= \frac{2}{w_1^2}(3At+B)
 \end{align*}
 \begin{align*}
   J_1
@@ -208,17 +208,17 @@ There are a few techniques that could be used,
   \frac{\partial J_1}{\partial d_1}
   &= \frac{\partial}{\partial d_1} \int_{x=x_1}^{x_2} f_1''(x)^2 \dx \\
   &= \int_{x=x_1}^{x_2} \frac{\partial}{\partial d_1} f_1''(x)^2 \dx \\
-  &= \int_{t=0}^{1} \frac{\partial}{\partial d_1} \left(\frac{2}{w_1^2}(3pt+q)\right)^2 w_1 \dt \\
-  &= \frac{4}{w_1^3} \int_{t=0}^{1} \frac{\partial}{\partial d_1} (3pt+q)^2 \dt \\
-  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3pt+q) \frac{\partial}{\partial d_1} (3pt+q) \dt \\
-  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3pt+q) \left(3\frac{\partial p}{\partial d_1}t+\frac{\partial q}{\partial d_1}\right) \dt \\
-  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3pt+q)(3w_1t-2w_1) \dt \\
-  &= \frac{4}{w_1^2} \int_{t=0}^{1} 2(3pt+q)(3t-2) \dt \\
-  &= \frac{4}{w_1^2} \int_{t=0}^{1} 18pt^2+(6q-12p)t-4q \dt \\
-  &= \frac{4}{w_1^2} (6pt^3+(3q-6p)t^2-4qt)\Bigr|_0^1 \\
-  &= \frac{4}{w_1^2} ((6p1^3+(3q-6p)1^2-4q1)-(6p0^3+(3q-6p)0^2-4q0)) \\
-  &= \frac{4}{w_1^2} (6p+(3q-6p)-4q) \\
-  &= \frac{4}{w_1^2} (-q) \\
+  &= \int_{t=0}^{1} \frac{\partial}{\partial d_1} \left(\frac{2}{w_1^2}(3At+B)\right)^2 w_1 \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} \frac{\partial}{\partial d_1} (3At+B)^2 \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3At+B) \frac{\partial}{\partial d_1} (3At+B) \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3At+B) \left(3\frac{\partial A}{\partial d_1}t+\frac{\partial B}{\partial d_1}\right) \dt \\
+  &= \frac{4}{w_1^3} \int_{t=0}^{1} 2(3At+B)(3w_1t-2w_1) \dt \\
+  &= \frac{4}{w_1^2} \int_{t=0}^{1} 2(3At+B)(3t-2) \dt \\
+  &= \frac{4}{w_1^2} \int_{t=0}^{1} 18At^2+(6B-12A)t-4B \dt \\
+  &= \frac{4}{w_1^2} (6At^3+(3B-6A)t^2-4Bt)\Bigr|_0^1 \\
+  &= \frac{4}{w_1^2} ((6A1^3+(3B-6A)1^2-4B1)-(6A0^3+(3B-6A)0^2-4B0)) \\
+  &= \frac{4}{w_1^2} (6A+(3B-6A)-4B) \\
+  &= \frac{4}{w_1^2} (-B) \\
   &= \frac{4}{w_1^2} (-(3h_1-2w_1d_1-w_1d_2)) \\
   &= \frac{4}{w_1^2} (-3h_1+2w_1d_1+w_1d_2) \\
   &= 4\left(-\frac{3h_1}{w_1^2}+\frac{2}{w_1}d_1+\frac{1}{w_1}d_2\right)
@@ -471,4 +471,6 @@ There are a few techniques that could be used,
   f'(x) &= \frac{1}{2}Ax^2+Bx+C \\
   f(x) &= \frac{1}{6}Ax^3+\frac{1}{2}Bx+Cx+D \\
 \end{align*}
+\begin{align*}
+  \end{align*}
 \end{document}
