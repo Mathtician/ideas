@@ -49,7 +49,7 @@ ordered lexicographically \\
 Indices are strictly decreasing: $\beta_n > \beta_{n-1} > \ldots > \beta_0$ \\
 For all $i$, if $i < n$ and $\beta_{i+1}=\beta_i+1$, then
 $\gamma_i < (\beta_n: \gamma_n, \ldots, \beta_{i+1}: \gamma_{i+1}+1)$ \\
-Otherwise, $\gamma_i < (\beta_n: \gamma_n, \ldots, \beta_{i+1}: \gamma_{i+1}, \beta_i+1: 0)$ \\
+Otherwise, $\gamma_i < (\beta_n: \gamma_n, \ldots, \beta_{i+1}: \gamma_{i+1}, \beta_i+1: 0)$, specifically $(\beta_n+1: 0)$ if $i=n$ \\
 
 %% Ternary representation \\
 %% ``Tail'' of list may be bundled into another ordinal: \\
@@ -67,35 +67,39 @@ Otherwise, $\gamma_i < (\beta_n: \gamma_n, \ldots, \beta_{i+1}: \gamma_{i+1}, \b
 %% \beta = \beta_0, \gamma = \gamma_0$ \\
 %% Constraints: ??? \\
 
-Examples \\
+In general:
 \begin{align*}
   () &= 0 \\
-  (0:0) &= 1 \\
-  (0:1) &= 2 \\
-  (0:n) &= 1+n, & n < (1: 0) \\
-  (1:0) &= \w \\
-  (1:0, 0:\gamma) &= \w+(1+\gamma), & \gamma < (1: 1) \\
-  (1:1) &= \w^2 \\
-  (1:\gamma) &= \w^{1+\gamma}, & \gamma < (2: 0) \\
-  (1:\gamma_1, 0:\gamma_0) &= \w^{1+\gamma_1}+(1+\gamma_0),
-  & \gamma_1 < (2: 0), \gamma_0 < (1:\gamma_1+1) = \w^{1+\gamma_1+1} \\
-  (2:0) &= \e_0 \\
-  (2:0, 1: \gamma_1) &= \e_0\w^{1+\gamma_1}
-  & \gamma_1 < (2: 1) \\
-  (2:0, 1:\gamma_1, 0:\gamma_0) &= \e_0\w^{1+\gamma_1}+(1+\gamma_0)
-  & \gamma_1 < (2:1), \gamma_0 < (2:0, 1:\gamma_1+1) = \e_0\w^{1+\gamma_1+1} \\
-  (3:0) &= \zeta_0 \\
-  (\beta:\gamma) &= \varphi_{-1+\beta}(\gamma) & \beta \geq 2 \\
-\end{align*} \\
+  (0: n) &= 1+n \\
+  (1: \gamma) &= \varphi_0(1+\gamma) \\
+  (2+\beta: \gamma) &= \varphi_{1+\beta}(\gamma) \\
+  (\beta_n: \gamma_n, \ldots, \beta_1: \gamma_1, 0: \gamma_0)
+  &= (\beta_n: \gamma_n, \ldots, \beta_1: \gamma_1)+1+\gamma_0 \\
+  (\beta_n: \gamma_n, \ldots, \beta_1: \gamma_1, 1+\beta_0: \gamma_0)
+  &= \varphi_{\beta_0}((\beta_n: \gamma_n, \ldots, \beta_1: \gamma_1)+1+\gamma_0)
+\end{align*}
 
-Relation to Veblen functions \\
-The notation goes up to $\Gamma_0=\varphi(1, 0, 0)$,
-since each lower-$\beta$ term essentially applies
-another two-variable Veblen function,
-except for the last, which is added to the result.
-It is closely related to Veblen normal form,
-but restricted to two arguments
-and preserving lexicographical order.
+Examples:
+\begin{align*}
+  (0: 0) &= 1 \\
+  (0: 1) &= 2 \\
+  (1: 0) &= \w \\
+  (1: 0, 0:\gamma) &= \w+1+\gamma, & \gamma < (1: 1) \\
+  (1: 1) &= \w^2 \\
+  (1: \gamma_1, 0:\gamma_0) &= \w^{1+\gamma_1}+1+\gamma_0,
+  & \gamma_1 < (2: 0), \gamma_0 < (1:\gamma_1+1) \\
+  (2: 0) &= \e_0 \\
+  (2: 0, 1: \gamma_1) &= \e_0\w^{1+\gamma_1}
+  & \gamma_1 < (2: 1) \\
+  (2: 0, 1: \gamma_1, 0: \gamma_0) &= \e_0\w^{1+\gamma_1}+1+\gamma_0
+  & \gamma_1 < (2: 1), \gamma_0 < (2: 0, 1: \gamma_1+1) \\
+  (\w: 0) &= \varphi_\w(0)
+\end{align*}
+The notation goes up to $\Gamma_0$,
+and as seen above, it is easily converted to two-argument Veblen normal form.
+However, it has the advantage of lexicographic comparison.
+
+\newpage
 
 Further extensions \\
 Allow colons to separate more entries than pairs \\

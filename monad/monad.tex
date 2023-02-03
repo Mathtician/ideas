@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{images/}
+
+\DeclareMathOperator{\Cont}{Cont}
+\DeclareMathOperator{\return}{return}
+\DeclareMathOperator{\bind}{bind}
+\DeclareMathOperator{\Type}{Type}
+
+\begin{document}
+
+\title{The Continuation Monad}
+\author{Aresh Pourkavoos}
+\maketitle
+
+Within System F,
+there is a monad $\Cont$
+which maps type $\alpha$
+to $\Cont\alpha := (\omega : \Type) \rightarrow (\alpha \rightarrow \omega) \rightarrow \omega$,
+i.e. a polymorphic function parameterized by type $\omega$.
+In this monad, $\return : (\alpha : \Type) \rightarrow \alpha \rightarrow \Cont\alpha$
+is defined by $\return \alpha\ a\ \omega\ f := f\ a$,
+where $a : \alpha$ and $f : \alpha \rightarrow \omega$.
+%% Since the types of $a$ and $f$ are sufficient to infer $\alpha$ and $\omega$,
+%% the type arguments may be omitted,
+%% so $\return$ may just as easily be defined in the HM type system.
+%% However, we will include the type arguments for explicitness.
+The operation $\bind$ has type
+\[(\alpha : \Type) \rightarrow (\beta : \Type) \rightarrow (\alpha \rightarrow \Cont\beta) \rightarrow \Cont\alpha \rightarrow \Cont\beta.\]
+In order to see how it should be defined,
+we may unpack its arguments:
+\begin{align*}
+  \alpha &: \Type \\
+  \beta &: \Type \\
+  f &: \alpha \rightarrow \Cont \beta \\
+  g &: \Cont \alpha
+\end{align*}
+The return type, then, is $\Cont \beta = (\omega : \Type) \rightarrow (\alpha \rightarrow \omega) \rightarrow \omega$,
+so we may take two more arguments:
+\begin{align*}
+  \omega &: \Type \\
+  h &: \beta \rightarrow \omega
+\end{align*}
+So the new return type is $\omega$.
+Given what we have, there are a few potential ways to obtain a term of type $\omega$:
+\begin{itemize}
+\item
+  The type of $f$ may be expanded to
+  $\alpha \rightarrow \l$
+\end{itemize}
+
+is defined by
+\[
+\bind \alpha\ \beta\ f\ g\ \omega\ h := g\ \omega\ (\lambda a.(f\ a\ \omega\ h)).
+\]
+
+%% Let's ensure that this typechecks.
+%% From the type of $f$, we may infer that $a : \alpha$,
+%% so
+
+%% where $f : \alpha \rightarrow \Cont \beta = \alpha \rightarrow (\beta \rightarrow \omega) \rightarrow \omega$,
+
+\end{document}
