@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{tikz}
+\usepackage{enumitem}
 \graphicspath{images/}
 
 \newcommand{\R}{\mathbb{R}}
@@ -142,7 +143,8 @@ For example, people in elevators feel acceleration as weight,
 so if the elevator jumps from rest to some nonzero acceleration,
 the passengers will feel a sudden weight change.
 As a result, the path of an elevator
-may have up to 7 polynomial pieces.
+may have up to 7 polynomial pieces
+(not including the phases of rest at the beginning and end).
 Example jerk, acceleration, velocity, and position curves
 are shown below.
 
@@ -198,25 +200,97 @@ are shown below.
   \end{tikzpicture}
 \end{center}
 
-%% At this point, the general version of the problem 
+At this point, the general version of the problem begins to suggest itself.
+Given an integer $n \geq 1$ and positive real numbers $d_0, d_1, \ldots, d_n$,
+the task is to find a function $x : \R \rightarrow \R$ where
 
-%% Given an integer $n \geq 1$ and positive real numbers $d_0, d_1, \ldots, d_n$,
-%% find the function $x : \R \rightarrow \R$ where
+\begin{enumerate}
+\item
+  $x(t)=0$ for all $t \leq 0$;
+\item
+  $x(t)=d_0$ for all $t \geq T$, where $T > 0$;
+\item
+  $\abs{x^{(i)}(t)} \leq d_i$
+  for all $t \in \R$ and $i \in \{1, \ldots, n\}$
+  where $x^{(i)}(t)$ denotes the $i^\text{th}$ derivative of $x$ at $t$;
+\item
+  the value of $T$ is minimized among all functions
+  which satisfy properties 1-3.
+\end{enumerate}
 
-%% \begin{itemize}
-%% \item
-%%   $x(t)=0$ for all $t \leq 0$;
-%% \item
-%%   $x(t)=d_0$ for all $t \geq T$, where $T \in \R$;
-%% \item
-%%   $\abs{x}$ 
-%% \end{itemize}
+Actually, the problem statement above is slightly inaccurate,
+specifically property 3,
+as the $n^\text{th}$ derivative is not defined everywhere.
+In the figure above, there are $8$ transition points between the phases.
+At these points, the acceleration $a = x^{(n-1)}$ has no derivative,
+so the jerk is undefined.
+Instead of saying that the derivative of $x^{(n-1)}$
+(i.e. $j = x^{(n)}$) must be bounded by $d_n$,
+we say that $x^{(n-1)}$ must be \textit{Lipschitz continuous}
+with Lipschitz constant $d_n$.
+This means that
+\[
+\abs{\frac{x^{(n-1)}(t_2)-x^{(n-1)}(t_1)}{t_2-t_1}} \leq d_n
+\]
+for all $t_1, t_2 \in \R$.
+Geometrically speaking, this is equivalent to
+every \textit{secant} line of the graph of $x^{(n-1)}$
+having a slope between $-d_n$ and $d_n$
+(rather than every \textit{tangent} line as bounding $x^{(n)}$ would suggest).
+So property 3 may be more accurately written as
+\begin{enumerate}
+  \setcounter{enumi}{2}
+\item
+  $\abs{x^{(i)}(t)} \leq d_i$
+  for all $t \in \R$ and $i \in \{1, \ldots, n-1\}$,
+  and $x^{(n-1)}$ has Lipschitz constant $d_n$.
+\end{enumerate}
 
-%% which minimizes the value of $T$.
-
-%% In other words, if the first $n$ derivatives of $x$
-%% are absolutely bounded by $d_1, \ldots, d_n$,
-
-% Note on Lipschitz
+I have not yet been able to solve this problem in full,
+but I have done three things:
+\begin{enumerate}
+  \item
+    Find an algorithm to produce \textit{a} function
+    which satisfies properties 1-3 for any values of $d_0, \ldots, d_n$.
+    However, this is not \textit{the} function which minimizes $T$.
+  \item
+    Find the (probably) optimal solution
+    in the case where $x^{(n-1)}$ has Lipschitz constant $d_n$,
+    but $\abs{x^{(i)}}$ is not restricted for $i \in \{1, \ldots, n-1\}$.
+    Equivalently, this is the case where $d_1, \ldots, d_{n-1}$ are very large,
+    so $d_n$ is the only ``bottleneck.''
+  \item
+    Combine the previous two cases in a nontrivial way
+    to take advantage of both of their strengths.
+    This approach
+    \begin{itemize}
+    \item
+      returns a solution for any values of $d_0, \ldots, d_n$
+      (which is at least as good as that of case 1);
+    \item
+      returns the same thing as case 2 whenever the latter is applicable;
+    \item
+      and (this is the nontrivial part)
+      sometimes returns a solution \textit{better} than that of case 1,
+      even when case 2 is \textit{not} directly applicable.
+    \end{itemize}
+\end{enumerate}
+The algorithm in case 1 arose from the following observation:
+the velocity graph for $n=2$
+looks like two reflected copies of the position graph for $n=1$,
+separated by a constant function at $d_1$.
+Likewise, the velocity graph for $n=3$
+looks like two reflected copies of the position graph for $n=2$,
+separated by a constant function at $d_1$.  
+In general, this makes sense:
+in order to get from $0$ to $d_0$ with $n$ derivatives restricted,
+the velocity needs to increase from $0$ to $d_1$ (or less),
+stay at the maximum for some length of time (possibly $0$ time),
+and then decrease back to $0$.
+But the increasing portion of the velocity
+may be seen as a smaller instance of the same problem,
+where the first $n-1$ derivatives are restricted rather than $n$,
+and the decreasing portion is a mirror image of that.
+The base case $n=1$, as seen above, is just a straight line segment.
 
 \end{document}

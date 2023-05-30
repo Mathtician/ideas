@@ -1,0 +1,316 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tensor}
+\usepackage{enumitem}
+\graphicspath{images/}
+
+\newcommand{\ternary}[4]{\hspace{-1mm}\tensor[_{#3}]{\overset{#2}{#1}}{_{#4}}}
+\newcommand{\cyc}[3]{\ternary{\circlearrowleft}{#1}{#2}{#3}}
+\newcommand{\po}[1]{\overset{#1}{\leq}}
+
+\begin{document}
+
+\title{Cycle Relations}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\textit{Problem.} Let $S$ be a set.
+A ternary relation $\circlearrowleft$ on $S$ is a \textit{cycle relation} when:
+\begin{enumerate}[label=(\arabic*)]
+\item
+  For all $a \in S$, $\cyc{a}{a}{a}$.
+\item
+  For all $a, b, c \in S$, $\cyc{a}{b}{c}$ implies $\cyc{c}{a}{b}$.
+\item
+  For all $a \in S$, if we define the relation $\po{a}$ on $S \setminus \{a\}$
+  so that $b \po{a} c$ when $\cyc{a}{b}{c}$,
+  then $\po{a}$ is a partial order.
+\end{enumerate}
+Let $z \in S$, and let $\preceq$ be a partial order on $S \setminus \{z\}$.
+\begin{enumerate}[label=(\roman*)]
+\item
+  Does there exist a cycle relation $\circlearrowleft$ on $S$
+  such that $\po{z}$ as defined above is equal to $\preceq$?
+\item
+  Assuming that such a $\circlearrowleft$ exists, is it unique?
+\end{enumerate}
+
+\newpage
+
+\textit{Solution.}
+\begin{enumerate}[label=(\roman*)]
+\item
+  We show that a cycle relation exists.
+  Define $\circlearrowleft$ as follows:
+  \begin{enumerate}[label=(\Alph*)]
+  \item
+    For all $a, b \in S$,
+    $\cyc{a}{b}{b}$.
+  \item
+    For all $w, x \in S \setminus \{z\}$
+    where $w \preceq x$, $\cyc{z}{w}{x}$.
+  \item
+    For all $w, x, y \in S \setminus \{z\}$
+    where $w \preceq x \preceq y$, $\cyc{w}{x}{y}$.
+  \item
+    All cycles of the above satisfy $\circlearrowleft$,
+    e.g. $\cyc{x}{z}{w}$ and $\cyc{w}{x}{z}$ where $w \preceq x$,
+    and no other triples do.
+  \end{enumerate}
+  By (A) with $b = a$, $\circlearrowleft$ satisfies property (1),
+  and by (D), it also satisfies (2).
+
+  To show (3), we find the relations $\po{a}$ for $a \in S$.
+  In the first case, $a = z$.
+  Neither (A) nor (C) contributes to $\po{z}$,
+  even when cycled by (D).
+  However, by (B), for all $w, x \in S \setminus \{z\}$
+  where $w \preceq x$, $w \po{z} x$,
+  and the cycles of (B) again contribute nothing.
+  Thus $\po{z} = \preceq$, so $\po{z}$ is a partial order
+  (and has the desired agreement with $\preceq$).
+
+  In the second case, let $w \in S \setminus \{z\}$.
+  Then $\po{w}$ is defined as follows:
+  \begin{enumerate}[label=(\Roman*)]
+  \item
+    By (A) with $a = w$, for all $b \in S \setminus \{w\}$, $b \po{w} b$.
+  \item
+    By (B), for all $x \in S \setminus \{w, z\}$,
+    if $w \preceq x$, then $\cyc{z}{w}{x}$,
+    so $\cyc{w}{x}{z}$, so $x \po{w} z$. \\
+    Also, if $x \preceq w$, then $\cyc{z}{x}{w}$,
+    so $\cyc{w}{z}{x}$, so $z \po{w} x$.
+  \item
+    By (C), for all $x, y \in S \setminus \{w, z\}$,
+    if $w \preceq x \preceq y$, then $\cyc{w}{x}{y}$,
+    so $x \po{w} y$. \\
+    Also, if $y \preceq w \preceq x$, then $\cyc{y}{w}{x}$,
+    so $\cyc{w}{x}{y}$, so $x \po{w} y$. \\
+    Finally, if $x \preceq y \preceq w$, then $\cyc{x}{y}{w}$,
+    so $\cyc{w}{x}{y}$, so $x \po{w} y$.
+  \end{enumerate}
+  We show that $\po{w}$ is a partial order.
+  By (I), $\po{w}$ is reflexive.
+  To show that it is antisymmetric,
+  let $a, b \in S \setminus \{w\}$,
+  and suppose $a \po{w} b$ and $b \po{w} a$.
+  We case on the values of $a$ and $b$.
+  \begin{itemize}
+  \item
+    If both are $z$, $a = b$ trivially.
+  \item
+    If one is $z$ and the other is not,
+    this contradicts the goal $a = b$,
+    so we want to show that this case cannot occur.
+    WLOG $a = z$ and $b \in S \setminus \{w, z\}$,
+    so $z \po{w} b$ and $b \po{w} z$.
+    This must arise from (II),
+    so $b \preceq w$ and $w \preceq b$, respectively.
+    Since $\preceq$ is antisymmetric, $b = w$,
+    which contradicts $b \in S \setminus \{w, z\}$.
+  \item
+    If neither is $z$,
+    i.e. $a, b \in S \setminus \{w, z\}$,
+    then $a \po{w} b$ and $b \po{w} a$
+    must arise from either (I),
+    which would immediately imply that $a = b$,
+    or (III).
+    For the latter, since $a \po{w} b$,
+    one of the following is true:
+    \begin{itemize}
+    \item $w \preceq a \preceq b$
+    \item $b \preceq w \preceq a$
+    \item $a \preceq b \preceq w$
+    \end{itemize}
+    Likewise, since $b \po{w} a$,
+    one of the following is true:
+    \begin{itemize}
+    \item $w \preceq b \preceq a$
+    \item $a \preceq w \preceq b$
+    \item $b \preceq a \preceq w$
+    \end{itemize}
+    From here, it may be verified
+    that any of the $3 \times 3 = 9$ cases
+    implies one of the following:
+    \begin{itemize}
+    \item
+      $a \preceq b$ and $b \preceq a$,
+      so $a = b$ because $\preceq$ is antisymmetric.
+    \item
+      $a \preceq w$ and $w \preceq a$,
+      so $a = w$, which contradicts $a \in S \setminus \{w, z\}$.
+    \item
+      $b \preceq w$ and $w \preceq b$,
+      so $b = w$, which contradicts $b \in S \setminus \{w, z\}$.
+    \end{itemize}
+  \end{itemize}
+
+  It remains to show that $\po{w}$ is transitive.
+  Let $a, b, c \in S \setminus \{w\}$,
+  and suppose $a \po{w} b$ and $b \po{w} c$.
+  If any pair of $a$, $b$, and $c$ are equal,
+  then $a \po{w} c$ follows immediately,
+  so we assume from here that all three are distinct.
+  Then at most one of them can be $z$.
+  \begin{itemize}
+  \item
+    If $a = z$, then $b, c \in S \setminus \{w, z\}$.
+    Also, $z = a \po{w} b$ must arise from (II),
+    so $b \preceq w$,
+    and $b \po{w} c$ must arise from (III),
+    so one of the following is true:
+    \begin{itemize}
+    \item $w \preceq b \preceq c$
+    \item $c \preceq w \preceq b$
+    \item $b \preceq c \preceq w$
+    \end{itemize}
+    In all cases, $w \preceq b$ or $c \preceq w$.
+    If $w \preceq b$, then $b = w$,
+    which contradicts $b \in S \setminus \{w, z\}$.
+    If $c \preceq w$, then by (II), $z \po{w} c$,
+    i.e. $a \po{w} c$.
+  \item
+    If $b = z$, then $a, c \in S \setminus \{w, z\}$.
+    Also, $a \po{w} b = z$ must arise from (II),
+    so $w \preceq a$,
+    and $z = b \po{w} c$ must arise from (II),
+    so $c \preceq w$.
+    Thus $c \preceq w \preceq a$,
+    so by (III), $a \po{w} c$.
+  \item
+    If $c = z$, then $a, b \in S \setminus \{w, z\}$.
+    Also, $b \po{w} c = z$ must arise from (II),
+    so $w \preceq b$,
+    and $a \po{w} b$ must arise from (III),
+    so one of the following is true:
+    \begin{itemize}
+    \item $w \preceq a \preceq b$
+    \item $b \preceq w \preceq a$
+    \item $a \preceq b \preceq w$
+    \end{itemize}
+    In all cases, $b \preceq w$ or $w \preceq a$.
+    If $b \preceq w$, then $b = w$,
+    which contradicts $b \in S \setminus \{w, z\}$.
+    If $w \preceq a$, then by (II), $a \po{w} z$,
+    i.e. $a \po{w} c$.
+  \item
+    If none of them is $z$, then $a, b, c \in S \setminus \{w, z\}$.
+    $a \po{w} b$ must arise from (III),
+    so one of the following is true:
+    \begin{itemize}
+    \item $w \preceq a \preceq b$
+    \item $b \preceq w \preceq a$
+    \item $a \preceq b \preceq w$
+    \end{itemize}
+    $b \po{w} c$ must also arise from (III),
+    so one of the following is true:
+    \begin{itemize}
+    \item $w \preceq b \preceq c$
+    \item $c \preceq w \preceq b$
+    \item $b \preceq c \preceq w$
+    \end{itemize}
+    From here, it may be verified
+    that any of the $3 \times 3 = 9$ cases
+    implies one of the following:
+    \begin{itemize}
+    \item
+      $b \preceq w$ and $w \preceq b$,
+      so $b = w$, contradicting $b \in S \setminus \{w, z\}$.
+    \item $w \preceq a \preceq c$, so by (III), $a \po{w} c$.
+    \item $c \preceq w \preceq a$, so by (III), $a \po{w} c$.
+    \item $a \preceq c \preceq w$, so by (III), $a \po{w} c$.
+    \end{itemize}
+  \end{itemize}
+  Since $\po{w}$ is transitive,
+  $\po{w}$ is a partial order on $S \setminus \{w\}$,
+  so $\circlearrowleft$ is a cycle relation.
+  
+  \newpage
+
+\item
+  We show that the cycle relation is not unique if it exists.
+  Let $S = \{w, x, y, z\}$,
+  and let $\preceq = \{(w, w), (x, x), (y, y)\}$.
+  Define $\circlearrowleft$ as follows:
+  \begin{enumerate}[label=(\Alph*)]
+  \item
+    For all $a, b \in S$, $\cyc{a}{b}{b}$.
+  \item
+    $\cyc{w}{x}{y}$.
+  \item
+    All cycles of the above satisfy $\circlearrowleft$,
+    and no other triples do.
+  \end{enumerate}
+  Then by (A) with $a = b$, $\circlearrowleft$ satisfies property (1),
+  and by (C), it also satisfies (2).
+  To show (3), we find the relations $\po{a}$ for $a \in S$:
+  \begin{itemize}
+  \item $\po{w} = \{(x, x), (y, y), (z, z), (x, y)\}$
+  \item $\po{x} = \{(w, w), (y, y), (z, z), (y, w)\}$
+  \item $\po{y} = \{(w, w), (x, x), (z, z), (w, x)\}$
+  \item $\po{z} = \{(w, w), (x, x), (y, y)\}$
+  \end{itemize}
+  All of these are partial orders, so (3) is satisfied.
+  Thus $\circlearrowleft$ is a cycle relation.
+  Also, $\po{z} = \preceq$.
+
+  \newcommand{\backcyc}[3]{\ternary{\circlearrowright}{#1}{#2}{#3}}
+  \newcommand{\notbackcyc}[3]{\ternary{\not\circlearrowright}{#1}{#2}{#3}}
+  \newcommand{\backpo}[1]{\overset{#1}{\geq}}
+
+  Next, define $\circlearrowright$ (with the direction of the arrow reversed)
+  so that $\backcyc{a}{b}{c}$ when $\cyc{a}{c}{b}$.
+  Since $\circlearrowleft$ satisfies (1) and (2), so does $\circlearrowright$.
+  Also, each relation $\backpo{a}$ for $\circlearrowright$
+  is the reverse of the corresponding $\po{a}$ for $\circlearrowleft$.
+  Since the reverse of a partial order is also a partial order,
+  $\circlearrowright$ is a cycle relation.
+  Also, $\backpo{z} = \po{z} = \preceq$.
+
+  Finally, $\cyc{w}{x}{y}$, but $\notbackcyc{w}{x}{y}$,
+  so the cycle relation is not unique.
+\end{enumerate}
+%% First, we prove uniqueness
+%% by attempting to define $\circlearrowleft$
+%% by cases on the number of arguments equal to $z$.
+%% \begin{itemize}
+%% \item
+%%   By 1, $\cyc{z}{z}{z}$.
+%% \item
+%%   Let $a \neq z$.
+%%   By 3, $\cyc{a}{z}{z}$ if and only if $z \po{a} z$.
+%%   Since partial orders are reflexive, $z \po{a} z$,
+%%   so $\cyc{a}{z}{z}$.
+%%   By 2, $\cyc{z}{a}{z}$ and $\cyc{z}{z}{a}$.
+%% \item
+%%   Let $a, b \neq z$.
+%%   By 3, $\cyc{z}{a}{b}$ if and only if $a \po{z} b$.
+%%   By 2, $\cyc{b}{z}{a}$ and $\cyc{a}{b}{z}$ under the same conditions
+%%   (as 2 may be strengthened to a biimplication).
+%% \item
+%%   Let $a, b, c \neq z$.
+%%   We find $\cyc{a}{b}{c}$
+%%   by cases on the ordering of $a$, $b$, and $c$ under $\po{z}$.
+%%   \begin{itemize}
+%%   \item
+%%     If $c \po{z} a \po{z} b$,
+%%     then $\cyc{z}{c}{a}$ and $\cyc{z}{a}{b}$.
+%%     By 2, $\cyc{a}{z}{c}$ and $\cyc{a}{b}{z}$,
+%%     so by 3, $z \po{a} c$ and $b \po{a} z$.
+%%     Since partial orders are transitive,
+%%     $b \po{a} c$,
+%%     so by 3, $\cyc{a}{b}{c}$.
+%%   \item
+%%     If $a \po{z} b \po{z} c$,
+%%     then by the previous case, $\cyc{b}{c}{a}$.
+%%     By 2, $\cyc{a}{b}{c}$.
+%%   \item
+%%     If 
+%%   \end{itemize}
+%% \end{itemize}
+
+\end{document}
