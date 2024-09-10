@@ -210,6 +210,8 @@ factoring in the power of $-1$ to account for the change in sign of the permutat
 Alternatively, perform cofactor expansion on the last column of the Vandermonde matrix,
 noting that each of the $n$ minors is another Vandermonde matrix. \\
 
+\newpage
+
 Theorem:
 \[\prod_{1 \leq i < j \leq n} (x_j-x_i) \sum_{p_1+\ldots+p_n=k} \prod_{l=1}^n x_l^{p_l} = 
 \sum_{l=1}^n\left((-1)^{n+l}x_l^{n-1+k}\prod_{\substack{1 \leq i < j \leq n \\ i \neq l \neq j}}(x_j-x_i)\right).
@@ -248,6 +250,8 @@ Furthermore, since $U$ is upper triangular,
 its determinant is the product of its diagonal entries,
 and since all of those entries except the last are 1,
 it suffices to show that the last entry of $\vec{u}$ is the desired determinant.
+
+\newpage
 
 Used sympy to compute $\vec{u}$ for a few values of $n$ and $k$: \\
 \includegraphics[width=0.5\linewidth]{u2.jpg}

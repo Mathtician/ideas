@@ -10,6 +10,7 @@
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\DeclareMathOperator{\supp}{supp}
 
 \begin{document}
 
@@ -292,5 +293,73 @@ may be seen as a smaller instance of the same problem,
 where the first $n-1$ derivatives are restricted rather than $n$,
 and the decreasing portion is a mirror image of that.
 The base case $n=1$, as seen above, is just a straight line segment.
+
+\newpage
+
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\
+Theorem: Let $n \in \mathbb{Z}^+$, and let $x : \mathbb{R} \rightarrow \mathbb{R}$.
+Suppose that $x(t)$ is eventually constant as $t \rightarrow \infty$ and as $t \rightarrow -\infty$, so any derivatives of $x$ have compact support.
+Suppose also that $x$ is $n$ times weakly differentiable,
+where the weak $n^\text{th}$ derivative is bounded.
+(Equivalently, suppose $x$ is $n-1$ times differentiable,
+where the $(n-1)^\text{th}$ derivative is Lipschitz.)
+Then,
+
+\[x(t)\Big|_{-\infty}^\infty \leq \frac{1}{4^nn!}\norm{x^{(n)}}_\infty\lambda(\supp(x'))^n.\]
+
+Additionally, the constant $\frac{1}{4^nn!}$ is tight.
+
+Proof: By scaling and translation of $x$, it suffices to show that
+if $x(t) = 0$ for all $t \leq 0$, $x(t)$ is constant for all $t \geq 4$
+(so $\lambda(\supp(x')) \leq 4$)
+
+$\omega := \exp\left(\frac{\pi}{n}\sqrt{-1}\right)$ \\
+$t_i := 4\cos^2\left(\frac{\pi (n-i)}{2n}\right)$ \\
+$t_{n-i} = 4\cos^2\left(\frac{\pi i}{2n}\right)
+= \left(2\cos\left(\frac{\pi i}{2n}\right)\right)^2
+= \left(\omega^{i/2}+\omega^{-i/2}\right)^2$ \\
+$z_{k,i}(t) := \frac{\max(0, t-t_i)^k}{k!}$ \\
+$z_{k,i}^{(k-j)} = z_{j,i}$ \\
+\begin{align*}
+  x :=& \sum_{i=0}^{n-1}(-1)^i(z_{n,i} - z_{n,i+1}) \\
+  =& \sum_{i=0}^{n-1}(-1)^iz_{n,i} + \sum_{i=1}^n(-1)^iz_{n,i} \\
+  =& \sum_{i=0}^{n-1}(-1)^iz_{n,i} + \sum_{i=0}^{n-1}(-1)^{n-i}z_{n,n-i} \\
+  =& \sum_{i=0}^{n-1} \left((-1)^iz_{n,i} + (-1)^{n-i}z_{n,n-i}\right) \\
+  x^{(n-k)} =& \sum_{i=0}^{n-1} \left((-1)^iz_{k,i} + (-1)^{n-i}z_{k,n-i}\right) \\
+  x^{(n-k)}(t_n) =& \sum_{i=0}^{n-1} \left((-1)^iz_{k,i}(t_n) + (-1)^{n-i}z_{k,n-i}(t_n)\right) \\
+  =& \sum_{i=0}^{n-1} \left((-1)^i\frac{(t_n-t_i)^k}{k!} + (-1)^{n-i}\frac{(t_n-t_{n-i})^k}{k!}\right) \\
+  k!x^{(n-k)}(t_n) =& \sum_{i=0}^{n-1} \left((-1)^i(t_n-t_i)^k + (-1)^{n-i}(t_n-t_{n-i})^k\right) \\
+  =& \sum_{i=0}^{n-1} \left((-1)^it_{n-i}^k + (-1)^{n-i}t_i^k\right) \\
+  t_{n-i}^k =& \left(\omega^{i/2}+\omega^{-i/2}\right)^{2k} \\
+  =& \sum_{j=0}^{2k}\binom{2k}{j}\omega^{(i/2)(2k-j)}\omega^{(-i/2)j} \\
+  =& \sum_{j=0}^{2k}\binom{2k}{j}\omega^{(k-j)i} \\
+  =& \sum_{j=-k}^k\binom{2k}{k-j}\omega^{ji}
+\end{align*}
+\begin{align*}
+  k!x^{(n-k)}(t_n) =& \sum_{i=0}^{n-1} \left((-1)^i\sum_{j=-k}^k\binom{2k}{k-j}\omega^{ji} + (-1)^{n-i}\sum_{j=-k}^k\binom{2k}{k-j}\omega^{j(n-i)}\right) \\
+  =& \sum_{i=0}^{n-1} \left(\sum_{j=-k}^k\binom{2k}{k-j}(-1)^i\omega^{ji} + \sum_{j=-k}^k\binom{2k}{k-j}(-1)^{n-i}\omega^{j(n-i)}\right) \\
+  =& \sum_{i=0}^{n-1} \left(\sum_{j=-k}^k\binom{2k}{k-j}(-1)^i\omega^{ji} + \sum_{j=-k}^k\binom{2k}{k+j}(-1)^{n-i}\omega^{-j(n-i)}\right) \\
+  =& \sum_{i=0}^{n-1} \left(\sum_{j=-k}^k\binom{2k}{k-j}\omega^{ni}\omega^{ji} + \sum_{j=-k}^k\binom{2k}{k-j}\omega^{-n(n-i)}\omega^{-j(n-i)}\right) \\
+  =& \sum_{i=0}^{n-1} \left(\sum_{j=-k}^k\binom{2k}{k-j}\omega^{(n+j)i} + \sum_{j=-k}^k\binom{2k}{k-j}\omega^{-(n+j)(n-i)}\right) \\
+  =& \sum_{i=0}^{n-1} \left(\sum_{j=-k}^k\binom{2k}{k-j}\omega^{(n+j)i} + \sum_{j=-k}^k\binom{2k}{k-j}\omega^{(n+j)(i-n)}\right) \\
+  =& \sum_{i=0}^{n-1} \left(\sum_{j=-k}^k\binom{2k}{k-j}\left(\omega^{(n+j)i} + \omega^{(n+j)(i-n)}\right)\right) \\
+  =& \sum_{j=-k}^k \left(\binom{2k}{k-j}\sum_{i=0}^{n-1}\left(\omega^{(n+j)i} + \omega^{(n+j)(i-n)}\right)\right) \\
+  =& \sum_{j=-k}^k \left(\binom{2k}{k-j}\left(\sum_{i=0}^{n-1}\omega^{(n+j)i} + \sum_{i=0}^{n-1}\omega^{(n+j)(i-n)}\right)\right) \\
+  =& \sum_{j=-k}^k \left(\binom{2k}{k-j}\left(\sum_{i=0}^{n-1}\omega^{(n+j)i} + \sum_{i=-n}^{-1}\omega^{(n+j)i}\right)\right) \\
+  =& \sum_{j=-k}^k \left(\binom{2k}{k-j}\sum_{i=-n}^{n-1}\omega^{(n+j)i}\right) \\
+  =& \sum_{j=-k}^k \left(\binom{2k}{k-j}[2n|n+j]2n\right) \\
+  =& \sum_{j=-k}^k \left(\binom{2k}{k-j}[k=n]([j=-k]+[j=k])2n\right) \\
+  =& [k=n]2n\sum_{j=-k}^k \left(\binom{2k}{k-j}([j=-k]+[j=k])\right) \\
+  =& [k=n]2n\left(\binom{2k}{k-(-k)}+\binom{2k}{k-k}\right) \\
+  =& [k=n]2n(2) \\
+  =& [k=n]4n \\
+\end{align*}
+
+\newpage
+Conjecture:
+Let $n \in \mathbb{Z}^+$ and $p, q : [0, 1] \rightarrow \mathbb{R}$,
+where $p < 0$ and $q > 0$ a.e..
+Then there exist $x_1, \ldots, x_{n-1}$ where $0 \leq x_1 \leq x_2 \leq \ldots \leq x_{n-1} \leq 1$ such that for all $k \in$
 
 \end{document}

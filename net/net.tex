@@ -1,0 +1,682 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\graphicspath{images/}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+
+\begin{document}
+
+\title{Common Nets}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\section{Introduction}
+
+A video by Matt Parker
+\footnote{
+Parker 2022, `` Can the Same Net Fold into Two Shapes?'',
+\href{https://youtu.be/jOTTZtVPrgo}{youtu.be/jOTTZtVPrgo}
+}
+explores the following problem:
+are there multiple boxes which may be cut and unfolded
+to produce the same 2D net?
+Unless mentioned otherwise,
+a \textit{box} is a rectangular prism with positive integer side lengths,
+and a \textit{net} is a connected shape made of unit squares
+whose edges are aligned with those of the box when folded.
+Parker summarizes the following results,
+mostly from Ryuhei Uehara and collaborators:
+\begin{itemize}
+\item
+  The $1 \times 1 \times 5$ and $1 \times 2 \times 3$ boxes
+  have a common net consisting of $22$ unit squares.
+  In fact, all $2263$ such nets have been enumerated.
+  \footnote{
+  Matsui and Uehara, \href{
+    https://www.jaist.ac.jp/~uehara/etc/origami/nets/index-e.html}{
+    jaist.ac.jp/~uehara/etc/origami/nets/index-e.html}}
+\item
+  For all positive integers $k$,
+  the $1 \times 5 \times 2k$ and $1 \times 1 \times (6k+2)$ boxes
+  have a common net (which also tiles the plane),
+  so there are infinitely many pairs of distinct boxes with a common net.
+  \footnote{
+  Uehara 2008, ``Polygons Folding to Plural Incongruent Orthogonal Boxes''
+  }
+\item
+  One of the $2263$ nets mentioned above
+  also folds into a double-covered $1 \times 11$ rectangle,
+  which may be considered a $0 \times 1 \times 11$ ``box.''
+  However, some of the unit squares are folded in half in the process.
+  To avoid this, we may scale the net by a factor of $2$,
+  producing a common net of the $0 \times 2 \times 22$,
+  $2 \times 2 \times 10$, and $2 \times 4 \times 6$ boxes.
+  \footnote
+      {Abel et al 2011,
+        ``Common Developments of Several Different Orthogonal Boxes''
+      }
+    \item
+      The $1 \times 3 \times 3$ and $1 \times 1 \times 7$ boxes
+      have a common net consisting of $30$ unit squares.
+      This net also folds along diagonal lines
+      to produce a $\sqrt{5} \times \sqrt{5} \times \sqrt{5}$ ``box.''
+      \footnote{
+      Horiyama et al 2015,
+      ``Common Developments of Three Incongruent Boxes of Area 30''
+      }
+    \item
+      For all positive integers $k$,
+      the following three boxes have a common net:
+      \begin{alignat*}{3}
+        &2k &\times& (4k+9) &\times& 2(16k+13) \\
+        &(4k+3) &\times& 2(k+3) &\times& 8(4k+3) \\
+        &(4k+3) &\times& 2(4k+3) &\times& 2(7k+12)
+      \end{alignat*}
+      So there are infinitely many triples of distinct boxes with a common net.
+      \footnote{
+      Shirakawa and Uehara 2013,
+      ``Common Developments of Three Different Orthogonal Boxes''
+      }
+\end{itemize}
+Parker concludes with the observation that
+the smallest surface area shared by three boxes is $46$,
+the area of the $1 \times 1 \times 11$, $1 \times 2 \times 7$,
+and $1 \times 3 \times 5$ boxes.
+However, it is unknown whether these boxes have a common net.
+Here, we present an algorithm to search for these nets.
+
+\section{Definitions}
+
+First, we define a net more precisely.
+Consider the infinite square grid as a graph $G$,
+where each vertex represents a square
+and each edge connects a pair of adjacent squares.
+(In other words, $G$ is the $1$-skeleton of
+the dual of the square grid.)
+To maintain visual clarity,
+the vertices of $G$ will be referred to as squares.
+A \textit{generalized polyomino}, or \textit{GP},
+is a connected subgraph $(S, E)$ of $G$,
+up to isomorphisms of $G$
+(i.e. translation, $90$-degree rotation, and reflection),
+where $S$ and $E$ are the GP's square and edge sets, respectively.
+In other words, it is a polyomino
+with additional information about which squares are considered adjacent.
+(It is important to specify that
+only isomorphisms of $G$ can make two GPs equivalent,
+since many distinct polyominoes are isomorphic as graphs,
+e.g. the two trominoes.)
+Squares which are adjacent in $G$ but not in the GP
+may be considered to have a cut between them.
+
+%% WLOG, we may fix a square $o$ of $G$, dubbed the \textit{origin},
+%% and require all GPs to include it.
+
+A \textit{partial net} of an $a \times b \times c$ box
+is a GP $(S, E)$
+equipped with a map from $S$ to the surface of the box
+which represents a folding procedure, i.e.
+\begin{itemize}
+\item
+  Each square in $S$ is mapped to one of the $2ab+2ac+2bc$ squares on the box,
+  as well as one of $4$ orientations.
+  (Since boxes are not chiral,
+  we do not need all $8$ ways to lay one square on another.
+  This may be thought of as coloring one side of the plane
+  from which the GP is cut,
+  then requiring that color to face the outside of the box.)
+\item
+  No two squares in $S$ map to the same square on the box,
+  even if their orientations are different.
+\item
+  Adjacent squares in $S$ map to adjacent squares on the box
+  with aligned orientations,
+  e.g. if square $a$ is to the left of $b$ in $G$,
+  and $a$ and $b$ are connected by an edge in $E$,
+  then the right side of $a$'s corresponding oriented square on the box
+  overlaps with the left side of $b$'s square.
+\end{itemize}
+A \textit{net} is a partial net such that all squares on the given box are covered.
+
+We wish to answer the following question:
+
+\begin{center}
+  \fbox{
+    Does there exist a GP which is a net of all three of
+    the $1 \times 1 \times 11$, $1 \times 2 \times 7$,
+    and $1 \times 3 \times 5$ boxes?
+  }
+\end{center}
+
+Since the boxes have surface area $46$,
+the shared net would be a generalized $46$-omino.
+However, only recently
+has the total number of (non-generalized) $46$-ominoes been computed,
+at approximately $8.57 \times 10^{24}$.
+\footnote{
+Mason 2023, ``Counting polyominoes of size 50'',
+\href{https://oeis.org/A000105/a000105\_1.pdf}{oeis.org/A000105/a000105\_1.pdf}
+}
+Including the edges of the graph to account for all GPs of size $46$
+would raise this number significantly,
+so we should try to restrict the search space.
+
+First, note that removing edges from a net always results in another net
+(as long as the graph remains connected),
+since edges only constrain how squares may map to the surface of the box.
+Also, every GP has a spanning tree,
+so we only need to consider the set of GPs which are also trees.
+Additionally, (Uehara 2008) observed that
+if four squares are connected by three edges
+to form a larger square with an internal cut,
+then the fourth edge may be added to the net
+(i.e. the last pair of adjacent squares may be glued together),
+as shown below,
+without affecting its ability to fold onto the box.
+
+\begin{center}
+  \begin{tikzpicture}
+    \draw[dashed] (0,0) -- (0,2) -- (2,2) -- (2,0) -- (0,0);
+    \draw[dotted] (1,0) -- (1,2) (0,1) -- (1,1);
+    \draw (1,1) -- (2,1);
+    \draw[->] (2.25,1) -- (2.75,1);
+    \draw[dashed] (3,0) -- (3,2) -- (5,2) -- (5,0) -- (3,0);
+    \draw[dotted] (4,0) -- (4,2) (3,1) -- (5,1);
+  \end{tikzpicture} \\
+  Solid lines are cut edges,
+  dotted lines are joined edges,
+  and dashed lines may be either.  
+\end{center}
+
+Given a GP, we may repeat this gluing process
+until the configuration on the left of the above figure no longer exists.
+Since gluing can map many trees to the same GP,
+the size of the search space is further reduced.
+Let us call these glued trees
+\textit{weakly generalized polyominoes} or \textit{WGPs}.
+Then the answer to the central question above
+is not changed if we replace ``GP'' with ``WGP,''
+so from here, the definition of ``partial net'' (and thus of ``net'')
+is restricted to refer to WGPs only.
+
+WGPs have no cuts which terminate on the interior,
+i.e. all internal cuts terminate on the edges.
+Then if a given WGP has an underlying polyomino which is simple
+(i.e. has no holes),
+then an internal cut would split it in two,
+so the WGP is the polyomino itself with all adjacent squares joined.
+For this reason, previous work was focused on simple polyominoes.
+In particular, the 2263 common nets
+of the $1 \times 1 \times 5$ and $1 \times 2 \times 3$ boxes
+listed by (Matsui and Uehara)
+were found by a search of simple polyominoes.
+However, there are WGPs whose underlying polyominoes have holes,
+such as the one below, which is a net of a $1 \times 2 \times 2$ box.
+\begin{center}
+  \begin{tikzpicture}
+    \draw
+    (0,0) -- (2,0) -- (2,1) -- (1,1) -- (1,2) --
+    (2,2) -- (2,0) -- (3,0) -- (3,1) -- (6,1) --
+    (6,4) -- (4,4) -- (4,3) -- (0,3) -- (0,0);
+    \draw[dashdotted] (1,0) -- (1,1) (1,2) -- (1,3);
+    \draw[dotted] (2,2) -- (2,3);
+    \draw[dashdotted] (3,1) -- (3,3) (4,1) -- (4,3);
+    \draw[dotted] (5,1) -- (5,4);
+    \draw[dashdotted] (0,1) -- (1,1);
+    \draw[dotted] (2,1) -- (3,1);
+    \draw[dotted] (0,2) -- (1,2) (2,2) -- (6,2);
+    \draw[dashdotted] (4,3) -- (6,3);
+  \end{tikzpicture} \\
+  Dashdotted lines are joined edges which are folded to produce the box.
+  Note the internal cut edge.
+\end{center}
+Crucially, the underlying polyomino (with the internal cut removed)
+is not a net of any box.
+
+\section{Algorithm}
+\subsection{Depth-first search}
+The first algorithm to find common nets is based on
+%% a more general search algorithm which is given:
+%% \begin{itemize}
+%% \item
+%%   A partially ordered set $(S, \leq)$
+%% \item
+%%   A predicate $A$ on $S$ which is downward closed,
+%%   i.e. 
+%% \end{itemize}
+a depth-first search function which accepts:
+\begin{itemize}
+\item
+  $\mathcal{N}$, a set of common partial nets which
+  do not contain each other,
+  i.e. for all distinct $Q, R \in \mathcal{N}$,
+  $Q$ does not contain $R$.
+\item
+  $P$, a common partial net
+  which does not contain, and is not contained by, any $Q \in \mathcal{N}$.
+\end{itemize}
+The function returns the set of all common nets
+which contain $P$ but do not contain any $Q \in \mathcal{N}$.
+
+\begin{algorithm}
+  \caption{Common net search}
+  \begin{algorithmic}[1]
+    \Function{Search}{$P, \mathcal{N}$}
+    \If {$P$ has $46$ squares}
+    \Return $\{P\}$
+    \EndIf
+    \State $\mathcal{R} \gets \{\}$
+    \State $\mathcal{M} \gets \{\}$
+    \For{$e \in \{$edges from a square in $P$ to a square not in $P\}$}
+    \State $P' \gets \Call{Glue}{P \cup \{e\}}$
+    \If {$P'$ is not a common partial net}
+    \textbf{continue}
+    \EndIf
+    \If {$P'$ contains any $Q \in \mathcal{N} \cup \mathcal{M}$}
+    \textbf{continue}
+    \EndIf
+    \State $\mathcal{R} \gets \mathcal{R} \cup \Call{Search}{P',\mathcal{N} \cup \mathcal{M}}$
+    \State $\mathcal{M} \gets \mathcal{M} \cup \{P'\}$
+    \EndFor
+    \Return $\mathcal{R}$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
+In other words, the algorithm repeatedly tries
+to extend $P$ by one square,
+searches the resulting WGP $P'$,
+and then eliminates $P'$ for the rest of the search of $P$.
+The correctness of Algorithm 1 relies on the fact that
+every WGP which strictly contains $P$
+must contain one of the $P'$.
+
+Thanks to line 8,
+each common net will be found exactly once during the search,
+so there is no duplication of effort.
+Further refinements should strive to maintain this property.
+However, depending on $\abs{\mathcal{N} \cup \mathcal{M}}$,
+line 8 may be very expensive.
+In this case, the size is bounded by the depth of recursion ($46$)
+and the number of $P'$ added at each level $i$,
+which is no more than $2i+2$, the maximum perimeter of an $i$-omino.
+Thus the extra time spent at each node
+is quadratic in the recursion depth,
+whereas the overlaps that are prevented
+decrease the number of nodes exponentially.
+Contrast this with a breadth-first search,
+where $\mathcal{N}$ would contain an entire layer of the search tree,
+i.e. the set of all common partial nets with $i$ squares.
+
+\subsection{Restricting common partial nets}
+
+In theory, Algorithm 1 would suffice to find all common nets of the
+$1 \times 1 \times 11$, $1 \times 2 \times 7$, and $1 \times 3 \times 5$ boxes,
+when called with $P$ as a single square and $\mathcal{N}$ as the empty set.
+However, it suffers from two major problems:
+\begin{itemize}
+\item
+  It is called for all common partial nets $P$ at some point during the search.
+  While this guarantees that all common nets will be found,
+  it would be ideal to search only a subset of common partial nets
+  which still includes all common (total) nets.
+\item
+  Checking whether one partial net $A$ contains another $B$ is expensive,
+  as $B$ must be overlaid on $A$
+  with all combinations of translation, rotation, and reflection.
+\end{itemize}
+To ameliorate these issues,
+we can try to find a set $\mathcal{S} = \{S_1, \ldots, S_k\}$ of partial nets
+such that for all common nets $P$,
+there exists an $S \in \mathcal{S}$ such that $P$ contains $S$.
+Then we can run Algorithm 1 $k$ times on the inputs
+\[
+(S_1, \{\}), (S_2, \{S_1\}), (S_3, \{S_1, S_2\}), \ldots,
+(S_k, \{S_1, S_2, S_3, \ldots, S_{k-1}\})
+\]
+to obtain each net exactly once.
+
+\newpage
+
+\newcommand{\code}{\texttt}
+
+Edgemap consists of:
+\begin{itemize}
+\item
+  \code{cx, cy : u8} - 
+\item
+  \code{rows: Vec<u64>} - array of rows of edges
+  \begin{itemize}
+  \item
+    \code{(rows[2*y]<<x)>>63 = } presence of edge
+    from square \code{(x, y)} to \code{(x+1, y)} relative to top left
+  \item
+    \code{(rows[2*y+1]<<x)>>63 = } presence of edge
+    from \code{(x, y)} to \code{(x, y+1)}
+  \end{itemize}
+\end{itemize}
+
+Partial net consists of:
+\begin{itemize}
+\item
+  Edgemap for joined edges
+\item
+  Horizontal reflection of previous map
+\item
+  Edgemap for cut edges
+\end{itemize}
+
+
+
+%% recall that a WGP is a tree after applying the gluing operation.
+%% A tree may be ``grown'' from any of its vertices,
+%% i.e. given a tree $T$ and a vertex $v$ of $T$,
+%% there is a sequence of trees
+%% starting with the graph containing only $v$ and ending with $T$,
+%% where each tree is created
+%% by adding a single vertex to the previous one.
+%% At each node:
+%% \begin{itemize}
+%% \item
+%%   Sets of joined and cut edges
+%%   \begin{itemize}
+%%     \item
+%%       All joined edges are true,
+%%       all cut edges are false,
+%%   \end{itemize}
+%% \item
+%%   Set of interior squares
+%% \item
+%%   For each valid box-orbit,
+%%   mapping from plane to box (position and orientation)
+%% \item
+%%   List of stages used to construct current shape
+%%   \begin{itemize}
+%%   \item
+%%     For each stage, list of no-gos made by adding a single (joined) edge
+%%   \end{itemize}
+%% \end{itemize}
+
+%% Assurances:
+%% \begin{itemize}
+%% \item
+%%   The three edge sets are disjoint
+%% \item
+%%   The joined edges form a connected graph
+%% \item
+%%   Each boundary edge has exactly one endpoint inside the net and one outside
+%%   \begin{itemize}
+%%   \item
+%%     ``Inside'' points are endpoints of the joined edges
+%%   \end{itemize}
+%% \item
+%%   All edges between an inside and an outside point
+%% \end{itemize}
+
+%% Search function pseudocode:
+%% \begin{itemize}
+%% \item
+%%   Initialize empty list of candidates
+%% \item
+%%   Let ``inside'' points be endpoints of the joined edges
+%% \item
+%%   Let a boundary edge
+%% \item
+%%   For each non-cut boundary edge:
+%%   \begin{itemize}
+%%   \item
+%%     Try to add it to the graph, along with its new vertex
+%%   \item
+%%     Infer new edges to join by square completion
+%%     \begin{itemize}
+%%     \item
+%%       If a cut edge is inferred,
+%%       turn the boundary edge into a cut edge; skip this candidate
+%%     \item
+%%       If another boundary edge is inferred,
+%%       turn it into a cut edge (for all other candidates)
+%%       \begin{itemize}
+%%       \item
+%%         Inference is two-sided:
+%%         if one boundary edge infers another,
+%%         their cases are equivalent
+%%       \end{itemize}
+%%     \end{itemize}
+%%   \item
+%%     Check if adding the vertex created a no-go,
+%%     or anything already in the candidate list
+%%   \item
+%%     If so, turn the boundary edge into a cut edge;
+%%     skip this candidate
+%%   \item
+%%     For each valid orbit:
+%%     \begin{itemize}
+%%     \item
+%%       If the new vertex maps to an occupied square,
+%%       eliminate the orbit
+%%     \item
+%%       Else, add the new location to the mapping
+%%     \end{itemize}
+%%   \item
+%%     If any box has all orbits eliminated,
+%%     turn the boundary edge into a cut edge;
+%%     skip this candidate
+%%   \item
+%%     Else, add the new graph to the candidate list
+%%   \end{itemize}
+%% \item
+%%   Sort the candidate list by $
+%%   (\text{box }1\text{ orbits}) \times
+%%   (\text{box }2\text{ orbits}) \times
+%%   (\text{box }3\text{ orbits})$, increasing
+%% \item
+%%   Initialize empty list of no-gos derived from current stage
+%% \item
+%%   For each candidate:
+%%   \begin{itemize}
+%%   \item
+%%     Recursively call search with the candidate's
+%%     edges, mappings, and stages/no-gos
+%%   \item
+%%     Add the candidate to the list of no-gos
+%%   \end{itemize}
+%% \end{itemize}
+
+%% \newpage
+
+%% SAT formulation \\
+%% Variables:
+%% \begin{itemize}
+%% \item
+%%   For each edge in (part of) the grid, a variable for whether it is joined
+%% \item
+%%   For each square in the grid, a variable for whether it is part of the net
+%% \item
+%%   For each box:
+%%   \begin{itemize}
+%%   \item For each square of the box:
+%%   \begin{itemize}
+%%   \item
+%%     Variables describing the coordinates of the corresponding grid square in binary
+%%     (Gray code?)
+%%   \item
+%%     Variables describing the orientation of the corresponding grid square
+%%   \end{itemize}
+%%   \end{itemize}
+%% \end{itemize}
+
+%% Constraints:
+%% \begin{itemize}
+%% \item
+%%   For each grid square:
+%%   \begin{itemize}
+%%     \item
+%%       If three of the edges around the square are joined, then so is the fourth one
+%%     \item
+%%       The square is part of the net iff it is adjacent to a joined edge
+%%     \item
+%%       For each box, the square is part of the net iff one of the squares of the box has its coordinates
+%%   \end{itemize}
+%% \item
+%%   For each box:
+%%   \begin{itemize}
+%%     \item
+%%     No two of the box's squares have the same grid coordinates
+%%   \end{itemize}
+%% \end{itemize}
+
+\newpage
+
+SAT formulation (2 boxes) divides each square into 4 square-edges \\
+Variables:
+\begin{itemize}
+\item
+  For each square-edge $a$ of the first box and square-edge $b$ of the second box,
+  a variable $M_{ab}$ for whether $a$ maps to $b$
+  \begin{itemize}
+  \item
+    Preprocessing: sets of 4 variables for same square of both boxes are equivalent
+  \item
+    Equivalence classes map a square of the first box to a square of the second box
+    in one of $4$ orientations
+  \item
+    Fixes an orientation of the mapping: must be accounted for in symmetry breaking
+  \end{itemize}
+\item
+  For each edge $e$ of the first box and edge $f$ of the second box,
+  a variable $N_{efo}$ for whether $e$ maps to $f$
+  in one of two orientations $o$
+\item
+  For each edge $e$ of the first box, a variable $J_e$ for whether $e$ is joined
+\item
+  For each edge $f$ of the second box, a variable $K_f$ for whether $f$ is joined
+\end{itemize}
+Constraints:
+\begin{itemize}
+\item $M_{ab}$ defines a bijection:
+  \begin{itemize}
+  \item
+    For each square-edge $a$ of the first box,
+    exactly one of $\{M_{ab}\ |\ b$ square-edge of second box$\}$
+  \item
+    For each square-edge $b$ of the second box,
+    exactly one of $\{M_{ab}\ |\ a$ square-edge of first box$\}$
+    %% \item
+    %%   Could also reduce number of formulas
+    %%   by only requiring at least one in one direction
+    %%   and at most one in the other
+    %% \item
+    %%   May slow down inference
+  \end{itemize}
+\item
+  For each edge $e$ of the first box, exactly one of
+  $\{\lnot J_e\} \cup \{N_{efo}\ |\ f$ edge of second box, $o$ orientation$\}$
+\item
+  For each edge $f$ of the second box, exactly one of
+  $\{\lnot K_f\} \cup \{N_{efo}\ |\ e$ edge of first box, $o$ orientation$\}$
+\item
+  If $N_{efo}$,
+  then the corresponding square-edges on either side of $e$ and $f$
+  are mapped to each other
+  \begin{itemize}
+  \item
+    $\lnot N_{efo} \lor M_{e_0f_o}$,
+    $\lnot N_{efo} \lor M_{e_1f_{1-o}}$
+  \end{itemize}
+\item
+  %% The converse of the previous:
+  %% $\lnot M_{e_0f_o} \lor \lnot M_{e_1f_{1-o}} \lor N_{efo}$
+  %% (ensure solution is maximal)
+  Gluing: if 3 edges around a degree-4 vertex are joined,
+  then so is the 4th one (for both boxes)
+\item
+  The joined edges of the first box form a connected graph:
+  \begin{itemize}
+  \item
+    Original: cs.stackexchange.com/questions/111410
+  \item
+    Doesn't work for partial assignments:
+    want a contradiction as soon as one part of the graph
+    is cut off from another
+  \item
+    Graph of squares and edges is planar:
+    dual has vertices and edges
+  \item
+    Primal graph is connected iff dual complement graph is acyclic
+  \item
+    Cuts are dual to cycles: want a contradiction if dual non-joined edges form a cycle
+  \item
+    Given (simple) graph $G = (V, E)$ and $F \subseteq E$, determine if $(V, F)$ acyclic:
+    \begin{itemize}
+    \item
+      Order $E = \{e_1, \ldots, e_n\}$, ideally by BFS
+    \item
+      For $i \in \{0, \ldots, n\}$, define $E_i = \{e_j \in E \mid j \leq i\}$,
+      $F_i = F \cap E_i$
+    \item
+      For $i \in \{0, \ldots, n\}$, $u, v \in V$, add aux var $C_{iuv}$:
+      whether $u$ is connected to $v$ by $F_i$
+    \item
+      For $v \in V$, $C_{0vv}$
+    \item
+      For $i \in \{0, \ldots, n-1\}$, if $e_{i+1} = \{a_i, b_i\}$, for $u, v \in V$:\\
+      $C_{(i+1)uv} \leftrightarrow C_{iuv} \lor (C_{iua} \land e_i \in F \land C_{ibv}) \lor (C_{iub} \land e_i \in F \land C_{iav})$
+    \end{itemize}
+    \item
+      Simplification:
+      \begin{itemize}
+      \item
+        For $i \in \{0, \ldots, n\}$, $C_{ivv}$
+      \item
+      \end{itemize}
+      %% For $i \in \{0, \ldots, n\}$, define $V_i = \{v \in V \mid \exists u \in V (\{u, v\} \in E_i) \land \exists w \in V (\{v, w\} \in E \setminus E_i)\}$
+  \end{itemize}
+%% \item
+%%   Symmetry-breaking: choose a representative of each orbit
+%%   of the square-edges of the second box
+%%   and a single square-edge of the first box,
+%%   and require the base square-edge to be mapped to (at least) one representative
+  
+\end{itemize}
+
+Unit prop during problem generation:
+``literal'' can be (possibly negated) variable or truth value \\
+Function to create a logic gate accounts for these options:
+can return one of its arguments back, or a truth value \\
+Clauses must be either a sequence of (possibly negated) variables
+or ``satisfied'' (not added to final problem) \\
+Inserting false into a clause does nothing,
+inserting true makes it satisfied,
+inserting into a satisfied clause does nothing \\
+
+Symmetry breaking: \\
+Start with arbitrary polyomino that can fold around all 3 boxes \\
+Fix a ``base squedge'' on one of the $1 \times 1$ faces of box 1 \\
+Fix a representative of each of the 29 orbits of the squedges of box 2
+under rotation \textit{and reflection} \\
+Ensure that the base squedge maps to a representative
+by rotating/reflecting the net around box 2 \\
+Ensure that the mapping preserves orientation
+by reflecting the nets around boxes 1 and/or 3 if necessary \\
+Fix a representative of each of the 46 orbits of the squedges of box 3
+under rotation \\
+Ensure that the base squedge maps to a representative
+by rotating the net around box 3 \\
+Draw a path following the net from the face of box 1 containing the base squedge
+to the opposite face (without moving backwards) \\
+Ensure that the path (when interpreted as a sequence of moves)
+is lexicographically earlier than its reversal
+by rotating one $1 \times 1$ face to the other if necessary \\
+Ensure that the base squedge of box 1 points towards the opposite face
+when the net is unfolded 
+by rotating the net around the face
+
+
+\end{document}

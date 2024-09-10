@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{images/}
+
+\begin{document}
+
+\title{Simple Proof of Almost Complex Result}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\Z}{\mathbb{Z}}
+
+\noindent
+WTS
+\[
+\Pr(|X-Y| \leq b) < \left(2\ceil{\frac{b}{a}}+1\right) \Pr(|X-Y| \leq a).
+\]
+(Complex result has $-1$ instead of $+1$.) Define $n := \ceil{\frac{b}{a}}$,
+so $\frac{b}{a} \leq n$, i.e. $b \leq na$. Suffices to show
+\[
+\Pr(|X-Y| \leq na) < \left(2n+1\right) \Pr(|X-Y| \leq a)
+\]
+since $\Pr(|X-Y| \leq b) \leq \Pr(|X-Y| \leq na)$. Define
+\[
+p_z := \Pr(za \leq X < (z+1)a) = \Pr(za \leq Y < (z+1)a)
+\]
+since $X \sim Y$. Then
+\begin{align*}
+  &(2n+1) \Pr(|X-Y| \leq a) \\
+  \geq& (2n+1) \Pr\left(\bigvee_{z \in \Z} za \leq X < (z+1)a) \land za \leq Y < (z+1)a\right)
+  & \text{(plot region of $X$, $Y$ in $\R^2$)} \\
+  =& (2n+1) \sum_{z \in \Z} \Pr(za \leq X < (z+1)a)\Pr(za \leq Y < (z+1)a)
+  & \text{(disjoint squares, $X \perp Y$)} \\
+  =& (2n+1) \sum_{z \in \Z} p_z^2
+  & \text{(def. of $p_z$)} \\
+  =& \sum_{z \in \Z} p_z^2 + \sum_{i=1}^n 2 \sum_{z \in \Z} p_z^2 \\
+  =& \sum_{z \in \Z} p_z^2 + \sum_{i=1}^n \sum_{z \in \Z} (p_z^2+p_{z+i}^2)
+  & \text{(pair squares $i$ apart)} \\
+  >& \sum_{z \in \Z} p_z^2 + \sum_{i=1}^n \sum_{z \in \Z} 2p_zp_{z+i}
+  & \text{(strict because $p_z$ not all equal)} \\
+  =& \sum_{z \in \Z} p_z^2 + \sum_{i=1}^n \left(\sum_{z \in \Z} p_zp_{z+i}+\sum_{z \in \Z} p_zp_{z-i}\right)
+  & \text{(shift one copy by $-i$)} \\
+  =& \sum_{z \in \Z} p_zp_{z+0} + \sum_{i=1}^n \sum_{z \in \Z} p_zp_{z+i} + \sum_{i=-n}^{-1} \sum_{z \in \Z} p_zp_{z+i}
+  \\
+  =& \sum_{i=-n}^n\sum_{z \in Z}p_zp_{z+i}
+  \\
+  =& \sum_{i=-n}^n\sum_{z \in Z} \Pr(za \leq X < (z+1)a)\Pr((z+i)a \leq Y < (z+i+1)a)
+  & \text{(def. of $p_z$)} \\
+  =& \Pr\left(\bigvee_{i=-n}^n\bigvee_{z \in Z} za \leq X < (z+1)a \land (z+i)a \leq Y < (z+i+1)a \right)
+  & \text{(disjoint, $\perp$)} \\
+  \geq& \Pr(|X-Y| \leq na).
+  & \text{(plot region)}
+\end{align*}
+\end{document}

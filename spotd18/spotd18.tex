@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\setlength{\columnseprule}{0.4pt}
+\graphicspath{images/}
+
+\newtheorem*{theorem*}{Theorem}
+
+\begin{document}
+
+\title{SPOTD 18}
+\author{Aresh Pourkavoos}
+\maketitle
+\begin{multicols}{2}
+\begin{theorem*}
+  For $x \in (0, 1)$, define
+  \[f(x) := \sum_{i=0}^\infty (-1)^i x^{2^i}.\]
+  Then $\lim\limits_{x \rightarrow 1^-} f(x)$ does not exist.
+\end{theorem*}
+
+\begin{proof}
+  First, for $n \in \mathbb{N}$, define
+  \[x_n := 2^{-2^{-n}}.\]
+  Then $x_n < (0, 1)$,
+  so we may also define $y_n := f(x_n)$.
+  Also, $\lim\limits_{n \rightarrow \infty} x_n = 1$,
+  so it suffices to show that $\lim\limits_{n \rightarrow \infty} y_n$ does not exist.
+  Note
+  \begin{align*}
+    y_n &= \sum_{i=0}^\infty (-1)^i x_n^{2^i} \\
+    &= \sum_{i=0}^\infty (-1)^i \left(2^{-2^{-n}}\right)^{2^i} \\
+    &= \sum_{i=0}^\infty (-1)^i 2^{(-2^{-n})(2^i)} \\
+    &= \sum_{i=0}^\infty (-1)^i 2^{-2^{i-n}} \\
+    &= \sum_{i=-n}^\infty (-1)^{i+n} 2^{-2^i}.
+  \end{align*}
+  It suffices to show that $\lim\limits_{k \rightarrow \infty} y_{2k} < \frac{1}{2} < \lim\limits_{k \rightarrow \infty} y_{2k+1}$ (if both exist).
+  \vfill\null
+  By the previous,
+  \begin{align*}
+    y_{2k} &= \sum_{i=-2k}^\infty (-1)^i 2^{-2^i} \\
+    &= \sum_{i=-2k}^{-1} (-1)^i 2^{-2^i} + \sum_{i=0}^\infty (-1)^i 2^{-2^i} \\
+    &= \sum_{i=1}^{2k} (-1)^i 2^{-2^{-i}} + y_0 \\
+    &= \sum_{i=1}^{2k} (-1)^i x_i + y_0 \\
+    &= \sum_{i=1}^{k} (x_{2i}-x_{2i-1}) + y_0.
+  \end{align*}
+  Similarly,
+  \begin{align*}
+    y_{2k+1} &= \sum_{i=-(2k+1)}^\infty (-1)^{i+1} 2^{-2^i} \\
+    &= \sum_{i=-(2k+1)}^{-2} (-1)^{i+1} 2^{-2^i} + \sum_{i=-1}^\infty (-1)^{i+1} 2^{-2^i} \\
+    &= \sum_{i=2}^{2k+1} (-1)^{i+1} 2^{-2^{-i}} + y_1 \\
+    &= \sum_{i=2}^{2k+1} (-1)^{i+1} x_i + y_1 \\
+    &= \sum_{i=1}^{k} (x_{2i+1}-x_{2i}) + y_1. \\
+  \end{align*}
+  Since $x_{n+1} - x_n > 0$ for all $n$,
+  $(y_{2k})_k$ and $(y_{2k+1})_k$ are both (strictly) increasing.
+  \newpage
+  First, we show that $\lim\limits_{k \rightarrow \infty} y_{2k+1} > \frac{1}{2}$.
+  Since the sequence is increasing, it suffices to find such a $k$.
+  (In fact, this alone shows that $\lim\limits_{x \rightarrow 1^-} f(x) \neq \frac{1}{2}$,
+  per the original problem.)
+  
+  Take $k = 2$, so $y_5 = y_{2k+1} = $
+  
+  \vfill\null
+\end{proof}
+
+\end{multicols}
+\end{document}
