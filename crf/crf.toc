@@ -1,0 +1,2 @@
+\beamer@sectionintoc {1}{Prior work}{3}{0}{1}
+\beamer@sectionintoc {2}{Classifying Diminishings}{8}{0}{2}

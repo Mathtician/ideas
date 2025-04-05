@@ -1,0 +1,277 @@
+\documentclass{beamer}
+% \usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{images/}
+
+\begin{document}
+
+\title{CRF Diminishings of the 600-Cell}
+\author{Mathtician}
+\maketitle
+
+\begin{frame}
+  \frametitle{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Prior work}
+
+\begin{frame}
+  \frametitle{Definitions}
+  \begin{itemize}
+  \item
+    \textbf{CRF}: convex regular-faced
+    \begin{itemize}
+    \item
+      \textbf{Convex}: may be formed as the face lattice of a bounded convex set,
+      i.e. all elements are strictly convex
+    \item
+      \textbf{Face}: 2D element (not of any dimension, as is used elsewhere)
+    \end{itemize}
+  \item
+    \textbf{600-cell (ex)}:
+    the convex regular polychoron with 120 vertices
+    and 600 tetrahedral cells, 5 to an edge
+  \item
+    \textbf{Diminishing of ex}:
+    convex hull of a subset of the vertices of ex
+    which are not all on the same hyperplane
+    \begin{itemize}
+    \item
+      Same hyperplane $\rightarrow$ lower dimension
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CRF Polyhedra}
+  \begin{itemize}
+  \item
+    5 Platonic solids
+  \item
+    13 Archimedean solids
+  \item
+    $\infty$ prisms
+    \begin{itemize}
+    \item
+      $n \in [3, \infty)$ sides, $n = 4 \rightarrow$ cube
+    \end{itemize}
+  \item
+    $\infty$ antiprisms
+    \begin{itemize}
+    \item
+      $n \in [3, \infty)$ sides, $n = 3 \rightarrow$ octahedron
+    \end{itemize}
+  \item
+    92 Johnson solids\footnote{Norman Johnson, 1966}\footnote{Victor Zalgaller, 1969}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Blind Polytopes}
+  \begin{itemize}
+  \item
+    \textbf{Blind polytope}: convex polytope with regular facets
+    \begin{itemize}
+    \item
+      Achtung: short ``i'' sound!
+    \end{itemize}
+  \item
+    Blind polychora have regular (Platonic solid) cells
+  \item
+    There are 314248357 Blind polychora(!)
+  \item
+    All but 13 of them are \textbf{special cuts} of ex
+  \end{itemize}
+\end{frame}
+%% \begin{frame}
+%%   \frametitle{Uniform Blind Polychora}
+%%   \begin{itemize}
+%%   \item
+%%     6 convex regular polychora
+%%     \begin{itemize}
+%%     \item
+%%       5-cell (pen)
+%%     \item
+%%       Tesseract (tes)
+%%     \item
+%%       16-cell (hex)
+%%     \item
+%%       24-cell (ico)
+%%     \item
+%%       120-cell (hi)
+%%     \item
+%%       600-cell (ex)
+%%     \end{itemize}
+%%   \item 3 other uniform polychora
+%%     \begin{itemize}
+%%     \item
+%%       Rectified 5-cell (rap)
+%%     \item
+%%       Rectified ex (rox)
+%%     \item
+%%       Snub 24-cell (sadi)
+%%     \end{itemize}
+%%   \end{itemize}
+%% \end{frame}
+%% \begin{frame}
+%%   \frametitle{Non-uniform Blind Polychora}
+%%   \begin{itemize}
+%%   \item
+%%     Tetrahedral bipyramid
+%%   \item
+%%     Octahedral pyramid
+%%   \item
+%%     Icosahedral pyramid
+%%   \item
+%%     Icosahedral bipyramid
+%%   \item
+%%     Augmented rectified 5-cell
+%%     \begin{itemize}
+%%     \item
+%%       Octahedral cell is augmented
+%%     \end{itemize}
+%%   \item
+%%     314248343 other \textbf{special cuts of ex}
+%%   \end{itemize}
+%% \end{frame}
+
+\begin{frame}
+  \frametitle{Special Cuts}
+  \begin{itemize}
+  \item
+    A special cut is ex, diminished by a (nonempty) independent set of vertices
+  \item
+    Diminishing a vertex replaces 20 tetrahedra with an icosahedron
+  \item
+    Diminishing two adjacent vertices would mean the new cells are no longer icosahedral: remember this for later
+  \item
+    There are 314248344 nonempty independent sets of ex up to symmetry,
+    so there are the same number of special cuts
+    \begin{itemize}
+    \item
+      One independent set, the vertices of an inscribed 24-cell,
+      creates a uniform special cut, the snub 24-cell
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CRF Polychora}
+  \begin{itemize}
+  \item
+    The other main way to generalize Johnson solids (or the family they complete)
+    to 4D
+  \item
+    Too many to count! At least $10^\text{hundreds}$, maybe $10^\text{thousands}$
+  \item
+    This class contains even more ex diminishings than the special cuts
+  \item
+    But how many?
+  \end{itemize}
+\end{frame}
+
+\section{Classifying Diminishings}
+
+\begin{frame}
+  \frametitle{Edge Length}
+  \begin{itemize}
+  \item
+    CRFs have all edges the same length
+  \item
+    8 different distances between verts of ex: possible edge lengths
+  \item
+    Longest edges have no CRFs: too cramped
+  \item
+    Intermediate edges have some CRFs
+    \begin{itemize}
+    \item
+      Diminishings of inscribed polychora e.g. 24-cell
+    \end{itemize}
+  \item
+    Vast majority of CRFs have same edge length as ex
+    \begin{itemize}
+    \item
+      Focus of this presentation
+    \end{itemize}
+    %%   where $\varphi := \frac{1+\sqrt{5}}{2}$:
+    %%   \begin{itemize}
+    %%   \item
+    %%     $\sqrt{1+0\varphi} = 1$
+    %%   \item
+    %%     $\sqrt{1+1\varphi} = \varphi \approx 1.618$
+    %%   \item
+    %%     $\sqrt{2+1\varphi} \approx 1.902$
+    %%   \item
+    %%     $\sqrt{2+2\varphi} \approx 2.288$
+    %%   \item
+    %%     $\sqrt{2+3\varphi} = 1+\varphi \approx 2.618$
+    %%   \item
+    %%     $\sqrt{3+3\varphi} \approx 2.803$
+    %%   \item
+    %%     $\sqrt{3+4\varphi} \approx 3.078$
+    %%   \item
+    %%     $\sqrt{4+4\varphi} = 2\varphi \approx 3.236$
+    %%   \end{itemize}
+    %% \item
+    %%   Polychoron with largest (unique) $\frac{\text{edge}}{\text{radius}}$ is the 5-cell $\left(\frac{\sqrt{10}}{2}\right)$
+    %% \item
+    %%   With given radius of $\varphi$, edge $\leq 2.559$
+    %% \item
+    %%   For remaining edge lengths, can find possible angles/faces
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Faces and Cells}
+  \begin{itemize}
+  \item
+    Faces: triangles, pentagons, decagons
+  \item
+    Cells, in order of increasing circumradius:
+    \begin{itemize}
+    \item
+      Tetrahedron
+    \item
+      Icosahedron, its 4 ``shallow'' diminishings, and the pentagonal pyramid (its ``deep'' diminishing)
+    \item
+      Dodecahedron
+    \item
+      Icosidodecahedron and its ``half'', the pentagonal rotunda
+    \end{itemize}
+  \item
+    Higher circumradius $\rightarrow$ deeper cut, up to icosidodecahedron at the equator
+  \item
+    Can also make cuts deeper than the equator
+  \item
+    Most CRF diminishings of ex consist of only the shallowest cuts,
+    which diminish 1 vertex each
+    \begin{itemize}
+    \item
+      Intuition: deeper cuts remove more vertices,
+      so there are fewer options for where to place the remaining shallow cuts
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Shallow Cuts}
+  \begin{itemize}
+  \item
+    Diminishing 1 vertex creates an icosahedron, as in the special cuts
+  \item
+    Diminishing 2 adjecent vertices creates 2 diminished icosahedra,
+    joined at the pentagon
+  \item
+    Diminishing a triangle creates icosahedra with 2 adjacent vertices removed,
+    which have trapezoidal faces: not allowed
+  \item
+    Otherwise, any triangle-free set may be diminished to produce a CRF
+    \begin{itemize}
+    \item
+      Other diminishings of the icosahedron may be created
+      by diminishing a vertex and an independent set of its neighbors
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\end{document}

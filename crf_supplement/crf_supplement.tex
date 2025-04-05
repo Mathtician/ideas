@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\graphicspath{images/}
+
+\begin{document}
+
+\title{MC Estimation of a Downward Closed Set of Subsets}
+\author{Aresh Pourkavoos}
+\maketitle
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+
+$V = \{v_1, \ldots, v_n\}$ finite set, $T$ predicate on subsets of $V$ \\
+$A \subseteq B, T(B) \rightarrow T(A)$ ($T$ downward closed) \\
+Notation:
+\begin{itemize}
+\item
+  $\binom{V}{k} := \{B \subseteq V | \abs{B} = k\}$
+\item
+  $S_n := $ set of permutations on $\{1, \ldots, n\}$
+\item
+  $V_{\pi(:k)} := \left\{v_{\pi(i)} \middle| 1 \leq i \leq k\right\}$ for $\pi \in S_n$
+\item
+  $[T(B)]$ is the Iverson bracket: $1$ if $T(B)$ is true, $0$ otherwise
+\item
+  Expectations over e.g. $\pi \in S_n$ are uniform
+\end{itemize}
+Want to estimate
+\begin{align*}
+  &\abs{\left\{B \subseteq V \middle| T(B)\right\}} \\
+  =\ &\sum_{k=0}^n\abs{\left\{B \in \binom{V}{k} \middle| T(B)\right\}} \\
+  =\ &\sum_{k=0}^n\binom{n}{k}\E_{B \in \binom{V}{k}}([T(B)]) \\
+  =\ &\sum_{k=0}^n\binom{n}{k}\E_{\pi \in S_n}\left(\left[T\left(V_{\pi(:k)}\right)\right]\right) \\
+  =\ &\E_{\pi \in S_n}\left(\sum_{k=0}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right) \\
+\end{align*}
+Simple MC method: sample random permutation of $V$, add $\binom{n}{k}$ for each $V_{\pi(:k)}$ satisfying $T$ \\
+Since $T$ downward closed, first (smallest) value of $k$ such that $\lnot T(V_{\pi(:k)})$ makes all subsequent terms $0$: formalized later \\
+Next, WTS this is equivalent to choosing new elements of the permutation ``on the fly'' \\
+Define $x_B$ to be the expected sum remaining after $B \subseteq V$ has already been chosen as the prefix: \\
+\[
+x_B :=
+\begin{cases}
+  0 & \text{if $\lnot T(B)$} \\
+  1 & \text{if $T(B)$ and $B = V$} \\
+  \binom{n}{\abs{B}}+\E_{v \in V \setminus B}\left(x_{B \cup \{v\}}\right) & \text{if $T(B)$ and $B \neq V$}
+\end{cases}
+\]
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\begin{lemma}
+  For all $B \subseteq V$, $x_B = \E_{\pi \in S_n}\left(\sum_{k=\abs{B}}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right] \middle| B = V_{\pi(:\abs{B})}\right)$.
+\end{lemma}
+\begin{proof}
+Induct backwards on $\abs{B}$.
+\begin{itemize}
+\item
+  Base case: $\abs{B} = n$, so $B = V$ \\
+  $x_B = [T(B)]$ by first two cases of def \\
+  RHS is the same: condition is always true, sum has 1 term, $\binom{n}{n} = 1$
+\item
+  Inductive step: $\abs{B} < n$, so $B \neq V$ \\
+  IH holds for all $B'$ where $\abs{B'} = \abs{B}+1$ \\
+  Case on $T(B)$
+  \begin{itemize}
+  \item
+    If $\lnot T(B)$, then $x_B = 0$; WTS RHS $ = 0$ \\
+    Given that $B = V_{\pi(:\abs{B})}$, if $k \geq \abs{B}$, then $B \subseteq V_{\pi(:k)}$,
+    so $\lnot T(V_{\pi(:k)})$ \\
+    Thus sum is $0$ for all relevant $\pi$, so expectation is $0$
+  \item
+    If $T(B)$, then consider $\Pi := \left\{\pi \in S_n \middle| B = V_{\pi(:\abs{B})}\right\}$ \\
+    For all $j$ where $v_j \in V \setminus B$, define $B_j := B \cup \{v_j\}$ \\
+    May partition $\Pi$ into $\Pi_j := \left\{\pi \in S_n \middle| B_j = V_{\pi(:\abs{B}+1)}\right\}$ \\
+    All $\Pi_j$ are of equal size because this is equivalent to partitioning by $\pi(\abs{B}+1)$ \\
+    IH holds for $B_j$, i.e.
+    \begin{align*}
+      x_{B_j}
+      =\ &\E_{\pi \in S_n}\left(\sum_{k=\abs{B}+1}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right] \middle| B_j = V_{\pi(:\abs{B}+1)}\right) \\
+      =\ &\E_{\pi \in \Pi_j}\left(\sum_{k=\abs{B}+1}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right)
+    \end{align*}
+    Then
+    \begin{align*}
+      x_B
+      =\ &\binom{n}{\abs{B}}+\E_{v_j \in V \setminus B}\left(x_{B_j}\right) \\
+      =\ &\binom{n}{\abs{B}}+\E_{v_j \in V \setminus B}\left(\E_{\pi \in \Pi_j}\left(\sum_{k=\abs{B}+1}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right)\right) \\
+      =\ &\binom{n}{\abs{B}}+\E_{\pi \in \Pi}\left(\sum_{k=\abs{B}+1}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right) \\
+      =\ &\E_{\pi \in \Pi}\left(\binom{n}{\abs{B}}+\sum_{k=\abs{B}+1}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right) \\
+      =\ &\E_{\pi \in \Pi}\left(\sum_{k=\abs{B}}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right) \\
+      =\ &\E_{\pi \in S_n}\left(\sum_{k=\abs{B}}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right] \middle| B = V_{\pi(:\abs{B})}\right)
+    \end{align*}
+  \end{itemize}
+\end{itemize}
+\end{proof}
+Finally, want to define the desired MC method and show it has the correct expectation \\
+For $B \subseteq V$, define $C_B = \left\{v \in V \setminus B \middle| T(B \cup \{v\})\right\}$ \\
+Define RVs $X_B$ by
+\[
+X_B :=
+\begin{cases}
+  0 & \text{if $\lnot T(B)$} \\
+  1 & \text{if $T(B)$ and $B = V$} \\
+  \binom{n}{\abs{B}}+\frac{\abs{C_B}}{\abs{V \setminus B}}X_{B \cup \{v\}} & \text{if $T(B)$ and $B \neq V$, for random $v \in C_B$}
+\end{cases}
+\]
+\begin{lemma}
+  For all $B \subseteq V$, $\E(X_B) = x_B$.
+\end{lemma}
+\begin{proof}
+Induct backwards on $\abs{B}$.
+\begin{itemize}
+\item
+  Base case: $\abs{B} = n$, so $B = V$ \\
+  $\E(X_B) = [T(B)] = x_B$
+\item
+  Inductive step: $\abs{B} < n$, so $B \neq V$ \\
+  IH holds for all $B'$ where $\abs{B'} = \abs{B}+1$ \\
+  If $\lnot T(B)$, then $\E(X_B) = 0 = x_B$ \\
+  If $T(B)$, then
+  \begin{align*}
+    &\E(X_B) \\
+    =\ &\E_{v \in C_B}\left(\binom{n}{\abs{B}}+\frac{\abs{C_B}}{\abs{V \setminus B}}X_{B \cup \{v\}}\right) \\
+    =\ &\binom{n}{\abs{B}}+\frac{\abs{C_B}}{\abs{V \setminus B}}\E_{v \in C_B}\left(X_{B \cup \{v\}}\right) \\
+    =\ &\binom{n}{\abs{B}}+\frac{1}{\abs{V \setminus B}}\sum_{v \in C_B}\left(X_{B \cup \{v\}}\right) \\
+    =\ &\binom{n}{\abs{B}}+\frac{1}{\abs{V \setminus B}}\sum_{v \in V \setminus B}\left(X_{B \cup \{v\}}\right) \\
+    =\ &\binom{n}{\abs{B}}+\E_{v \in V \setminus B}\left(X_{B \cup \{v\}}\right) \\
+    =\ &\binom{n}{\abs{B}}+\E_{v \in V \setminus B}\left(x_{B \cup \{v\}}\right) \\
+    =\ &x_B
+  \end{align*}
+\end{itemize}
+\end{proof}
+\begin{theorem}
+$\E(X_{\{\}}) = \abs{\left\{B \subseteq V \middle| T(B)\right\}}$.
+\end{theorem}
+\begin{proof}
+  \begin{align*}
+    \E(X_{\{\}})
+    =\ &x_{\{\}} \\
+    =\ &\E_{\pi \in S_n}\left(\sum_{k=\abs{\{\}}}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right] \middle| \{\} = V_{\pi(:\abs{\{\}})}\right) \\
+    =\ &\E_{\pi \in S_n}\left(\sum_{k=0}^n\binom{n}{k}\left[T\left(V_{\pi(:k)}\right)\right]\right) \\
+    =\ &\abs{\left\{B \subseteq V \middle| T(B)\right\}}
+  \end{align*}
+\end{proof}
+
+\end{document}
